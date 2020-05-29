@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "CustomFontBlack";
+  src: url("../../font/din-next-lt-w23-black.ttf"); }
+@font-face {
+  font-family: "CustomFontBold";
+  src: url("../../font/din-next-lt-w23-bold.ttf"); }
+@font-face {
+  font-family: "CustomFontHeavy";
+  src: url("../../font/din-next-lt-w23-heavy.ttf"); }
+@font-face {
+  font-family: "CustomFontLight";
+  src: url("../../font/din-next-lt-w23-light.ttf"); }
+@font-face {
+  font-family: "CustomFontMedium";
+  src: url("../../font/din-next-lt-w23-medium.ttf"); }
+@font-face {
+  font-family: "CustomFontRegular";
+  src: url("../../font/din-next-lt-w23-regular.ttf"); }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "CustomFontBold"; }
+
+* {
+  direction: rtl;
+  text-align: right; }
+
+p {
+  font-family: "CustomFontMedium"; }
+
+/*# sourceMappingURL=global.css.map */

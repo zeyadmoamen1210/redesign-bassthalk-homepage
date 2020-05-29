@@ -1,0 +1,405 @@
+<template>
+  <div class="the-best">
+    <NavbarBefor />
+     <div class="the-best" style="overflow:hidden;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="head-who">
+                <span></span>
+                <span></span>
+                <span></span>
+                <h3>المتفوقين</h3>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="best-sort" style="overflow:hidden;">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="user-sort-item">
+                  <div class="profile-pic">
+                    <span>
+                      <img src="../assets/imgs/thired2x.png" alt="">
+                    </span>
+                    <img src="../assets/imgs/user.png" alt="">
+                    <div class="profile-cont">
+                      <h3>احمد محمود</h3>
+                      <h3>الصف الاول الثانوي</h3>
+                      <div class="profile-cont-point" style="overflow:hidden">
+                        <img src="../assets/imgs/point.png" alt="">
+                        <h6>150</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="user-sort-item first-student">
+                  <div class="profile-pic">
+                    <span>
+                      <img src="../assets/imgs/first3x.png" alt="">
+                    </span>
+                    <img src="../assets/imgs/user.png" alt="">
+                    <div class="profile-cont">
+                      <h3>احمد محمود</h3>
+                      <h3>الصف الاول الثانوي</h3>
+                      <div class="profile-cont-point" style="overflow:hidden">
+                        <img src="../assets/imgs/point.png" alt="">
+                        <h6>150</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="user-sort-item">
+                  <div class="profile-pic">
+                    <span>
+                      <img src="../assets/imgs/second-2x.png" alt="">
+                    </span>
+                    <img src="../assets/imgs/user.png" alt="">
+                    <div class="profile-cont">
+                      <h3>احمد محمود</h3>
+                      <h3>الصف الاول الثانوي</h3>
+                      <div class="profile-cont-point" style="overflow:hidden">
+                        <img src="../assets/imgs/point.png" alt="">
+                        <h6>150</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="all-the-best-student">
+            <div class="row">
+              <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">4</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+
+              <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">5</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+
+              <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">6</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+
+              <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">7</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+
+              <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">8</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+
+              <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">9</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+
+               <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">10</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+
+               <div class="col-md-6">
+               <div class="stu-info">
+                  <div class="stu-num">11</div>
+                  <div class="stu-pic"><img src="../assets/imgs/user.png" alt=""></div>
+                  <div class="stu-name">احمد محمود</div>
+                  <div class="stu-point">
+                    <h6>150</h6>
+                    <img src="../assets/imgs/point.png" alt="">
+                  </div>
+               </div>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+      <Footer />
+  </div>
+</template>
+
+<script>
+import NavbarBefor from '../components/NavbarBefore'
+import Footer from '../components/Footer'
+
+export default {
+components:{
+  NavbarBefor,
+  Footer
+}
+}
+</script>
+
+<style lang="scss" scoped>
+.the-best{
+    .head-who{
+      width:264px;
+    }
+    .all-the-best-btn{
+      margin:51px 0;
+      text-align: left;
+      button{
+        background:#058ac6;
+        color:#FFF;
+        font-family: "CustomFontBold";
+      }
+    }
+  }
+
+
+  .best-sort{
+    margin-bottom: 50px;
+    .user-sort-item{
+      position: relative;
+      .profile-pic{
+              margin: 118px 0 0;
+    text-align: center;
+        span{
+          display: inline-block;
+          position: absolute;
+          top: -47px;
+          left: 50%;
+          transform: translate(-50%);
+          z-index: -1;
+
+        }
+         >img{
+          width: 200px;
+          text-align: center;
+         }
+         .profile-cont{
+           h3{
+             text-align: center;
+             margin: 10px 0;
+             &:last-of-type{
+               font-family: "CustomFontLight";
+              font-weight: bold;
+              color: #a0a0a0;
+              font-size: 24px;
+             }
+           }
+         }
+         .profile-cont-point{
+               overflow: hidden;
+    position: relative;
+    left: -55px;
+    width: 33%;
+    transform: translate(-50%);
+           h6{
+            display: block;
+            width: 50%;
+            float: left;
+            margin: 18px 0;
+            font-size: 33px;
+            color: #098bc1;
+           }
+           img{
+             display: block;
+              width: 47px;
+              float: left;
+           }
+         }
+      }
+
+    }
+    .first-student{
+      transform: scale(1.11);
+      span{
+        top: -60px !important;
+        left: 50% !important;
+        transform: translate(-50%) !important;
+        margin: 0 -34px;
+        img{
+          width: 68%;
+        }
+      }
+    }
+  }
+
+
+    .head-who{
+      position: relative;
+      width: 224px;
+      text-align: center;
+      margin: 51px 0;
+      h3{
+        text-align: center;
+        font-family: "CustomFontBold";
+
+      }
+      span{
+        position: absolute;
+        width:20px;
+        height:20px;
+        content: '';
+        background:#058ac6;
+        border:1px solid #058ac6;
+        border-radius: 50%;
+        &:first-of-type{
+          width: 12px;
+          height: 12px;
+          top: 14px;
+          right: 4px;
+        }
+        &:nth-of-type(2){
+          width: 12px;
+          height: 12px;
+          top: 14px;
+          left: 4px;
+        }
+        &:nth-of-type(3){
+          top: 13px;
+          left: 20px;
+          height: 14px;
+          width: 15px;
+        }
+        &:nth-of-type(4){
+          top:10px;
+          left:40px;
+        }
+        &:nth-of-type(5){
+          top: 13px;
+          right: 20px;
+          height: 14px;
+          width: 15px;
+        }
+        &:nth-of-type(6){
+          top: 10px;
+          right: 40px;
+        }
+      }
+    }
+
+    .all-the-best-student{
+      .stu-num,.stu-name,.stu-point{
+        display: inline-block;
+      }
+      .stu-info{
+          background: #f2f2f2;
+          padding:15px;
+          position: relative;
+          margin: 5px 0;
+          border-radius: 10px;
+        .stu-num{
+          padding: 10px 15px;
+          background: #0989c3;
+          color: #FFF;
+          font-family: "CustomFontBold";
+          border-radius: 5px;
+        }
+        .stu-name{
+          font-family: "CustomFontBold";
+          font-size: 18px;
+        }
+        .stu-pic{
+              width: 76px;
+              display: inline-block;
+              margin: 6px 19px;
+              height: 76px;
+              transform: scale(1.2);
+              img{
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 1px solid #0989c3;
+                padding: 3px;
+              }
+        }
+        .stu-point{
+          position: absolute;
+          top: 50%;
+          left: 10px;
+          transform: translateY(-50%);
+          h6,img{
+            display: inline-block;
+          }
+          h6{
+            position: absolute;
+            left: 38px;
+            top: 15px;
+            color: #0989c3;
+            font-family: "CustomFontBold";
+          }
+        }
+      }
+    }
+
+</style>

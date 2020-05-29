@@ -3,8 +3,14 @@
     <nuxt />
   </div>
 </template>
+<script>
+import '../assets/css/global.css'
+export default {
 
-<style>
+}
+</script>
+<style lang="scss">
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
