@@ -75,6 +75,7 @@ computed: {
 
 <style lang="scss" scoped>
 
+
 .navbar-before{
   .nav-logo{
     height: 100px;

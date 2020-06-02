@@ -192,18 +192,15 @@
         </div>
 
       </div>
-      <Footer />
   </div>
 </template>
 
 <script>
 import NavbarBefor from '../components/NavbarBefore'
-import Footer from '../components/Footer'
 
 export default {
 components:{
   NavbarBefor,
-  Footer
 }
 }
 </script>

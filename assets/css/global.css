@@ -26,4 +26,111 @@ h1, h2, h3, h4, h5, h6 {
 p {
   font-family: "CustomFontMedium"; }
 
+input[type="text"], input[type="password"], input[type="email"] {
+  padding: 24px 11px;
+  box-shadow: 0px 1px 10px 1px #DDD;
+  border: 0;
+  border-radius: 7px; }
+
+::placeholder {
+  font-family: "CustomFontLight";
+  font-weight: bold; }
+
+input[type="submit"].fullWidthBtn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 13px;
+  border-radius: 6px;
+  border: 0;
+  color: #FFF;
+  background-color: #058ac6;
+  font-family: "CustomFontRegular"; }
+
+a {
+  color: #333;
+  text-decoration: none;
+  font-family: "CustomFontRegular";
+  transition: all .2s linear; }
+  a:hover {
+    text-decoration: none; }
+
+.box-shadow-class {
+  box-shadow: 0px 1px 9px 0px #DDD; }
+
+.unit {
+  padding: 10px 12px;
+  box-shadow: 0px 1px 9px 0px #DDD;
+  border-radius: 5px;
+  margin: 20px 0; }
+  .unit h6 {
+    display: inline-block; }
+  .unit span {
+    display: inline-block;
+    color: #FFF;
+    background: #333;
+    padding: 3px 11px;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 3px 0 8px; }
+    .unit span::after {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: -4px;
+      right: -4px;
+      content: '';
+      background: #b8b2b2;
+      z-index: -1;
+      border-radius: 50%;
+      padding: 19px; }
+
+.c100 {
+  position: relative;
+  font-size: 120px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  /* float: left; */
+  margin: 0 0.1em 0.1em 0;
+  background-color: #ffffff;
+  margin: 13px auto 0;
+  float: none !important; }
+
+.c100::after {
+  background-color: #ffffff; }
+  .c100::after:hover {
+    transform: none; }
+
+.pie, .c100 .bar, .c100.p51 .fill, .c100.p52 .fill, .c100.p53 .fill, .c100.p54 .fill, .c100.p55 .fill, .c100.p56 .fill, .c100.p57 .fill, .c100.p58 .fill, .c100.p59 .fill, .c100.p60 .fill, .c100.p61 .fill, .c100.p62 .fill, .c100.p63 .fill, .c100.p64 .fill, .c100.p65 .fill, .c100.p66 .fill, .c100.p67 .fill, .c100.p68 .fill, .c100.p69 .fill, .c100.p70 .fill, .c100.p71 .fill, .c100.p72 .fill, .c100.p73 .fill, .c100.p74 .fill, .c100.p75 .fill, .c100.p76 .fill, .c100.p77 .fill, .c100.p78 .fill, .c100.p79 .fill, .c100.p80 .fill, .c100.p81 .fill, .c100.p82 .fill, .c100.p83 .fill, .c100.p84 .fill, .c100.p85 .fill, .c100.p86 .fill, .c100.p87 .fill, .c100.p88 .fill, .c100.p89 .fill, .c100.p90 .fill, .c100.p91 .fill, .c100.p92 .fill, .c100.p93 .fill, .c100.p94 .fill, .c100.p95 .fill, .c100.p96 .fill, .c100.p97 .fill, .c100.p98 .fill, .c100.p99 .fill, .c100.p100 .fill {
+  border: 0.08em solid #00aa00; }
+
+html {
+  scroll-behavior: smooth; }
+
+.c100 > span {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 5em;
+  line-height: 4.5em;
+  font-size: 18px;
+  color: #494949;
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+  font-weight: bold;
+  font-family: "CustomFontBold"; }
+  .c100 > span:hover {
+    transform: none; }
+  .c100 > span .slice .bar:hover {
+    transform: none; }
+  .c100 > span .slice:hover {
+    transform: none; }
+
 /*# sourceMappingURL=global.css.map */

@@ -1,16 +1,24 @@
 <template>
   <div>
-    <nuxt />
+    <div class="cont">
+      <nuxt />
+    </div>
+    <Footer />
   </div>
 </template>
 <script>
 import '../assets/css/global.css'
+import Footer from '../components/Footer'
 export default {
-
+components:{
+  Footer
+}
 }
 </script>
 <style lang="scss">
-
+.cont{
+      min-height: 64vh;
+}
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

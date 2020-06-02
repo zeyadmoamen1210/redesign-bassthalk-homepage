@@ -1,8 +1,21 @@
 <template>
   <div>
+
     <div class="home-page">
+
       <div class="slider">
-              <NavbarBefore />
+
+
+
+                    <NavbarHomeBefore/>
+
+
+
+
+
+
+
+
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
@@ -15,7 +28,7 @@
         </div>
       </div>
 
-      <div class="who-we-are">
+      <div class="who-we-are" id="who-we-are">
         <div class="background-who-we-are">
           <img src="../assets/imgs/logo.png" alt="">
         </div>
@@ -40,7 +53,7 @@
 
 
 
-       <div class="our-view">
+       <div class="our-view" id="our-view">
            <div class="container">
               <div class="head-who">
                 <span></span>
@@ -121,7 +134,7 @@
       </div>
 
 
-      <div class="the-best" style="overflow:hidden;">
+      <div class="the-best" style="overflow:hidden;" id="the-best">
         <div class="container">
           <div class="row">
             <div class="col-md-6">
@@ -209,11 +222,11 @@
 
       </div>
 
-      <div class="download-app">
+      <div class="download-app" id="download-app">
             <div class="container">
 
 
-              <div class="download-app-cont" style="overflow:hidden">
+              <div class="download-app-cont" style="overflow:hidden" >
                 <div class="row">
                   <div class="col-md-6">
                     <div>
@@ -278,7 +291,7 @@
           </div>
 
 
-          <div class="question-and-answer">
+          <div class="question-and-answer" id="question-and-answer">
             <div class="container">
                <div class="head-who">
                 <span></span>
@@ -298,10 +311,12 @@
                         <div class="row">
                           <div class="col-md-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
+                                                          <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
+
                           </div>
                           <div class="col-md-2">
                             <div class="icon">
-                             <button>
+                             <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
                              </button>
                             </div>
@@ -313,10 +328,12 @@
                         <div class="row">
                           <div class="col-md-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
+                                                          <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
+
                           </div>
                           <div class="col-md-2">
                             <div class="icon">
-                             <button>
+                             <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
                              </button>
                             </div>
@@ -328,10 +345,12 @@
                         <div class="row">
                           <div class="col-md-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
+                                                          <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
+
                           </div>
                           <div class="col-md-2">
                             <div class="icon">
-                             <button>
+                             <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
                              </button>
                             </div>
@@ -343,10 +362,12 @@
                         <div class="row">
                           <div class="col-md-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
+                                                          <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
+
                           </div>
                           <div class="col-md-2">
                             <div class="icon">
-                             <button>
+                             <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
                              </button>
                             </div>
@@ -358,10 +379,12 @@
                         <div class="row">
                           <div class="col-md-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
+                                                          <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
+
                           </div>
                           <div class="col-md-2">
                             <div class="icon">
-                             <button>
+                             <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
                              </button>
                             </div>
@@ -373,10 +396,11 @@
                         <div class="row">
                           <div class="col-md-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
+                             <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
                           </div>
                           <div class="col-md-2">
                             <div class="icon">
-                             <button>
+                             <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
                              </button>
                             </div>
@@ -419,13 +443,13 @@
                 </div>
               </div>
 
-              <div class="partnars">
+              <div class="partnars" id="partnars">
                 <div class="container">
                    <div class="head-who">
                     <span></span>
                     <span></span>
                     <span></span>
-                    <h3>أسئلة و أجوبة</h3>
+                    <h3>شركاؤنا</h3>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -467,7 +491,6 @@
             </div>
           </div>
 
-                        <Footer />
 
 
 
@@ -476,12 +499,28 @@
 </template>
 
 <script>
-import NavbarBefore from '../components/NavbarBefore';
+import NavbarHomeBefore from '../components/NavbarHomeBefore';
 import Footer from '../components/Footer'
 export default {
   components: {
-    NavbarBefore,
+    NavbarHomeBefore,
     Footer
+  },
+  methods: {
+    dropdownQustion: function(e){
+      let ele = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+      ele.classList.toggle('active-question');
+      console.log('hi')
+      if(ele.classList.contains('active-question')){
+        ele.style.height="100px";
+        e.target.setAttribute('src', 'https://i.ibb.co/qpwZbrB/minus.png')
+      }else{
+        ele.style.height="50px";
+              e.target.setAttribute('src','https://i.ibb.co/QJMj56D/add.png')
+      }
+
+    },
+
   }
 }
 </script>
@@ -830,6 +869,9 @@ export default {
     .questions-sec{
       .ques{
         .ques-item{
+          overflow: hidden;
+          height:50px;
+          transition: all .3s linear;
           padding: 13px 18px 0;
           background: #f0f0f0;
           border-radius: 5px;
@@ -837,6 +879,11 @@ export default {
           border: 1px dashed #CCC;
           h4{
             font-size:19px;
+          }
+          p{
+                font-family: "CustomFontRegular";
+    color: #666;
+    padding-top: 5px;
           }
           .icon{
                text-align: left;
@@ -893,4 +940,6 @@ export default {
     }
   }
 }
+
+
 </style>

@@ -8,21 +8,21 @@
       </div>
       <form action="">
         <div class="form-groub">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" placeholder="البريد الألكتروني أو رقم الجوال">
         </div>
          <div class="form-groub">
-          <input type="text" class="form-control">
+          <input type="password" class="form-control" placeholder="كلمة المرور">
         </div>
         <div class="forget-pass">
           <nuxt-link to="">
-            هل نسيت كلمة السر ؟
+            هل نسيت كلمة مرورك ؟
           </nuxt-link>
         </div>
-        <input type="submit" value="تسجيل الدخول">
+        <input type="submit" value="تسجيل الدخول" class="fullWidthBtn">
         <div class="two-way">
           <h6>او عن طريف</h6>
-          <img src="" alt="">
-          <img src="" alt="">
+          <img src="../assets/imgs/facebook.png" alt="">
+          <img src="../assets/imgs/brands-and-logotypes.png" alt="">
         </div>
 
         <div class="dont-have-acc">
@@ -36,7 +36,6 @@
       </form>
     </div>
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -55,6 +54,44 @@ components:{
 <style lang="scss">
   .login{
     width: 35%;
-    margin:100px auto
+    margin:100px auto;
+    input{
+      margin: 10px 0;
+    }
+    .forget-pass{
+      text-align: left;
+      a{
+        text-align: left;
+        font-family: "CustomFontRegular";
+      }
+    }
+    .two-way{
+          text-align: center;
+          margin-top: 13px;
+          margin-bottom: 13px;
+          h6{
+            margin-bottom: 13px;
+            text-align: center;
+          }
+          img{
+            margin: 0 10px;
+          }
+    }
+    .dont-have-acc{
+      >div{
+        display: inline-block;
+        h6{
+              display: inline-block;
+    margin-left: 153px;
+        }
+        button{
+              padding: 7px 13px;
+    background: #FFF;
+    border: 1px solid #058ac6bd;
+    color: #058ac6bd;
+    font-family: "CustomFontRegular";
+        }
+      }
+    }
   }
 </style>

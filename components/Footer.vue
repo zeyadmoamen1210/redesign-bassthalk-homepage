@@ -66,7 +66,7 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0 2px;
-    min-height: 330px;
+    min-height: 29vh;
     margin-top: 100px;
     .foot{
           padding-top: 136px;
