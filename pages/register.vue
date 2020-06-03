@@ -161,6 +161,8 @@ components:{
       display: block;
     text-align: center;
 }
+
+
  }
 
 // Small devices (landscape phones, 576px and up)
@@ -173,6 +175,8 @@ components:{
 .login .dont-have-acc > div h6{
   margin: 0;
 }
+
+
  }
 
 // Large devices (desktops, 992px and up)
