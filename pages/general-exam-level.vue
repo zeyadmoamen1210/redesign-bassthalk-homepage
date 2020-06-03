@@ -4,7 +4,9 @@
     <div class="container">
       <div class="tests-level">
         <div class="title">
-          <h3> الأمتحانات العامة</h3>
+          <h3>
+            <img src="../assets/imgs/noun_exam_-1.png" alt="">
+            الأمتحانات العامة</h3>
         </div>
 
       <div class="levels">
@@ -32,7 +34,7 @@
 
            <div class="col-md-4">
             <div class="level-item box-shadow-class">
-                <img  src="../assets/imgs/easy-level (3).png" alt="">
+                <img style="margin-top:40px" src="../assets/imgs/easy-level (3).png" alt="">
                 <h6>المستوي الصعب</h6>
             </div>
           </div>
@@ -60,8 +62,9 @@ components:{
   margin-top: 100px;
   .title{
     h3{
-      color:#058ac6bd;
-      margin-bottom: 50px;
+      color: rgba(5,138,198,0.74118);
+    margin-bottom: 50px;
+    font-family: "CustomFontMedium";
     }
   }
   .lesson-inner-grid{
@@ -79,12 +82,19 @@ components:{
       padding: 10px;
       text-align: center;
       min-height: 249px;
+      transition: all .4s linear;
+      margin-bottom: 20px;
+      cursor: pointer;
       h6{
             text-align: center;
     margin-top: 31px;
     font-size: 19px;
     color: #6e6e6e;
       }
+      &:hover{
+        transform: scale(1.03);
+        box-shadow: 0px 1px 8px 5px #DDD;;
+    }
     }
     .level-cicle{
       background-color: green;
