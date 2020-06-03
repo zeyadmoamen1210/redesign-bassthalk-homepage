@@ -4,7 +4,9 @@
     <div class="container">
       <div class="login">
       <div class="form-title">
-        <h4>انشاء حساب جديد</h4>
+        <h4>
+          <img src="../assets/imgs/Group 6945.png" alt="">
+          انشاء حساب جديد</h4>
       </div>
       <form action="">
         <div class="form-grid">
@@ -130,7 +132,6 @@ components:{
         display: inline-block;
         h6{
               display: inline-block;
-    margin-left: 140px;
         }
         button{
               padding: 7px 13px;
@@ -142,4 +143,45 @@ components:{
       }
     }
   }
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.login .form-bottom{
+  width:88%;
+}
+.login .dont-have-acc > div button{
+  text-align: center;
+}
+.login .dont-have-acc > div h6{
+  margin: 0;
+}
+.login .dont-have-acc > div{
+      display: block;
+    text-align: center;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+.login .dont-have-acc > div h6{
+  margin: 0;
+}
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
