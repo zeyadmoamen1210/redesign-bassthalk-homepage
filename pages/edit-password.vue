@@ -6,7 +6,9 @@
       <div class="container">
 
         <div class="title">
-          <h4>تعديل بياناتي</h4>
+          <h4>
+            <img src="../assets/imgs/noun_edit_-1.png" alt="">
+            تعديل بياناتي</h4>
         </div>
 
         <p>تعديل كلمة المرور</p>
@@ -66,6 +68,14 @@ export default {
         margin-bottom: 20px;
       }
     }
+    .general-exam-item{
+          height: 378px;
+    width: 84%;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+    }
     form{
       direction: ltr;
           padding-top: 52px;
@@ -88,4 +98,32 @@ export default {
       }
     }
 }
+
+
+
+
+  // Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
