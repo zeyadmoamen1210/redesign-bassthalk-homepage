@@ -4,7 +4,9 @@
     <div class="container">
           <div class="the-subject">
           <div class="form-title">
-            <h4>الكمياء</h4>
+            <h4>
+              <img src="../assets/imgs/laboratory-1.png" alt="">
+              الكمياء</h4>
           </div>
 
       <div class="subject-units">
@@ -180,6 +182,7 @@ components:{
     background: #ececec;
     border-radius: 5px;
     font-family: "CustomFontLight";
+    margin-bottom: 10px;
       h6{
          margin: 0;
     font-family: "CustomFontRegular";
@@ -189,5 +192,44 @@ components:{
   }
 
 }
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.live-details .time-content .time-course > div:nth-of-type(2){
+  width: 42%;
+  margin-top: 14px;
+}
+.live-details .time-content .time-course > div:first-of-type{
+  width: 30%;
+}
+.live-details .time-content .time-course .teacher{
+      height: 60px;
+    width: 59px;
+        margin-top: 20px;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
+
 
 </style>
