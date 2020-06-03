@@ -37,7 +37,8 @@
         </div>
 
 
-        <div class="general-exam-content">
+        <form action="" >
+          <div class="general-exam-content">
           <div class="row">
             <div class="col-md-6" style="min-height: 320px;">
               <div class="exam-cont-item">
@@ -73,10 +74,10 @@
              <div class="col-md-6" style="min-height: 320px;">
               <div class="exam-cont-item">
                     <div>
-                  <h6>1</h6>
+                  <h6>2</h6>
                 </div>
 
-                <div><h6>السؤال الأول</h6></div>
+                <div><h6>السؤال الثاني</h6></div>
               </div>
               <div class="check-box-ques">
                 <h6>صيغة السؤال هي عبارة عن صح او خطأ ؟</h6>
@@ -104,10 +105,10 @@
               <div class="col-md-6" style="margin-top: 25px;">
               <div class="exam-cont-item">
                     <div>
-                  <h6>1</h6>
+                  <h6>3</h6>
                 </div>
 
-                <div><h6>السؤال الأول</h6></div>
+                <div><h6>السؤال الثالث</h6></div>
               </div>
               <div class="check-box-ques">
                 <h6>صيغة السؤال هي عبارة عن صح او خطأ ؟</h6>
@@ -138,10 +139,10 @@
              <div class="col-md-6" style="margin-top: 25px;">
               <div class="exam-cont-item">
                     <div>
-                  <h6>1</h6>
+                  <h6>4</h6>
                 </div>
 
-                <div><h6>السؤال الأول</h6></div>
+                <div><h6>السؤال الرابع</h6></div>
               </div>
               <div class="check-box-ques">
                 <h6>صيغة السؤال هي عبارة عن صح او خطأ ؟</h6>
@@ -172,10 +173,70 @@
              <div class="col-md-6" style="margin-top: 25px;">
               <div class="exam-cont-item">
                     <div>
-                  <h6>1</h6>
+                  <h6>5</h6>
                 </div>
 
-                <div><h6>السؤال الأول</h6></div>
+                <div><h6>السؤال الخامس</h6></div>
+              </div>
+              <div class="check-box-ques">
+                <h6>أكمل الجملة التالية</h6>
+
+
+              <span class="fill-the-ques" style="width:100%;">
+
+              صيغة السؤال هي أكمل
+                <div class="form-groub" style="display: inline-block;">
+                  <input style="width:100%;padding: 6px" type="text" placeholder="ادخل أجابتك هنا">
+                </div>
+                الجملة
+               </span>
+
+
+
+
+              </div>
+
+            </div>
+
+
+
+
+            <div class="col-md-6" style="margin-top: 25px;">
+              <div class="exam-cont-item">
+                    <div>
+                  <h6>6</h6>
+                </div>
+
+                <div><h6>السؤال السادس</h6></div>
+              </div>
+              <div class="check-box-ques">
+                <h6>أكمل الجملة التالية </h6>
+
+
+              <span class="fill-the-ques" style="width:100%;">
+
+              صيغة السؤال هي أكمل
+                <div class="form-groub" style="display: inline-block;">
+                  <input style="width:100%;padding: 6px" type="text" placeholder="ادخل أجابتك هنا">
+                </div>
+                الجملة
+               </span>
+
+
+
+
+              </div>
+
+            </div>
+
+
+             <div class="col-md-6" style="margin-top: 25px;">
+              <div class="exam-cont-item">
+                    <div>
+                  <h6>7</h6>
+                </div>
+
+                <div><h6>السؤال السابع</h6></div>
               </div>
               <div class="check-box-ques">
                 <h6>صيغة السؤال هي عبارة عن صح او خطأ ؟</h6>
@@ -201,10 +262,10 @@
              <div class="col-md-6" style="margin-top: 25px;">
               <div class="exam-cont-item">
                     <div>
-                  <h6>1</h6>
+                  <h6>8</h6>
                 </div>
 
-                <div><h6>السؤال الأول</h6></div>
+                <div><h6>السؤال الثامن</h6></div>
               </div>
               <div class="check-box-ques">
                 <h6>صيغة السؤال هي عبارة عن صح او خطأ ؟</h6>
@@ -225,9 +286,73 @@
               </div>
 
             </div>
+
+
+            <div class="col-md-6" style="margin-top: 25px;">
+              <div class="exam-cont-item">
+                    <div>
+                  <h6>9</h6>
+                </div>
+
+                <div><h6>السؤال التاسع</h6></div>
+              </div>
+              <div class="check-box-ques">
+                <h6>قم بتسجيل صوتي بالأجابة</h6>
+
+
+              <div class="audio-div">
+                <div class="audio-icon">
+                  <img src="../assets/imgs/noun_record audio_1970418.png" alt="">
+                </div>
+                <audio id="player" controls src="">
+
+                </audio>
+
+
+              </div>
+
+
+
+
+              </div>
+
+            </div>
+
+             <div class="col-md-6" style="margin-top: 25px;">
+              <div class="exam-cont-item">
+                    <div>
+                  <h6>10</h6>
+                </div>
+
+                <div><h6>السؤال العاشر</h6></div>
+              </div>
+              <div class="check-box-ques">
+                <h6>قم بتسجيل صوتي بالأجابة</h6>
+
+
+              <div class="audio-div">
+                <div class="audio-icon">
+                  <img src="../assets/imgs/noun_record audio_1970418.png" alt="">
+                </div>
+                <audio id="player" controls src="">
+
+                </audio>
+
+
+              </div>
+
+
+
+
+              </div>
+
+            </div>
+
+            <input type="submit" value="تصحيح">
 
           </div>
         </div>
+        </form>
       </div>
     </div>
   </div>
@@ -238,12 +363,57 @@ import NavbarBefore from '../components/NavbarBefore';
 export default {
 components:{
   NavbarBefore
+},
+methods:{
+  playAudio: function(){
+    document.getElementById('player').play()
+  },
+   pauseAudio: function(){
+    document.getElementById('player').pause()
+  },
+  increaseVolume: function(){
+    document.getElementById('player').volume += 0.1;
+  },
+  decreaseVolume: function(){
+    document.getElementById('player').volume -= 0.1;
+  }
 }
 }
 </script>
 
 <style lang="scss">
+.fill-the-ques{
+    span{
+      width:100%;
+    }
+  }
 .general-exam-test{
+  input[type="submit"]{
+        display: block;
+    width: 36%;
+    text-align: center;
+    margin: 36px auto;
+    padding: 9px;
+    background: #058ac6;
+    font-family: "CustomFontBold";
+    color: #FFF;
+    border: 0;
+    border-radius: 5px;
+  }
+  .audio-div{
+    overflow: hidden;
+    .audio-icon{
+          display: block;
+    width: 15%;
+    float: right;
+    text-align: center;
+    }
+    audio{
+      display: block;
+      width: 85%;
+      float: left;
+    }
+  }
   .absthalk-radio{
         -webkit-appearance: none;
     width: 10px;
@@ -281,7 +451,7 @@ components:{
     margin-right: 12px;
     font-family: "CustomFontMedium";
     margin-bottom: 0;
-    width: 90%;
+        width: 87%;
     float: left;
     color: #058ac6;
       }
@@ -313,6 +483,7 @@ components:{
       }
     }
   }
+
   .general-exam-head{
     overflow: hidden;
     >div{
@@ -363,7 +534,7 @@ components:{
 
           h6{
             color: #058ac6;
-    background-color: #e3e3e3;
+    background-color: #f2f2f2;
     padding: 15px;
     margin: 0;
     border-radius: 6px 0 0 6px;
@@ -443,5 +614,57 @@ components:{
       }
     }
   }
+}
+
+
+  // Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.general-exam-test .title .sub-name h4{
+      display: block;
+    font-size: 31px;
+    margin-right: 8px;
+    font-family: "CustomFontMedium";
+    margin-bottom: 10px;
+    width: 73%;
+    float: left;
+    color: #058ac6;
+}
+.general-exam-test .general-exam-head > div:last-of-type h4{
+        width: 13%;
+    margin-bottom: 16px;
+    font-size: 17px;
+}
+.unit h6 {
+    font-size: 13px;
+}
+.fill-the-ques{
+      font-size: 10px !important;
+}
+.general-exam-test .general-exam-head > div:last-of-type{
+  width:100%;
+}
+.general-exam-test .general-exam-head > div:first-of-type{
+      width: 19%;
+    margin-bottom: 18px;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
 }
 </style>
