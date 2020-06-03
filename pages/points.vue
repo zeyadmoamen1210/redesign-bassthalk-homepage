@@ -4,7 +4,9 @@
     <div class="container">
       <div class="point-datails">
         <div class="title">
-          <h5>سجل النقاط</h5>
+          <h5>
+            <img src="../assets/imgs/business-1.png" alt="">
+            سجل النقاط</h5>
         </div>
       </div>
 
