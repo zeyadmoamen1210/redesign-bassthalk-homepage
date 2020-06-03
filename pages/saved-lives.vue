@@ -8,7 +8,9 @@
          <div class="col-md-6">
             <div class="live-details-item">
               <div class="title">
-                <h4>بث مباشر</h4>
+                <h4>
+                                    <img src="../assets/imgs/live-blue.png" alt="">
+                  بث مباشر</h4>
               </div>
             </div>
          </div>
@@ -18,13 +20,17 @@
                 <div class="row">
                   <div class="col-md-6">
                     <NuxtLink to="" active-class="active">
-                      <button class="explain-btn">تفاصيل البث</button>
+                      <button class="explain-btn">
+                                                <img src="../assets/imgs/live-dark.png" alt="">
+                        تفاصيل البث</button>
                     </NuxtLink>
                   </div>
                    <div class="col-md-6">
 
                     <NuxtLink to="">
-                      <button class="explain-btn">التايم لاين</button>
+                      <button class="explain-btn">
+                                                <img src="../assets/imgs/noun_timeline_3037155.png" alt="">
+                        التايم لاين</button>
                     </NuxtLink>
 
                   </div>
@@ -250,9 +256,11 @@ components:{
       }
     }
 
+
 }
  .lesson-btns{
       padding: 0 44px;
+
     button{
           width: 100%;
     text-align: center;
@@ -266,7 +274,48 @@ components:{
     .explain-btn{
       background: #DDD;
       color:#333;
+    margin-bottom: 15px;
 
     }
   }
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.live-details .time-content .time-course > div:nth-of-type(2){
+  width: 42%;
+  margin-top: 14px;
+}
+.live-details .time-content .time-course > div:first-of-type{
+  width: 30%;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+.live-details .time-content .time-course > div:nth-of-type(2){
+  width: 43%;
+}
+.live-details .time-content .time-course > div:first-of-type{
+  width: 27%;
+}
+.live-details .time-content .time-course > div:last-of-type{
+  width: 27%;
+}
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
