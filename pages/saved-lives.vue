@@ -289,6 +289,11 @@ components:{
 .live-details .time-content .time-course > div:first-of-type{
   width: 30%;
 }
+.live-details .time-content .time-course .teacher{
+      height: 60px;
+    width: 59px;
+        margin-top: 20px;
+}
  }
 
 // Small devices (landscape phones, 576px and up)
