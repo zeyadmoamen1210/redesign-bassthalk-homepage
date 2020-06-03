@@ -5,7 +5,9 @@
 
       <div class="notifications">
         <div class="title">
-          <h4>التنبيهات</h4>
+          <h4>
+            <img src="../assets/imgs/Group 6977.png" alt="">
+            التنبيهات</h4>
         </div>
         <div class="row">
           <div class="col-md-6">
