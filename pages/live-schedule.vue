@@ -55,66 +55,92 @@
       </div>
 
          <div class="schedule-bar">
-            <div>
-              <h6>السبت</h6>
-              <span>1</span>
-            </div>
+            <button :class="active ? 'active':''"  @click="active != active">
+              <div>
+                <h6>السبت</h6>
+                <span>1</span>
+              </div>
+            </button>
 
-             <div>
+            <button :class="active ? 'active':''"  @click="active != active">
+               <div>
               <h6>الأحد</h6>
               <span>1</span>
             </div>
+            </button>
 
-             <div>
+             <button :class="active ? 'active':''"  @click="active != active">
+               <div>
               <h6>الأثنين</h6>
               <span>1</span>
             </div>
+             </button>
 
-             <div>
+             <button :class="active ? 'active':''"  @click="active != active">
+               <div>
               <h6>الثلاثاء</h6>
               <span>1</span>
             </div>
+             </button>
 
-             <div>
+            <button :class="active ? 'active':''"  @click="active != active">
+               <div>
               <h6>الأربعاء</h6>
               <span>1</span>
             </div>
+            </button>
 
-             <div>
+             <button :class="active ? 'active':''"  @click="active != active">
+               <div>
               <h6>الخميس</h6>
               <span>1</span>
             </div>
+             </button>
 
-             <div>
+             <button :class="active ? 'active':''"  @click="active != active">
+               <div>
               <h6>الجمعة</h6>
               <span>1</span>
             </div>
+             </button>
 
-             <div>
+             <button :class="active ? 'active':''"  @click="active != active">
+               <div >
               <h6>السبت</h6>
               <span>1</span>
             </div>
+             </button>
 
-             <div>
+             <button :class="active ? 'active':''"  @click="active != active">
+               <div>
               <h6>الأحد</h6>
               <span>1</span>
             </div>
+             </button>
 
-             <div>
+            <button :class="active ? 'active':''"  @click="active != active">
+               <div >
               <h6>الأثنين</h6>
               <span>1</span>
             </div>
+            </button>
 
-             <div>
+            <button @click="active != active">
+               <div>
               <h6>الثلاثاء</h6>
               <span>1</span>
             </div>
+            </button>
+
+            <button :class="active ? 'active':''" @click="active != active">
 
              <div>
               <h6>الأربعاء</h6>
               <span>1</span>
             </div>
-          </div>
+            </button>
+
+         </div>
 
 
           <div class="time-content">
@@ -211,7 +237,16 @@
 import NavbarBefore from '../components/NavbarBefore'
 export default {
 components:{
-  NavbarBefore
+  NavbarBefore,
+
+},
+data(){
+  return {
+    active:false
+  }
+},
+methods:{
+
 }
 }
 </script>
@@ -219,6 +254,11 @@ components:{
 <style lang="scss">
 .live-details{
   margin-top: 50px;
+  .active{
+        background: #04b0ff54;
+    border-radius: 12px;
+    padding: 10px 0;
+  }
   .title{
     h4{
       color:#058ac6bd;
@@ -252,9 +292,15 @@ components:{
     padding: 10px;
     margin: 14px 0;
     border-radius: 13px;
-      >div{
-       width: calc(100%/12);
+      >button{
+          width: calc(100%/12);
     float: left;
+    padding: 5px;
+    background: transparent;
+    border: 0;
+    color: #FFF;
+    font-family: "CustomFontBold";
+    border-radius: 17px;
     h6{
       text-align: center;
     }
@@ -345,4 +391,37 @@ components:{
 
     }
   }
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.live-details .schedule-bar > button {
+    width: 33.333%;
+}
+.lesson-btns{
+  margin-top: 15px;
+}
+.lesson-btns .explain-btn{
+  margin-bottom:15px;
+}
+ }
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
 </style>
