@@ -4,7 +4,9 @@
     <div class="container">
       <div class="login">
       <div class="form-title">
-        <h4>تسجيل دخول</h4>
+        <h4>
+          <img src="../assets/imgs/noun_User_-2.png" alt="">
+          تسجيل دخول</h4>
       </div>
       <form action="">
         <div class="form-groub">
@@ -55,6 +57,11 @@ components:{
   .login{
     width: 35%;
     margin:100px auto;
+    h4{
+      text-align: center;
+    margin-bottom: 30px;
+    color: #444;
+    }
     input{
       margin: 10px 0;
     }
@@ -94,4 +101,34 @@ components:{
       }
     }
   }
+
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.login{
+  width: 85%;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
