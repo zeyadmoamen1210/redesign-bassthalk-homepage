@@ -117,14 +117,15 @@ methods:{
       document.querySelector('.buttons-icons').style.paddingRight= "20%";
 
     }else{
-      x.style.right = '-21%'
-      document.querySelector('.buttons-icons').style.paddingRight= "0";
+      x.style.right = '-34%'
+      document.querySelector('.buttons-icons').style.paddingRight= 0;
     }
   },
   maximizeLive: function(e){
     let x = document.querySelector('.live');
     x.classList.toggle('maxmized');
     if(x.classList.contains('maxmized')){
+      document.querySelector('.buttons-icons').position = 'fixed !important'
       x.style.position = 'fixed';
       x.style.width = '100%';
       x.style.height = '100%';
@@ -140,16 +141,20 @@ methods:{
       document.querySelector('.live-chat').style.top = '0';
       document.querySelector('.live-chat').style.zIndex = 7;
 
+
     }else{
       x.style.position = 'relative';
       x.style.width = '100%';
       x.style.height = '400px';
       e.target.parentElement.parentElement.style.position = 'absolute';
+
+      document.querySelector('.live-content').style.position = 'relative'
       document.querySelector('.live-chat').style.position = "absolute";
       document.querySelector('.live-chat').style.height = '100%';
       document.querySelector('.live-chat').style.top = '0';
 
       document.querySelector('.live-chat').style.zIndex = 7;
+      document.querySelector('.buttons-icons').position = 'absolute !important'
 
     }
   },
@@ -222,15 +227,6 @@ methods:{
       width: 100%;
     height: 400px;
                 position: relative;
-                  &::after{
-           position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: '';
-    background: rgba(0, 0, 0, 0.36);
-        }
 
       img{
         width: 100%;
@@ -360,4 +356,83 @@ methods:{
     }
     }
   }
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.time-line .item-content > p{
+      width: 100%;
+    margin: 5px 0 33px;
+    font-size: 13px;
+}
+.lesson-btns .explain-btn{
+      margin-bottom: 14px;
+}
+.live-content .live-chat{
+      position: static;
+    width: 100%;
+    height: auto;
+}
+.live-content .live-chat .chat-msgs{
+      overflow: hidden;
+    position: static;
+}
+.live-chat-cont{
+      margin-bottom: 0;
+      >div{
+        &:first-of-type{
+              width: 72% !important;
+        }
+      }
+}
+.live-content .live-chat .chat-msgs .chat-msg-cont > div:first-of-type p{
+      font-size: 12px;
+}
+.live-content .live-chat .chat-msgs .chat-msg-cont > div:last-of-type h6{
+        padding-top: 13px;
+    padding-right: 28px;
+    font-size: 16px;
+}
+.live-content p.lead{
+      margin-bottom: 44px;
+}
+.live-content .live-chat .chat-msgs .bottom-part{
+  position: static;
+}
+
+.live-content .buttons-icons{
+  display: none;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+.live-chat{
+  width: 34% !important;
+}
+.live-content .buttons-icons{
+  padding-right: 34% ;
+}
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+.live-chat{
+  width: 34% !important;
+}
+.live-content .buttons-icons{
+  padding-right: 34% ;
+}
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
