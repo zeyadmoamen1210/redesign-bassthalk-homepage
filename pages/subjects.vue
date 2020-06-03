@@ -5,7 +5,9 @@
     <div class="container">
       <div class="subjects">
       <div class="form-title">
-        <h4>المواد الدراسية</h4>
+        <h4>
+          <img src="../assets/imgs/noun_classroom_-1.png" alt="">
+          المواد الدراسية</h4>
       </div>
       <div class="row">
         <div class="col-md-3">
@@ -79,6 +81,10 @@
                 <h3>الجغرافية</h3>
               </div>
             </nuxt-link>
+        </div>
+
+        <div class="annoncment" style="width:100%;height:200px;">
+          <img  src="../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg" alt="">
         </div>
       </div>
     </div>
@@ -175,5 +181,49 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
   }
+  .annoncment{
+    width: 100%;
+    height: 141px;
+    overflow: hidden;
+        margin: 0 14px;
+    img{
+          width: 100%;
+    margin-top: -231px;
+
+    }
+  }
 }
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.subjects .annoncment img{
+  margin-top: 0;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+.subjects .annoncment img{
+  width: 100%;
+    margin-top: -83px;}
+    .subjects .subject-cont h3{
+          font-size: 15px;
+    }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
