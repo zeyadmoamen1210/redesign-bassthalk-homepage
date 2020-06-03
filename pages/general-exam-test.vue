@@ -85,13 +85,13 @@
                 <img src="../assets/imgs/chemical-equation-color.jpg" alt="">
 
                   <div style="overflow:hidden;display: block;float: left;width: 50%;">
-                  <input type="radio" name="check-ques-1" class="absthalk-radio" id="">
+                  <input type="radio" name="check-ques-2" class="absthalk-radio" id="">
                                 <span>خطأ</span>
                 </div>
 
 
                <div style="overflow:hidden;display: block;float: left;width: 50%;">
-                  <input type="radio" name="check-ques-1" class="absthalk-radio" id="">
+                  <input type="radio" name="check-ques-2" class="absthalk-radio" id="">
                                 <span>صح</span>
                </div>
 
