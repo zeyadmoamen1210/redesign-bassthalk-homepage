@@ -4,10 +4,14 @@
     <div class="container">
       <div class="tests-level">
         <div class="title">
-          <h3> الأختبار</h3>
+          <h3>
+            <img src="../assets/imgs/noun_testing_3325786.png" alt="">
+             الأختبار</h3>
         </div>
        <div class="lesson-inner-grid">
-         <h5 class="subject-name">الكمياء</h5>
+         <h5 class="subject-name">
+           <img src="../assets/imgs/laboratory.png" alt="">
+           الكمياء</h5>
                 <div class="unit lesson-unit">
                       <span>1</span>
                       <h6>الوحدة الأولي - الدرس الأول</h6>
@@ -38,7 +42,7 @@
 
            <div class="col-md-4">
             <div class="level-item box-shadow-class">
-                <img  src="../assets/imgs/easy-level (3).png" alt="">
+                <img style="margin-top: 39px;" src="../assets/imgs/easy-level (3).png" alt="">
                 <h6>المستوي الصعب</h6>
             </div>
           </div>
@@ -70,12 +74,16 @@ components:{
     }
   }
   .lesson-inner-grid{
+
     .unit{
        box-shadow: none;
         display: inline-block;
+            margin-top: 0;
     }
     .subject-name{
           padding: 36px 0;
+           margin-top: 0;
+    padding-top: 0;
       display:inline-block
     }
   }
@@ -108,4 +116,39 @@ components:{
     }
   }
 }
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.unit h6{
+      font-size: 10px;
+}
+.lesson-inner-grid{
+  margin-bottom: 24px;
+}
+
+.tests-level .levels .level-item{
+      margin-bottom: 25px;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
