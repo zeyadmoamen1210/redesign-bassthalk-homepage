@@ -32,6 +32,17 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-6">
+            <div class="advestiment" style="margin-top: 50px;margin-right: 13px;">
+              <div style="height: 167px;margin-bottom: 20px;">
+                <img style="width: 100%;height: 100%;" src="../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg" alt="">
+              </div>
+              <div style="height: 167px;margin-bottom: 20px;">
+                <img style="width: 100%;height: 100%;" src="../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg" alt="">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -118,4 +129,38 @@ components:{
     }
       }
 }
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.notifications .time-course > div:nth-of-type(2){
+  margin-top: 10px;
+    width: 49%;
+    margin-right: 37px;
+}
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+.notifications .time-course > div:nth-of-type(2){
+      margin-top: 13px;
+    width: 50%;
+    margin-right: 36px;
+}
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>
