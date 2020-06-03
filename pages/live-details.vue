@@ -239,4 +239,66 @@ padding-right: 11px;
 
     }
   }
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+.live-details .next-live .live-time-last .live-time{
+      width: 191px;
+    margin: auto;
+}
+.live-details .next-live .live-time-last h6:last-of-type{
+      font-size: 13px;
+}
+.live-details .next-live .live-time-last .live-time > div span{
+      top: 13px;
+    left: 20px;
+}
+.live-details .next-live .teacher {
+    height: 90px;
+    width: 90px;
+    margin-top: 60px;
+}
+.live-details .next-live .live-time-last > h6{
+
+    margin-right: 17px;
+    font-size: 16px !important;
+}
+.lesson-btns .explain-btn{
+      margin-bottom: 15px;
+}
+.live-details h5{
+  text-align: center;
+}
+.live-details .next-live{
+  margin-top: 17px;
+  >h6{
+    font-size: 18px;
+  }
+}
+ }
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+.live-details .next-live .live-time-last .live-time{
+      width: 228px;
+    margin-right: 13px;
+}
+.live-details .next-live .live-time-last > h6{
+    margin-right: 31px;
+}
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
 </style>
