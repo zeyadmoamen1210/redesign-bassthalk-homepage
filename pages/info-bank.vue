@@ -4,7 +4,9 @@
     <div class="container">
       <div class="bank-info">
         <div class="title">
-          <h6>بنك المعلومات</h6>
+          <h6>
+            <img src="../assets/imgs/noun_knowledge_-1.png" alt="">
+            بنك المعلومات</h6>
         </div>
 
         <div class="bank-info-head">
@@ -20,7 +22,9 @@
                 <h6>لقد اجتزت المستوي 6</h6>
                 <p class="lead">أستمر في تخطي المستويات لتكن من المتفوقين</p>
                 <div>progress bar</div>
-                <p class="lead">هذا نص تجريبي هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي </p>
+                <p class="lead">هذا نص تجريبي هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي
+                  هذا نص تجريبي هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي
+                </p>
               </div>
             </div>
           </div>
@@ -65,6 +69,7 @@ components:{
       h6{
         font-size: 24px;
         color: #058ac6;
+            margin-bottom: 55px;
       }
     }
     p{
@@ -79,6 +84,25 @@ components:{
         img{
           width: 91%;
     height: 100%;
+        }
+      }
+    }
+    .bank-info-head-item{
+      h3{
+            font-family: "CustomFontMedium";
+    font-size: 35px;
+    color: #414141;
+    margin-bottom: 16px;
+      }
+      P{
+        &:first-of-type{
+              font-family: "CustomFontLight";
+    font-weight: 500;
+    color: #727272;
+        }
+        &:last-of-type{
+              font-size: 16px;
+    color: #959595;
         }
       }
     }
@@ -109,5 +133,37 @@ components:{
             }
 
     }
+}
+
+
+
+  // Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .bank-info-head-item{
+    margin-top: 20px;
+    text-align: center;
+    h3,p,div,h6{
+      text-align: center;
+    }
+  }
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
 }
 </style>
