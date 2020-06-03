@@ -5,7 +5,9 @@
     <div class="container">
       <div class="subjects">
       <div class="form-title">
-        <h4>بث مباشر</h4>
+        <h4>
+          <img src="../assets/imgs/live-blue.png" alt="" style="width: 30px;">
+          بث مباشر</h4>
       </div>
               <p>قم بأختيار المادة</p>
       <div class="row">
@@ -118,8 +120,16 @@ export default {
       }
     }
   }
+  p{
+      font-size: 21px;
+    color: #5a5959;
+    margin-bottom: 8px;
+    font-family: "CustomFontMedium";
+    margin-top: 19px;
+    }
   .form-title{
     color:#058ac6bd;
+
   }
   .subject-cont{
    padding: 26px;
