@@ -3,44 +3,40 @@
     <div class="container">
       <div class="foot" style="overflow:hidden">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3 col-6 col-sm-6">
             <ul>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
+              <li>الرئيسية</li>
+              <li>من نحن</li>
+              <li>رؤيتنا</li>
+              <li>المتفوقين</li>
             </ul>
           </div>
 
-           <div class="col-md-3">
+           <div class="col-md-3 col-6 col-sm-6">
             <ul>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
+              <li>حمل التطبيق</li>
+              <li>أسئلة و أجوبة</li>
+              <li>مشاركتنا</li>
+              <li>سجل النقاط</li>
             </ul>
           </div>
 
-           <div class="col-md-3">
+           <div class="col-md-3 col-6 col-sm-6">
             <ul>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
+              <li>بنك المعلومات</li>
+              <li>الأمتحانات العامة</li>
+              <li>بث مباشر</li>
+
             </ul>
           </div>
 
-           <div class="col-md-3">
+           <div class="col-md-3 col-6 col-sm-3">
             <ul>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
-              <li>home</li>
+              <li>تابعنا علي</li>
             </ul>
+            <div>
+
+            </div>
           </div>
 
           <div class="copyright">
@@ -71,8 +67,24 @@ export default {
     .foot{
           padding-top: 136px;
           ul{
+            margin-bottom: 45px;
+            list-style-type: none;
             li{
               color:#FFF;
+              margin-bottom: 10px;
+              font-family: "CustomFontMedium";
+              position: relative;
+              &::after{
+                   position: absolute;
+    content: '';
+    right: -27px;
+    top: 7px;
+    background: #FFF;
+    height: 9px;
+    width: 15px;
+    border-radius: 13px;
+              }
+
             }
           }
     }
