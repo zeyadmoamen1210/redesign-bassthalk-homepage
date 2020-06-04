@@ -29,11 +29,11 @@
                  <div class="form-groub select">
                     <label for="">Card Type</label>
                      <select v-model="payment" class="custom-select custom-select-lg mb-3">
-                      <option value="1">Mastercard</option>
+                      <option value="1" selected>Mastercard</option>
                       <option value="2">Visa</option>
                     </select>
                   </div>
-              </div>
+
               <div class="form-groub">
                 <input type="text" class="form-control" placeholder="Card Number">
               </div>
@@ -51,8 +51,10 @@
               </div>
 
               <input type="submit" class="fullWidthBtn" value="تأكيد الدفع">
+              </div>
                </form>
             </div>
+
 
           </div>
         </div>
