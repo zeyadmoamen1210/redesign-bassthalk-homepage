@@ -30,7 +30,7 @@
 
       <div class="who-we-are" id="who-we-are">
         <div class="background-who-we-are">
-          <img src="../assets/imgs/logo.png" alt="">
+          <img src="../assets/imgs/logo.png" alt="" style= "width: 100%;">
         </div>
         <div class="container">
             <div class="head-who">
@@ -55,7 +55,7 @@
 
        <div class="our-view" id="our-view">
            <div class="container">
-              <div class="head-who">
+              <div class="head-who" style="margin-bottom: 0;">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -67,16 +67,14 @@
             </div>
            <div class="view-cont first" style="overflow:hidden;">
               <div class="row">
-                <div class="view-ball">
-                  <div class="view-ball-inner"></div>
-                </div>
+
               <div class="col-md-5">
                 <div class="desc-image">
-                  <img src="../assets/imgs/assets01.png" alt="">
+                  <img src="../assets/imgs/البساطة.png" alt="">
                 </div>
               </div>
               <div class="col-md-7">
-                <div class="desc-cont">
+                <div class="desc-cont" style='margin-top: 170px;'>
                   <h3>البساطة</h3>
                   <p>تطبيق بسطتهالك يقدم لك طريقة سهلة و ابداعية في شرح المواد في جميع المراحل.</p>
                 </div>
@@ -87,11 +85,14 @@
 
             <div class="view-cont second" style="overflow:hidden;">
               <div class="row">
-                <div class="view-ball">
-                  <div class="view-ball-inner"></div>
-                </div>
 
-              <div class="col-md-7">
+                  <div class="col-md-5 order-md-7">
+                <div class="desc-image">
+                  <img src="../assets/imgs/الاختبارات.png" alt="">
+                </div>
+              </div>
+
+              <div class="col-md-7 order-md-5">
                 <div class="container">
                   <div class="desc-cont">
                     <h3>الأختبارات</h3>
@@ -100,11 +101,7 @@
                 </div>
               </div>
 
-               <div class="col-md-5">
-                <div class="desc-image">
-                  <img src="../assets/imgs/assets02.png" alt="">
-                </div>
-              </div>
+
 
             </div>
            </div>
@@ -112,17 +109,14 @@
 
             <div class="view-cont thired" style="overflow:hidden;">
               <div class="row">
-                <div class="view-ball">
-                  <div class="view-ball-inner"></div>
-                </div>
-              <div class="col-md-5">
+                <div class="col-md-5">
                 <div class="desc-image">
-                  <img src="../assets/imgs/assets03.png" alt="">
+                  <img src="../assets/imgs/المنافسة.png" alt="">
                 </div>
               </div>
               <div class="col-md-7">
                 <div class="container">
-                  <div class="desc-cont">
+                  <div class="desc-cont"  style='margin-top: 170px;'>
                     <h3>المنافسة</h3>
                     <p>سيتم عمل ترتيب عام للمتفوقين من حيث الأكثر حصولا علي النقاط و اجتياز الأختبارات.</p>
                   </div>
@@ -309,12 +303,12 @@
                     <div class="ques">
                       <div class="ques-item">
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
                                                           <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
 
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-2">
                             <div class="icon">
                              <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
@@ -326,12 +320,12 @@
 
                         <div class="ques-item">
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
                                                           <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
 
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-2">
                             <div class="icon">
                              <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
@@ -343,12 +337,12 @@
 
                         <div class="ques-item">
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
                                                           <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
 
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-2">
                             <div class="icon">
                              <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
@@ -360,12 +354,12 @@
 
                         <div class="ques-item">
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
                                                           <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
 
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-2">
                             <div class="icon">
                              <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
@@ -377,12 +371,12 @@
 
                         <div class="ques-item">
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
                                                           <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
 
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-2">
                             <div class="icon">
                              <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
@@ -394,11 +388,11 @@
 
                        <div class="ques-item" style="overflow:hidden">
                         <div class="row">
-                          <div class="col-md-10">
+                          <div class="col-md-10 col-10">
                              <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
                              <p> هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي   هذا نص تجريبي  هذا نص تجريبي </p>
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-2 col-2">
                             <div class="icon">
                              <button @click="dropdownQustion">
                                <img src="../assets/imgs/add.png" alt="">
@@ -414,20 +408,20 @@
                     <div class="ask-ques">
                       <div class="ask-ques-head">
                         <div class="row">
-                          <div class="col-md-2">
+                          <div class="col-md-3 col-3">
                             <img src="../assets/imgs/ask-ques.png" alt="">
                           </div>
-                          <div class="col-md-10">
+                          <div class="col-md-9 col-9">
                             <h4>أرسل سؤلك</h4>
                           </div>
                         </div>
                       </div>
                        <div class="ask-ques-head" style="padding-right: 16px;">
                         <div class="row">
-                          <div class="col-md-2">
+                          <div class="col-md-3 col-3">
                             <img src="../assets/imgs/chat-avatar.png" alt="">
                           </div>
-                          <div class="col-md-10">
+                          <div class="col-md-9 col-9">
                             <p style="margin-top: 23px;">قم بأرسال استفسارك و سنجاوب عليك في اسرع وقت</p>
                           </div>
                         </div>
@@ -594,9 +588,11 @@ export default {
 
 
   .slider{
-    min-height: 762px;
-    background:url('../assets/imgs/header.png');
-    background: cover;
+        min-height: 762px;
+    background: url(/_nuxt/assets/imgs/header.png);
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
   }
   .title-who-we-are{
     p{
@@ -657,7 +653,7 @@ export default {
   .our-view{
     .desc-image{
            width: 422px;
-    margin: 177px 48px;
+    margin: 177px 0;
       img{
             width: 100%;
     height: 100%;
@@ -700,16 +696,20 @@ export default {
   }
   .second,.forth{
      .desc-image{
-        width: 360px;
-    margin: 148px 195px;
+               margin: 0 0;
+    position: absolute;
+    left: 0;
+    height: 504px;
       img{
-        width: 100%;
-    height: 100%;
-    margin-right: -118px;
+       width: 100%;
+    height: 71%;
+    margin-right: 0;
+    margin-top: -5px;
       }
     }
     .desc-cont{
-      padding: 0 54px;
+          padding: 0px 140px 0 0;
+    margin: 85px 0;
       h3{
         font-family: "CustomFontRegular";
         font-size: 44px;
@@ -941,5 +941,155 @@ export default {
   }
 }
 
+  // Extra small devices (portrait phones, less than 576px)
 
+@media (max-width: 575.98px) {
+.home-page .second .desc-image[data-v-2a183b29], .home-page .forth .desc-image[data-v-2a183b29]{
+      margin: 0 0;
+    position: static;
+    left: 0;
+        height: 646px;
+        width:auto;
+}
+.home-page .our-view .desc-image[data-v-2a183b29]{
+  width:auto;
+}
+.home-page .our-view .desc-cont[data-v-2a183b29]{
+      margin-top: 0 !important;
+    padding-right: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+.home-page .second .desc-cont[data-v-2a183b29], .home-page .forth .desc-cont[data-v-2a183b29]{
+      margin-top: -120px !important;
+}
+.home-page .main-content[data-v-2a183b29]{
+      padding: 150px 0 0 0;
+}
+.home-page .main-content h1[data-v-2a183b29]{
+  text-align: center;
+    font-size: 29px;
+}
+.home-page .main-content p[data-v-2a183b29]{
+      font-size: 19px;
+    text-align: center;
+    width: 100%;
+}
+.home-page .download-app .download-app-cont .head-who h3[data-v-2a183b29]{
+  font-size:30px;
+}
+.home-page .download-app .download-app-cont h3[data-v-2a183b29]{
+  font-size: 29px;
+}
+.home-page .download-app .android-ios .android[data-v-2a183b29]{
+  margin-bottom: 30px;
+}
+.home-page .question-and-answer .questions-sec .ques .ques-item h4[data-v-2a183b29]{
+  font-size: 14px;
+}
+.home-page .question-and-answer .ask-ques[data-v-2a183b29]{
+  height: 433px;
+      margin: 19px 0;
+}
+.home-page .question-and-answer .ask-ques .ask-ques-head h4[data-v-2a183b29]{
+      margin: 0 0 20px;
+          margin-top: 26px;
+    font-size: 25px;
+}
+
+ }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+.home-page .our-view .desc-cont[data-v-2a183b29]{
+      margin-right: 0;
+    /* width: 100%; */
+    margin-top: 226px;
+    margin-bottom: 0;
+}
+.home-page .second .desc-image[data-v-2a183b29], .home-page .forth .desc-image[data-v-2a183b29]{
+      position: relative;
+      width: auto;
+}
+.home-page .second .desc-image img[data-v-2a183b29], .home-page .forth .desc-image img[data-v-2a183b29]{
+      width: 100%;
+    height: 638px;
+}
+.home-page .our-view .desc-image[data-v-2a183b29]{
+  width: auto;
+}
+.home-page .download-app .android-ios div[data-v-2a183b29]{
+  margin-bottom: 15px;
+}
+.ask-ques{
+  margin-top: 34px;
+}
+.home-page .our-view .desc-cont[data-v-2a183b29]{
+      margin-top: 221px;
+}
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+.home-page .our-view .desc-cont[data-v-2a183b29]{
+  margin-right: 126px;
+    width: 100%;
+}
+.home-page .our-view .desc-cont p[data-v-2a183b29]{
+  font-size: 20px;
+    margin-top: 21px;
+}
+.home-page .second .desc-cont[data-v-2a183b29], .home-page .forth .desc-cont[data-v-2a183b29]{
+  margin-right: -39px;
+    width: 100%;
+}
+.home-page .second .desc-cont p[data-v-2a183b29], .home-page .forth .desc-cont p[data-v-2a183b29]{
+      width: 100%;
+      font-size: 20px;
+}
+.home-page .best-sort .user-sort-item .profile-pic .profile-cont-point[data-v-2a183b29]{
+      left: -22px;
+    width: 33%;
+}
+.home-page .download-app .android-ios div[data-v-2a183b29]{
+      font-size: 9px;
+}
+.home-page .download-app .android-ios div img[data-v-2a183b29] {
+    width: 45px;
+    height: 32px;
+}
+.home-page .download-app .download-app-cont h3[data-v-2a183b29] {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.home-page .download-app .download-app-cont .head-who h3[data-v-2a183b29] {
+    font-size: 28px !important;
+}
+.home-page .question-and-answer .questions-sec .ques .ques-item h4[data-v-2a183b29] {
+    font-size: 12px;
+}
+.home-page .main-content[data-v-2a183b29] {
+    padding: 78px 82px 0 0;
+}
+.home-page .main-content h1[data-v-2a183b29]{
+      font-size: 28px;
+}
+.home-page .main-content p[data-v-2a183b29] {
+    font-size: 15px;
+    width: 100%;
+}
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .home-page .download-app .android-ios div[data-v-2a183b29]{
+        font-size: 13px;
+  }
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
 </style>
