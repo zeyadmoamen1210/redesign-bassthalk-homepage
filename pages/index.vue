@@ -589,7 +589,7 @@ export default {
 
   .slider{
         min-height: 762px;
-    background: url(/_nuxt/assets/imgs/header.png);
+    background: url('../assets/imgs/header.png');
     background-size: cover;
     background-position: left;
     background-repeat: no-repeat;
