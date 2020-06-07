@@ -7,8 +7,7 @@
     "scripts": {
         "dev": "nuxt",
         "build": "nuxt build",
-        "start": "nuxt start",
-        "generate": "nuxt generate",
+        "start": "next start -p $PORT",
         "heroku-postbuild": "npm run build"
     },
     "dependencies": {
