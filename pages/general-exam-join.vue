@@ -12,7 +12,7 @@
         <div class="general-exam-grid">
           <div class="row">
             <div class="col-md-6">
-              <div class="general-exam-item">
+              <div class="general-exam-item image">
                 <img src="../assets/imgs/general-exam.png" alt="">
               </div>
             </div>
@@ -71,7 +71,7 @@ export default {
   },
   data(){
     return {
-      payment: 0
+      payment: 1
     }
   },
   computed:{
@@ -165,17 +165,23 @@ export default {
 
   // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
-
+.general-exam-join{
+  padding-top: 60px;
+}
  }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+.general-exam-join{
+  padding-top: 60px;
+}
  }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
-
+.general-exam-join .general-exam-item.image{
+      margin-top: 72px;
+}
  }
 
 // Large devices (desktops, 992px and up)

@@ -104,12 +104,16 @@ export default {
 
   // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
-
+.general-exam-join{
+  padding-top: 60px;
+}
  }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+.general-exam-join{
+  padding-top: 60px;
+}
  }
 
 // Medium devices (tablets, 768px and up)

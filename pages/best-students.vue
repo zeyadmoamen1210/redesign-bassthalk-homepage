@@ -1,7 +1,7 @@
 <template>
   <div class="the-best">
     <NavbarBefor />
-     <div class="the-best" style="overflow:hidden;">
+     <div class="the-best-inner" style="overflow:hidden;">
         <div class="container">
           <div class="row">
             <div class="col-md-6">
@@ -404,6 +404,15 @@ components:{
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .the-best-inner{
+       padding-top: 60px;
+
+  }
+  .head-who[data-v-6b499738] {
+    position: relative;
+    text-align: center;
+    margin: 50px auto;
+}
 .all-the-best-student .stu-info .stu-pic{
 margin: 6px 8px;
 }
@@ -422,12 +431,25 @@ margin: 6px 8px;
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .the-best-inner{
+       padding-top: 60px;
 
+  }
+  .head-who[data-v-6b499738] {
+    position: relative;
+    text-align: center;
+    margin:50px auto;
+}
  }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
 
+  .head-who[data-v-6b499738] {
+    position: relative;
+    text-align: center;
+    margin:50px auto;
+}
  }
 
 // Large devices (desktops, 992px and up)

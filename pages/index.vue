@@ -22,6 +22,7 @@
               <div class="main-content">
                 <h1>دروسك في بيتك</h1>
                 <p>الأن مع بستطهالك كل دروسك من بيتك في كل المواد الدراسية<br/> بين افضل المتفوقين</p>
+                <nuxt-link :to="'/links'" class="text-center" style="display:block;font-size:20px">اللينكات</nuxt-link>
               </div>
             </div>
           </div>
@@ -86,7 +87,7 @@
             <div class="view-cont second" style="overflow:hidden;">
               <div class="row">
 
-                  <div class="col-md-5 order-md-7">
+                  <div class="col-md-5 order-md-7 test-image-div" >
                 <div class="desc-image">
                   <img src="../assets/imgs/الاختبارات.png" alt="">
                 </div>
@@ -96,7 +97,7 @@
                 <div class="container">
                   <div class="desc-cont">
                     <h3>الأختبارات</h3>
-                    <p>العديد من الأختبارات سواء كانت علي الدروس أو اختبارات عامةاو اخبارات بنك المعلومات .</p>
+                    <p class="wierd-paragraph">العديد من الأختبارات سواء كانت علي الدروس أو اختبارات عامةاو اخبارات بنك المعلومات .</p>
                   </div>
                 </div>
               </div>
@@ -944,6 +945,32 @@ export default {
   // Extra small devices (portrait phones, less than 576px)
 
 @media (max-width: 575.98px) {
+  .home-page .question-and-answer .head-who[data-v-2a183b29]{
+
+    width: 277px;
+
+  }
+  .home-page .download-app .download-app-cont .head-who[data-v-2a183b29]{
+        width: 291px;
+    margin-top: 116px;
+  }
+  .home-page .slider[data-v-2a183b29]{
+        background-size: 671px 100%;
+    background-repeat: no-repeat;
+  }
+
+  .home-page .our-view .desc-cont h3[data-v-2a183b29]{
+    text-align: center;
+  }
+  .home-page .our-view .desc-cont p[data-v-2a183b29]{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 80px;
+    padding: 0 10px;
+  }
+  .desc-cont .wierd-paragraph{
+    margin-bottom: 0 !important;
+  }
 .home-page .second .desc-image[data-v-2a183b29], .home-page .forth .desc-image[data-v-2a183b29]{
       margin: 0 0;
     position: static;
@@ -968,10 +995,10 @@ export default {
 }
 .home-page .main-content h1[data-v-2a183b29]{
   text-align: center;
-    font-size: 29px;
+    font-size: 42px;
 }
 .home-page .main-content p[data-v-2a183b29]{
-      font-size: 19px;
+          font-size: 24px;
     text-align: center;
     width: 100%;
 }
@@ -985,7 +1012,8 @@ export default {
   margin-bottom: 30px;
 }
 .home-page .question-and-answer .questions-sec .ques .ques-item h4[data-v-2a183b29]{
-  font-size: 14px;
+       font-size: 9px;
+    padding-top: 8px;
 }
 .home-page .question-and-answer .ask-ques[data-v-2a183b29]{
   height: 433px;
@@ -1027,6 +1055,32 @@ export default {
 .home-page .our-view .desc-cont[data-v-2a183b29]{
       margin-top: 221px;
 }
+.home-page .question-and-answer .questions-sec .ques .ques-item h4[data-v-2a183b29]{
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+ .home-page .our-view .desc-cont h3[data-v-2a183b29]{
+    text-align: center;
+  }
+  .home-page .our-view .desc-cont p[data-v-2a183b29]{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 80px;
+    padding: 0 10px;
+  }
+.home-page .second .desc-cont[data-v-2a183b29], .home-page .forth .desc-cont[data-v-2a183b29]{
+  padding:0;
+}
+.desc-cont{
+margin-top: 0 !important;
+}
+.home-page .second .desc-cont[data-v-2a183b29][data-v-2a183b29], .home-page .forth .desc-cont[data-v-2a183b29][data-v-2a183b29]{
+  margin-top: 200px !important;
+}
+.wierd-paragraph{
+  margin-bottom: 0 !important;
+}
  }
 
 // Medium devices (tablets, 768px and up)
@@ -1067,7 +1121,8 @@ export default {
     font-size: 28px !important;
 }
 .home-page .question-and-answer .questions-sec .ques .ques-item h4[data-v-2a183b29] {
-    font-size: 12px;
+       font-size: 10px;
+    padding-top: 8px;
 }
 .home-page .main-content[data-v-2a183b29] {
     padding: 78px 82px 0 0;
@@ -1079,6 +1134,14 @@ export default {
     font-size: 15px;
     width: 100%;
 }
+ .test-image-div{
+        height: 497px;
+        .desc-image{
+          img{
+            height:100% !important;
+          }
+        }
+  }
  }
 
 // Large devices (desktops, 992px and up)
@@ -1087,9 +1150,26 @@ export default {
         font-size: 13px;
   }
 
+  .test-image-div{
+        height: 497px;
+        .desc-image{
+          img{
+            height:100% !important;
+          }
+        }
+  }
+
  }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+   .test-image-div{
+        height: 497px;
+        .desc-image{
+          img{
+            height:100% !important;
+          }
+        }
+  }
 }
 </style>

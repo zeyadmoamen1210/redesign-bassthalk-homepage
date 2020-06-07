@@ -197,6 +197,9 @@ components:{
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .the-subject{
+    padding-top: 60px;
+  }
 .live-details .time-content .time-course > div:nth-of-type(2){
   width: 42%;
   margin-top: 14px;
@@ -213,7 +216,9 @@ components:{
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+  .the-subject{
+    padding-top: 60px;
+  }
  }
 
 // Medium devices (tablets, 768px and up)

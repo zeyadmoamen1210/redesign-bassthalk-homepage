@@ -64,7 +64,7 @@
 
                   <div class="form-groub">
                     <label for="">الجنس</label>
-                     <select class="custom-select custom-select-lg mb-3">
+                     <select class="custom-select-lg mb-3">
             <option value="1">ذكر</option>
             <option value="2">انثي</option>
 
@@ -78,7 +78,7 @@
 
                   <div class="form-groub">
                     <label for="">الدولة</label>
-                     <select class="custom-select custom-select-lg mb-3">
+                     <select class=" custom-select-lg mb-3">
             <option value="1">مصر</option>
 
           </select>
@@ -103,7 +103,7 @@
 
                   <div class="form-groub">
                     <label for="">المرحلة الدراسية</label>
-                     <select class="custom-select custom-select-lg mb-3">
+                     <select class=" custom-select-lg mb-3">
             <option value="1">الأبتدائية</option>
             <option value="2">الأعدادية</option>
             <option value="3">الثانوية</option>
@@ -118,7 +118,7 @@
 
                   <div class="form-groub">
                     <label for="">الصف الدراسي</label>
-                     <select class="custom-select custom-select-lg mb-3">
+                     <select class=" custom-select-lg mb-3">
                         <option value="1">الأول</option>
                         <option value="2">الثاني</option>
                         <option value="3">الثالث</option>
@@ -136,7 +136,7 @@
 
                   <div class="form-groub">
                     <label for="">الترم</label>
-                     <select class="custom-select custom-select-lg mb-3">
+                     <select class=" custom-select-lg mb-3">
                       <option value="1">الأول</option>
                       <option value="2">الثاني</option>
                     </select>
@@ -202,6 +202,8 @@ components:{
     font-family: "CustomFontBold";
     font-size: 16px;
     padding: 16px 10px;
+    -webkit-appearance: button;
+    width: 100%;
     height: 52px;
     border: 0;
     box-shadow: 1px 1px 11px 1px #DDD;
@@ -284,6 +286,9 @@ components:{
 
   // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .edit-personal-info{
+    padding-top: 60px;
+  }
 .edit-personal-info .custom-select {
   background-position: 640px 10px;
 }
@@ -291,7 +296,9 @@ components:{
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+ .edit-personal-info{
+    padding-top: 60px;
+  }
  }
 
 // Medium devices (tablets, 768px and up)

@@ -117,7 +117,7 @@ methods:{
       document.querySelector('.buttons-icons').style.paddingRight= "20%";
 
     }else{
-      x.style.right = '-34%'
+      x.style.right = '-42%'
       document.querySelector('.buttons-icons').style.paddingRight= 0;
     }
   },
@@ -361,6 +361,9 @@ methods:{
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .live-details{
+    padding-top: 60px;
+  }
 .time-line .item-content > p{
       width: 100%;
     margin: 5px 0 33px;
@@ -408,7 +411,9 @@ methods:{
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+.live-content .live-chat{
+      width: 42%;
+}
  }
 
 // Medium devices (tablets, 768px and up)

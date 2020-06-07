@@ -9,7 +9,7 @@
       <form action="">
         <div class="first-select">
           <h6>أختر المرحلة الدراسية</h6>
-          <select class="custom-select custom-select-lg mb-3">
+          <select class=" custom-select-lg mb-3">
             <option value="1" selected>الأبتدائية</option>
             <option value="2">الأعدادية</option>
             <option value="3">الثانوية</option>
@@ -17,7 +17,7 @@
         </div>
         <div class="first-select">
           <h6>أختر الصف الدراسي</h6>
-          <select class="custom-select custom-select-lg mb-3">
+          <select class=" custom-select-lg mb-3">
             <option value="1">الاول</option>
             <option value="2">الثاني</option>
             <option value="3">الثالث</option>
@@ -28,7 +28,7 @@
         </div>
         <div class="first-select">
           <h6>أختر الترم</h6>
-          <select class="custom-select custom-select-lg mb-3">
+          <select class=" custom-select-lg mb-3">
             <option value="1">الأول</option>
             <option value="2">الثاني</option>
           </select>
@@ -73,6 +73,7 @@ components:{
         select{
         width: 100%;
     font-family: "CustomFontBold";
+    -webkit-appearance: button;
     color: #4f4f4f;
     font-size: 16px;
     padding: 14px 10px;
@@ -95,12 +96,16 @@ components:{
 @media (max-width: 575.98px) {
   .login{
     width: 100%;
+    padding-top: 60px;
   }
  }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+.login{
+          width: 82%;
+      padding-top: 60px;
+}
  }
 
 // Medium devices (tablets, 768px and up)
@@ -113,7 +118,8 @@ components:{
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .login{
-    width: 43%;
+        width: 43%;
+    margin-top: 160px;
   }
  }
 

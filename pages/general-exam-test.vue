@@ -647,11 +647,18 @@ methods:{
       width: 19%;
     margin-bottom: 18px;
 }
+
+.general-exam-test{
+  padding-top: 60px;
+}
  }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
 
+.general-exam-test{
+  padding-top: 60px;
+}
  }
 
 // Medium devices (tablets, 768px and up)

@@ -123,12 +123,19 @@ components:{
 
   // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .lesson{
+    padding-top: 60px;
+  }
 .lesson h6.subject-name img{
     width: 12%;
     margin-bottom: 30px;
 }
 .lesson .lesson-unit {
     margin-bottom: 23px;
+}
+.leactures-comments .lect-live-comments .user-comment h6{
+    padding: 0 6px;
+    font-size: 11px;
 }
 
 .video-bannar img{
@@ -142,7 +149,15 @@ components:{
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+.lesson h6.subject-name img{
+ width: 7%;
+}
+.lesson-inner-grid{
+  margin: 76px 0 22px 0;
+}
+.lesson h6.subject-name{
+      padding: 14px 0px;
+}
  }
 
 // Medium devices (tablets, 768px and up)

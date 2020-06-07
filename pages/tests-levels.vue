@@ -120,6 +120,9 @@ components:{
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .tests-level{
+    padding-top: 60px;
+  }
 .unit h6{
       font-size: 10px;
 }
@@ -144,7 +147,9 @@ components:{
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
-
+.tests-level {
+    margin-top: 107px;
+}
  }
 
 // Extra large devices (large desktops, 1200px and up)

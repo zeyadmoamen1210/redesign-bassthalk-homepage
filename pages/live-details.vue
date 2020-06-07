@@ -243,6 +243,9 @@ padding-right: 11px;
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .live-details{
+    padding-top: 60px;
+  }
 .live-details .next-live .live-time-last .live-time{
       width: 191px;
     margin: auto;
@@ -279,7 +282,9 @@ padding-right: 11px;
  }
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+  .live-details{
+    padding-top: 60px;
+  }
  }
 
 // Medium devices (tablets, 768px and up)
@@ -291,11 +296,16 @@ padding-right: 11px;
 .live-details .next-live .live-time-last > h6{
     margin-right: 31px;
 }
+.live-details {
+    margin-top: 80px;
+}
  }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199.98px) {
-
+.live-details {
+    margin-top: 134px;
+}
  }
 
 // Extra large devices (large desktops, 1200px and up)

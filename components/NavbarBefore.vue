@@ -168,9 +168,9 @@ computed: {
   .nav-small{
     overflow: hidden;
     .logo{
-          width: 100px;
+         width: 86px;
     float: right;
-    height: 100px;
+    height: 60px;
       img{
         width: 100%;
         height:100%;
@@ -243,7 +243,7 @@ computed: {
 @media (max-width: 575.98px) {
   .navbar-before-small{
           position: fixed;
-    z-index: 3;
+    z-index: 99999;
     background: #ffffff;
     width: 100%;
     top: 0;

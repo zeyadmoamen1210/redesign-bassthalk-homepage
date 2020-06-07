@@ -135,6 +135,16 @@ components:{
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+   .notifications .time-course > div:nth-of-type(2){
+        width: 43% !important;
+  }
+  .notifications .time-course .teacher{
+        height: 59px;
+    width: 64px;
+  }
+  .notifications{
+    padding-top: 60px;
+  }
 .notifications .time-course > div:nth-of-type(2){
   margin-top: 10px;
     width: 49%;
@@ -154,6 +164,10 @@ components:{
     width: 50%;
     margin-right: 36px;
 }
+  .notifications{
+    padding-top: 60px;
+  }
+
  }
 
 // Large devices (desktops, 992px and up)

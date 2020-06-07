@@ -22,7 +22,7 @@
         </div>
         <input type="submit" value="تسجيل الدخول" class="fullWidthBtn">
         <div class="two-way">
-          <h6>او عن طريف</h6>
+          <h6>او عن طريق</h6>
           <img src="../assets/imgs/facebook.png" alt="">
           <img src="../assets/imgs/brands-and-logotypes.png" alt="">
         </div>
@@ -109,17 +109,23 @@ components:{
 @media (max-width: 575.98px) {
 .login{
   width: 85%;
+  padding-top: 60px;
 }
  }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+.login{
+  padding-top: 60px;
+  width: 60%;
+}
  }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
-
+.login{
+  width: 60%;
+}
  }
 
 // Large devices (desktops, 992px and up)

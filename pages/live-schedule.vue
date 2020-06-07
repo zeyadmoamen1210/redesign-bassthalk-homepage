@@ -396,6 +396,23 @@ methods:{
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .live-details .time-content .time-course .teacher{
+        height: 55px;
+    width: 57px;
+  }
+  .live-details .time-content .time-course .teacher img:last-of-type{
+        left: -16px;
+    width: 41px;
+  }
+  .time-course h6{
+    font-size: 11px;
+  }
+  .live-details .time-content .time-course > div:nth-of-type(2){
+        margin-top: 11px;
+  }
+  .live-details{
+    padding-top: 60px;
+  }
 .live-details .schedule-bar > button {
     width: 33.333%;
 }
@@ -408,12 +425,26 @@ methods:{
  }
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+.live-details{
+    padding-top: 60px;
+  }
+  .lesson-btns .explain-btn {
+    margin-bottom: 15px;
+}
  }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
-
+.time-course h6{
+    font-size: 11px;
+  }
+  .live-details .time-content .time-course > div:nth-of-type(2){
+        margin-top: 11px;
+  }
+  .live-details .time-content .time-course .teacher{
+        height: 55px;
+    width: 57px;
+  }
  }
 
 // Large devices (desktops, 992px and up)

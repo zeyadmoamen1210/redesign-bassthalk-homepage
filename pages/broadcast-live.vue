@@ -3,7 +3,7 @@
     <NavbarBefore />
 
     <div class="container">
-      <div class="subjects">
+      <div class="subjects" style="">
       <div class="form-title">
         <h4>
           <img src="../assets/imgs/live-blue.png" alt="" style="width: 30px;">
@@ -187,4 +187,51 @@ export default {
     background-repeat: no-repeat;
   }
 }
+
+
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .subjects{
+       padding-top: 60px !important;
+  }
+ }
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .subjects{
+       padding-top: 60px !important;
+  }
+  .head-who[data-v-6b499738] {
+    position: relative;
+    text-align: center;
+    margin:50px auto;
+}
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+  .head-who[data-v-6b499738] {
+    position: relative;
+    text-align: center;
+    margin:50px auto;
+}
+.subjects .subject-cont h3 {
+    font-size: 15px;
+}
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+.subjects .subject-cont h3 {
+    font-size: 15px;
+}
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
 </style>

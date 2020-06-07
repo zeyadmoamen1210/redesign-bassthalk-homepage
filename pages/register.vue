@@ -148,6 +148,9 @@ components:{
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+  .login{
+    padding-top: 60px;
+  }
 .login .form-bottom{
   width:88%;
 }
@@ -167,7 +170,9 @@ components:{
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+ .login{
+    padding-top: 60px;
+  }
  }
 
 // Medium devices (tablets, 768px and up)
