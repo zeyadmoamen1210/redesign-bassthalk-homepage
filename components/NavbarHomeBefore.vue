@@ -314,6 +314,15 @@ asyncNavbar: function(e){
 .dropdown{
   transition: all .4s linear;
 }
+.navbar-before-small .nav-small .logo[data-v-2ab94fc9] {
+        width: 63px;
+    float: right;
+    height: 40px;
+}
+.login-button-small button img[data-v-2ab94fc9] {
+        height: 28px;
+    width: 37px;
+}
  }
 
 // Small devices (landscape phones, 576px and up)
@@ -325,13 +334,11 @@ asyncNavbar: function(e){
     border: none;
   }
 
-   .navbar-before-small .nav-small .logo[data-v-5adb3b0a]{
-
-    width: 80px;
+  .navbar-before-small .nav-small .logo[data-v-2ab94fc9] {
+    width: 67px;
     float: right;
-    height: 58px;
-
-  }
+    height: 49px;
+}
    .navbar-before-small{
           position: fixed;
     z-index: 3;
@@ -357,11 +364,20 @@ asyncNavbar: function(e){
     button{
       background: none;
       img{
-        height: 53px;
-    width: 51px;
+            height: 34px;
+    width: 33px;
       }
     }
   }
+  .navbar-before-small .nav-small .logo[data-v-2ab94fc9] {
+    width: 72px;
+    float: right;
+    height: 55px;
+}
+.login-button-small button img[data-v-2ab94fc9] {
+        height: 28px;
+    width: 37px;
+}
  }
 
 // Medium devices (tablets, 768px and up)

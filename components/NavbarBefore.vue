@@ -299,13 +299,14 @@ computed: {
     outline: none;
     box-shadow: none;
     border: none;
+    height: 40px;
+    width: 43px;
   }
 
    .navbar-before-small .nav-small .logo[data-v-5adb3b0a]{
-
-    width: 80px;
+    width: 77px;
     float: right;
-    height: 58px;
+    height: 67px;
 
   }
    .navbar-before-small{

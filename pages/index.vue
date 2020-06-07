@@ -945,6 +945,14 @@ export default {
   // Extra small devices (portrait phones, less than 576px)
 
 @media (max-width: 575.98px) {
+  .head-who{
+    width:auto !important;
+  }
+  .navbar-before-small .nav-small .logo[data-v-2ab94fc9] {
+    width: 51px;
+    float: right;
+    height: 34px;
+}
   .home-page .question-and-answer .head-who[data-v-2a183b29]{
 
     width: 277px;
@@ -1029,6 +1037,12 @@ export default {
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .navbar-before-small .nav-small .logo[data-v-2ab94fc9] {
+    width: 68px;
+    float: right;
+    height: 59px;
+}
+
 .home-page .our-view .desc-cont[data-v-2a183b29]{
       margin-right: 0;
     /* width: 100%; */
