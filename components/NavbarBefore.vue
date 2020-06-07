@@ -45,7 +45,7 @@
                 </li>
                 <li>
                   <nuxt-link to="/links" class-active="active">
-                    <a href data-custom="partnars" @click="asyncNavbar">الصفحات</a>
+                    <a href data-custom="partnars">الصفحات</a>
                   </nuxt-link>
                 </li>
               </ul>
