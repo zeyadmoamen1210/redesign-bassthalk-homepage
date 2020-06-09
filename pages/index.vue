@@ -530,6 +530,7 @@ export default {
   width: 100px;
   background: #098bc1;
   border-radius: 50%;
+  border:1px solid #098bc1;
 }
 .home-page{
 
