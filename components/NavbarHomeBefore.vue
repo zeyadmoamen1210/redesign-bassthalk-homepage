@@ -82,7 +82,7 @@
 
           <div class="login-button-small">
             <button class="btn" @click="showDropdown">
-              <img src="../assets/imgs/open-menu (1).png" alt />
+              <img src="../assets/imgs/open-menu1.png" alt />
             </button>
           </div>
         </div>
@@ -176,7 +176,6 @@ export default {
       }
     }
   }
-
   .nav-big {
     display: none;
   }
@@ -187,7 +186,6 @@ export default {
       width: 86px;
       float: right;
       height: 75px;
-
       img {
         width: 100%;
         height: 100%;
