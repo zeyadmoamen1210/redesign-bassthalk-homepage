@@ -279,6 +279,7 @@ export default {
     display: none;
   }
   .navbar-before {
+    
     .navlinks {
       display: none;
     }
