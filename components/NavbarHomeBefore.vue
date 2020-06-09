@@ -82,7 +82,7 @@
 
           <div class="login-button-small">
             <button class="btn" @click="showDropdown">
-              <img src="../assets/imgs/open-menu (1).png" alt />
+              <img src="../assets/imgs/open-menu1.png" alt />
             </button>
           </div>
         </div>
