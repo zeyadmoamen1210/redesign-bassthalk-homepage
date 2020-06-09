@@ -27,6 +27,7 @@
         </div>
       </div>
 
+
       <div class="who-we-are" id="who-we-are">
         <div class="background-who-we-are">
           <img src="../assets/imgs/logo.png" alt="" style= "width: 100%;">
@@ -509,8 +510,6 @@ export default {
 
 <style lang="scss" scoped>
 .blue-ball{
-<<<<<<< HEAD
-  position: absolute;
   top: -46px;
   right: -43px;
   content: '';
@@ -519,27 +518,7 @@ export default {
   background: #098bc1;
   border-radius: 50%;
   border:1px solid #098bc1;
-=======
-  position: absolute;
-  top: -46px;
-  right: -43px;
-  content: '';
-  height: 97px;
-  width: 100px;
-  background: #098bc1;
-  border-radius: 50%;
->>>>>>> dev
 }
-.home-page{
-
-    .head-who{
-      position: relative;
-      width: 224px;
-      text-align: center;
-      margin: 51px 0;
-      h3{
-        text-align: center;
-        font-family: "CustomFontBold";
 
       }
       span{

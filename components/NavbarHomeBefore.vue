@@ -80,21 +80,12 @@
             <img src="../assets/imgs/logo.png" alt />
           </div>
 
-<<<<<<< HEAD
           <div class="login-button-small">
             <button class="btn" @click="showDropdown">
               <img src="../assets/imgs/open-menu1.png" alt />
             </button>
           </div>
         </div>
-=======
-          <div class="login-button-small">
-            <button class="btn" @click="showDropdown">
-              <img src="../assets/imgs/open-menu1.png" alt />
-            </button>
-          </div>
-        </div>
->>>>>>> dev
 
         <div class="dropdown">
           <ul>
@@ -169,7 +160,6 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
 <style lang="scss" scoped>
 .navbar-before-small {
   .dropdown {
@@ -213,53 +203,6 @@ export default {
       box-shadow: none;
     }
   }
-=======
-<style lang="scss" scoped>
-.navbar-before-small {
-  .dropdown {
-    margin-top: 13px;
-    display: none;
-    ul {
-      list-style: none;
-      padding-right: 0;
-      li {
-        padding: 10px;
-        text-align: center;
-        font-family: 'CustomFontBold';
-        border-bottom: 1px solid #d3d3d3;
-      }
-    }
-  }
-
-  .nav-big {
-    display: none;
-  }
-
-  .nav-small {
-    overflow: hidden;
-    .logo {
-      width: 86px;
-      float: right;
-      height: 75px;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-  .login-button-small {
-    width: 50%;
-    float: left;
-    button {
-      color: #fff;
-      font-family: 'CustomFontMedium';
-      outline: none;
-      border: 0;
-      box-shadow: none;
-    }
-  }
->>>>>>> dev
 }
 .navbar-before {
   .nav-logo {
@@ -310,7 +253,7 @@ export default {
     content: '';
     width: 22px;
     border-radius: 33px;
-    border: 2px solid #098bc1;
+    border: 2px solid #098bc1
   }
 }
 
@@ -473,4 +416,3 @@ export default {
   }
 }
 </style>
-
