@@ -17,47 +17,47 @@
                     to="/"
                     :class="{ active: isRouteActive }"
                     exact-active-class="active"
-                  >الرئيسية</nuxt-link>
+                  >????????</nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to>
-                    <a href data-custom="who-we-are" @click="asyncNavbar">من نحن</a>
+                    <a href data-custom="who-we-are" @click="asyncNavbar">?? ???</a>
                   </nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to>
-                    <a href data-custom="our-view" @click="asyncNavbar">رؤيتنا</a>
+                    <a href data-custom="our-view" @click="asyncNavbar">??????</a>
                   </nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to>
-                    <a href data-custom="the-best" @click="asyncNavbar">المتفوقين</a>
+                    <a href data-custom="the-best" @click="asyncNavbar">?????????</a>
                   </nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to>
-                    <a href data-custom="download-app" @click="asyncNavbar">حمل التطبيق</a>
+                    <a href data-custom="download-app" @click="asyncNavbar">??? ???????</a>
                   </nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to class-active="active">
-                    <a href data-custom="question-and-answer" @click="asyncNavbar">أسئلة و أجوبة</a>
+                    <a href data-custom="question-and-answer" @click="asyncNavbar">????? ? ?????</a>
                   </nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to class-active="active">
-                    <a href data-custom="partnars" @click="asyncNavbar">شركاؤنا</a>
+                    <a href data-custom="partnars" @click="asyncNavbar">???????</a>
                   </nuxt-link>
                 </li>
                 <li>
                   <nuxt-link to="/links">
-                    <a href data-custom="partnars">الصفحات</a>
+                    <a href data-custom="partnars">???????</a>
                   </nuxt-link>
                 </li>
               </ul>
@@ -66,7 +66,7 @@
 
           <div class="col-md-2 col-sm-6">
             <div class="nav-login">
-              <button class="btn">تسجيل الدخول</button>
+              <button class="btn">????? ??????</button>
             </div>
           </div>
         </div>
@@ -90,31 +90,31 @@
         <div class="dropdown">
           <ul>
             <li>
-              <nuxt-link to :class="{ active: isRouteActive }" exact-active-class="active">الرئيسية</nuxt-link>
+              <nuxt-link to :class="{ active: isRouteActive }" exact-active-class="active">????????</nuxt-link>
             </li>
 
             <li>
-              <nuxt-link to>من نحن</nuxt-link>
+              <nuxt-link to>?? ???</nuxt-link>
             </li>
 
             <li>
-              <nuxt-link to>رؤيتنا</nuxt-link>
+              <nuxt-link to>??????</nuxt-link>
             </li>
 
             <li>
-              <nuxt-link to>المتفوقين</nuxt-link>
+              <nuxt-link to>?????????</nuxt-link>
             </li>
 
             <li>
-              <nuxt-link to>حمل التطبيق</nuxt-link>
+              <nuxt-link to>??? ???????</nuxt-link>
             </li>
 
             <li>
-              <nuxt-link to class-active="active">أسئلة و أجوبة</nuxt-link>
+              <nuxt-link to class-active="active">????? ? ?????</nuxt-link>
             </li>
 
             <li>
-              <nuxt-link to class-active="active">شركاؤنا</nuxt-link>
+              <nuxt-link to class-active="active">???????</nuxt-link>
             </li>
           </ul>
         </div>
