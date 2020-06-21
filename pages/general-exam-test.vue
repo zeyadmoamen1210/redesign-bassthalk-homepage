@@ -5,7 +5,7 @@
       <div class="general-exam-test">
         <div class="title">
           <div class="exam-level">
-            <img src="../assets/imgs/easy-level (1).png" alt="">
+            <img src="../assets/imgs/easy-level-1.png" alt="">
             <h6>المستوي السهل</h6>
           </div>
          <div class="sub-name">

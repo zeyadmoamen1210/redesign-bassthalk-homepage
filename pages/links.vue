@@ -150,7 +150,7 @@ ul{
   padding-top: 60px;
   li{
     display: inline-block;
-    width: 31.333%;
+    width: 100%;
     padding: 10px 0;
     position: relative;
     &::after{

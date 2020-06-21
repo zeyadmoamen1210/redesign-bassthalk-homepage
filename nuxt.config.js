@@ -65,7 +65,7 @@ export default {
     build: {
         extend(config, ctx) {
           
-          })
+          
         }
       }
 }

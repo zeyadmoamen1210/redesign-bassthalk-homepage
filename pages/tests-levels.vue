@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-md-4">
             <div class="level-item box-shadow-class">
-                <img src="../assets/imgs/easy-level (1).png" alt="">
+                <img src="../assets/imgs/easy-level-1.png" alt="">
                 <h6>المستوي السهل</h6>
                  <div class="c100 p25 small">
                     <span>25%</span>
@@ -35,14 +35,14 @@
 
            <div class="col-md-4">
             <div class="level-item box-shadow-class">
-                <img style="margin-top:40px" src="../assets/imgs/easy-level (2).png" alt="">
+                <img style="margin-top:40px" src="../assets/imgs/easy-level-2.png" alt="">
                 <h6>المستوي المتوسط</h6>
             </div>
           </div>
 
            <div class="col-md-4">
             <div class="level-item box-shadow-class">
-                <img style="margin-top: 39px;" src="../assets/imgs/easy-level (3).png" alt="">
+                <img style="margin-top: 39px;" src="../assets/imgs/easy-level-3.png" alt="">
                 <h6>المستوي الصعب</h6>
             </div>
           </div>
