@@ -424,7 +424,7 @@
                   <div class="col-md-4">
                     <div class="partner">
                       <div>شركاءنا</div>
-                    </div>
+                    </div> 
                   </div>
 
                   <div class="col-md-4">

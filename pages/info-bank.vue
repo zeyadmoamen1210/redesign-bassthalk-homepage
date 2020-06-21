@@ -16,6 +16,7 @@
                 <img src="../assets/imgs/illustration 2.png" alt="">
               </div>
             </div>
+            
             <div class="col-md-6">
               <div class="bank-info-head-item">
                 <h3>تهانينا</h3>
