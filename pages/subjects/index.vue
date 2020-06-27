@@ -1,7 +1,5 @@
 <template>
   <div>
-    <NavbarBefore />
-
     <div class="container">
       <div class="subjects">
         <div class="form-title">
@@ -11,11 +9,15 @@
           </h4>
         </div>
         <div class="row">
-          <div class="col-md-3" v-for="(subject,index) in subjects" :key="index">
-            <nuxt-link :to="'/subjects/'+subject.id+'/units'">
+          <div
+            class="col-md-3"
+            v-for="(subject, index) in subjects"
+            :key="index"
+          >
+            <nuxt-link :to="'/subjects/' + subject.id + '/units'">
               <div class="subject-cont">
                 <img :src="subject.icon" alt />
-                <h3>{{subject.nameAr}}</h3>
+                <h3>{{ subject.nameAr }}</h3>
               </div>
             </nuxt-link>
           </div>
@@ -84,7 +86,7 @@
             </nuxt-link>
           </div>-->
 
-          <div class="annoncment" style="width:100%;height:200px;">
+          <div class="annoncment" style="width: 100%; height: 200px;">
             <img
               src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
               alt
@@ -97,36 +99,29 @@
 </template>
 
 <script>
-import NavbarBefore from '../../components/NavbarBefore'
-import Footer from '../../components/Footer'
-
 export default {
-  components:{
-    NavbarBefore,
-    Footer
-  },
   data() {
     return {
       subjects: [],
     }
   },
   created() {
-    this.getSubjects();
+    this.getSubjects()
   },
   methods: {
     getSubjects() {
       this.$axios
         .get(`subjects`)
-        .then(res => {
-          this.isLoading = false;
-          this.subjects = res.data;
+        .then((res) => {
+          this.isLoading = false
+          this.subjects = res.data
         })
-        .catch(err => {
-          this.isLoading = false;
-          console.log(err);
-        });
+        .catch((err) => {
+          this.isLoading = false
+          console.log(err)
+        })
     },
-  }
+  },
 }
 </script>
 

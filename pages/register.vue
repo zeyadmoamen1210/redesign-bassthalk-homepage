@@ -1,8 +1,7 @@
 <template>
   <div>
-    <NavbarBefor />
     <div class="container">
-      <div class="login" v-if="showVerify">
+      <div class="login" v-if="!showVerify">
         <div class="form-title">
           <h4>
             <img src="../assets/imgs/Group 6945.png" alt />
@@ -13,7 +12,12 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-groub">
-                <input v-model="name" type="text" class="form-control" placeholder="اسم المستخدم " />
+                <input
+                  v-model="name"
+                  type="text"
+                  class="form-control"
+                  placeholder="اسم المستخدم "
+                />
               </div>
             </div>
 
@@ -30,19 +34,34 @@
 
             <div class="col-md-4">
               <div class="form-groub">
-                <input v-model="phone" type="text" class="form-control" placeholder="رقم الجوال" />
+                <input
+                  v-model="phone"
+                  type="text"
+                  class="form-control"
+                  placeholder="رقم الجوال"
+                />
               </div>
             </div>
 
             <div class="col-md-2">
               <div class="form-groub">
-                <input v-model="gender" type="text" class="form-control" placeholder="الجنس" />
+                <input
+                  v-model="gender"
+                  type="text"
+                  class="form-control"
+                  placeholder="الجنس"
+                />
               </div>
             </div>
 
             <div class="col-md-2">
               <div class="form-groub">
-                <input v-model="country" type="text" class="form-control" placeholder="الدولة" />
+                <input
+                  v-model="country"
+                  type="text"
+                  class="form-control"
+                  placeholder="الدولة"
+                />
               </div>
             </div>
 
@@ -71,7 +90,12 @@
         </div>
 
         <div class="form-bottom">
-          <input type="button" @click="register" value="انشاء حساب جديد" class="basth-btn-primary" />
+          <input
+            type="button"
+            @click="register"
+            value="انشاء حساب جديد"
+            class="basth-btn-primary"
+          />
           <div class="two-way">
             <h6>او عن طريق</h6>
             <img src="../assets/imgs/facebook.png" alt />
@@ -83,7 +107,9 @@
               <h6>ليس لديك حساب ؟</h6>
             </div>
             <div>
-              <button>تسجيل الدخول</button>
+              <button @click="$router.push({ path: '/login' })">
+                تسجيل الدخول
+              </button>
             </div>
           </div>
         </div>
@@ -100,10 +126,20 @@
         </div>-->
         <!-- v-else -->
         <div class="form-groub">
-          <input v-model="code" type="text" class="form-control" placeholder="كود التفعيل" />
+          <input
+            v-model="code"
+            type="text"
+            class="form-control"
+            placeholder="كود التفعيل"
+          />
         </div>
 
-        <input type="button" @click="verifyEmail" value="تفعيل" class="basth-btn-primary" />
+        <input
+          type="button"
+          @click="verifyEmail"
+          value="تفعيل"
+          class="basth-btn-primary"
+        />
 
         <div class="dont-have-acc">
           <div>
@@ -119,124 +155,102 @@
 </template>
 
 <script>
-import NavbarBefor from '../components/NavbarBefore'
-import Footer from '../components/Footer'
-
 export default {
-  components: {
-    NavbarBefor,
-    Footer
-  },
+  components: {},
   data() {
     return {
-      code:'',
-      confirmPassword:'',
-      isLoading:false,
-      showVerify:false,
-    
-        name:'',
-        email:'samehmourad05@gmail.com',
-        password:'123456',
-        role:'student',
-        phone:'',
-        gender:'',
-        country:'',
-      
+      code: '',
+      confirmPassword: '',
+      isLoading: false,
+      showVerify: false,
+
+      name: '',
+      email: 'samehmourad05@gmail.com',
+      password: '123456',
+      role: 'student',
+      phone: '',
+      gender: '',
+      country: '',
     }
-    
   },
-  methods:{
-     async register() {
+  methods: {
+    async register() {
       //console.log(this.Servies_Offer);
-      this.isLoading=true
+      this.isLoading = true
 
-        let signUpForm = new FormData();
-        signUpForm.append("username", this.name);
-        signUpForm.append("password", this.password);
-        signUpForm.append("email", this.email);
-        signUpForm.append("phone", this.phone);
-        signUpForm.append("role", this.role);
-        signUpForm.append("gender", this.gender);
-        signUpForm.append("country", this.country);
- await this.$axios
-          .post("signup", signUpForm, {
-            headers: {
-              "Content-Type": "multipart/form-data"
-            }
-          })
-          .then(res => {
-            this.isLoading=false
-            this.showVerify=true;
-
-          })
-          .catch(error => {
-                  this.isLoading=false
-          });
-
-     
-    },
-    resendCode(){
-       this.isLoading=true
-
- this.$axios
-          .post("resend",
-            {
-              email: this.email
-            }).then(res => {
-                        this.isLoading=false
-                       
-          })
-          .catch(error => {
-                  this.isLoading=false
-
-          });
-    },
-    verifyEmail(){
-       this.isLoading=true
-       this.$axios
-          .post("verify",
-            {
-              code : this.code,
-              email: this.email
-            }).then(res => {
-                        this.isLoading=false
-                        this.login();
-          })
-          .catch(error => {
-                  this.isLoading=false
-
-          });
+      let signUpForm = new FormData()
+      signUpForm.append('username', this.name)
+      signUpForm.append('password', this.password)
+      signUpForm.append('email', this.email)
+      signUpForm.append('phone', this.phone)
+      signUpForm.append('role', this.role)
+      signUpForm.append('gender', this.gender)
+      signUpForm.append('country', this.country)
+      await this.$axios
+        .post('signup', signUpForm, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
           },
-            async login() {
-            this.isLoading=true
+        })
+        .then((res) => {
+          this.isLoading = false
+          this.showVerify = true
+        })
+        .catch((error) => {
+          this.isLoading = false
+        })
+    },
+    resendCode() {
+      this.isLoading = true
 
-      
-        await this.$auth
-          .loginWith("local", {
-            data: {
-              email: this.email,
-              password: this.password
-            }
-          })
-          .then(res => {
-                  this.isLoading=false
- localStorage.setItem("account", JSON.stringify(res.data));
-        this.$router.push({ path: "/" });
+      this.$axios
+        .post('resend', {
+          email: this.email,
+        })
+        .then((res) => {
+          this.isLoading = false
+        })
+        .catch((error) => {
+          this.isLoading = false
+        })
+    },
+    verifyEmail() {
+      this.isLoading = true
+      this.$axios
+        .post('verify', {
+          code: this.code,
+          email: this.email,
+        })
+        .then((res) => {
+          this.isLoading = false
+          this.login()
+        })
+        .catch((error) => {
+          this.isLoading = false
+        })
+    },
+    async login() {
+      this.isLoading = true
 
-          }) .catch(error => {
-                  this.isLoading=false
+      await this.$auth
+        .loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
+        .then((res) => {
+          this.isLoading = false
+          localStorage.setItem('account', JSON.stringify(res.data))
+          this.$router.push({ path: '/' })
+        })
+        .catch((error) => {
+          this.isLoading = false
 
-            
-            //console.log(error.res);
-          });
-
-       
-      
-    }
-
-    
-
-  }
+          //console.log(error.res);
+        })
+    },
+  },
 }
 </script>
 

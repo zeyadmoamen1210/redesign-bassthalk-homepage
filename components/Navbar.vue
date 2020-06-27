@@ -15,9 +15,10 @@
                 <li>
                   <nuxt-link
                     to="/"
-                    :class="{'active': isRouteActive }"
+                    :class="{ active: isRouteActive }"
                     exact-active-class="active"
-                  >الرئيسية</nuxt-link>
+                    >الرئيسية</nuxt-link
+                  >
                 </li>
 
                 <li>
@@ -52,7 +53,7 @@
             </div>
           </div>
 
-          <div class="col-md-2 col-sm-6">
+          <div class="col-md-2 col-sm-6" v-if="!$auth.loggedIn">
             <div class="nav-login">
               <button class="btn">تسجيل الدخول</button>
             </div>
@@ -78,7 +79,12 @@
         <div class="dropdown">
           <ul>
             <li>
-              <nuxt-link to :class="{'active': isRouteActive }" exact-active-class="active">الرئيسية</nuxt-link>
+              <nuxt-link
+                to
+                :class="{ active: isRouteActive }"
+                exact-active-class="active"
+                >الرئيسية</nuxt-link
+              >
             </li>
 
             <li>
@@ -114,16 +120,16 @@
 <script>
 export default {
   computed: {
-    isRouteActive: function() {
+    isRouteActive: function () {
       if (this.$nuxt.$route.path == '/') {
         return true
       } else {
         return false
       }
-    }
+    },
   },
   methods: {
-    showDropdown: function() {
+    showDropdown: function () {
       document.querySelector('.dropdown').classList.toggle('drop')
       if (document.querySelector('.dropdown').classList.contains('drop')) {
         document.querySelector('.dropdown').style.display = 'block'
@@ -136,8 +142,8 @@ export default {
           .querySelector('.login-button-small .btn img')
           .setAttribute('src', 'https://i.ibb.co/1QYMghk/open-menu-1.png')
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -251,11 +257,11 @@ export default {
     margin-top: 120px;
     transition: all 0.4s linear;
   }
- .navbar-before-small .nav-small .logo[data-v-5adb3b0a][data-v-5adb3b0a] {
+  .navbar-before-small .nav-small .logo[data-v-5adb3b0a][data-v-5adb3b0a] {
     width: 50px;
     float: right;
     height: 39px;
-}
+  }
   .navbar-before-small .login-button-small button[data-v-5adb3b0a] {
     background: none;
     outline: none;
@@ -270,8 +276,8 @@ export default {
     button {
       background: none;
       img {
-    height: 25px;
-    width: 29px;
+        height: 25px;
+        width: 29px;
       }
     }
   }
@@ -279,7 +285,6 @@ export default {
     display: none;
   }
   .navbar-before {
-    
     .navlinks {
       display: none;
     }
@@ -300,11 +305,10 @@ export default {
     width: 43px;
   }
 
-   .navbar-before-small .nav-small .logo[data-v-5adb3b0a]{
+  .navbar-before-small .nav-small .logo[data-v-5adb3b0a] {
     width: 77px;
     float: right;
     height: 67px;
-
   }
   .navbar-before-small {
     position: fixed;
