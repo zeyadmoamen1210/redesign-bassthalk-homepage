@@ -52,20 +52,47 @@ export default {
         // Doc: https://bootstrap-vue.js.org
         'bootstrap-vue/nuxt',
         // Doc: https://axios.nuxtjs.org/usage
-        '@nuxtjs/axios',
+        '@nuxtjs/axios', "@nuxtjs/auth"
     ],
+    auth: {
+        // Options
+        strategies: {
+            local: {
+                endpoints: {
+                    login: {
+                        url: "login",
+                        method: "post",
+                        propertyName: "token"
+                    },
+                    user: {
+                        url: "me",
+                        method: "get",
+                        propertyName: ""
+                    },
+                    logout: false
+                },
+                // tokenRequired: true,
+                tokenType: "Bearer"
+            }
+        }
+    },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
      */
-    axios: {},
+    axios: {
+        baseURL: "https://basthalk-be.herokuapp.com/api/v1/",
+        common: {
+            Accept: "application/json"
+        }
+    },
     /*
      ** Build configuration
      */
     build: {
         extend(config, ctx) {
-          
-          
+
+
         }
-      }
+    }
 }
