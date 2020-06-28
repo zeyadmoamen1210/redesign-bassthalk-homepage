@@ -55,6 +55,47 @@ input[type="text"], input[type="password"] ,input[type="email"]{
     font-family: "CustomFontMedium";
 }
 
+// select box in path page
+.first-select {
+  margin-bottom: 21px;
+  .vs--searchable{
+      .vs__dropdown-toggle{
+          width: 100%;
+          font-family: 'CustomFontBold';
+          -webkit-appearance: button;
+          color: #4f4f4f;
+          font-size: 16px;
+          padding: 14px 10px;
+          margin-bottom: 0 !important;
+          height: 52px;
+          border: 0;
+          box-shadow: 1px 1px 11px 1px #ddd;
+          border-radius: 8px;
+      }
+  }
+  .style-chooser .vs__clear,
+  .style-chooser .vs__open-indicator {
+    fill: #058ac6;
+  }
+}
+
+.vs--searchable .vs__dropdown-toggle {
+  cursor: text;
+  padding: 2px;
+  box-shadow: 0px 1px 10px 1px #DDD;
+  border: 0;
+  border-radius: 7px;
+  margin-top: 10px;
+  font-family: "CustomFontRegular";
+}
+
+#vs1__listbox{
+  li{
+    &:hover{
+      background-color: #058ac6;
+    }
+  }
+}
 ::placeholder{
   font-family: "CustomFontLight";
   font-weight: bold;

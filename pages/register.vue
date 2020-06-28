@@ -44,6 +44,7 @@
             </div>
 
             <div class="col-md-2">
+<<<<<<< HEAD
               <b-form-select
                 v-model="gender"
                 :options="options"
@@ -52,6 +53,11 @@
                 text-field="name"
                 disabled-field="notEnabled"
               ></b-form-select>
+=======
+             
+            <v-select  v-model="gender" :options="['ذكر', 'أنثي']"></v-select>
+
+>>>>>>> dev
             </div>
 
             <div class="col-md-2">

@@ -43,7 +43,8 @@ export default {
      ** Plugins to load before mounting the App
      */
     plugins: [
-        './plugins/swiper.js'
+        './plugins/swiper.js',
+        './plugins/vselect.js'
     ],
     /*
      ** Nuxt.js dev-modules

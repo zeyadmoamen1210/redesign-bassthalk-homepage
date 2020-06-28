@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "student",
     "version": "1.0.0",
     "description": "Remote learning system",
@@ -29,4 +30,36 @@
         "prettier": "^2.0.5",
         "sass-loader": "^8.0.2"
     }
+=======
+  "name": "student",
+  "version": "1.0.0",
+  "description": "Remote learning system",
+  "author": "Hamza",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.11.0",
+    "animate.css": "^4.1.0",
+    "bootstrap": "^4.1.3",
+    "bootstrap-vue": "^2.0.0",
+    "nuxt": "^2.0.0",
+    "swiper": "^5.4.5",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-select": "^3.10.5",
+    "vue-verification-code-input": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "sass-loader": "^8.0.2"
+  }
+>>>>>>> dev
 }

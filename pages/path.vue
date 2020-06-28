@@ -8,11 +8,16 @@
         <form @submit.prevent>
           <div class="first-select">
             <h6>حدد نظام التعليم</h6>
+<<<<<<< HEAD
             <select
               class="custom-select-lg mb-3"
               @change="systemChange()"
               v-model="form.system"
             >
+=======
+            <!--
+            <select class="custom-select-lg mb-3" @change="systemChange()" v-model="form.system">
+>>>>>>> dev
               <option value>حدد نظام التعليم</option>
 
               <option
@@ -22,15 +27,23 @@
                 >{{ system.nameAr }}</option
               >
             </select>
+            -->
+            <v-select  v-model="form.system" :options="systems.nameAr"></v-select>
           </div>
           <div class="first-select">
             <h6>اختر المرحلة الدراسية</h6>
+<<<<<<< HEAD
             <select
               class="custom-select-lg mb-3"
               @change="levelChange()"
               v-model="form.level"
             >
+=======
+            <!--
+            <select class="custom-select-lg mb-3" @change="levelChange()" v-model="form.level">
+>>>>>>> dev
               <option value>حدد المرحلة</option>
+              
               <option
                 v-for="(level, index) in levels"
                 :key="index"
@@ -38,10 +51,13 @@
                 >{{ level.nameAr }}</option
               >
             </select>
+            -->
+            <v-select  v-model="form.level" :options="levels.nameAr"></v-select>
           </div>
           <div class="first-select">
             <h6>اختر الصف الدراسي</h6>
-            <select class="custom-select-lg mb-3" v-model="form.class">
+            <!--
+            <select class="custom-select-lg mb-3">
               <option value>حدد الصف</option>
               <option
                 v-for="(item, index) in classes"
@@ -50,14 +66,14 @@
                 >{{ item.nameAr }}</option
               >
             </select>
+            -->
+                        <v-select  v-model="form.class" :options="classes.nameAr"></v-select>
+
           </div>
           <div class="first-select">
             <h6>اختر الترم</h6>
-            <select class="custom-select-lg mb-3" v-model="form.semester">
-              <option value>حدد الترم</option>
-              <option value="first">الأول</option>
-              <option value="second">الثاني</option>
-            </select>
+            
+            <v-select  v-model="form.semester" :options="[{label:'الأول',code:'first'},{label:'الثاني',code:'second'}]"></v-select>
           </div>
           <input
             type="button"
