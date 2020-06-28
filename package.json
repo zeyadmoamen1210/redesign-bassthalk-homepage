@@ -19,6 +19,7 @@
     "nuxt": "^2.0.0",
     "swiper": "^5.4.5",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-select": "^3.10.5",
     "vue-verification-code-input": "^1.0.0"
   },
   "devDependencies": {
