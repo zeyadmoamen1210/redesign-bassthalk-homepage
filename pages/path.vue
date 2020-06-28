@@ -8,16 +8,8 @@
         <form @submit.prevent>
           <div class="first-select">
             <h6>حدد نظام التعليم</h6>
-<<<<<<< HEAD
-            <select
-              class="custom-select-lg mb-3"
-              @change="systemChange()"
-              v-model="form.system"
-            >
-=======
             <!--
             <select class="custom-select-lg mb-3" @change="systemChange()" v-model="form.system">
->>>>>>> dev
               <option value>حدد نظام التعليم</option>
 
               <option
@@ -32,16 +24,8 @@
           </div>
           <div class="first-select">
             <h6>اختر المرحلة الدراسية</h6>
-<<<<<<< HEAD
-            <select
-              class="custom-select-lg mb-3"
-              @change="levelChange()"
-              v-model="form.level"
-            >
-=======
             <!--
             <select class="custom-select-lg mb-3" @change="levelChange()" v-model="form.level">
->>>>>>> dev
               <option value>حدد المرحلة</option>
               
               <option
