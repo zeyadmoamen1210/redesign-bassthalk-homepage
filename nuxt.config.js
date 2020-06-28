@@ -22,7 +22,12 @@ export default {
             rel: 'icon',
             type: 'image/x-icon',
             href: 'logo.png',
-        }, ],
+        },
+        {
+            rel:'stylesheet',
+            href:'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css'
+        }
+     ],
     },
     /*
      ** Customize the progress-bar color
@@ -37,7 +42,9 @@ export default {
     /*
      ** Plugins to load before mounting the App
      */
-    plugins: [],
+    plugins: [
+        './plugins/swiper.js'
+    ],
     /*
      ** Nuxt.js dev-modules
      */

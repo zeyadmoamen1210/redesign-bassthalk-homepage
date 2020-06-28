@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarBefore />
 
     <div class="container">
       <div class="subjects" style="">
@@ -90,148 +89,13 @@
 </template>
 
 <script>
-import NavbarBefore from '../components/NavbarBefore'
-import Footer from '../components/Footer'
+
 
 export default {
-  components:{
-    NavbarBefore,
-    Footer
-  }
+  
 }
 </script>
 
 <style lang="scss">
-.subjects{
-  margin-top: 60px;
-  margin-bottom: 170px;
-
-  .col-md-3{
-    a{
-      color:#333;
-      text-decoration: none;
-      font-family: "CustomFontRegular";
-      .subject-cont{
-           transition: all .4s linear;
-
-        &:hover{
-       transform: scale(1.06);
-      }
-      }
-    }
-  }
-  p{
-      font-size: 21px;
-    color: #5a5959;
-    margin-bottom: 8px;
-    font-family: "CustomFontMedium";
-    margin-top: 19px;
-    }
-  .form-title{
-    color:#058ac6bd;
-
-  }
-  .subject-cont{
-   padding: 26px;
-    margin: 20px 0;
-    box-shadow: 0px 1px 21px 0px #DDD;
-    border-radius: 10px;
-    img{
-      display: block;
-      margin: auto;
-    }
-    h3{
-            text-align: center;
-    margin-top: 18px;
-    font-size: 20px;
-    }
-  }
-  .chem{
-    background: url('../assets/imgs/chem.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .math{
-    background: url('../assets/imgs/math.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .arab{
-    background: url('../assets/imgs/arabic.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .math2{
-    background: url('../assets/imgs/math2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .eng{
-    background: url('../assets/imgs/eng.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .history{
-    background: url('../assets/imgs/history.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .physic{
-    background: url('../assets/imgs/physic.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .geo{
-    background: url('../assets/imgs/planet-earth-2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-
-
-
-
-
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-  .subjects{
-       padding-top: 60px !important;
-  }
- }
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .subjects{
-       padding-top: 60px !important;
-  }
-  .head-who[data-v-6b499738] {
-    position: relative;
-    text-align: center;
-    margin:50px auto;
-}
- }
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {
-
-  .head-who[data-v-6b499738] {
-    position: relative;
-    text-align: center;
-    margin:50px auto;
-}
-.subjects .subject-cont h3 {
-    font-size: 15px;
-}
- }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) {
-.subjects .subject-cont h3 {
-    font-size: 15px;
-}
- }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-
- }
+@import '../assets/sass/broadcast-live.scss';
 </style>

@@ -1,0 +1,62 @@
+.the-subject {
+    margin-top: 80px;
+    margin-bottom: 150px;
+    .form-title {
+      h4 {
+        color: #058ac6;
+      }
+    }
+    margin-top: 80px;
+    .lesson-part {
+      .lessons {
+        padding: 10px 9px;
+        background: #ececec;
+        border-radius: 5px;
+        font-family: 'CustomFontLight';
+        margin-bottom: 10px;
+        h6 {
+          margin: 0;
+          font-family: 'CustomFontRegular';
+          text-align: center;
+        }
+      }
+    }
+  }
+  
+  // Extra small devices (portrait phones, less than 576px)
+  @media (max-width: 575.98px) {
+    .the-subject {
+      padding-top: 60px;
+    }
+    .live-details .time-content .time-course > div:nth-of-type(2) {
+      width: 42%;
+      margin-top: 14px;
+    }
+    .live-details .time-content .time-course > div:first-of-type {
+      width: 30%;
+    }
+    .live-details .time-content .time-course .teacher {
+      height: 60px;
+      width: 59px;
+      margin-top: 20px;
+    }
+  }
+  
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .the-subject {
+      padding-top: 60px;
+    }
+  }
+  
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) and (max-width: 991.98px) {
+  }
+  
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+  }
+  
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+  }

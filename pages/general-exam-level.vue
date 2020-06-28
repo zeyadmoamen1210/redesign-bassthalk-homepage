@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarBefore />
     <div class="container">
       <div class="tests-level">
         <div class="title">
@@ -46,101 +45,13 @@
 </template>
 
 <script>
-import NavbarBefore from '../components/NavbarBefore'
-import Footer from '../components/Footer'
+
 
 export default {
-components:{
-  NavbarBefore,
-  Footer
-}
+
 }
 </script>
 
 <style lang="scss">
-.tests-level{
-  margin-top: 100px;
-  .title{
-    h3{
-      color: rgba(5,138,198,0.74118);
-    margin-bottom: 50px;
-    font-family: "CustomFontMedium";
-    }
-  }
-  .lesson-inner-grid{
-    .unit{
-       box-shadow: none;
-        display: inline-block;
-    }
-    .subject-name{
-          padding: 36px 0;
-      display:inline-block
-    }
-  }
-  .levels{
-    .level-item{
-      padding: 10px;
-      text-align: center;
-      min-height: 249px;
-      transition: all .4s linear;
-      margin-bottom: 20px;
-      cursor: pointer;
-      h6{
-            text-align: center;
-    margin-top: 31px;
-    font-size: 19px;
-    color: #6e6e6e;
-      }
-      &:hover{
-        transform: scale(1.03);
-        box-shadow: 0px 1px 8px 5px #DDD;;
-    }
-    }
-    .level-cicle{
-      background-color: green;
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      position: relative;
-      z-index: -1;
-      .inner-level-cicle{
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        content: '';
-        background-color: #FFF;
-      }
-    }
-  }
-}
-
-
-
-  // Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-.tests-level{
-  padding-top: 60px;
-}
- }
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) {
-.tests-level{
-  padding-top: 60px;
-}
- }
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {
-
- }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) {
-
- }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-}
+@import '../assets/sass/general-exam-level.scss';
 </style>

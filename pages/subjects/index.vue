@@ -16,7 +16,9 @@
           >
             <nuxt-link :to="'/subjects/' + subject.id + '/units'">
               <div class="subject-cont">
-                <img :src="subject.icon" alt />
+                <div class="subject-icon-img">
+                  <img :src="subject.icon" alt />
+                </div>
                 <h3>{{ subject.nameAr }}</h3>
               </div>
             </nuxt-link>
@@ -126,130 +128,5 @@ export default {
 </script>
 
 <style lang="scss">
-.subjects {
-  margin-top: 60px;
-  margin-bottom: 170px;
-
-  .col-md-3 {
-    a {
-      color: #333;
-      text-decoration: none;
-      font-family: 'CustomFontRegular';
-      .subject-cont {
-        transition: all 0.4s linear;
-
-        &:hover {
-          transform: scale(1.06);
-        }
-      }
-    }
-  }
-  .form-title {
-    color: #058ac6bd;
-  }
-  .subject-cont {
-    max-height: 220px;
-    min-height: 220px;
-    padding: 26px;
-    margin: 20px 0;
-    box-shadow: 0px 1px 21px 0px #ddd;
-    border-radius: 10px;
-    img {
-      display: block;
-      margin: auto;
-      width: 65%;
-    }
-    h3 {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 20px;
-    }
-  }
-  .chem {
-    background: url('../../assets/imgs/chem.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .math {
-    background: url('../../assets/imgs/math.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .arab {
-    background: url('../../assets/imgs/arabic.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .math2 {
-    background: url('../../assets/imgs/math2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .eng {
-    background: url('../../assets/imgs/eng.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .history {
-    background: url('../../assets/imgs/history.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .physic {
-    background: url('../../assets/imgs/physic.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .geo {
-    background: url('../../assets/imgs/planet-earth-2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .annoncment {
-    width: 100%;
-    height: 141px;
-    overflow: hidden;
-    margin: 0 14px;
-    img {
-      width: 100%;
-      margin-top: -231px;
-    }
-  }
-}
-
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-  .subjects {
-    padding-top: 60px;
-  }
-  .subjects .annoncment img {
-    margin-top: 0;
-  }
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .subjects {
-    padding-top: 60px;
-  }
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .subjects .annoncment img {
-    width: 100%;
-    margin-top: -83px;
-  }
-  .subjects .subject-cont h3 {
-    font-size: 15px;
-  }
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) {
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-}
+@import '../../assets/sass/subject-dynamic.scss';
 </style>

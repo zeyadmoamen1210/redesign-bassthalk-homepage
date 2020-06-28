@@ -1,0 +1,203 @@
+.live-schedule-main{
+    margin-top: 50px;
+    .active{
+          background: #04b0ff54;
+      border-radius: 12px;
+      padding: 10px 0;
+    }
+    .title{
+      h4{
+        color:#058ac6bd;
+      }
+    }
+    .live-schedule{
+      margin-top: 34px;
+      overflow: hidden;
+      .title{
+        h6{
+          width:50%;
+          float:left;
+              padding-top: 10px;
+        }
+        .img{
+              display: block;
+      width: 50%;
+      float: left;
+      text-align: left;
+        }
+      }
+  
+  
+    }
+  
+    .schedule-bar{
+           overflow: hidden;
+      background: linear-gradient(to left,#0989c3,#246787);
+      color: #FFF;
+      text-align: center;
+      padding: 10px;
+      margin: 14px 0;
+      border-radius: 13px;
+        >button{
+            width: calc(100%/12);
+      float: left;
+      padding: 5px;
+      background: transparent;
+      border: 0;
+      color: #FFF;
+      font-family: "CustomFontBold";
+      border-radius: 17px;
+      h6{
+        text-align: center;
+      }
+      span{
+            display: block;
+      text-align: center;
+      }
+        }
+      }
+  
+      .time-content{
+        .time-course{
+               overflow: hidden;
+      box-shadow: 1px 0px 10px 2px #DDD;
+      padding: 13px 0;
+      border-radius: 4px;
+      margin-top: 20px;
+          .teacher{
+          height: 70px;
+      width: 77px;
+      border-radius: 50%;
+      border: 3px solid rgba(5, 138, 198, 0.74118);
+      padding: 4px;
+      background: #ebebeb;
+      position: relative;
+        img{
+          &:first-of-type{
+                width: 100%;
+      border-radius: 50%;
+      height: 100%;
+      position: absolute;
+      top: 1px;
+      left: 0;
+          }
+          &:last-of-type{
+                 position: absolute;
+      top: -8px;
+      z-index: 3;
+      left: -18px;
+      width: 52px;
+          }
+        }
+      }
+  
+      >div{
+       width:33.333%;
+       float: left;
+       &:first-of-type{
+         margin-top: 20px;
+         text-align: center;
+  
+         img{
+           display: inline-block;
+         }
+         h6{
+              text-align: center;
+      display: inline-block;
+      padding: 10px 0;
+      color: #6a6a6a;
+         }
+       }
+       &:nth-of-type(2){
+         margin-top: 20px;
+       }
+       &:last-of-type{
+         width: 26%;
+       }
+      }
+        }
+      }
+  
+  }
+   .lesson-btns{
+        padding: 0 44px;
+      button{
+            width: 100%;
+      text-align: center;
+      background: #058ac6;
+      border-radius: 9px;
+      border: 0;
+      padding: 13px;
+      font-family: "CustomFontBold";
+      color: #FFF;
+      }
+      .explain-btn{
+        background: #DDD;
+        color:#333;
+  
+      }
+    }
+  
+  
+  
+  // Extra small devices (portrait phones, less than 576px)
+  @media (max-width: 575.98px) {
+    .live-details .time-content .time-course .teacher{
+          height: 55px;
+      width: 57px;
+    }
+    .live-details .time-content .time-course .teacher img:last-of-type{
+          left: -16px;
+      width: 41px;
+    }
+    .time-course h6{
+      font-size: 11px;
+    }
+    .live-details .time-content .time-course > div:nth-of-type(2){
+          margin-top: 11px;
+    }
+    .live-details{
+      padding-top: 60px;
+    }
+  .live-details .schedule-bar > button {
+      width: 33.333%;
+  }
+  .lesson-btns{
+    margin-top: 15px;
+  }
+  .lesson-btns .explain-btn{
+    margin-bottom:15px;
+  }
+   }
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 576px) and (max-width: 767.98px) {
+  .live-details{
+      padding-top: 60px;
+    }
+    .lesson-btns .explain-btn {
+      margin-bottom: 15px;
+  }
+   }
+  
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) and (max-width: 991.98px) {
+  .time-course h6{
+      font-size: 11px;
+    }
+    .live-details .time-content .time-course > div:nth-of-type(2){
+          margin-top: 11px;
+    }
+    .live-details .time-content .time-course .teacher{
+          height: 55px;
+      width: 57px;
+    }
+   }
+  
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+  
+   }
+  
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+  }

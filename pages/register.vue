@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div class="login" v-if="!showVerify">
+      <div class="register" v-if="!showVerify">
         <div class="form-title">
           <h4>
             <img src="../assets/imgs/Group 6945.png" alt />
@@ -44,14 +44,14 @@
             </div>
 
             <div class="col-md-2">
-              <div class="form-groub">
-                <input
-                  v-model="gender"
-                  type="text"
-                  class="form-control"
-                  placeholder="الجنس"
-                />
-              </div>
+             <b-form-select
+              v-model="gender"
+              :options="options"
+              class="mb-3"
+              value-field="item"
+              text-field="name"
+              disabled-field="notEnabled"
+            ></b-form-select>
             </div>
 
             <div class="col-md-2">
@@ -114,10 +114,13 @@
           </div>
         </div>
       </div>
-      <div class="login" v-else>
-        <div class="form-title">
-          <h4>
-            <img src="../assets/imgs/noun_User_-2.png" alt />
+      <div class="varifiy" v-else>
+        <div class="row">
+          <div class="col-md-6" style="margin:auto;">
+            <div class="varified">
+               <div class="form-title">
+          <h4 style="margin-bottom:20px;">
+            <img src="../assets/imgs/profile.png" style="width: 35px;margin-left:9px;" alt />
             كود التفعيل
           </h4>
         </div>
@@ -125,18 +128,15 @@
             <input v-model="email" type="text" class="form-control" placeholder="البريد الالكتروني" />
         </div>-->
         <!-- v-else -->
-        <div class="form-groub">
-          <input
-            v-model="code"
-            type="text"
-            class="form-control"
-            placeholder="كود التفعيل"
-          />
+        <div class="form-groub" style="margin-bottom: 40px;margin-top:40px;">
+       <CodeInput :loading="false" class="input" v-on:change="onChange" v-on:complete="onComplete" />
+
         </div>
 
         <input
           type="button"
           @click="verifyEmail"
+          style="margin-bottom: 25px;"
           value="تفعيل"
           class="basth-btn-primary"
         />
@@ -145,8 +145,11 @@
           <div>
             <h6>لم يتم إستلام الكود</h6>
           </div>
-          <div>
-            <button @click="resendCode">إعادة إرسال</button>
+          <div style="text-align: left;">
+            <button  @click="resendCode" class="light-btn">إعادة إرسال</button>
+          </div>
+        </div>
+            </div>
           </div>
         </div>
       </div>
@@ -155,14 +158,23 @@
 </template>
 
 <script>
+import CodeInput from "vue-verification-code-input";
+
 export default {
-  components: {},
+  components: {
+    CodeInput
+  },
   data() {
     return {
       code: '',
       confirmPassword: '',
       isLoading: false,
       showVerify: false,
+      options: [
+        {name:'ذكر'},
+        {name:'أنثي'},
+
+      ],
 
       name: '',
       email: 'samehmourad05@gmail.com',
@@ -250,101 +262,16 @@ export default {
           //console.log(error.res);
         })
     },
+    onChange(v) {
+      console.log("onChange ", v);
+    },
+    onComplete(v) {
+      console.log("onComplete ", v);
+    }
   },
 }
 </script>
 
 <style lang="scss">
-.login {
-  margin: 100px auto;
-  input {
-    margin: 10px 0;
-  }
-  .form-bottom {
-    width: 35%;
-    margin: 25px auto;
-  }
-  .forget-pass {
-    text-align: left;
-    a {
-      text-align: left;
-      font-family: 'CustomFontRegular';
-    }
-  }
-  .form-title {
-    h4 {
-      margin: 25px 0;
-      text-align: center;
-    }
-  }
-  .two-way {
-    text-align: center;
-    margin-top: 13px;
-    margin-bottom: 13px;
-    h6 {
-      margin-bottom: 13px;
-      text-align: center;
-    }
-    img {
-      margin: 0 10px;
-    }
-  }
-  .dont-have-acc {
-    > div {
-      display: inline-block;
-      h6 {
-        display: inline-block;
-      }
-      button {
-        padding: 7px 13px;
-        background: #fff;
-        border: 1px solid #058ac6bd;
-        color: #058ac6bd;
-        font-family: 'CustomFontRegular';
-      }
-    }
-  }
-}
-
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-  .login {
-    padding-top: 60px;
-  }
-  .login .form-bottom {
-    width: 88%;
-  }
-  .login .dont-have-acc > div button {
-    text-align: center;
-  }
-  .login .dont-have-acc > div h6 {
-    margin: 0;
-  }
-  .login .dont-have-acc > div {
-    display: block;
-    text-align: center;
-  }
-}
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .login {
-    padding-top: 60px;
-  }
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .login .dont-have-acc > div h6 {
-    margin: 0;
-  }
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) {
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-}
+ @import '../assets/sass/register.scss';
 </style>

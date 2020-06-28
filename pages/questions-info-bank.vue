@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarBefor />
     <div class="container">
       <div class="question-bank">
         <div class="title">
@@ -67,156 +66,13 @@
 </template>
 
 <script>
-import NavbarBefor from '../components/NavbarBefore'
-import Footer from '../components/Footer'
+
 
 export default {
-components:{
-  NavbarBefor,
-  Footer
-}
+
 }
 </script>
 
 <style lang="scss">
-.question-bank{
-
-  .title{
-    h6{
-          padding: 31px 0 0;
-     color: #056c9e;
-    font-size: 20px;
-    }
-  }
-  .unit{
-    box-shadow: none;
-  }
-  .question-head{
-   .question-head-one{
-         width: 50%;
-    float: left;
-
-   }
-  }
-  .unit.lesson-unit{
-
-    div{
-      >div{
-            position: absolute;
-    top: 13px;
-    left: 20px;
-    font-size: 18px;
-    color: #FFF;
-    font-family: "CustomFontBold";
-      }
-    }
-  }
-  .question-status{
-    width: 50%;
-    text-align: left;
-    float: left;
-  }
-  .question-timer{
-    width: 50%;
-    float: left;
-    text-align: left;
-    h6{
-        padding: 13px 62px;
-    border: 1px solid #ffb341;
-    border-radius: 4px;
-    position: relative;
-    img{
-      position: absolute;
-    top: 4px;
-    right: -13px;
-    height: 26px;
-    }
-    }
-  }
-
-  .question-head-one{
-    .buttons{
-      .first{
-            text-align: center;
-    font-family: "CustomFontRegular";
-    border: 1px solid #ddd;
-    background-color: #00aa00;
-    transition: all .5s ease;
-    padding: 12px 1px;
-    border-radius: 10px;
-    font-family: "CustomFontBold";
-    color: #FFF;
-        &:hover{
-          background-color:#FFF ;
-          color: #333;
-
-
-      }
-      }
-      button{
-        text-align: center;
-        font-family: "CustomFontRegular";
-        border: 1px solid #ddd;
-        background-color:#fff ;
-        transition: all .5s ease;
-        padding: 12px 1px;
-        border-radius: 10px;
-        &:hover{
-          background-color:#00aa00 ;
-          color: #FFF;
-        font-family: "CustomFontBold";
-
-        }
-      }
-    }
-  }
-  .fullWidthBtn{
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 13px;
-    border-radius: 6px;
-    border: 0;
-    color: #FFF;
-    background-color: #058ac6 !important;
-    font-family: "CustomFontRegular" !important;
-    margin-top: 40px;
-        padding: 13px 1px !important;
-    border-radius: 7px !important;
-  }
-}
-
-
-
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-.question-bank{
-  padding-top: 60px;
-}
-.unit h6 {
-    font-size: 10px;
-}
- }
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) {
-.question-bank{
-  padding-top: 60px;
-}
- }
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {
-
- }
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) {
-
- }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-
- }
+@import '../assets/sass/question-info-bank.scss';
 </style>

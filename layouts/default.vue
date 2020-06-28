@@ -34,4 +34,11 @@ components:{
   font-family: 'CustomFontMedium';
   font-size: 18px;
 }
+.light-btn{
+  padding: 7px 13px;
+  background: #fff;
+  border: 1px solid rgba(5,138,198,0.74118);
+  color: rgba(5,138,198,0.74118);
+  font-family: 'CustomFontRegular';
+}
 </style>

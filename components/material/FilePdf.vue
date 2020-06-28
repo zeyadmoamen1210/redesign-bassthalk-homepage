@@ -164,8 +164,9 @@ $dir: rtl;
         overflow: hidden;
       }
       h5 {
-        font-size: 13px;
+        font-size: 16px;
         color: #058ac6;
+        padding-top: 7px;
       }
       p {
         color: #c1c1c1;
