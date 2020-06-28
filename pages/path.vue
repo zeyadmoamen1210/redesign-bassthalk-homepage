@@ -8,32 +8,47 @@
         <form @submit.prevent>
           <div class="first-select">
             <h6>حدد نظام التعليم</h6>
-            <select class="custom-select-lg mb-3" @change="systemChange()" v-model="form.system">
+            <select
+              class="custom-select-lg mb-3"
+              @change="systemChange()"
+              v-model="form.system"
+            >
               <option value>حدد نظام التعليم</option>
 
               <option
-                v-for="(system,index) in systems"
+                v-for="(system, index) in systems"
                 :key="index"
                 :value="system.id"
-              >{{system.nameAr}}</option>
+                >{{ system.nameAr }}</option
+              >
             </select>
           </div>
           <div class="first-select">
             <h6>اختر المرحلة الدراسية</h6>
-            <select class="custom-select-lg mb-3" @change="levelChange()" v-model="form.level">
+            <select
+              class="custom-select-lg mb-3"
+              @change="levelChange()"
+              v-model="form.level"
+            >
               <option value>حدد المرحلة</option>
               <option
-                v-for="(level,index) in levels"
+                v-for="(level, index) in levels"
                 :key="index"
                 :value="level.id"
-              >{{level.nameAr}}</option>
+                >{{ level.nameAr }}</option
+              >
             </select>
           </div>
           <div class="first-select">
             <h6>اختر الصف الدراسي</h6>
             <select class="custom-select-lg mb-3" v-model="form.class">
               <option value>حدد الصف</option>
-              <option v-for="(item,index) in classes" :key="index" :value="item.id">{{item.nameAr}}</option>
+              <option
+                v-for="(item, index) in classes"
+                :key="index"
+                :value="item.id"
+                >{{ item.nameAr }}</option
+              >
             </select>
           </div>
           <div class="first-select">
@@ -44,7 +59,12 @@
               <option value="second">الثاني</option>
             </select>
           </div>
-          <input type="button" @click="setLearningPath" value="ابدأ" class="basth-btn-primary" />
+          <input
+            type="button"
+            @click="setLearningPath"
+            value="ابدأ"
+            class="basth-btn-primary"
+          />
         </form>
       </div>
     </div>
@@ -52,70 +72,67 @@
 </template>
 
 <script>
-
 export default {
+  middleware: 'auth-student',
 
-data() {
-  return {
-    isLoading: false,
-    systems:[],
-    levels:[],
-    classes:[],
-    form:{
-      system:"",
-      level:"",
-      class:"",
-      semester:"",
+  data() {
+    return {
+      isLoading: false,
+      systems: [],
+      levels: [],
+      classes: [],
+      form: {
+        system: '',
+        level: '',
+        class: '',
+        semester: '',
+      },
     }
-  }
-},
-created() {
-    this.getSystems();
+  },
+  created() {
+    this.getSystems()
   },
   methods: {
     getSystems() {
       this.$axios
         .get(`systems`)
-        .then(res => {
-          this.isLoading = false;
-          this.systems = res.data;
+        .then((res) => {
+          this.isLoading = false
+          this.systems = res.data
         })
-        .catch(err => {
-          this.isLoading = false;
-          console.log(err);
-        });
+        .catch((err) => {
+          this.isLoading = false
+          console.log(err)
+        })
     },
-    systemChange(){
-      this.form.level="";
-      this.levels=[];
-      this.levels= this.systems.find(system => {
-  return system.id === this.form.system
-}).levels;
-
+    systemChange() {
+      this.form.level = ''
+      this.levels = []
+      this.levels = this.systems.find((system) => {
+        return system.id === this.form.system
+      }).levels
     },
-    levelChange(){
-       this.form.class="";
-      this.classes=[];
-      this.classes= this.levels.find(level => {
-  return level.id === this.form.level
-}).classes;
-
+    levelChange() {
+      this.form.class = ''
+      this.classes = []
+      this.classes = this.levels.find((level) => {
+        return level.id === this.form.level
+      }).classes
     },
-     setLearningPath() {
-       this.isLoading=true;
+    setLearningPath() {
+      this.isLoading = true
       this.$axios
-        .put(`students/path`,this.form)
-        .then(res => {
-          this.isLoading = false;
-        this.$router.push({ path: "/subjects" });
-         
+        .put(`students/path`, this.form)
+        .then((res) => {
+          this.isLoading = false
+          this.$router.push({ path: '/subjects' })
         })
-        .catch(err => {
-          this.isLoading = false;
-          console.log(err);
-        });
+        .catch((err) => {
+          this.isLoading = false
+          console.log(err)
+        })
     },
-  }
+  },
 }
 </script>
 

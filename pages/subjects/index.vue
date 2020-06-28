@@ -102,6 +102,8 @@
 
 <script>
 export default {
+  middleware: 'auth-student',
+
   data() {
     return {
       subjects: [],

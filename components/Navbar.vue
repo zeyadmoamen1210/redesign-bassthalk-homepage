@@ -20,7 +20,6 @@
                     >الرئيسية</nuxt-link
                   >
                 </li>
-
                 <li>
                   <nuxt-link to>من نحن</nuxt-link>
                 </li>
@@ -55,7 +54,9 @@
 
           <div class="col-md-2 col-sm-6" v-if="!$auth.loggedIn">
             <div class="nav-login">
-              <button class="btn">تسجيل الدخول</button>
+              <button class="btn" @click="$router.push({ path: '/login' })">
+                تسجيل الدخول
+              </button>
             </div>
           </div>
         </div>

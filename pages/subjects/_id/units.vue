@@ -47,6 +47,8 @@
 
 <script>
 export default {
+  middleware: 'auth-student',
+
   components: {},
   data() {
     return {

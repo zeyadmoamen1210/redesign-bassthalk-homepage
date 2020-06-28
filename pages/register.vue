@@ -44,14 +44,14 @@
             </div>
 
             <div class="col-md-2">
-             <b-form-select
-              v-model="gender"
-              :options="options"
-              class="mb-3"
-              value-field="item"
-              text-field="name"
-              disabled-field="notEnabled"
-            ></b-form-select>
+              <b-form-select
+                v-model="gender"
+                :options="options"
+                class="mb-3"
+                value-field="item"
+                text-field="name"
+                disabled-field="notEnabled"
+              ></b-form-select>
             </div>
 
             <div class="col-md-2">
@@ -116,39 +116,52 @@
       </div>
       <div class="varifiy" v-else>
         <div class="row">
-          <div class="col-md-6" style="margin:auto;">
+          <div class="col-md-6" style="margin: auto;">
             <div class="varified">
-               <div class="form-title">
-          <h4 style="margin-bottom:20px;">
-            <img src="../assets/imgs/profile.png" style="width: 35px;margin-left:9px;" alt />
-            كود التفعيل
-          </h4>
-        </div>
-        <!-- <div class="form-groub" v-if="resend">
+              <div class="form-title">
+                <h4 style="margin-bottom: 20px;">
+                  <img
+                    src="../assets/imgs/profile.png"
+                    style="width: 35px; margin-left: 9px;"
+                    alt
+                  />
+                  كود التفعيل
+                </h4>
+              </div>
+              <!-- <div class="form-groub" v-if="resend">
             <input v-model="email" type="text" class="form-control" placeholder="البريد الالكتروني" />
         </div>-->
-        <!-- v-else -->
-        <div class="form-groub" style="margin-bottom: 40px;margin-top:40px;">
-       <CodeInput :loading="false" class="input" v-on:change="onChange" v-on:complete="onComplete" />
+              <!-- v-else -->
+              <div
+                class="form-groub"
+                style="margin-bottom: 40px; margin-top: 40px;"
+              >
+                <CodeInput
+                  :fields="count"
+                  :loading="false"
+                  class="input"
+                  v-on:complete="onComplete"
+                />
+              </div>
 
-        </div>
+              <input
+                type="button"
+                @click="verifyEmail"
+                style="margin-bottom: 25px;"
+                value="تفعيل"
+                class="basth-btn-primary"
+              />
 
-        <input
-          type="button"
-          @click="verifyEmail"
-          style="margin-bottom: 25px;"
-          value="تفعيل"
-          class="basth-btn-primary"
-        />
-
-        <div class="dont-have-acc">
-          <div>
-            <h6>لم يتم إستلام الكود</h6>
-          </div>
-          <div style="text-align: left;">
-            <button  @click="resendCode" class="light-btn">إعادة إرسال</button>
-          </div>
-        </div>
+              <div class="dont-have-acc">
+                <div>
+                  <h6>لم يتم إستلام الكود</h6>
+                </div>
+                <div style="text-align: left;">
+                  <button @click="resendCode" class="light-btn">
+                    إعادة إرسال
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -158,31 +171,48 @@
 </template>
 
 <script>
-import CodeInput from "vue-verification-code-input";
+import CodeInput from 'vue-verification-code-input'
+import * as Cookies from 'js-cookie'
 
 export default {
+  middleware: 'guest',
   components: {
-    CodeInput
+    CodeInput,
   },
   data() {
     return {
+      count: 5,
       code: '',
       confirmPassword: '',
       isLoading: false,
       showVerify: false,
-      options: [
-        {name:'ذكر'},
-        {name:'أنثي'},
-
-      ],
+      options: [{ name: 'ذكر' }, { name: 'أنثي' }],
 
       name: '',
-      email: 'samehmourad05@gmail.com',
-      password: '123456',
+      email: '',
+      password: '',
       role: 'student',
       phone: '',
       gender: '',
       country: '',
+    }
+  },
+  created() {
+    if (process.browser) {
+      if (
+        Cookies.get('account') &&
+        JSON.parse(Cookies.get('account')).user.enabled == false
+      ) {
+        // this.$router.push({ path: '/verify' })
+
+        if (Cookies.get('user')) {
+          this.email = JSON.parse(Cookies.get('user')).email
+          this.password = JSON.parse(Cookies.get('user')).password
+        }
+        this.showVerify = true
+
+        // console.log(JSON.parse(localStorage.getItem('account')).user.enabled)
+      }
     }
   },
   methods: {
@@ -198,6 +228,7 @@ export default {
       signUpForm.append('role', this.role)
       signUpForm.append('gender', this.gender)
       signUpForm.append('country', this.country)
+
       await this.$axios
         .post('signup', signUpForm, {
           headers: {
@@ -205,6 +236,12 @@ export default {
           },
         })
         .then((res) => {
+          Cookies.set('account', JSON.stringify(res.data), { expires: 7 })
+          Cookies.set(
+            'user',
+            { email: this.email, password: this.password },
+            { expires: 7 }
+          )
           this.isLoading = false
           this.showVerify = true
         })
@@ -253,7 +290,10 @@ export default {
         })
         .then((res) => {
           this.isLoading = false
-          localStorage.setItem('account', JSON.stringify(res.data))
+
+          Cookies.set('account', JSON.stringify(res.data), { expires: 365 })
+          // localStorage.setItem('account', JSON.stringify(res.data))
+          Cookies.remove('user')
           this.$router.push({ path: '/' })
         })
         .catch((error) => {
@@ -262,16 +302,14 @@ export default {
           //console.log(error.res);
         })
     },
-    onChange(v) {
-      console.log("onChange ", v);
+
+    onComplete(code) {
+      this.code = code
     },
-    onComplete(v) {
-      console.log("onComplete ", v);
-    }
   },
 }
 </script>
 
 <style lang="scss">
- @import '../assets/sass/register.scss';
+@import '../assets/sass/register.scss';
 </style>

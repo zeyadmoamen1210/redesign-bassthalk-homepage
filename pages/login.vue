@@ -57,7 +57,11 @@
 </template>
 
 <script>
+import * as Cookies from 'js-cookie'
+
 export default {
+  middleware: 'guest',
+
   components: {},
   data() {
     return {
@@ -67,13 +71,26 @@ export default {
       },
     }
   },
+  created() {
+    if (process.browser) {
+      if (!Cookies.get('account')) {
+      } else if (
+        Cookies.get('account') &&
+        JSON.parse(Cookies.get('account')).user.enabled == true
+      ) {
+        // return redirect('/login');
+      } else {
+        this.$router.push({ path: '/register' })
+      }
+    }
+  },
   methods: {
     async login() {
       try {
         let response = await this.$auth.loginWith('local', {
           data: this.form,
         })
-        localStorage.setItem('account', JSON.stringify(response.data))
+        Cookies.set('account', JSON.stringify(response.data), { expires: 365 })
         this.$router.push({ path: '/subjects' })
         // this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`)
       } catch (err) {
