@@ -38,7 +38,10 @@ export default {
     /*
      ** Global CSS
      */
-    css: ['./assets/circle.css'],
+    css: [
+        './assets/circle.css',
+        './assets/all.min.css'
+    ],
     /*
      ** Plugins to load before mounting the App
      */

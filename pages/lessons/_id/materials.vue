@@ -118,6 +118,19 @@
                     type="text"
                     placeholder="أدخل تعليقك"
                   />
+                  <div class="submit">
+                    <button class="basth-btn-primary"><i class="fas fa-paper-plane"></i></button>
+                  </div>
+                 <div class="uploads">
+                    <div class="upload-files">
+                    <input type="file">
+                    <i class="fas fa-paperclip"></i>
+                  </div>
+                   <div class="upload-files">
+                    <input type="file">
+                    <i class="fas fa-image"></i>
+                  </div>
+                 </div>
                 </div>
                 <div
                   class="time-line-comment-teacher"
@@ -125,18 +138,19 @@
                   :key="index"
                 >
                   <div class="item">
-                    <div class="time-line-shape">
-                      <div class="item-1"></div>
-                    </div>
+                    
                     <div class="item-content">
                       <h6>{{ comment.user.username }}</h6>
                       <span>منذ ساعة</span>
                       <p>{{ comment.content }}</p>
+                      <div class="comment-content-img">
+                        <img  @click="imgShow = !imgShow"  src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
+                      </div>
                       <div>
                         <button>
                           <img
                             @click.self="commentActive"
-                            src="../../../assets/imgs/noun_comment_1366176.png"
+                            src="https://i.ibb.co/3Y2JpxL/noun-comment-1366176.png"
                             alt=""
                           />
                           {{ comment.numberOfreplies }}
@@ -153,11 +167,23 @@
                         style="width: auto; right: 7px; top: 0px;"
                       />
                     </div>
-
-                    <div class="double-comment">
+                         <div class="double-comment">
                       <form action="">
-                        <div class="form-groub">
+                        <div class="form-groub nested-comment-reply">
                           <input type="text" placeholder="أكتب تعليقك" />
+                           <div class="submit">
+                    <button class="basth-btn-primary"><i class="fas fa-paper-plane"></i></button>
+                  </div>
+                 <div class="uploads">
+                    <div class="upload-files">
+                    <input type="file">
+                    <i class="fas fa-paperclip"></i>
+                  </div>
+                   <div class="upload-files">
+                    <input type="file">
+                    <i class="fas fa-image"></i>
+                  </div>
+                        </div>
                         </div>
                       </form>
 
@@ -169,16 +195,26 @@
                         <div style="">
                           <h6 v-if="reply.user">{{ reply.user.username }}</h6>
                           <span>منذ ساعة</span>
+                          
                           <p>
                             {{ reply.content }}
                           </p>
+
+                           <section class="comment-content-img">
+                        <img @click="imgShow = !imgShow" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
+                      </section>
+                          
                         </div>
 
-                        <div class="user-pic" v-if="reply.user">
-                          <img :src="reply.user.photo" alt="" />
+                        <div class="user-pic"
+                        style="width: 7%;float: left;overflow: hidden;border-radius: 50%;margin-left: 16px;"
+                        v-if="reply.user"
+                          >
+                          <img style="width:100%;" :src="reply.user.photo" alt="" />
                         </div>
                       </div>
                     </div>
+                   
                   </div>
                   <div class="item"></div>
                 </div>
@@ -187,6 +223,13 @@
           </div>
         </div>
       </div>
+
+
+      <transition enter-active-class="animate__animated animate__bounceInRight" leave-active-class="animate__animated animate__fadeOutRight">
+        <div class="img-section-slide" :class="{innerPage: imgShow}" v-if="imgShow">
+          <img @click="imgShow = false" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
+        </div>
+      </transition>
     </div>
     <div class="container" v-else key="2">
       <div class="row" v-if="pdfs.length > 0">
@@ -227,6 +270,7 @@ export default {
       selectedVideoComments: [],
       pdfs: [],
       showVideos: true,
+      imgShow: false,
 
       swiperOption: {
         slidesPerView: 2,
@@ -335,6 +379,64 @@ export default {
 </script>
 
 <style lang="scss">
+.img-section-slide{
+      position: fixed;
+    top: 100px;
+    right: 0;
+    width: 500px;
+    height: 400px;
+    z-index: 999999999;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    background: #FFF;
+    border-radius: 9px;
+  img{
+    width:100%;
+    height: 100%;
+  }
+}
+.current-video-comment,.nested-comment-reply{
+  position: relative;
+  .submit{
+    position: absolute;
+    top: 0px;
+    left: 0;
+    /* height: 80%; */
+    padding: 7px;
+    button{
+          padding: 7px 10px !important;
+    }
+  }
+}
+.uploads{
+        position: absolute;
+    top: 18px;
+    left: 39px;
+    width: 65px;
+    .upload-files{
+      position: relative;
+    width: 50%;
+    float: left;
+    cursor: pointer;
+    input{
+          position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    }
+    i{
+      cursor: pointer;
+      font-size: 20px;
+    color: #b5b5b5;
+    }
+}
+}
+
 .video-bannar {
   min-height: 400px;
   // background: url('../../../assets/imgs/carousel_header_1_0.jpg');
@@ -631,6 +733,19 @@ export default {
       width: 87%;
       float: left;
       padding: 18px 22px;
+      .comment-content-img{
+            width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    border: 1px dashed #0989c3;
+    padding: 2px;
+    cursor: pointer;
+    box-shadow: 2px 1px 9px 0px #929292;
+        img{
+          width:100%;
+          height:100%;
+        }
+      }
       > h6 {
         color: #3f3f3f;
         font-family: 'CustomFontLight';
@@ -682,7 +797,7 @@ export default {
       margin: auto;
       input {
         width: 100%;
-        padding: 10px;
+        padding: 16px;
         outline: none;
       }
 
@@ -690,15 +805,33 @@ export default {
         overflow: hidden;
         margin-top: 25px;
         border-bottom: 1px solid #c7c7c7;
+        position: relative;
+        .comment-content-img{
+            width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    border: 1px dashed #0989c3;
+    padding: 2px;
+    cursor: pointer;
+    box-shadow: 2px 1px 9px 0px #929292;
+        img{
+          width:100%;
+          height:100%;
+        }
+        }
         h6 {
           color: #686868;
           font-family: 'CustomFontMEdium';
           margin-bottom: 0;
         }
         span {
-          color: #8d8d8d;
-          font-family: 'CustomFontRegular';
-          margin: 15px 0;
+              color: #0989c3;
+    font-family: 'CustomFontRegular';
+    margin: 15px 0;
+    position: absolute;
+    left: 13px;
+    font-weight: bold;
+    font-size: 11px;
         }
         p {
           font-family: 'CustomFontRegular';
