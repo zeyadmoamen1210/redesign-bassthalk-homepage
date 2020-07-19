@@ -6,17 +6,17 @@
           <div class="row">
             <div class="col-md-6">
               <div class="lesson-inner-grid">
-                <div class="row">
-                  <div class="col-md-4">
+                <div class="row" v-if="lessonData">
+                  <div class="col-md-6">
                     <h6 class="subject-name">
                       <img src="../../../assets/imgs/laboratory-1.png" alt />
-                      الكمياء
+                      {{lessonData.unit.nameAr}}
                     </h6>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-6">
                     <div class="unit lesson-unit">
-                      <span>1</span>
-                      <h6>الوحدة الأولي - الدرس الأول</h6>
+                      <!-- <span>1</span> -->
+                      <h6>{{lessonData.nameAr}}</h6>
                     </div>
                   </div>
                 </div>
@@ -43,11 +43,7 @@
                       :class="{ 'explain-btn': true, showVideos: !showVideos }"
                       @click="showVideos = false"
                     >
-                      <img
-                        style="margin-left: 9px;"
-                        src="../../../assets/imgs/noun_PDF_-1.png"
-                        alt
-                      />
+                      <img style="margin-left: 9px;" src="../../../assets/imgs/noun_PDF_-1.png" alt />
                       الملخص
                     </button>
                   </div>
@@ -59,18 +55,8 @@
       </div>
     </div>
     <div v-if="showVideos" key="1">
-      <div
-        class="frame-container"
-        v-if="videos.length > 0"
-        style="text-align: center;"
-      >
-        <iframe
-          width="853"
-          height="480"
-          :src="selectedVideo.embed"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+      <div class="frame-container" v-if="videos.length > 0" style="text-align: center;">
+        <iframe width="853" height="480" :src="selectedVideo.embed" frameborder="0" allowfullscreen></iframe>
       </div>
 
       <div class="container">
@@ -107,30 +93,33 @@
             </div>
             <div class="col-md-12">
               <button class="fullWidthBtn">أبدء الأختبار</button>
-            </div> -->
+            </div>-->
           </div>
           <div class="video-comments">
             <div class="container">
               <div class="time-line">
                 <div class="current-video-comment">
                   <input
+                    v-model="commentContent"
                     style="width: 100%; margin-bottom: 13px; padding: 15px;"
                     type="text"
                     placeholder="أدخل تعليقك"
                   />
                   <div class="submit">
-                    <button class="basth-btn-primary"><i class="fas fa-paper-plane"></i></button>
+                    <button class="basth-btn-primary" @click="addComment">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
                   </div>
-                 <div class="uploads">
+                  <div class="uploads">
+                    <!-- <div class="upload-files">
+                      <input type="file" @change="fileSelected" />
+                      <i class="fas fa-paperclip"></i>
+                    </div>-->
                     <div class="upload-files">
-                    <input type="file">
-                    <i class="fas fa-paperclip"></i>
+                      <input type="file" @change="fileSelected" />
+                      <i class="fas fa-image"></i>
+                    </div>
                   </div>
-                   <div class="upload-files">
-                    <input type="file">
-                    <i class="fas fa-image"></i>
-                  </div>
-                 </div>
                 </div>
                 <div
                   class="time-line-comment-teacher"
@@ -138,20 +127,19 @@
                   :key="index"
                 >
                   <div class="item">
-                    
                     <div class="item-content">
                       <h6>{{ comment.user.username }}</h6>
-                      <span>منذ ساعة</span>
+                      <span>{{ $moment(comment.createdAt).fromNow() }}</span>
                       <p>{{ comment.content }}</p>
-                      <div class="comment-content-img">
-                        <img  @click="imgShow = !imgShow"  src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
+                      <div class="comment-content-img" v-if="comment.image">
+                        <img @click="showCommentImage(comment.image)" :src="comment.image" alt />
                       </div>
                       <div>
                         <button>
                           <img
                             @click.self="commentActive"
                             src="https://i.ibb.co/3Y2JpxL/noun-comment-1366176.png"
-                            alt=""
+                            alt
                           />
                           {{ comment.numberOfreplies }}
                         </button>
@@ -160,61 +148,71 @@
 
                     <!-- comment replay  -->
                     <div class="teacher">
-                      <img :src="comment.user.photo" alt="" />
+                      <img :src="comment.user.photo" alt />
                       <img
                         src="../../../assets/imgs/teacher-icon.png"
-                        alt=""
+                        alt
                         style="width: auto; right: 7px; top: 0px;"
                       />
                     </div>
-                         <div class="double-comment">
-                      <form action="">
-                        <div class="form-groub nested-comment-reply">
-                          <input type="text" placeholder="أكتب تعليقك" />
-                           <div class="submit">
-                    <button class="basth-btn-primary"><i class="fas fa-paper-plane"></i></button>
-                  </div>
-                 <div class="uploads">
-                    <div class="upload-files">
-                    <input type="file">
-                    <i class="fas fa-paperclip"></i>
-                  </div>
-                   <div class="upload-files">
-                    <input type="file">
-                    <i class="fas fa-image"></i>
-                  </div>
+                    <div class="double-comment mb-2">
+                      <div class="form-groub nested-comment-reply">
+                        <input
+                          v-model="comment.replyContent"
+                          type="text"
+                          placeholder="اكتب رد علي التعليق"
+                        />
+                        <div class="submit">
+                          <button
+                            class="basth-btn-primary"
+                            @click="addCommentReply(comment.id, index)"
+                          >
+                            <i class="fas fa-paper-plane"></i>
+                          </button>
                         </div>
+                        <div class="uploads">
+                          <!-- <div class="upload-files">
+                            <input type="file" @change="replyImageSelected"/>
+                            <i class="fas fa-paperclip"></i>
+                          </div>-->
+                          <div class="upload-files">
+                            <input type="file" :comment="comment.id" @change="replyImageSelected" />
+                            <i class="fas fa-image"></i>
+                          </div>
                         </div>
-                      </form>
+                      </div>
 
                       <div
                         class="double-comment-cont"
                         v-for="(reply, index) in comment.replies"
                         :key="index"
                       >
-                        <div style="">
+                        <div style>
                           <h6 v-if="reply.user">{{ reply.user.username }}</h6>
-                          <span>منذ ساعة</span>
-                          
-                          <p>
-                            {{ reply.content }}
-                          </p>
+                          <span>{{ $moment(reply.createdAt).fromNow() }}</span>
 
-                           <section class="comment-content-img">
-                        <img @click="imgShow = !imgShow" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
-                      </section>
-                          
+                          <p>{{ reply.content }}</p>
+
+                          <section class="comment-content-img" v-if="reply.image">
+                            <img @click="showCommentImage(reply.image)" :src="reply.image" alt />
+                          </section>
                         </div>
 
-                        <div class="user-pic"
-                        style="width: 7%;float: left;overflow: hidden;border-radius: 50%;margin-left: 16px;"
-                        v-if="reply.user"
-                          >
-                          <img style="width:100%;" :src="reply.user.photo" alt="" />
+                        <div
+                          class="user-pic"
+                          style="
+                            width: 7%;
+                            float: left;
+                            overflow: hidden;
+                            border-radius: 50%;
+                            margin-left: 16px;
+                          "
+                          v-if="reply.user"
+                        >
+                          <img style="width: 100%;" :src="reply.user.photo" alt />
                         </div>
                       </div>
                     </div>
-                   
                   </div>
                   <div class="item"></div>
                 </div>
@@ -224,21 +222,22 @@
         </div>
       </div>
 
-
-      <transition enter-active-class="animate__animated animate__bounceInRight" leave-active-class="animate__animated animate__fadeOutRight">
-        <div class="img-section-slide" :class="{innerPage: imgShow}" v-if="imgShow">
-          <img @click="imgShow = false" src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="">
+      <transition
+        enter-active-class="animate__animated animate__bounceInRight"
+        leave-active-class="animate__animated animate__fadeOutRight"
+      >
+        <div
+          class="img-section-slide"
+          :class="{ innerPage: imgShow }"
+          v-if="imgShow && showImageUrl"
+        >
+          <img @click="imgShow = false" :src="showImageUrl" alt />
         </div>
       </transition>
     </div>
     <div class="container" v-else key="2">
       <div class="row" v-if="pdfs.length > 0">
-        <FilePdf
-          v-for="(pdf, index) in pdfs"
-          :key="index"
-          :title="pdf.title"
-          :link="pdf.link"
-        >
+        <FilePdf v-for="(pdf, index) in pdfs" :key="index" :title="pdf.title" :link="pdf.link">
           <div class="pdf-icon" slot="overlay-pdf-slot">
             <i class="fas fa-chalkboard-teacher"></i>
             <!-- <a :href="pdf.link" target="_blank"> -->
@@ -271,6 +270,14 @@ export default {
       pdfs: [],
       showVideos: true,
       imgShow: false,
+      url: '',
+      lessonData: null,
+      showImageUrl: null,
+
+      commentContent: '',
+      replyContent: '',
+      commentPhoto: null,
+      replyPhoto: null,
 
       swiperOption: {
         slidesPerView: 2,
@@ -292,18 +299,95 @@ export default {
   created() {
     this.getVideos()
     this.getPdfs()
+    console.log('moment', this.$moment('2020-06-29T02:37:12.641Z').fromNow())
+    console.log('moment locale', this.$moment.locale())
   },
   methods: {
+    showCommentImage(image) {
+      this.imgShow = !this.imgShow
+      this.showImageUrl = image
+    },
+    fileSelected(e) {
+      if (e.target.files.length > 0) {
+        this.url = ''
+        // console.log("files", e.target.files);
+        this.commentPhoto = e.target.files[0]
+        this.url = URL.createObjectURL(this.commentPhoto)
+      }
+    },
+
+    replyImageSelected(e) {
+      if (e.target.files.length > 0) {
+        this.url = ''
+        //  console.log(e.target.attributes.getNamedItem('comment').value);
+        this.replyPhoto = e.target.files[0]
+        // this.url = URL.createObjectURL(this.replyPhoto);
+      }
+    },
+    addCommentReply(commentId, index) {
+      let form_data = new FormData()
+      let replyContent = this.selectedVideoComments[index].replyContent.trim()
+      if (replyContent.length > 0) {
+        form_data.append('content', replyContent)
+      }
+
+      if (this.replyPhoto != null) {
+        form_data.append('image', this.replyPhoto)
+      }
+
+      this.$axios
+        .post(`comments/${commentId}/replies`, form_data, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
+        .then((res) => {
+          this.selectedVideoComments[index].replyContent = ''
+          this.replyPhoto = null
+          this.selectedVideoComments[index].numberOfreplies += 1
+          this.selectedVideoComments[index].replies = res.data.replies
+          // this.selectedVideoComments[index].replies.push(res.data.replies);
+
+          // this.$snotify.success(`تم تعديل البيانات بنجاح`);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    addComment() {
+      let form_data = new FormData()
+      if (this.commentContent.trim().length > 0) {
+        form_data.append('content', this.commentContent)
+      }
+
+      if (this.commentPhoto != null) {
+        form_data.append('image', this.commentPhoto)
+      }
+
+      this.$axios
+        .post(`videos/${this.selectedVideo.id}/comments`, form_data, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
+        .then((res) => {
+          this.selectedVideoComments.unshift(res.data)
+
+          // this.$snotify.success(`تم تعديل البيانات بنجاح`);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     getVideos() {
       this.isLoading = true
 
       this.$axios
-        .get(`lessons/${this.$route.params.id}/videos`)
+        .get(`lesson/${this.$route.params.id}/videos`)
         .then((res) => {
           this.isLoading = false
+          this.lessonData = res.data
           this.videos = res.data.materials
           this.videos.map(function (value, key) {
             value['embed'] = value['link'].replace('watch?v=', 'embed/')
+            value['replyContent'] = ''
+            value['replyImage'] = null
           })
           if (this.videos.length > 0) {
             this.selectedVideo = this.videos[0]
@@ -321,6 +405,10 @@ export default {
         .get(`videos/${this.selectedVideo.id}/comments`)
         .then((res) => {
           this.selectedVideoComments = res.data.docs
+          this.selectedVideoComments.map(function (value, key) {
+            value['replyContent'] = ''
+            value['replyImage'] = null
+          })
         })
         .catch((err) => {
           console.log(err)
@@ -379,62 +467,63 @@ export default {
 </script>
 
 <style lang="scss">
-.img-section-slide{
-      position: fixed;
-    top: 100px;
-    right: 0;
-    width: 500px;
-    height: 400px;
-    z-index: 999999999;
-    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    margin: 10px 0;
-    cursor: pointer;
-    background: #FFF;
-    border-radius: 9px;
-  img{
-    width:100%;
+.img-section-slide {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 500px;
+  height: 400px;
+  z-index: 999999999;
+  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 9px;
+  img {
+    width: 100%;
     height: 100%;
   }
 }
-.current-video-comment,.nested-comment-reply{
+.current-video-comment,
+.nested-comment-reply {
   position: relative;
-  .submit{
+  .submit {
     position: absolute;
     top: 0px;
     left: 0;
     /* height: 80%; */
     padding: 7px;
-    button{
-          padding: 7px 10px !important;
+    button {
+      padding: 7px 10px !important;
     }
   }
 }
-.uploads{
-        position: absolute;
-    top: 18px;
-    left: 39px;
-    width: 65px;
-    .upload-files{
-      position: relative;
+.uploads {
+  position: absolute;
+  top: 18px;
+  left: 39px;
+  width: 65px;
+  .upload-files {
+    position: relative;
     width: 50%;
     float: left;
     cursor: pointer;
-    input{
-          position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+    input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
     }
-    i{
+    i {
       cursor: pointer;
       font-size: 20px;
-    color: #b5b5b5;
+      color: #b5b5b5;
     }
-}
+  }
 }
 
 .video-bannar {
@@ -733,17 +822,17 @@ export default {
       width: 87%;
       float: left;
       padding: 18px 22px;
-      .comment-content-img{
-            width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
-    border: 1px dashed #0989c3;
-    padding: 2px;
-    cursor: pointer;
-    box-shadow: 2px 1px 9px 0px #929292;
-        img{
-          width:100%;
-          height:100%;
+      .comment-content-img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+        border: 1px dashed #0989c3;
+        padding: 2px;
+        cursor: pointer;
+        box-shadow: 2px 1px 9px 0px #929292;
+        img {
+          width: 100%;
+          height: 100%;
         }
       }
       > h6 {
@@ -806,18 +895,18 @@ export default {
         margin-top: 25px;
         border-bottom: 1px solid #c7c7c7;
         position: relative;
-        .comment-content-img{
-            width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
-    border: 1px dashed #0989c3;
-    padding: 2px;
-    cursor: pointer;
-    box-shadow: 2px 1px 9px 0px #929292;
-        img{
-          width:100%;
-          height:100%;
-        }
+        .comment-content-img {
+          width: 100px;
+          height: 100px;
+          margin-bottom: 15px;
+          border: 1px dashed #0989c3;
+          padding: 2px;
+          cursor: pointer;
+          box-shadow: 2px 1px 9px 0px #929292;
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
         h6 {
           color: #686868;
@@ -825,13 +914,13 @@ export default {
           margin-bottom: 0;
         }
         span {
-              color: #0989c3;
-    font-family: 'CustomFontRegular';
-    margin: 15px 0;
-    position: absolute;
-    left: 13px;
-    font-weight: bold;
-    font-size: 11px;
+          color: #0989c3;
+          font-family: 'CustomFontRegular';
+          margin: 15px 0;
+          position: absolute;
+          left: 13px;
+          font-weight: bold;
+          font-size: 11px;
         }
         p {
           font-family: 'CustomFontRegular';

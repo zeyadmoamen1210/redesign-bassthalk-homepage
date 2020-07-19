@@ -5,17 +5,13 @@
         <div class="form-title">
           <h4>
             <img src="../../../assets/imgs/laboratory-1.png" alt />
-            {{ subjectData.name }}
+            {{ subjectData.nameAr }}
           </h4>
         </div>
 
         <div class="subject-units">
           <div class="row">
-            <div
-              class="col-md-6"
-              v-for="(unit, index) in subjectData.units"
-              :key="index"
-            >
+            <div class="col-md-6" v-for="(unit, index) in subjectData.units" :key="index">
               <div class="subject-units-lessons">
                 <div class="unit">
                   <span>{{ index + 1 }}</span>
@@ -23,11 +19,7 @@
                 </div>
                 <div class="lesson-part">
                   <div class="row">
-                    <div
-                      class="col-md-4"
-                      v-for="(lesson, index) in unit.lessons"
-                      :key="index"
-                    >
+                    <div class="col-md-4" v-for="(lesson, index) in unit.lessons" :key="index">
                       <div class="lessons">
                         <nuxt-link :to="'/lessons/' + lesson.id + '/materials'">
                           <h6>{{ lesson.nameAr }}</h6>
