@@ -119,6 +119,7 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.subjects = res.data
+          console.log(res)
         })
         .catch((err) => {
           this.isLoading = false
