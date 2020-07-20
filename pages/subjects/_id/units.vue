@@ -2,11 +2,22 @@
   <div>
     <div class="container">
       <div class="the-subject" v-if="subjectData">
-        <div class="form-title">
-          <h4>
-            <img src="../../../assets/imgs/laboratory-1.png" alt />
-            {{ subjectData.nameAr }}
-          </h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-title">
+              <h4>
+                <img src="../../../assets/imgs/laboratory-1.png" alt />
+                {{ subjectData.nameAr }}
+              </h4>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="lectures-title">
+              <nuxt-link :to="'/subjects/'+$route.params.id+'/lectures'">
+                <button style="padding: 7px 20px;margin-top: 8px;background: #048ac5;border: 0;outline: 0 !important;color: #FFF;border-radius: 5px;font-size: 18px;">المحاضرات</button>
+              </nuxt-link>
+            </div>
+          </div>
         </div>
 
         <div class="subject-units">
