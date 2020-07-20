@@ -19,15 +19,15 @@ export default {
             },
         ],
         link: [{
-            rel: 'icon',
-            type: 'image/x-icon',
-            href: 'logo.png',
-        },
-        {
-            rel:'stylesheet',
-            href:'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css'
-        }
-     ],
+                rel: 'icon',
+                type: 'image/x-icon',
+                href: 'logo.png',
+            },
+            {
+                rel: 'stylesheet',
+                href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css'
+            }
+        ],
     },
     /*
      ** Customize the progress-bar color
@@ -47,7 +47,9 @@ export default {
      */
     plugins: [
         './plugins/swiper.js',
-        './plugins/vselect.js'
+        './plugins/vselect.js',
+        './plugins/moment.js',
+
     ],
     /*
      ** Nuxt.js dev-modules

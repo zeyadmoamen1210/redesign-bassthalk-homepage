@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div class="register" v-if="!showVerify">
+      <div class="register" v-if="showVerify">
         <div class="form-title">
           <h4>
             <img src="../assets/imgs/Group 6945.png" alt />
@@ -44,14 +44,7 @@
             </div>
 
             <div class="col-md-2">
-              <b-form-select
-                v-model="gender"
-                :options="options"
-                class="mb-3"
-                value-field="item"
-                text-field="name"
-                disabled-field="notEnabled"
-              ></b-form-select>
+              <v-select v-model="gender" :options="['ذكر', 'أنثي']"></v-select>
             </div>
 
             <div class="col-md-2">
@@ -136,12 +129,14 @@
                 class="form-groub"
                 style="margin-bottom: 40px; margin-top: 40px;"
               >
-                <CodeInput
-                  :fields="count"
-                  :loading="false"
-                  class="input"
-                  v-on:complete="onComplete"
-                />
+                <client-only placeholder="...تحميل ">
+                  <CodeInput
+                    :fields="count"
+                    :loading="false"
+                    class="input"
+                    v-on:complete="onComplete"
+                  />
+                </client-only>
               </div>
 
               <input
@@ -171,13 +166,15 @@
 </template>
 
 <script>
-import CodeInput from 'vue-verification-code-input'
 import * as Cookies from 'js-cookie'
 
 export default {
   middleware: 'guest',
   components: {
-    CodeInput,
+    CodeInput: () =>
+      process.client
+        ? import('vue-verification-code-input')
+        : Promise.resolve({ render: () => h('div') }),
   },
   data() {
     return {

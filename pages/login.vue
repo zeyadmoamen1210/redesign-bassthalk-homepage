@@ -4,7 +4,7 @@
       <div class="login">
         <div class="form-title">
           <h4>
-            <img src="../assets/imgs/noun_User_-2.png" alt="" />
+            <img src="../assets/imgs/noun_User_-2.png" alt />
             تسجيل دخول
           </h4>
         </div>
@@ -25,20 +25,13 @@
           />
         </div>
         <div class="forget-pass">
-          <nuxt-link to="">
-            هل نسيت كلمة مرورك ؟
-          </nuxt-link>
+          <nuxt-link to>هل نسيت كلمة مرورك ؟</nuxt-link>
         </div>
-        <input
-          type="button"
-          @click="login"
-          value="تسجيل الدخول"
-          class="basth-btn-primary"
-        />
+        <input type="button" @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
         <div class="two-way">
           <h6>او عن طريق</h6>
-          <img src="../assets/imgs/facebook.png" alt="" />
-          <img src="../assets/imgs/brands-and-logotypes.png" alt="" />
+          <img src="../assets/imgs/facebook.png" alt />
+          <img src="../assets/imgs/brands-and-logotypes.png" alt />
         </div>
 
         <div class="dont-have-acc">
@@ -46,9 +39,7 @@
             <h6>ليس لديك حساب ؟</h6>
           </div>
           <div>
-            <button @click="$router.push({ path: '/register' })">
-              انشاء حساب
-            </button>
+            <button @click="$router.push({ path: '/register' })">انشاء حساب</button>
           </div>
         </div>
       </div>
@@ -86,6 +77,7 @@ export default {
   },
   methods: {
     async login() {
+      
       try {
         let response = await this.$auth.loginWith('local', {
           data: this.form,
