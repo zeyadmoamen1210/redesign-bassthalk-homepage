@@ -1,30 +1,70 @@
 <template>
-    <div class="check-box-ques">
-                <h6>صيغة السؤال هي عبارة عن صح او خطأ ؟</h6>
-<selectedImg :imgUrl="'https://i.ibb.co/9HSf4R0/logo.png'"></selectedImg>
+  <div class="check-box-ques">
+    <h6>{{ question.head }}</h6>
+    <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
 
-                <!-- <img src="../../assets/imgs/chemical-equation-color.jpg" alt=""> -->
+    <!-- loop to display sub questions -->
+    <!-- childrenQuestions -->
+    <div class="row">
+      <div class="col-md-12" style="min-height: 320px;">
+        <div v-for="(item, index) in childrenQuestions" :key="index">
+          <div class>
+            <div>
+              <h6>{{ index + 1 }}</h6>
+            </div>
 
+            <div>
+              <h6>السؤال الأول</h6>
+            </div>
+          </div>
 
-               <div class="form-groub">
-                 <input style="width:100%;padding: 18px;" type="text" placeholder="ادخل أجابتك هنا">
-               </div>
-
-               <div class="file-choose">
-                 <input type="file" placeholder="قم بأرفاق صورة بالحل">
-                 <span> <img src="../../assets/imgs/noun_Camera_1903011.png">  قم بأرفاق صورة بالحل </span>
-               </div>
-
-
-              </div>
+          <truefalse
+            :answer="item.answer"
+            v-if="item.child.type == 'truefalse'"
+            :question="item.child"
+          />
+          <choose :answer="item.answer" v-if="item.child.type == 'choose'" :question="item.child" />
+          <complete
+            :answer="item.answer"
+            v-if="item.child.type == 'complete'"
+            :question="item.child"
+          />
+          <paragraph
+            :answer="item.answer"
+            :answerImage="item.answerImage"
+            v-if="item.child.type == 'paragraph'"
+            :question="item.child"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
 <script>
 import selectedImg from '../selectedImg'
+import complete from './complete'
+import truefalse from './truefalse'
+import choose from './choose'
+import paragraph from './paragraph'
 export default {
-    components:{
-        selectedImg
+  components: {
+    selectedImg,
+    truefalse,
+    choose,
+    complete,
+    paragraph
+  },
+  props: {
+    question: {
+      type: Object,
+      required: true
+    },
+    childrenQuestions: {
+      type: Array,
+      required: true
     }
+  }
 }
 </script>
