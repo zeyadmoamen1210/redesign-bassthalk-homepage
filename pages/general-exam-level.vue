@@ -11,7 +11,8 @@
       <div class="levels">
         <div class="row">
           <div class="col-md-4">
-            <div class="level-item box-shadow-class">
+            <nuxt-link to="/exams">
+              <div class="level-item box-shadow-class">
                 <img src="../assets/imgs/easy-level-1.png" alt="">
                 <h6>المستوي السهل</h6>
                  <div class="c100 p25 small">
@@ -22,20 +23,25 @@
                     </div>
                   </div>
             </div>
+            </nuxt-link>
           </div>
 
            <div class="col-md-4">
-            <div class="level-item box-shadow-class">
+            <nuxt-link to="/exams">
+              <div class="level-item box-shadow-class">
                 <img style="margin-top:40px" src="../assets/imgs/easy-level-2.png" alt="">
                 <h6>المستوي المتوسط</h6>
             </div>
+            </nuxt-link>
           </div>
 
            <div class="col-md-4">
-            <div class="level-item box-shadow-class">
+            <nuxt-link to="/exams">
+              <div class="level-item box-shadow-class">
                 <img style="margin-top:40px" src="../assets/imgs/easy-level-3.png" alt="">
                 <h6>المستوي الصعب</h6>
             </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
