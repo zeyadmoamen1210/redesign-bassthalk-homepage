@@ -29,38 +29,42 @@
 import selectedImg from '../selectedImg'
 export default {
   components: {
-    selectedImg
+    selectedImg,
   },
   props: {
     question: {
       type: Object,
-      required: true
+      required: true,
     },
     answer: {
-      required: true
-    }
+      required: true,
+    },
+    exam_id: {
+      required: true,
+    },
   },
   data() {
     return {
       id: this.question.id,
-      answerData: this.answer
+      answerData: this.answer,
+      exam: this.exam_id,
     }
   },
   watch: {
-    answerData: function(val) {
+    answerData: function (val) {
       // ! patch exam answer
-      //   alert(this.id + '===>' + this.answerData)
+      // alert(this.exam_id)
       // !exams/70/solution
       this.$axios
-        .patch(`exams/70/solution`, {
+        .patch(`exams/${this.exam}/solution`, {
           question: this.id,
-          answer: this.answerData
+          answer: this.answerData,
         })
-        .then(res => {})
-        .catch(err => {
+        .then((res) => {})
+        .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>

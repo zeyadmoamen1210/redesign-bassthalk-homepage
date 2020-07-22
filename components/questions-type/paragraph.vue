@@ -32,26 +32,29 @@
 import selectedImg from '../selectedImg'
 export default {
   components: {
-    selectedImg
+    selectedImg,
   },
   props: {
     question: {
       type: Object,
-      required: true
+      required: true,
     },
     answer: {
-      required: true
+      required: true,
     },
     answerImage: {
-      required: true
-    }
+      required: true,
+    },
+    exam_id: {
+      required: true,
+    },
   },
   data() {
     return {
       id: this.question.id,
       answerData: this.answer,
       url: null,
-      photo: null
+      photo: null,
     }
   },
   created() {
@@ -74,11 +77,11 @@ export default {
             questionForm.append('answer', this.answerData)
           }
           this.$axios
-            .patch(`exams/70/solution`, questionForm, {
-              headers: { 'Content-Type': 'multipart/form-data' }
+            .patch(`exams/${this.exam_id}/solution`, questionForm, {
+              headers: { 'Content-Type': 'multipart/form-data' },
             })
-            .then(res => {})
-            .catch(err => {
+            .then((res) => {})
+            .catch((err) => {
               console.log(err)
             })
         }
@@ -95,15 +98,15 @@ export default {
           questionForm.append('answer', this.answerData)
         }
         this.$axios
-          .patch(`exams/70/solution`, questionForm, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+          .patch(`exams/${this.exam_id}/solution`, questionForm, {
+            headers: { 'Content-Type': 'multipart/form-data' },
           })
-          .then(res => {})
-          .catch(err => {
+          .then((res) => {})
+          .catch((err) => {
             console.log(err)
           })
       }
-    }
-  }
+    },
+  },
 }
 </script>

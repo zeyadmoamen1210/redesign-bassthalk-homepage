@@ -20,37 +20,40 @@
 import selectedImg from '../selectedImg'
 export default {
   components: {
-    selectedImg
+    selectedImg,
   },
   props: {
     question: {
       type: Object,
-      required: true
+      required: true,
     },
     answer: {
-      required: true
-    }
+      required: true,
+    },
+    exam_id: {
+      required: true,
+    },
   },
   data() {
     return {
-      id: this.question.id
+      id: this.question.id,
     }
   },
   watch: {
-    answer: function(val) {
+    answer: function (val) {
       // ! patch exam answer
       // !exams/70/solution
       this.$axios
-        .patch(`exams/70/solution`, {
+        .patch(`exams/${this.exam_id}/solution`, {
           question: this.id,
-          answer: this.answer
+          answer: this.answer,
         })
-        .then(res => {})
-        .catch(err => {
+        .then((res) => {})
+        .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

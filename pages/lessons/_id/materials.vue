@@ -84,7 +84,7 @@
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
             <div class="col-md-12">
-              <button class="fullWidthBtn">أبدء الأختبار</button>
+              <button @click="showLessonExams" class="fullWidthBtn">أبدء الأختبار</button>
             </div>
             <!-- <div class="col-md-6" v-for="(video, index) in videos" :key="index">
               <div class="video-cart">
@@ -303,6 +303,9 @@ export default {
     console.log('moment locale', this.$moment.locale())
   },
   methods: {
+    showLessonExams() {
+      this.$router.push({ path: `/lessons/${this.$route.params.id}/exams` }) // -> /user/123
+    },
     showCommentImage(image) {
       this.imgShow = !this.imgShow
       this.showImageUrl = image

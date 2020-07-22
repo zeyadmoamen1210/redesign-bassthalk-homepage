@@ -25,21 +25,24 @@
 import selectedImg from '../selectedImg'
 export default {
   components: {
-    selectedImg
+    selectedImg,
   },
   props: {
     question: {
       type: Object,
-      required: true
+      required: true,
     },
     answer: {
-      required: true
-    }
+      required: true,
+    },
+    exam_id: {
+      required: true,
+    },
   },
   data() {
     return {
       id: this.question.id,
-      completeData: Array(this.question.numberOfInputs).fill('')
+      completeData: Array(this.question.numberOfInputs).fill(''),
     }
   },
   watch: {},
@@ -52,15 +55,15 @@ export default {
     setAnswer() {
       // !exams/70/solution
       this.$axios
-        .patch(`exams/70/solution`, {
+        .patch(`exams/${this.exam_id}/solution`, {
           question: this.id,
-          answer: this.completeData
+          answer: this.completeData,
         })
-        .then(res => {})
-        .catch(err => {
+        .then((res) => {})
+        .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -22,18 +22,21 @@
             :answer="item.answer"
             v-if="item.child.type == 'truefalse'"
             :question="item.child"
+            :exam_id="exam_id"
           />
           <choose :answer="item.answer" v-if="item.child.type == 'choose'" :question="item.child" />
           <complete
             :answer="item.answer"
             v-if="item.child.type == 'complete'"
             :question="item.child"
+            :exam_id="exam_id"
           />
           <paragraph
             :answer="item.answer"
             :answerImage="item.answerImage"
             v-if="item.child.type == 'paragraph'"
             :question="item.child"
+            :exam="exam_id"
           />
         </div>
       </div>
@@ -54,17 +57,20 @@ export default {
     truefalse,
     choose,
     complete,
-    paragraph
+    paragraph,
   },
   props: {
     question: {
       type: Object,
-      required: true
+      required: true,
     },
     childrenQuestions: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+    exam_id: {
+      required: true,
+    },
+  },
 }
 </script>
