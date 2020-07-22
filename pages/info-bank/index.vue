@@ -22,7 +22,7 @@
                 <h6>لقد اجتزت المستوي 6</h6>
                 <p class="lead">أستمر في تخطي المستويات لتكن من المتفوقين</p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="correctNum" aria-valuemin="0" aria-valuemax="10" :style="{width: 10*correctNum +'%' }"></div>
                 </div>
                 <p class="lead">هذا نص تجريبي هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي
                   هذا نص تجريبي هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي  هذا نص تجريبي
