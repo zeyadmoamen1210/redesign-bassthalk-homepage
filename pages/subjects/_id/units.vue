@@ -13,9 +13,9 @@
           </div>
           <div class="col-md-6">
             <div class="lectures-title">
-              <nuxt-link :to="'/subjects/'+$route.params.id+'/lectures'">
+              <!-- <nuxt-link :to="'/subjects/'+$route.params.id+'/lectures'">
                 <button style="padding: 7px 20px;margin-top: 8px;background: #048ac5;border: 0;outline: 0 !important;color: #FFF;border-radius: 5px;font-size: 18px;">المحاضرات</button>
-              </nuxt-link>
+              </nuxt-link> -->
             </div>
           </div>
         </div>
