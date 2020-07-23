@@ -185,7 +185,7 @@ export default {
   },
   methods: {
     setSubjects(){
-      this.$store.commit('setSubjects', this.subjects)
+      this.$store.commit('setSubject', this.subjects)
     },
     getSubjects() {
       this.$axios
