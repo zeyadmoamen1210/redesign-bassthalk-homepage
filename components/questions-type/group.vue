@@ -24,7 +24,11 @@
             :question="item.child"
             :exam_id="exam_id"
           />
-          <choose :answer="item.answer" v-if="item.child.type == 'choose'" :question="item.child" />
+          <choose
+            :answer="item.answer"
+            v-if="item.child.type == 'choose'"
+            :question="item.child"
+          />
           <complete
             :answer="item.answer"
             v-if="item.child.type == 'complete'"
@@ -36,14 +40,13 @@
             :answerImage="item.answerImage"
             v-if="item.child.type == 'paragraph'"
             :question="item.child"
-            :exam="exam_id"
+            :exam_id="exam_id"
           />
         </div>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import selectedImg from '../selectedImg'

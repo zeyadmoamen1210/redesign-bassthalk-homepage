@@ -35,9 +35,6 @@ export default {
     answer: {
       required: true,
     },
-    exam_id: {
-      required: true,
-    },
   },
   data() {
     return {
