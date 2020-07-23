@@ -63,7 +63,13 @@ export default {
       console.log(res.data)
       console.log(this.$route.params.id)
       console.log(this.teacher)
+      this.setTeacher()
     })
+  },
+  methods:{
+    setTeacher(){
+      return this.$store.commit('setTeacher', this.teacher)
+    }
   }
 }
 </script>

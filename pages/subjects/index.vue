@@ -184,6 +184,9 @@ export default {
     this.getSubjects()
   },
   methods: {
+    setSubjects(){
+      this.$store.commit('setSubjects', this.subjects)
+    },
     getSubjects() {
       this.$axios
         .get(`subjects`)
@@ -191,6 +194,7 @@ export default {
           this.isLoading = false
           this.subjects = res.data
           console.log(res)
+
         })
         .catch((err) => {
           this.isLoading = false
