@@ -178,9 +178,6 @@ export default {
     }
   },
   created() {
-    this.$snotify.success(
-      ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
-    )
     if (this.$route.params.id) {
       this.getLessonExams()
     }
@@ -192,7 +189,6 @@ export default {
         this.selectedExam = exam
         this.startExam()
       } else {
-        alert('ddd')
         this.$snotify.warning(
           ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
         )
@@ -203,9 +199,6 @@ export default {
         .get(`lessons/${this.$route.params.id}/exams`)
         .then((res) => {
           this.exams = res.data
-          this.$snotify.success(
-            ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
-          )
         })
 
         .catch((err) => {

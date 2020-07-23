@@ -1,38 +1,43 @@
 <template>
   <div>
     <div class="container">
-      <div class="general-exam-test">
+      <Loading v-if="isLoading" />
+      <div class="general-exam-test" v-else>
         <div class="title">
-          <div class="exam-level">
-            <img src="../assets/imgs/easy-level-1.png" alt />
+          <div class="exam-level" v-if="exam && exam.difficultyLevel == 'easy'">
+            <img src="@/assets/imgs/easy-level-1.png" alt />
             <h6>المستوي السهل</h6>
+          </div>
+          <div
+            class="exam-level"
+            v-if="exam && exam.difficultyLevel == 'middleLevel'"
+          >
+            <img src="@/assets/imgs/easy-level-2.png" alt />
+            <h6>المستوي المتوسط</h6>
+          </div>
+          <div
+            class="exam-level"
+            v-if="exam && exam.difficultyLevel == 'difficultLevel'"
+          >
+            <img src="@/assets/imgs/easy-level-3.png" alt />
+            <h6>المستوي الصعب</h6>
           </div>
           <div class="sub-name">
             <h4>الاختبار</h4>
-            <img src="../assets/imgs/noun_testing_3325786.png" alt />
+            <img src="@/assets/imgs/noun_testing_3325786.png" alt />
           </div>
         </div>
 
         <div class="general-exam-head">
-          <div class="head-three">
-            <div class="c100 p25 small" style="margin-top: 0;">
-              <span>25%</span>
-              <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-              </div>
-            </div>
-          </div>
           <div class="unit lesson-uni head-two">
-            <img src="../assets/imgs/laboratory.png" alt />
-            <h4 style="display: inline-block;">الكمياء</h4>
-            <span>1</span>
-            <h6>الوحدة الأولي - الدرس الأول</h6>
+            <img src="@/assets/imgs/noun_testing_3325786.png" alt />
+            <h4 style="display: inline-block;">{{ examTitle }}</h4>
+            <!-- <span>1</span>
+            <h6>الوحدة الأولي - الدرس الأول</h6> -->
           </div>
         </div>
-        <Loading v-if="isLoading" />
 
-        <div class="general-exam-content" v-else>
+        <div class="general-exam-content">
           <div class="row">
             <div class="col-md-12" style="min-height: 320px;">
               <div v-for="(item, index) in questions" :key="index">
@@ -50,33 +55,38 @@
                   :answer="item.answer"
                   v-if="item.question.type == 'truefalse'"
                   :question="item.question"
+                  :exam_id="exam_id"
                 />
                 <choose
                   :answer="item.answer"
                   v-if="item.question.type == 'choose'"
                   :question="item.question"
+                  :exam_id="exam_id"
                 />
                 <complete
                   :answer="item.answer"
                   v-if="item.question.type == 'complete'"
                   :question="item.question"
+                  :exam_id="exam_id"
                 />
                 <paragraph
                   :answer="item.answer"
                   :answerImage="item.answerImage"
                   v-if="item.question.type == 'paragraph'"
                   :question="item.question"
+                  :exam_id="exam_id"
                 />
                 <group
                   v-if="item.question.type == 'group'"
                   :childrenQuestions="item.childrenQuestions"
                   :question="item.question"
+                  :exam_id="exam_id"
                 />
               </div>
             </div>
 
             <input
-              v-if="questions.length>0"
+              v-if="questions.length > 0"
               class="mt-5 basth-btn-primary"
               type="button"
               @click="setExamTODone"
@@ -90,12 +100,12 @@
 </template>
 
 <script>
-import truefalse from '../components/questions-type/truefalse'
-import group from '../components/questions-type/group'
-import choose from '../components/questions-type/choose'
-import complete from '../components/questions-type/complete'
-import paragraph from '../components/questions-type/paragraph'
-import Loading from '../components/Loading'
+import truefalse from '@/components/questions-type/truefalse'
+import group from '@/components/questions-type/group'
+import choose from '@/components/questions-type/choose'
+import complete from '@/components/questions-type/complete'
+import paragraph from '@/components/questions-type/paragraph'
+import Loading from '@/components/Loading'
 
 export default {
   components: {
@@ -108,20 +118,26 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
-
+      isLoading: true,
+      exam_id: this.$route.params.id,
       questions: [],
+      examTitle: '',
+      exam: null,
     }
   },
   watch: {},
   created() {
-    this.startExam()
+    if (this.$route.params.id > 0) {
+      this.startExam()
+    } else {
+      this.isLoading = false
+    }
   },
   methods: {
     startExam() {
       // exams/70/start
       this.$axios
-        .post(`exams/71/start`)
+        .post(`exams/${this.$route.params.id}/start`)
         .then((res) => {
           this.getExamQuestions()
         })
@@ -132,8 +148,10 @@ export default {
     getExamQuestions() {
       this.isLoading = true
       this.$axios
-        .get(`exams/71`)
+        .get(`exams/${this.$route.params.id}`)
         .then((res) => {
+          this.examTitle = res.data.title
+          this.exam = res.data
           this.questions = res.data.questions
         })
         .catch((err) => {
@@ -143,43 +161,43 @@ export default {
     },
     setExamTODone() {
       // alert('ddd')
-      this.isLoading = true
-      this.$axios
-        .post(`exams/70/done`)
-        .then((res) => {
-          this.$router.push({ path: '/subjects' })
-          this.$snotify.success(
-            ` حسناً تم تسليم الإمتحان بنجاح من فضلك إنتظر تصحيح الإمتحان`
-          )
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        .finally(() => (this.isLoading = false))
-      // this.$snotify.confirm(
-      //   'من فضلك تأكد من الإجابة علي كل الأسئلة ',
-      //   'هل تريد تسليم الإمتحان',
-      //   {
-      //     showProgressBar: true,
-      //     closeOnClick: true,
-      //     pauseOnHover: true,
-      //     buttons: [
-      //       {
-      //         text: 'موافق',
-      //         action: toast => {
-      //           this.$snotify.remove(toast.id)
 
-      //         }
-      //       },
-      //       {
-      //         text: 'إلغاء',
-      //         action: toast => {
-      //           this.$snotify.remove(toast.id)
-      //         }
-      //       }
-      //     ]
-      //   }
-      // )
+      this.$snotify.confirm(
+        'من فضلك تأكد من الإجابة علي كل الأسئلة ',
+        'هل تريد التسليم ',
+        {
+          showProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          buttons: [
+            {
+              text: 'موافق',
+              action: (toast) => {
+                this.$snotify.remove(toast.id)
+                this.isLoading = true
+                this.$axios
+                  .post(`exams/${this.$route.params.id}/done`)
+                  .then((res) => {
+                    this.$router.back()
+                    this.$snotify.success(
+                      ` حسناً تم تسليم الإمتحان بنجاح من فضلك إنتظر تصحيح الإمتحان`
+                    )
+                  })
+                  .catch((err) => {
+                    console.log(err)
+                  })
+                  .finally(() => (this.isLoading = false))
+              },
+            },
+            {
+              text: 'إلغاء',
+              action: (toast) => {
+                this.$snotify.remove(toast.id)
+              },
+            },
+          ],
+        }
+      )
     },
 
     playAudio: function () {
@@ -199,7 +217,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/general-exam-test.scss';
+@import '../../../assets/sass/general-exam-test.scss';
 
 .lesson-unit {
   margin: 0;

@@ -4,6 +4,8 @@
     <div class="cont">
       <nuxt />
     </div>
+    <vue-snotify></vue-snotify>
+
     <Footer />
   </div>
 </template>
