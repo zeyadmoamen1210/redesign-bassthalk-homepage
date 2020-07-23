@@ -19,7 +19,7 @@
            
           </div>
            <h6 class="teacher-info-div">
-                <nuxt-link :to="'/lecture'" style="font-family:'CustomFontBold';color: #676767;">
+                <nuxt-link :to="`/subjects/${this.$route.params.id}/teachers/${this.$route.params.teacher_id}/lecture`" style="font-family:'CustomFontBold';color: #676767;">
                     المحاضرات
                 </nuxt-link>
             </h6>
@@ -59,15 +59,15 @@ export default {
   },
   created(){
     this.$axios.get(`teachers`).then(res => {
-      this.teacher = res.data.find(teach => teach.id == this.$route.params.id)
-      this.setTeacher()
-      console.log(this.$store.state.teacher)
+      this.teacher = res.data.find(teach => teach.id == this.$route.params.teacher_id)
+      // this.setTeacher()
+      // console.log(this.$store.state.teacher)
     })
   },
   methods:{
-    setTeacher(){
-      return this.$store.commit('setTeacher', this.teacher)
-    }
+    // setTeacher(){
+    //   return this.$store.commit('setTeacher', this.teacher)
+    // }
   }
 }
 </script>

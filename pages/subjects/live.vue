@@ -12,6 +12,7 @@
             class="col-md-3"
             v-for="(subject, index) in subjects"
             :key="index"
+            @click="clicked(subject)"
           >
             <nuxt-link :to="`/subjects/${subject.id}/teachers`">
               <div class="subject-cont">
@@ -41,11 +42,13 @@ export default {
   data() {
     return {
       subjects: [],
-      tabIndex: 1
+      tabIndex: 1,
+      sub: {}
     }
   },
   created() {
     this.getSubjects()
+    
   },
   methods: {
     getSubjects() {
@@ -61,6 +64,14 @@ export default {
           console.log(err)
         })
     },
+    clicked(subject){
+        this.sub = subject
+        this.setSubjects()
+        console.log(this.$store.state.subject)
+    },
+    setSubjects(){
+        this.$store.commit('setSubject', this.sub)
+    }
   },
 }
 </script>

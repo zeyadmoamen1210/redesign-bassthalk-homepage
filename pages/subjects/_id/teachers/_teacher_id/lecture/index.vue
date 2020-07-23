@@ -43,22 +43,37 @@
         </div>
 
 
+         
+
+
           <div class="time-content">
             <div class="row">
-              <div class="col-md-6" v-for="x of 4" :key="x">
+              <div class="col-md-6" v-for="lec of lectures" :key="lec.id">
+
+
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="khkj" aria-expanded="false" aria-controls="collapseExample">
+                  Button with data-target
+                </button>
+
+                <div class="collapse" id="khkj">
+                  <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  </div>
+                </div>
+                
                 <div class="time-course">
                   <div>
                     <img src="@/assets/imgs/noun_Time_2405843.png" alt="">
-                    <h6>PM 03:00</h6>
+                    <h6> {{new Date(lec.createdAt).toLocaleTimeString() }} </h6>
                   </div>
 
                   <div>
-                    <h6> title </h6>
-                    <h6 style="color: #6c6c6c;">أستاذة / ميادة رفعت</h6>
+                    <h6> {{lec.title}} </h6>
+                    <h6 style="color: #6c6c6c;">أستاذ /  {{teacher.username}} </h6>
                   </div>
                       <div>
                        <div class="teacher">
-                          <img src="@/assets/imgs/teacher-100316.jpg" alt="">
+                          <img :src="teacher.photo" alt="">
                           <img src="@/assets/imgs/live-red.png" alt="">
                         </div>
                   </div>
@@ -84,16 +99,22 @@
 export default {
     data(){
         return {
-            lectures: []
+            lectures: [],
+            teacher: {}
         }
     },
     created(){
-        console.log(this.$store.state.teacher)
-        console.log(this.$store.state.subject)
-        // this.$axios.get(`subjects/${this.$store.state.subject.id}/lectures?teacher=${this.$store.state.teacher.id}`).then(res => {
-        //     console.log(res)
-        //     this.lectures = res.data.lectures
-        // })
+        // console.log(this.$store.state.teacher)
+        // console.log(this.$store.state.subject)
+        this.$axios.get(`subjects/${this.$route.params.id}/lectures?teacher=${this.$route.params.teacher_id}`).then(res => {
+            console.log(res)
+            this.lectures = res.data.lectures
+        })
+
+        this.$axios.get('teachers').then(res => {
+          console.log(res.data)
+          this.teacher = res.data.find(teach => teach.id == this.$route.params.teacher_id)
+        })
     },
     
 }
