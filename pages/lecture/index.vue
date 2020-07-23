@@ -88,10 +88,12 @@ export default {
         }
     },
     created(){
-        this.$axios.get(`subjects/${this.$route.params.id}/lectures`).then(res => {
-            console.log(res)
-            this.lectures = res.data.lectures
-        })
+        console.log(this.$store.state.teacher)
+        console.log(this.$store.state.subject)
+        // this.$axios.get(`subjects/${this.$store.state.subject.id}/lectures?teacher=${this.$store.state.teacher.id}`).then(res => {
+        //     console.log(res)
+        //     this.lectures = res.data.lectures
+        // })
     },
     
 }

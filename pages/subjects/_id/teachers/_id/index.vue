@@ -19,7 +19,7 @@
            
           </div>
            <h6 class="teacher-info-div">
-                <nuxt-link :to="'/subjects/1/lectures'" style="font-family:'CustomFontBold';color: #676767;">
+                <nuxt-link :to="'/lecture'" style="font-family:'CustomFontBold';color: #676767;">
                     المحاضرات
                 </nuxt-link>
             </h6>
@@ -60,10 +60,8 @@ export default {
   created(){
     this.$axios.get(`teachers`).then(res => {
       this.teacher = res.data.find(teach => teach.id == this.$route.params.id)
-      console.log(res.data)
-      console.log(this.$route.params.id)
-      console.log(this.teacher)
       this.setTeacher()
+      console.log(this.$store.state.teacher)
     })
   },
   methods:{
