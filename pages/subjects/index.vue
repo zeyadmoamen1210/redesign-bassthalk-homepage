@@ -36,12 +36,13 @@
             color: tabIndex == 3 ? '#46a8d5' : '',
             'border-color': tabIndex == 3 ? '#46a8d5' : '',
           }"
-          @click="(tabIndex = 3)"
-          type="line"
+          
         >
-        <img v-if="tabIndex !== 3" src="../../assets/imgs/live-dark.png" alt="">
-        <img v-else src="../../assets/imgs/live-blue.png" alt="">
-        بث مباشر</button>
+        <nuxt-link to="/subjects/live">
+          <img v-if="tabIndex !== 3" src="../../assets/imgs/live-dark.png" alt="">
+          بث مباشر
+        </nuxt-link>
+        </button>
 
          <button
           :style="{
@@ -129,37 +130,7 @@
 
 
 
-      <div v-show="tabIndex == 3" class="subjects">
-        <div class="form-title">
-          <h4>
-            <img src="../../assets/imgs/noun_classroom_-1.png" alt />
-            المواد الدراسية
-          </h4>
-        </div>
-        <div class="row">
-          <div
-            class="col-md-3"
-            v-for="(subject, index) in subjects"
-            :key="index"
-          >
-            <nuxt-link :to="'/subjects/teachers'">
-              <div class="subject-cont">
-                <div class="subject-icon-img">
-                  <img :src="subject.icon" alt />
-                </div>
-                <h3>{{ subject.nameAr }}</h3>
-              </div>
-            </nuxt-link>
-          </div>
-
-          <!-- <div class="annoncment" style="width: 100%; height: 200px;">
-            <img
-              src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
-              alt
-            />
-          </div> -->
-        </div>
-      </div>
+    
 
 
        <div v-show="tabIndex == 4" class="subjects">
