@@ -77,13 +77,13 @@
               <div class="row">
                 <div class="col-md-12" style="min-height: 320px;">
                   <div v-for="(item, index) in questions" :key="index">
-                    <div class>
+                    <div class="exam-cont-item ">
                       <div>
                         <h6>{{ index + 1 }}</h6>
                       </div>
 
                       <div>
-                        <h6>السؤال الأول</h6>
+                        <h6>.</h6>
                       </div>
                     </div>
 
@@ -278,6 +278,107 @@ export default {
 <style lang="scss">
 @import '../../../assets/sass/general-exam-level.scss';
 @import '../../../assets/sass/general-exam-test.scss';
+.general-exam-content {
+  .exam-cont-item {
+    overflow: hidden;
+    > div {
+      float: right;
+
+      &:first-of-type {
+        width: 9%;
+
+        h6 {
+          color: #ddd;
+          background-color: #058ac6;
+          padding: 15px;
+          text-align: center;
+          border-radius: 0 6px 6px 0;
+        }
+      }
+      &:last-of-type {
+        width: 91%;
+
+        h6 {
+          color: #058ac6;
+          background-color: #f2f2f2;
+          padding: 15px;
+          margin: 0;
+          border-radius: 6px 0 0 6px;
+        }
+      }
+    }
+  }
+  .check-box-ques {
+    span {
+      display: block;
+      width: 34px;
+      float: right;
+      font-size: 18px;
+      font-family: 'CustomFontMedium';
+      padding-top: 3px;
+      margin: 0 6px;
+    }
+    > img {
+      width: 100%;
+      height: 207px;
+      margin-bottom: 34px;
+      box-shadow: 0px 1px 10px -1px #ddd;
+      border-radius: 17px;
+    }
+    h6 {
+      margin-bottom: 15px;
+      color: 20px;
+      margin-top: 22px;
+      color: #898989;
+    }
+    .ques-answer-btns {
+      button {
+        padding: 14px;
+        width: 100%;
+        text-align: center;
+        background: #fff;
+        border: 0;
+        box-shadow: 0px 0px 10px 1px #ddd;
+        border-radius: 10px;
+        font-family: 'CustomFontRegular';
+        font-weight: bold;
+        color: #333;
+        font-size: 16px;
+      }
+    }
+    .file-choose {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      margin-top: 13px;
+      input[type='file'] {
+        position: absolute;
+        width: 100%;
+        /* visibility: hidden; */
+        opacity: 0;
+        height: 100%;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      span {
+        border: 1px dashed #444444;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: #fff;
+        z-index: -1;
+        margin: 10px 0;
+        height: 100%;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 15px;
+        line-height: 186px;
+        color: #444444;
+      }
+    }
+  }
+}
 .absthalk-radio {
   -webkit-appearance: none;
   width: 10px;

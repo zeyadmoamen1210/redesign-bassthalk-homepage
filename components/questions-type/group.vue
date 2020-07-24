@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-md-12" style="min-height: 320px;">
         <div v-for="(item, index) in childrenQuestions" :key="index">
-          <div class>
+          <!-- <div class="exam-cont-item">
             <div>
               <h6>{{ index + 1 }}</h6>
             </div>
@@ -16,7 +16,7 @@
             <div>
               <h6>السؤال الأول</h6>
             </div>
-          </div>
+          </div> -->
 
           <truefalse
             :answer="item.answer"
@@ -77,3 +77,37 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.exam-cont-item{
+    overflow: hidden;
+    > div {
+      float: right;
+
+      &:first-of-type {
+        width: 9%;
+
+        h6 {
+          color: #ddd;
+          background-color: #058ac6;
+          padding: 15px;
+          text-align: center;
+          border-radius: 0 6px 6px 0;
+        }
+      }
+      &:last-of-type {
+        width: 91%;
+
+        h6 {
+          color: #058ac6;
+          background-color: #f2f2f2;
+          padding: 15px;
+          margin: 0;
+          border-radius: 6px 0 0 6px;
+        }
+      }
+    }
+  }
+ 
+
+</style>
