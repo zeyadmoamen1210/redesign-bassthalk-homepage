@@ -1,56 +1,26 @@
 <template>
   <div>
     <div class="container">
-      <div class="login">
+      <Loading v-if="isLoading" />
+
+      <div class="login" v-else>
         <div class="form-title">
           <h4>تحديد المسار</h4>
         </div>
         <form @submit.prevent>
           <div class="first-select">
             <h6>حدد نظام التعليم</h6>
-            <!--
-            <select class="custom-select-lg mb-3" @change="systemChange()" v-model="form.system">
-              <option value>حدد نظام التعليم</option>
 
-              <option
-                v-for="(system, index) in systems"
-                :key="index"
-                :value="system.id"
-                >{{ system.nameAr }}</option
-              >
-            </select>
-            -->
             <v-select v-model="form.system" label="nameAr" @input="systemChange" :options="systems"></v-select>
           </div>
           <div class="first-select">
             <h6>اختر المرحلة الدراسية</h6>
-            <!--
-            <select class="custom-select-lg mb-3" @change="levelChange()" v-model="form.level">
-              <option value>حدد المرحلة</option>
-              
-              <option
-                v-for="(level, index) in levels"
-                :key="index"
-                :value="level.id"
-                >{{ level.nameAr }}</option
-              >
-            </select>
-            -->
+
             <v-select v-model="form.level" @input="levelChange" label="nameAr" :options="levels"></v-select>
           </div>
           <div class="first-select">
             <h6>اختر الصف الدراسي</h6>
-            <!--
-            <select class="custom-select-lg mb-3">
-              <option value>حدد الصف</option>
-              <option
-                v-for="(item, index) in classes"
-                :key="index"
-                :value="item.id"
-                >{{ item.nameAr }}</option
-              >
-            </select>
-            -->
+
             <v-select v-model="form.class" label="nameAr" :options="classes"></v-select>
           </div>
           <div class="first-select">
@@ -78,8 +48,14 @@
 </template>
 
 <script>
+import Loading from '@/components/Loading'
+
 export default {
   middleware: 'auth-student',
+  name: 'SetStudentPath',
+  components: {
+    Loading,
+  },
 
   data() {
     return {
@@ -141,13 +117,12 @@ export default {
       this.$axios
         .put(`students/path`, pathData)
         .then((res) => {
-          this.isLoading = false
           this.$router.push({ path: '/subjects' })
         })
         .catch((err) => {
-          this.isLoading = false
           console.log(err)
         })
+        .finally(() => (this.isLoading = false))
     },
   },
 }
