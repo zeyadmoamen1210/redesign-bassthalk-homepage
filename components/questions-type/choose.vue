@@ -5,11 +5,17 @@
 
     <div class="ques-answer-btns">
       <div class="row">
-        <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
+        <div
+          class="col-md-3"
+          v-for="(item, index) in question.choices"
+          :key="index"
+        >
           <button
             @click="answer = index"
             :class="{ selected: answer == index }"
-          >{{ question.choices[index] }}</button>
+          >
+            {{ question.choices[index] }}
+          </button>
         </div>
       </div>
     </div>
@@ -28,9 +34,6 @@ export default {
       required: true,
     },
     answer: {
-      required: true,
-    },
-    exam_id: {
       required: true,
     },
   },

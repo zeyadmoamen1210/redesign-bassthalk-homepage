@@ -7,7 +7,7 @@
 
     <div class="form-groub">
       <input
-        style="width:100%;padding: 18px;"
+        style="width: 100%; padding: 18px;"
         @blur="setAnswer"
         v-model="answerData"
         type="text"
@@ -16,17 +16,21 @@
     </div>
 
     <div class="file-choose">
-      <input @change="imguploadQuestion" type="file" placeholder="قم بأرفاق صورة بالحل" />
+      <input
+        @change="imguploadQuestion"
+        type="file"
+        placeholder="قم بأرفاق صورة بالحل"
+      />
       <span v-if="url">
         <img :src="url" width="300" height="150" />
       </span>
       <span v-else>
-        <img src="../../assets/imgs/noun_Camera_1903011.png" /> قم بأرفاق صورة بالحل
+        <img src="../../assets/imgs/noun_Camera_1903011.png" /> قم بأرفاق صورة
+        بالحل
       </span>
     </div>
   </div>
 </template>
-
 
 <script>
 import selectedImg from '../selectedImg'
@@ -43,9 +47,6 @@ export default {
       required: true,
     },
     answerImage: {
-      required: true,
-    },
-    exam_id: {
       required: true,
     },
   },
