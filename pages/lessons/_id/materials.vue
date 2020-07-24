@@ -10,13 +10,13 @@
                   <div class="col-md-6">
                     <h6 class="subject-name">
                       <img src="../../../assets/imgs/laboratory-1.png" alt />
-                      {{lessonData.unit.nameAr}}
+                      {{ lessonData.unit.nameAr }}
                     </h6>
                   </div>
                   <div class="col-md-6">
                     <div class="unit lesson-unit">
                       <!-- <span>1</span> -->
-                      <h6>{{lessonData.nameAr}}</h6>
+                      <h6>{{ lessonData.nameAr }}</h6>
                     </div>
                   </div>
                 </div>
@@ -69,12 +69,19 @@
             <swiper class="swiper" :options="swiperOption">
               <swiper-slide v-for="(video, index) in videos" :key="index">
                 <div class="video-cart" style="position:relative">
-                  <div class="video-cart-blur" style="position: absolute;top:0;left:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.8);content: '';z-index: 2;">
+                  <div
+                    class="video-cart-blur"
+                    style="position: absolute;top:0;left:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.8);content: '';z-index: 2;"
+                  >
                     <div style="position:relative;width:100%;height:100%">
-                      <i style="position: absolute;color: rgb(255, 255, 255);top: 50%;left: 50%;transform: translate(-50%,-50%);font-size: 39px;" class="fas fa-play"></i>
+                      <i
+                        style="position: absolute;color: rgb(255, 255, 255);top: 50%;left: 50%;transform: translate(-50%,-50%);font-size: 39px;"
+                        class="fas fa-play"
+                      ></i>
                     </div>
                   </div>
                   <iframe
+                    class="video-iframe"
                     width="550"
                     height="290"
                     :src="video.embed"
@@ -90,23 +97,34 @@
             </swiper>
             <div class="col-md-12">
               <button type="button" class="fullWidthBtn" @click="modelRate = true">أبدء الأختبار</button>
+              <button @click="showLessonExams" class="fullWidthBtn">أبدء الأختبار</button>
             </div>
             <!-- @click="showLessonExams"  -->
 
             <!-- Button trigger modal -->
 
-              <div class="col-md-12" v-if="modelRate">
-                <div class="model-rating" style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;padding: 13px 10px;border: 1px dashed #0989c3;margin-top: 14px;">
-                  <h5 style="color:#0989c3"> هل فهمت الدرس ؟ </h5>
-                  <button @click="rate = 0" style="background:none;border:none;outline:none"> <img style="width:100%;" src="../../../assets/imgs/smile.png" alt=""> </button>
-                  <button @click="rate = 1" style="background:none;border:none;outline:none"> <img style="width:100%;" src="../../../assets/imgs/sad.png" alt=""> </button>
-                  <div>
-                    <span  v-for="x in 5"> <button @click="rateing(x)"> <i class="fas fa-star"></i> </button> </span>
-                  </div>
-                  <button  class="fullWidthBtn" > استمرار </button>
+            <div class="col-md-12" v-if="modelRate">
+              <div
+                class="model-rating"
+                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;padding: 13px 10px;border: 1px dashed #0989c3;margin-top: 14px;"
+              >
+                <h5 style="color:#0989c3">هل فهمت الدرس ؟</h5>
+                <button @click="rate = 0" style="background:none;border:none;outline:none">
+                  <img style="width:100%;" src="../../../assets/imgs/smile.png" alt />
+                </button>
+                <button @click="rate = 1" style="background:none;border:none;outline:none">
+                  <img style="width:100%;" src="../../../assets/imgs/sad.png" alt />
+                </button>
+                <div>
+                  <span v-for="x in 5">
+                    <button @click="rateing(x)">
+                      <i class="fas fa-star"></i>
+                    </button>
+                  </span>
                 </div>
+                <button class="fullWidthBtn">استمرار</button>
               </div>
-            
+            </div>
 
             <!-- <div class="col-md-6" v-for="(video, index) in videos" :key="index">
               <div class="video-cart">
@@ -327,14 +345,14 @@ export default {
     console.log('moment locale', this.$moment.locale())
   },
   methods: {
-    rateing(x){
+    rateing(x) {
       this.rating = x
     },
-    rateVideo(){
+    rateVideo() {
       this.$axios.post(`/lessons/${this.$route.params.id}/rate`, {
         flag: this.rate,
         rating: this.rating,
-        lastVideo: 1
+        lastVideo: 1,
       })
     },
     showLessonExams() {
@@ -504,6 +522,9 @@ export default {
 </script>
 
 <style lang="scss">
+.video-iframe {
+  pointer-events: none;
+}
 .img-section-slide {
   position: fixed;
   top: 100px;
@@ -597,15 +618,15 @@ export default {
     background: rgba(0, 0, 0, 0.36);
   }
 }
-.another-videos{
-  .video-cart{
+.another-videos {
+  .video-cart {
     position: relative;
-    .video-cart-blur{
+    .video-cart-blur {
       position: absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: rgba(0, 0, 0, 0.5);
       content: '';
       z-index: 2;
@@ -641,7 +662,6 @@ export default {
     padding: 9px 10px 2px 9px;
     margin: 10px 0;
     position: relative;
-    
   }
   .title {
     h5 {
