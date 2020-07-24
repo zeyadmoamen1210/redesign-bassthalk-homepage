@@ -68,7 +68,12 @@
           <div class="row">
             <swiper class="swiper" :options="swiperOption">
               <swiper-slide v-for="(video, index) in videos" :key="index">
-                <div class="video-cart">
+                <div class="video-cart" style="position:relative">
+                  <div class="video-cart-blur" style="position: absolute;top:0;left:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.8);content: '';z-index: 2;">
+                    <div style="position:relative;width:100%;height:100%">
+                      <i style="position: absolute;color: rgb(255, 255, 255);top: 50%;left: 50%;transform: translate(-50%,-50%);font-size: 39px;" class="fas fa-play"></i>
+                    </div>
+                  </div>
                   <iframe
                     width="550"
                     height="290"
@@ -84,8 +89,25 @@
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
             <div class="col-md-12">
-              <button @click="showLessonExams" class="fullWidthBtn">أبدء الأختبار</button>
+              <button type="button" class="fullWidthBtn" @click="modelRate = true">أبدء الأختبار</button>
             </div>
+            <!-- @click="showLessonExams"  -->
+
+            <!-- Button trigger modal -->
+
+              <div class="col-md-12" v-if="modelRate">
+                <div class="model-rating" style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;padding: 13px 10px;border: 1px dashed #0989c3;margin-top: 14px;">
+                  <h5 style="color:#0989c3"> هل فهمت الدرس ؟ </h5>
+                  <button @click="rate = 0" style="background:none;border:none;outline:none"> <img style="width:100%;" src="../../../assets/imgs/smile.png" alt=""> </button>
+                  <button @click="rate = 1" style="background:none;border:none;outline:none"> <img style="width:100%;" src="../../../assets/imgs/sad.png" alt=""> </button>
+                  <div>
+                    <span  v-for="x in 5"> <button @click="rateing(x)"> <i class="fas fa-star"></i> </button> </span>
+                  </div>
+                  <button  class="fullWidthBtn" > استمرار </button>
+                </div>
+              </div>
+            
+
             <!-- <div class="col-md-6" v-for="(video, index) in videos" :key="index">
               <div class="video-cart">
                 <iframe width="520" height="290" :src="video.embed" frameborder="0" allowfullscreen></iframe>
@@ -265,9 +287,11 @@ export default {
   },
   data() {
     return {
+      modelRate: false,
       videos: [],
       selectedVideoComments: [],
       pdfs: [],
+      rating: 1,
       showVideos: true,
       imgShow: false,
       url: '',
@@ -303,6 +327,16 @@ export default {
     console.log('moment locale', this.$moment.locale())
   },
   methods: {
+    rateing(x){
+      this.rating = x
+    },
+    rateVideo(){
+      this.$axios.post(`/lessons/${this.$route.params.id}/rate`, {
+        flag: this.rate,
+        rating: this.rating,
+        lastVideo: 1
+      })
+    },
     showLessonExams() {
       this.$router.push({ path: `/lessons/${this.$route.params.id}/exams` }) // -> /user/123
     },
@@ -563,7 +597,20 @@ export default {
     background: rgba(0, 0, 0, 0.36);
   }
 }
-.another-videos {
+.another-videos{
+  .video-cart{
+    position: relative;
+    .video-cart-blur{
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0, 0, 0, 0.5);
+      content: '';
+      z-index: 2;
+    }
+  }
   .swiper-container {
     padding-top: 40px !important;
     padding-bottom: 26px;
@@ -593,6 +640,8 @@ export default {
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
     padding: 9px 10px 2px 9px;
     margin: 10px 0;
+    position: relative;
+    
   }
   .title {
     h5 {
