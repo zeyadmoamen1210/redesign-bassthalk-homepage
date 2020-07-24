@@ -106,6 +106,8 @@ export default {
         .put(`students/path`, pathData)
         .then((res) => {
           this.isLoading = false
+          this.$snotify.success(`تم تحديث المسار الدراسي بنجاح`)
+
           this.$router.push({ path: '/subjects' })
         })
         .catch((err) => {
