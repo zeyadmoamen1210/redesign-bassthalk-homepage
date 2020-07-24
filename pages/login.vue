@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="container">
-      <div class="login">
+      <Loading v-if="isLoading" />
+      <div class="login" v-else>
         <div class="form-title">
           <h4>
             <img src="../assets/imgs/noun_User_-2.png" alt />
@@ -49,13 +50,17 @@
 
 <script>
 import * as Cookies from 'js-cookie'
+import Loading from '@/components/Loading'
 
 export default {
   middleware: 'guest',
 
-  components: {},
+  components: {
+    Loading,
+  },
   data() {
     return {
+      isLoading: false,
       form: {
         email: 'samehmourad05@gmail.com',
         password: '123456',
@@ -77,16 +82,20 @@ export default {
   },
   methods: {
     async login() {
-      
+      this.isLoading = true
       try {
         let response = await this.$auth.loginWith('local', {
           data: this.form,
         })
+        this.isLoading = false
         Cookies.set('account', JSON.stringify(response.data), { expires: 365 })
         this.$router.push({ path: '/subjects' })
-        // this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`)
+
+        this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`)
       } catch (err) {
-        // this.$snotify.error(`عفوا من فضلك تاكد من اسم المستخدم وكلمة المرور`)
+        this.isLoading = false
+
+        this.$snotify.error(`عفوا من فضلك تاكد من اسم المستخدم وكلمة المرور`)
         console.log(err)
       }
     },

@@ -54,7 +54,9 @@
         </div>
       </div>
     </div>
-    <div v-if="showVideos" key="1">
+    <Loading v-if="isLoading" />
+
+    <div v-else-if="showVideos&&!isloading">
       <div class="frame-container" v-if="videos.length > 0" style="text-align: center;">
         <iframe width="853" height="480" :src="selectedVideo.embed" frameborder="0" allowfullscreen></iframe>
       </div>
@@ -70,6 +72,7 @@
               <swiper-slide  v-for="(video, index) in videos" :key="index">
                 <div class="video-cart" style="position:relative">
                   <div
+                    @click="previewVideo(video)"
                     class="video-cart-blur"
                     style="position: absolute;top:0;left:0;width:100%;height:100%;background: rgba(0, 0, 0, 0.8);content: '';z-index: 2;"
                   >
@@ -277,11 +280,11 @@
     </div>
     <div class="container" v-else key="2">
       <div class="row" v-if="pdfs.length > 0">
-        <FilePdf v-for="(pdf, index) in pdfs" :key="index" :title="pdf.title" :link="pdf.link">
+        <FilePdf v-for="(pdf, index) in pdfs" :key="index" :file="pdf">
           <div class="pdf-icon" slot="overlay-pdf-slot">
             <i class="fas fa-chalkboard-teacher"></i>
             <!-- <a :href="pdf.link" target="_blank"> -->
-            <button slot="video-edit-button">
+            <button slot="video-edit-button" @click="previewPdf(pdf.link)">
               <i class="fas fa-edit"></i> عرض
             </button>
 
@@ -296,18 +299,23 @@
 <script>
 import VideoCard from '../../../components/material/video'
 import FilePdf from '../../../components/material/FilePdf'
+import Loading from '@/components/Loading'
+
 export default {
   middleware: 'auth-student',
 
   components: {
     VideoCard,
     FilePdf,
+    Loading,
   },
   data() {
     return {
+      isLoading: false,
       modelRate: false,
       videos: [],
       selectedVideoComments: [],
+      selectedVideo: null,
       pdfs: [],
       rating: 1,
       showVideos: true,
@@ -322,10 +330,11 @@ export default {
       replyPhoto: null,
 
       swiperOption: {
+        // initialSlide: 0,
         slidesPerView: 2,
         spaceBetween: 10,
         slidesPerGroup: 2,
-        loop: true,
+        // loop: true,
         loopFillGroupWithBlank: true,
         pagination: {
           el: '.swiper-pagination',
@@ -344,7 +353,20 @@ export default {
     console.log('moment', this.$moment('2020-06-29T02:37:12.641Z').fromNow())
     console.log('moment locale', this.$moment.locale())
   },
+  watch: {
+    // selectedVideo: function (val) {
+    //   alert(val.id)
+    //   this.getSelectedVideoComments()
+    // },
+  },
   methods: {
+    previewVideo(video) {
+      this.selectedVideo = video
+      this.getSelectedVideoComments()
+    },
+    previewPdf(link) {
+      window.open(link)
+    },
     rateing(x) {
       this.rating = x
     },
@@ -456,6 +478,7 @@ export default {
         })
     },
     getSelectedVideoComments() {
+      this.isLoading = true
       this.$axios
         .get(`videos/${this.selectedVideo.id}/comments`)
         .then((res) => {
@@ -468,6 +491,7 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+        .finally(() => (this.isLoading = false))
     },
     getPdfs() {
       this.$axios
