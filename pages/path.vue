@@ -20,12 +20,7 @@
               >
             </select>
             -->
-            <v-select
-              v-model="form.system"
-              label="nameAr"
-              @input="systemChange"
-              :options="systems"
-            ></v-select>
+            <v-select v-model="form.system" label="nameAr" @input="systemChange" :options="systems"></v-select>
           </div>
           <div class="first-select">
             <h6>اختر المرحلة الدراسية</h6>
@@ -41,12 +36,7 @@
               >
             </select>
             -->
-            <v-select
-              v-model="form.level"
-              @input="levelChange"
-              label="nameAr"
-              :options="levels"
-            ></v-select>
+            <v-select v-model="form.level" @input="levelChange" label="nameAr" :options="levels"></v-select>
           </div>
           <div class="first-select">
             <h6>اختر الصف الدراسي</h6>
@@ -61,11 +51,7 @@
               >
             </select>
             -->
-            <v-select
-              v-model="form.class"
-              label="nameAr"
-              :options="classes"
-            ></v-select>
+            <v-select v-model="form.class" label="nameAr" :options="classes"></v-select>
           </div>
           <div class="first-select">
             <h6>اختر الترم</h6>
@@ -80,6 +66,7 @@
           </div>
           <input
             type="button"
+            :disabled="form.level==''||form.class==''||form.semester==''"
             @click="setLearningPath"
             value="ابدأ"
             class="basth-btn-primary"
@@ -109,7 +96,7 @@ export default {
     }
   },
   created() {
-    console.log(this.$auth.user.level)
+    // console.log(this.$auth.user.level)
     if (this.$auth.user.level > 0) {
       this.$router.push({ path: '/subjects' })
     }
@@ -146,8 +133,13 @@ export default {
     },
     setLearningPath() {
       this.isLoading = true
+      let pathData = {
+        level: this.form.level.id,
+        class: this.form.class.id,
+        semester: this.form.semester.code,
+      }
       this.$axios
-        .put(`students/path`, this.form)
+        .put(`students/path`, pathData)
         .then((res) => {
           this.isLoading = false
           this.$router.push({ path: '/subjects' })
