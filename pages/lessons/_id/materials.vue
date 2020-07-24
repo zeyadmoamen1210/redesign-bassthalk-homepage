@@ -67,7 +67,7 @@
 
           <div class="row">
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide v-for="(video, index) in videos" :key="index">
+              <swiper-slide  v-for="(video, index) in videos" :key="index">
                 <div class="video-cart" style="position:relative">
                   <div
                     class="video-cart-blur"
