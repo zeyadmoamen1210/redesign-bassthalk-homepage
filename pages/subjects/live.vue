@@ -79,7 +79,7 @@ export default {
 <style lang="scss">
 @import '../../assets/sass/subject-dynamic.scss';
 .subjects{
-  margin-top: 20px !important;
+      margin-top: 99px !important;
 }
 .subjects-navbar{
   margin-top: 30px;
