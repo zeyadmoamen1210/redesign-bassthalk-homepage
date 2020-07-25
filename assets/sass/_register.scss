@@ -1,141 +1,158 @@
 .register {
-    margin: 100px auto;
-    input ,.custom-select{
-      margin: 10px 0;
-    }
-    .form-bottom {
-      width: 35%;
-      margin: 25px auto;
-    }
-    .forget-pass {
+  margin: 100px auto;
+
+  input,
+  .custom-select {
+    margin: 10px 0;
+  }
+
+  .form-bottom {
+    width: 35%;
+    margin: 25px auto;
+  }
+
+  .forget-pass {
+    text-align: left;
+
+    a {
       text-align: left;
-      a {
-        text-align: left;
+      font-family: 'CustomFontRegular';
+    }
+  }
+
+  .form-title {
+    h4 {
+      margin: 25px 0;
+      text-align: center;
+    }
+  }
+
+  .two-way {
+    text-align: center;
+    margin-top: 13px;
+    margin-bottom: 13px;
+
+    h6 {
+      margin-bottom: 13px;
+      text-align: center;
+    }
+
+    img {
+      margin: 0 10px;
+    }
+  }
+
+  .dont-have-acc {
+    >div {
+      display: inline-block;
+
+      h6 {
+        display: inline-block;
+      }
+
+      button {
+        padding: 7px 13px;
+        background: #fff;
+        border: 1px solid #058ac6bd;
+        color: #058ac6bd;
         font-family: 'CustomFontRegular';
       }
     }
-    .form-title {
-      h4 {
-        margin: 25px 0;
-        text-align: center;
-      }
-    }
-    .two-way {
-      text-align: center;
-      margin-top: 13px;
-      margin-bottom: 13px;
-      h6 {
-        margin-bottom: 13px;
-        text-align: center;
-      }
-      img {
-        margin: 0 10px;
-      }
-    }
-    .dont-have-acc {
-      > div {
-        display: inline-block;
-        h6 {
-          display: inline-block;
-        }
-        button {
-          padding: 7px 13px;
-          background: #fff;
-          border: 1px solid #058ac6bd;
-          color: #058ac6bd;
-          font-family: 'CustomFontRegular';
-        }
-      }
-    }
-    
   }
-  .varifiy{
-      .varified{
-        margin: auto;
-      margin-top: 75px;
-       .dont-have-acc {
-         overflow: hidden;
-      > div {
+}
+
+.varifiy {
+  .varified {
+    margin: auto;
+    margin-top: 75px;
+
+    .dont-have-acc {
+      overflow: hidden;
+
+      >div {
         float: right;
         width: 50%;
+
         h6 {
           display: inline-block;
           padding-top: 10px;
         }
-  
-       
       }
     }
-      }
-    }
-  // Extra small devices (portrait phones, less than 576px)
-  @media (max-width: 575.98px) {
-    .register {
-      padding-top: 60px;
-    }
-    .register .form-bottom {
-      width: 88%;
-    }
-    .register .dont-have-acc > div button {
-      text-align: center;
-    }
-    .register .dont-have-acc > div h6 {
-      margin: 0;
-    }
-    .register .dont-have-acc > div {
-      display: block;
-      text-align: center;
-    }
-    .varifiy .varified {
-      margin-top: 190px !important;
   }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .register {
+    padding-top: 60px;
   }
-  
-  // Small devices (landscape phones, 576px and up)
-  @media (min-width: 576px) and (max-width: 767.98px) {
-    .register {
-      padding-top: 60px;
-    }
-    .varifiy .varified {
-      margin-top: 190px !important;
+
+  .register .form-bottom {
+    width: 88%;
   }
+
+  .register .dont-have-acc>div button {
+    text-align: center;
   }
-  
-  // Medium devices (tablets, 768px and up)
-  @media (min-width: 768px) and (max-width: 991.98px) {
-    .register .dont-have-acc > div h6 {
-      margin: 0;
-    }
+
+  .register .dont-have-acc>div h6 {
+    margin: 0;
   }
-  
-  // Large devices (desktops, 992px and up)
-  @media (min-width: 992px) and (max-width: 1199.98px) {
+
+  .register .dont-have-acc>div {
+    display: block;
+    text-align: center;
   }
-  
-  // Extra large devices (large desktops, 1200px and up)
-  @media (min-width: 1200px) {
+
+  .varifiy .varified {
+    margin-top: 190px !important;
   }
-  
-  
-  
-  
-  .react-code-input-container[data-v-e1087700]{
-    margin: auto !important;
-        width: 100% !important;
-    input{
-      padding: 24px 11px;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .register {
+    padding-top: 60px;
+  }
+
+  .varifiy .varified {
+    margin-top: 190px !important;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .register .dont-have-acc>div h6 {
+    margin: 0;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+
+.react-code-input-container[data-v-e1087700] {
+  margin: auto !important;
+  width: 100% !important;
+
+  input {
+    padding: 24px 11px;
     box-shadow: 0px 1px 10px 1px #DDD;
-      border: 0;
-      border-radius: 7px;
-      direction: ltr !important;
-    }
-    .react-code-input{
-          direction: ltr !important;
-      margin: auto;
-      text-align: center;
-    }
-   
-    .react-code-input>input[data-v-e1087700]{
-      margin: 0 6px !important;
-    }
+    border: 0;
+    border-radius: 7px;
+    direction: ltr !important;
   }
+
+  .react-code-input {
+    direction: ltr !important;
+    margin: auto;
+    text-align: center;
+  }
+
+  .react-code-input>input[data-v-e1087700] {
+    margin: 0 6px !important;
+  }
+}

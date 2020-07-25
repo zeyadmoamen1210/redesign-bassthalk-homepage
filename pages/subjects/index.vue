@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-<!-- 
+      <!-- 
        <div class="subjects-navbar" style="text-align:center">
          <button
           :style="{
@@ -55,31 +55,26 @@
         >
         <img src="../../assets/imgs/noun_knowledge_2042727.png" alt="">
         المتفوقين</button>
-       </div> -->
-
+      </div>-->
 
       <div v-show="tabIndex == 1" class="subjects">
         <div class="form-title">
           <!-- <h4>
             <img src="../../assets/imgs/noun_classroom_-1.png" alt />
             المواد الدراسية
-          </h4> -->
+          </h4>-->
           <div class="head-who">
-              <span></span>
-              <span></span>
-              <span></span>
-              <h3>المواد الدراسية</h3>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            <span></span>
+            <span></span>
+            <span></span>
+            <h3>المواد الدراسية</h3>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
         <div class="row">
-          <div
-            class="col-md-3"
-            v-for="(subject, index) in subjects"
-            :key="index"
-          >
+          <div class="col-md-3" v-for="(subject, index) in subjects" :key="index">
             <nuxt-link :to="'/subjects/' + subject.id + '/units'">
               <div class="subject-cont">
                 <div class="subject-icon-img">
@@ -95,13 +90,11 @@
               src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
               alt
             />
-          </div> -->
+          </div>-->
         </div>
       </div>
 
-
-
-<!-- 
+      <!-- 
 
       <div v-show="tabIndex == 2" class="subjects">
         <div class="form-title">
@@ -124,20 +117,18 @@
                 <h3>{{ subject.nameAr }}</h3>
               </div>
             </nuxt-link>
-          </div> -->
+      </div>-->
 
-          <!-- <div class="annoncment" style="width: 100%; height: 200px;">
+      <!-- <div class="annoncment" style="width: 100%; height: 200px;">
             <img
               src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
               alt
             />
-          </div> -->
-        <!-- </div>
-      </div> -->
+      </div>-->
+      <!-- </div>
+      </div>-->
 
-
-
-<!-- 
+      <!-- 
 
     
 
@@ -163,18 +154,16 @@
                 <h3>{{ subject.nameAr }}</h3>
               </div>
             </nuxt-link>
-          </div> -->
+      </div>-->
 
-          <!-- <div class="annoncment" style="width: 100%; height: 200px;">
+      <!-- <div class="annoncment" style="width: 100%; height: 200px;">
             <img
               src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
               alt
             />
-          </div> -->
-        <!-- </div>
-      </div> -->
-
-
+      </div>-->
+      <!-- </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -186,7 +175,7 @@ export default {
   data() {
     return {
       subjects: [],
-      tabIndex: 1
+      tabIndex: 1,
     }
   },
   created() {
@@ -203,7 +192,6 @@ export default {
           this.isLoading = false
           this.subjects = res.data
           console.log(res)
-
         })
         .catch((err) => {
           this.isLoading = false
@@ -216,52 +204,48 @@ export default {
 
 <style lang="scss">
 @import '../../assets/sass/subject-dynamic.scss';
-@import '../../assets/sass/best-student.scss';
-.subjects{
+.subjects {
   margin-top: 20px !important;
 }
-.subjects-navbar{
+.subjects-navbar {
   margin-top: 30px;
-  button{
-    font-family: "CustomFontMedium";
+  button {
+    font-family: 'CustomFontMedium';
     background: none;
     border: none;
     margin-top: 20px;
     box-shadow: 0px 1px 21px 0px #ddd;
-    img{
+    img {
       display: block;
-      margin:auto
+      margin: auto;
     }
   }
 }
 
-
-.form-title{
-  .head-who{
-    h3{
-          margin-right: 53px;
-          color:#333;
+.form-title {
+  .head-who {
+    h3 {
+      margin-right: 53px;
+      color: #333;
     }
-    
   }
-.head-who span:nth-of-type(4) {
+  .head-who span:nth-of-type(4) {
     top: 10px;
     left: 6px;
-}
+  }
 
-.head-who span:nth-of-type(3) {
+  .head-who span:nth-of-type(3) {
     top: 13px;
     left: -16px;
     height: 14px;
     width: 15px;
-}
+  }
 
-.head-who span:nth-of-type(2) {
+  .head-who span:nth-of-type(2) {
     width: 12px;
     height: 12px;
     top: 13px;
     left: -37px;
+  }
 }
-}
-
 </style>
