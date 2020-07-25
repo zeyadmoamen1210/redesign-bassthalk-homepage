@@ -60,10 +60,19 @@
 
       <div v-show="tabIndex == 1" class="subjects">
         <div class="form-title">
-          <h4>
+          <!-- <h4>
             <img src="../../assets/imgs/noun_classroom_-1.png" alt />
             المواد الدراسية
-          </h4>
+          </h4> -->
+          <div class="head-who">
+              <span></span>
+              <span></span>
+              <span></span>
+              <h3>المواد الدراسية</h3>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
         </div>
         <div class="row">
           <div
@@ -207,6 +216,7 @@ export default {
 
 <style lang="scss">
 @import '../../assets/sass/subject-dynamic.scss';
+@import '../../assets/sass/best-student.scss';
 .subjects{
   margin-top: 20px !important;
 }
@@ -224,4 +234,34 @@ export default {
     }
   }
 }
+
+
+.form-title{
+  .head-who{
+    h3{
+          margin-right: 53px;
+          color:#333;
+    }
+    
+  }
+.head-who span:nth-of-type(4) {
+    top: 10px;
+    left: 6px;
+}
+
+.head-who span:nth-of-type(3) {
+    top: 13px;
+    left: -16px;
+    height: 14px;
+    width: 15px;
+}
+
+.head-who span:nth-of-type(2) {
+    width: 12px;
+    height: 12px;
+    top: 13px;
+    left: -37px;
+}
+}
+
 </style>
