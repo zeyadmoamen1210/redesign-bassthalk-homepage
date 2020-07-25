@@ -603,14 +603,16 @@ export default {
     },
     getBestStudents() {
       // /classes/5/rank
-      this.isLoading = true
-      this.$axios
-        .get(`classes/${this.$auth.user.class.id}/rank`)
-        .then((res) => {
-          this.students = res.data
-          console.log(res)
-        })
-        .finally(() => (this.isLoading = false))
+      if (this.$auth.loggedIn) {
+        this.isLoading = true
+        this.$axios
+          .get(`classes/${this.$auth.user.class.id}/rank`)
+          .then((res) => {
+            this.students = res.data
+            console.log(res)
+          })
+          .finally(() => (this.isLoading = false))
+      }
     },
   },
   filters: {
