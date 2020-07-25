@@ -86,10 +86,19 @@
               >
                 <ul style="list-style:none;padding-right:0;">
                   <li>
-                    <nuxt-link to="/"> <i class="fas fa-user-alt"></i>تعديل البيانات</nuxt-link>
+                    <nuxt-link to="/profile/edit">
+                      <i class="fas fa-user-alt"></i>تعديل البيانات
+                    </nuxt-link>
                   </li>
                   <li>
-                    <a @click="logout"> <i class="fas fa-sign-out-alt"></i>تسجيل الخروج</a>
+                    <nuxt-link to="/edit-path">
+                      <i class="fas fa-user-alt"></i>تعديل المسار
+                    </nuxt-link>
+                  </li>
+                  <li>
+                    <a @click="logout">
+                      <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
+                    </a>
                   </li>
                   <!-- <li>
                     <nuxt-link to>تسجيل الخروج</nuxt-link>
@@ -121,25 +130,25 @@
 
         <div class="dropdown">
           <ul>
-             <li>
-                  <nuxt-link
-                    to="/"
-                    :class="{ active: isRouteActive }"
-                    exact-active-class="active"
-                  >الرئيسية</nuxt-link>
-                </li>
+            <li>
+              <nuxt-link
+                to="/"
+                :class="{ active: isRouteActive }"
+                exact-active-class="active"
+              >الرئيسية</nuxt-link>
+            </li>
 
             <li>
-                  <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
-                </li>
+              <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
+            </li>
 
-                <li>
-                  <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
-                </li>
+            <li>
+              <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
+            </li>
 
-                <li>
-                  <nuxt-link exact-active-class="active" to="/info-bank">بنك المعرفة</nuxt-link>
-                </li>
+            <li>
+              <nuxt-link exact-active-class="active" to="/info-bank">بنك المعرفة</nuxt-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -267,9 +276,9 @@ export default {
   .droped {
     background: #fbfbfb;
     border-radius: 0 0 15px 15px;
-    i{
-          font-size: 13px;
-    margin-left: 7px;
+    i {
+      font-size: 13px;
+      margin-left: 7px;
     }
     ul {
       li {
@@ -335,7 +344,6 @@ export default {
     top: 0;
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
-    
   }
   .tests-level {
     margin-top: 120px;
@@ -402,7 +410,6 @@ export default {
     top: 0;
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
-    
   }
   .navbar-before {
     .navlinks {
