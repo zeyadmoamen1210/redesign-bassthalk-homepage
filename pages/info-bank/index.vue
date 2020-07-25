@@ -261,14 +261,15 @@ export default {
 @import '../../assets/sass/question-info-bank.scss';
 .ques-answer-btns{
   button{
-        width: 100%;
+         width: 100%;
     text-align: center;
     border: none;
     padding: 7px;
-    background: #058ac6;
-    color: #FFF;
+    background: #ffffff;
+    color: #058ac6;
     border-radius: 5px;
     margin-top: 15px;
+    border: 1px solid #058ac6;
   }
 }
 // Extra small devices (portrait phones, less than 576px)
