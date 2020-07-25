@@ -27,6 +27,9 @@
                 <li>
                   <nuxt-link to>رؤيتنا</nuxt-link>
                 </li>-->
+                <li>
+                  <nuxt-link to="/subjects">المواد الدراسية</nuxt-link>
+                </li>
 
                 <li>
                   <nuxt-link to="/best-students">المتفوقين</nuxt-link>
@@ -47,11 +50,11 @@
                 <li>
                   <nuxt-link to class-active="active">شركاؤنا</nuxt-link>
                 </li>-->
-                <li>
+                <!-- <li>
                   <nuxt-link to="/links" class-active="active">
                     <a href data-custom="partnars">الصفحات</a>
                   </nuxt-link>
-                </li>
+                </li>-->
               </ul>
             </div>
           </div>
