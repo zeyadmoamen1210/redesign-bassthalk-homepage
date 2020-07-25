@@ -261,6 +261,8 @@ span:nth-of-type(6) {
 .best-sort .user-sort-item .profile-pic > img {
   width: 200px;
   text-align: center;
+
+  min-height: 200px;
 }
 .best-sort .user-sort-item .profile-pic .profile-cont h3 {
   text-align: center;
@@ -277,7 +279,7 @@ span:nth-of-type(6) {
   overflow: hidden;
   position: relative;
   // left: -55px;
-  // width: 48%;
+  width: 48%;
   transform: translate(-50%);
 }
 .best-sort .user-sort-item .profile-pic .profile-cont-point h6 {
