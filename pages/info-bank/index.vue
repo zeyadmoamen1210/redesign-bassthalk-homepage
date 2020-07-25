@@ -3,10 +3,19 @@
     <div class="container">
       <div class="bank-info">
         <div class="title">
-          <h6>
+          <!-- <h6>
             <img src="../../assets/imgs/noun_knowledge_-1.png" alt />
             بنك المعلومات
-          </h6>
+          </h6> -->
+           <div class="head-who">
+              <span></span>
+              <span></span>
+              <span></span>
+              <h3>المواد الدراسية</h3>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
         </div>
         <div class="container" v-if="selectedQuestion">
           <div class="question-bank">
@@ -265,6 +274,7 @@ export default {
 .disabled {
   pointer-events: none;
 }
+@import '../../assets/sass/best-student.scss';
 @import '../../assets/sass/question-info-bank.scss';
 .ques-answer-btns{
   button{
@@ -329,5 +339,36 @@ export default {
   color: #fff;
   font-family: 'CustomFontBold';
   transform: translate(-50%, -50%);
+}
+
+.bank-info{
+  
+.head-who{
+    h3{
+          margin-right: 53px;
+    }
+    
+  }
+.head-who span:nth-of-type(4) {
+    top: 10px;
+    left: 6px;
+}
+
+.head-who span:nth-of-type(3) {
+    top: 13px;
+    left: -16px;
+    height: 14px;
+    width: 15px;
+}
+
+.head-who span:nth-of-type(2) {
+    width: 12px;
+    height: 12px;
+    top: 13px;
+    left: -37px;
+}
+.head-who h3 {
+    margin-right: 53px;
+}
 }
 </style>
