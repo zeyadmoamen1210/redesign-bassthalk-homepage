@@ -28,15 +28,15 @@
                   <nuxt-link to>رؤيتنا</nuxt-link>
                 </li>-->
                 <li>
-                  <nuxt-link to="/subjects">المواد الدراسية</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
                 </li>
 
                 <li>
-                  <nuxt-link to="/best-students">المتفوقين</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
                 </li>
 
                 <li>
-                  <nuxt-link to="/info-bank">بنك المعرفة</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/info-bank">بنك المعرفة</nuxt-link>
                 </li>
 
                 <!-- <li>
