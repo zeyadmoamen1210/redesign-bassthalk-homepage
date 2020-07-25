@@ -121,33 +121,25 @@
 
         <div class="dropdown">
           <ul>
-            <li>
-              <nuxt-link to :class="{ active: isRouteActive }" exact-active-class="active">الرئيسية</nuxt-link>
-            </li>
+             <li>
+                  <nuxt-link
+                    to="/"
+                    :class="{ active: isRouteActive }"
+                    exact-active-class="active"
+                  >الرئيسية</nuxt-link>
+                </li>
 
             <li>
-              <nuxt-link to>من نحن</nuxt-link>
-            </li>
+                  <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
+                </li>
 
-            <li>
-              <nuxt-link to>رؤيتنا</nuxt-link>
-            </li>
+                <li>
+                  <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
+                </li>
 
-            <li>
-              <nuxt-link to>المتفوقين</nuxt-link>
-            </li>
-
-            <li>
-              <nuxt-link to>حمل التطبيق</nuxt-link>
-            </li>
-
-            <li>
-              <nuxt-link to class-active="active">أسئلة و أجوبة</nuxt-link>
-            </li>
-
-            <li>
-              <nuxt-link to class-active="active">شركاؤنا</nuxt-link>
-            </li>
+                <li>
+                  <nuxt-link exact-active-class="active" to="/info-bank">بنك المعرفة</nuxt-link>
+                </li>
           </ul>
         </div>
       </div>
@@ -343,8 +335,7 @@ export default {
     top: 0;
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
-    padding: 10px 0;
-    height: 64px;
+    
   }
   .tests-level {
     margin-top: 120px;
@@ -411,8 +402,7 @@ export default {
     top: 0;
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
-    padding: 10px 0;
-    height: 64px;
+    
   }
   .navbar-before {
     .navlinks {
