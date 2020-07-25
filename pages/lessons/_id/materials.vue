@@ -113,12 +113,12 @@
                 class="model-rating"
                 style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
               >
-                <h5 style="color:#0989c3">هل فهمت الدرس ؟</h5>
-                <button @click="rate = 0" style="background:none;border:none;outline:none">
-                  <img style="width:100%;" src="../../../assets/imgs/smile.png" alt />
+                <h5 style="color:#0989c3;text-align: center;margin-bottom: 18px;">هل فهمت الدرس ؟</h5>
+                <button  @click="rating = 0" style="background:none;border:none;outline:none">
+                  <img :class="{selectedRate: rating == 0 ? true : false }" style="width:100%;" src="../../../assets/imgs/smile.png" alt />
                 </button>
-                <button @click="rate = 1" style="background:none;border:none;outline:none">
-                  <img style="width:100%;" src="../../../assets/imgs/sad.png" alt />
+                <button  @click="rating = 1" style="background:none;border:none;outline:none">
+                  <img :class="{selectedRate: rating == 1 ? true : false }" style="width:100%;" src="../../../assets/imgs/sad.png" alt />
                 </button>
                 <div>
                   <b-form-rating v-model="value" variant="warning" class="mb-2"></b-form-rating>
@@ -1158,5 +1158,11 @@ export default {
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+}
+
+.selectedRate{
+      background: #EEE;
+    padding: 9px;
+    border-radius: 50%;
 }
 </style>
