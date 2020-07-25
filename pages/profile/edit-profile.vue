@@ -6,7 +6,7 @@
       <div class="edit-personal-info" v-else>
         <div class="title">
           <h5>
-            <img src="../assets/imgs/noun_edit_-1.png" alt />
+            <img src="../../assets/imgs/noun_edit_-1.png" alt />
             تعديل بياناتي
           </h5>
         </div>
@@ -132,5 +132,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/sass/edit-info.scss';
+@import '../../assets/sass/edit-info.scss';
 </style>
