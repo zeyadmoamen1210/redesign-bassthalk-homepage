@@ -222,11 +222,13 @@ export default {
   }
 }
 
-.form-title {
-  .head-who {
-    h3 {
-      margin-right: 53px;
-      color: #333;
+
+.form-title{
+  .head-who{
+  width: 317px !important;
+    h3{
+          margin-right: 53px;
+          color:#333;
     }
   }
   .head-who span:nth-of-type(4) {

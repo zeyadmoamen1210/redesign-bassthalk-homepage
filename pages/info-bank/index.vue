@@ -6,16 +6,16 @@
           <!-- <h6>
             <img src="../../assets/imgs/noun_knowledge_-1.png" alt />
             بنك المعلومات
-          </h6>-->
-          <div class="head-who">
-            <span></span>
-            <span></span>
-            <span></span>
-            <h3>بنك المعرفة</h3>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          </h6> -->
+           <div class="head-who" style="width:263px">
+              <span></span>
+              <span></span>
+              <span></span>
+              <h3>بنك المعرفة</h3>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
         </div>
         <div class="container" v-if="selectedQuestion">
           <div class="question-bank">
