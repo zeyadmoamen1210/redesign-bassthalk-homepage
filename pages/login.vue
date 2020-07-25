@@ -3,7 +3,7 @@
     <div class="container">
       <Loading v-if="isLoading" />
       <!-- <ValidationObserver v-else v-slot="{ invalid }"> -->
-      <div class="login">
+      <div class="login" v-else>
         <div class="form-title">
           <h4>
             <img src="../assets/imgs/noun_User_-2.png" alt />
