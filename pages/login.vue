@@ -43,13 +43,8 @@
         <div class="forget-pass">
           <nuxt-link to>هل نسيت كلمة مرورك ؟</nuxt-link>
         </div>
-        <input
-          type="button"
-          @click="login"
-          :disabled="invalid"
-          value="تسجيل الدخول"
-          class="basth-btn-primary"
-        />
+        <!-- :disabled="invalid" -->
+        <input type="button" @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
         <div class="two-way">
           <h6>او عن طريق</h6>
           <img src="../assets/imgs/facebook.png" alt />
