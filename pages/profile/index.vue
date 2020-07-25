@@ -6,7 +6,7 @@
               <div class="col-md-5"  style="margin:auto">
                   <div class="personal-info">
                       <div style="    width: 90px;margin: auto;margin-bottom: 7px;">
-                          <img style="width:100%;height:100%" :src="$auth.user.photo" alt="">
+                          <img style="width:100%;height:100%;border-radius: 50%;border: 3px solid #058ac6;" :src="$auth.user.photo" alt="">
                       </div>
               <div>
                   <h6> الأسم: </h6>
@@ -41,6 +41,28 @@
               </div>
           </div>
               </div>
+              <div class="col-md-7">
+                   <div class="point-datails">
+        <div class="title">
+          <h5>
+            <img src="../../assets/imgs/business-1.png" alt="">
+            سجل النقاط</h5>
+        </div>
+      </div>
+          <div class="point-cont" style="margin-top: 50px;">
+        <div class="row">
+          <div class="col-md-12" v-for="x in 6" :key="x">
+            <div class="question-point-cont">
+              <span>  <span>33</span> <img  src="../../assets/imgs/point.png" alt=""></span>
+                            <h6>هنا جملة تفصيلية لسبب النقطة </h6>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+        </div>
           </div>
          </div>
       </div>
@@ -54,15 +76,19 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../assets/sass/points.scss';
+
 .profile{
     .personal-info{
         box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
         padding: 10px;
         margin-top: 50px;
         div{
-                padding: 8px;
+                &:not(:first-of-type){
+                    padding: 8px;
     background: #EEE;
     margin-bottom: 10px;
+                }
             h6{
                 display:inline-block;
                 &:last-of-type{
