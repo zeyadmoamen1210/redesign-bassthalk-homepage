@@ -23,10 +23,9 @@
                 <div class="user-sort-item">
                   <div class="profile-pic">
                     <span>
-                       <img src="../assets/imgs/second-2x.png" alt />
-                     
+                      <img src="../assets/imgs/second-2x.png" alt />
                     </span>
-                    <img style="border-radius: 50%;"  :src="students[1].user.photo" alt />
+                    <img style="border-radius: 50%;" :src="students[1].user.photo" alt />
                     <div class="profile-cont">
                       <h3>{{students[1].user.username}}</h3>
                       <!-- <h3>الصف الاول الثانوي</h3> -->
@@ -45,7 +44,7 @@
                     <span>
                       <img src="../assets/imgs/first3x.png" alt />
                     </span>
-                    <img style="border-radius: 50%;"  :src="students[0].user.photo" alt />
+                    <img style="border-radius: 50%;" :src="students[0].user.photo" alt />
                     <div class="profile-cont">
                       <h3>{{students[0].user.username}}</h3>
                       <!-- <h3>الصف الاول الثانوي</h3> -->
@@ -64,7 +63,7 @@
                     <span>
                       <img src="../assets/imgs/thired2x.png" alt />
                     </span>
-                    <img style="border-radius: 50%;"  :src="students[2].user.photo" alt />
+                    <img style="border-radius: 50%;" :src="students[2].user.photo" alt />
                     <div class="profile-cont">
                       <h3>{{students[2].user.username}}</h3>
                       <!-- <h3>الصف الاول الثانوي</h3> -->
@@ -81,8 +80,8 @@
 
           <div class="all-the-best-student">
             <div class="row">
-              <div class="col-md-6" v-for="(student,index) in students" :key="index">
-                <div class="stu-info" v-if="index>2">
+              <div class="col-md-6" v-for="(student,index) in students" :key="index" v-if="index>2">
+                <div class="stu-info">
                   <div class="stu-num">{{index+1}}</div>
                   <div class="stu-pic">
                     <img :src="student.user.photo" alt />
