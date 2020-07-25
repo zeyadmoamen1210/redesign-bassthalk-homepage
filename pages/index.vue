@@ -363,8 +363,8 @@
           </div>
 
           <div class="questions-sec">
-            <div class="row" v-if="studentsQuestions.length>6">
-              <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6" v-if="studentsQuestions.length>6">
                 <div class="ques">
                   <div class="ques-item">
                     <div class="row">
@@ -490,6 +490,7 @@
                   <div v-else class="send">
                     <div class="form-groub">
                       <img
+                        v-if="$auth.loggedIn"
                         @click="sendQuestion"
                         src="../assets/imgs/send.png"
                         style="cursor:pointer"
