@@ -23,15 +23,16 @@
                 <div class="user-sort-item">
                   <div class="profile-pic">
                     <span>
-                      <img src="../assets/imgs/thired2x.png" alt />
+                       <img src="../assets/imgs/second-2x.png" alt />
+                     
                     </span>
-                    <img style="border-radius: 50%;"  :src="students[2].user.photo" alt />
+                    <img style="border-radius: 50%;"  :src="students[1].user.photo" alt />
                     <div class="profile-cont">
-                      <h3>{{students[2].user.username}}</h3>
+                      <h3>{{students[1].user.username}}</h3>
                       <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow:hidden">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>{{students[2].points}}</h6>
+                        <h6>{{students[1].points}}</h6>
                       </div>
                     </div>
                   </div>
@@ -61,15 +62,15 @@
                 <div class="user-sort-item">
                   <div class="profile-pic">
                     <span>
-                      <img src="../assets/imgs/second-2x.png" alt />
+                      <img src="../assets/imgs/thired2x.png" alt />
                     </span>
-                    <img style="border-radius: 50%;"  :src="students[1].user.photo" alt />
+                    <img style="border-radius: 50%;"  :src="students[2].user.photo" alt />
                     <div class="profile-cont">
-                      <h3>{{students[1].user.username}}</h3>
+                      <h3>{{students[2].user.username}}</h3>
                       <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow:hidden">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>{{students[1].points}}</h6>
+                        <h6>{{students[2].points}}</h6>
                       </div>
                     </div>
                   </div>
