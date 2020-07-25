@@ -542,25 +542,20 @@
                 <span></span>
                 <span></span>
               </div>
-              <div class="partnars-item" style>
+              <Loading v-if="isLoading" />
+              <div class="partnars-item" style v-else>
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-4" v-for="part in partners" :key="part.id">
                     <div class="partner">
-                      <div>شركاءنا</div>
+                      <div style="text-align:center">
+                        <img style="width: 166px;height: 133px;border-radius: 50%;box-shadow: 0 2px 13px 1px #ddd;margin: auto;text-align: center;" :src="part.image" />
+                        <h4 style=" text-align: center;margin-top: 20px;color: #0989c3;"> {{part.name}} </h4>
+                        <p style="text-align: center;color: #676767;"> {{part.description}} </p>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="col-md-4">
-                    <div class="partner">
-                      <div>شركاءنا</div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4">
-                    <div class="partner">
-                      <div>شركاءنا</div>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -589,11 +584,15 @@ export default {
       sent: [],
             question: "",
             isLoading: false,
-            students: []
+            students: [],
+            partners: []
     }
   },
   created(){
-    
+    this.$axios.get(`partners`).then(res => {
+      console.log(res)
+      this.partners = res.data
+    })
     this.getBestStudents()
   },
   methods:{
@@ -605,6 +604,7 @@ export default {
                 this.$snotify.success(`تم إرسال السؤال بنجاح`);
             }).finally(() => this.isLoading = false)
         },
+        
          getBestStudents() {
       // /classes/5/rank
       this.isLoading = true
@@ -616,6 +616,7 @@ export default {
         })
         .finally(() => (this.isLoading = false))
     },
+    
   },
   filters:{
     getLevels(val){

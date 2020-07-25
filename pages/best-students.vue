@@ -81,8 +81,8 @@
 
           <div class="all-the-best-student">
             <div class="row">
-              <div class="col-md-6" v-for="(student,index) in students" :key="index">
-                <div class="stu-info" v-if="index>2">
+              <div class="col-md-6" v-for="(student,index) in students" :key="index" v-if="index>2">
+                <div class="stu-info" >
                   <div class="stu-num">{{index+1}}</div>
                   <div class="stu-pic">
                     <img :src="student.user.photo" alt />
