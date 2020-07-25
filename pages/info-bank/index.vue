@@ -11,7 +11,7 @@
               <span></span>
               <span></span>
               <span></span>
-              <h3>المواد الدراسية</h3>
+              <h3>بنك المعرفة</h3>
               <span></span>
               <span></span>
               <span></span>
