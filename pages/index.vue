@@ -157,28 +157,28 @@
             </div>
             <div class="col-md-6">
               <div class="all-the-best-btn">
-                <button class="btn">
-                  <nuxt-link to="/best-students" style="color:#FFF">عرض جميع المتفوقين</nuxt-link>
-                </button>
+                <nuxt-link to="/best-students" style="color:#FFF">
+                  <button class="btn">عرض جميع المتفوقين</button>
+                </nuxt-link>
               </div>
             </div>
           </div>
           <Loading v-if="isLoading" />
           <div v-else-if="!isLoading && $auth.loggedIn" class="best-sort" style="overflow: hidden;">
-            <div class="row">
+            <div class="row" v-if="students.length>0">
               <div class="col-md-4">
                 <div class="user-sort-item">
                   <div class="profile-pic">
                     <span>
                       <img src="../assets/imgs/thired2x.png" alt />
                     </span>
-                    <img style="border-radius:50%" :src="students[1].user.photo" alt />
+                    <img style="border-radius:50%" :src="students[2].user.photo" alt />
                     <div class="profile-cont">
-                      <h3> {{students[1].user.username}} </h3>
-                       <h3> {{students[1].user.level | getLevel}} </h3>
+                      <h3>{{students[2].user.username}}</h3>
+                      <!-- <h3> {{students[1].user.level | getLevel}} </h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6> {{students[1].points}} </h6>
+                        <h6>{{students[1].points}}</h6>
                       </div>
                     </div>
                   </div>
@@ -191,13 +191,13 @@
                     <span>
                       <img src="../assets/imgs/first3x.png" alt />
                     </span>
-                    <img style="border-radius:50%" :src="students[2].user.photo" alt />
+                    <img style="border-radius:50%" :src="students[0].user.photo" alt />
                     <div class="profile-cont">
-                      <h3>{{students[2].user.username}} </h3>
-                      <h3>{{students[2].user.level | getLevel}} </h3>
+                      <h3>{{students[0].user.username}}</h3>
+                      <!-- <h3>{{students[2].user.level | getLevel}} </h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>{{students[2].points}}</h6>
+                        <h6>{{students[0].points}}</h6>
                       </div>
                     </div>
                   </div>
@@ -210,13 +210,13 @@
                     <span>
                       <img src="../assets/imgs/second-2x.png" alt />
                     </span>
-                    <img style="border-radius:50%" :src="students[0].user.photo" alt />
+                    <img style="border-radius:50%" :src="students[1].user.photo" alt />
                     <div class="profile-cont">
-                      <h3>{{students[0].user.username}} </h3>
-                      <h3>{{students[0].user.level | getLevel}}</h3>
+                      <h3>{{students[1].user.username}}</h3>
+                      <!-- <h3>{{students[0].user.level | getLevel}}</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>{{students[0].points}}</h6>
+                        <h6>{{students[1].points}}</h6>
                       </div>
                     </div>
                   </div>
@@ -224,12 +224,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
 
           <div v-else-if="!$auth.loggedIn" class="best-sort" style="overflow: hidden;">
             <div class="row">
@@ -242,10 +236,10 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <h3>الصف الاول الثانوي</h3>
+                      <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>150</h6>
+                        <h6>140</h6>
                       </div>
                     </div>
                   </div>
@@ -261,7 +255,7 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <h3>الصف الاول الثانوي</h3>
+                      <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>150</h6>
@@ -280,10 +274,10 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <h3>الصف الاول الثانوي</h3>
+                      <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>150</h6>
+                        <h6>145</h6>
                       </div>
                     </div>
                   </div>
@@ -291,9 +285,6 @@
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
 
@@ -373,21 +364,17 @@
 
           <div class="questions-sec">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6" v-if="studentsQuestions.length>6">
                 <div class="ques">
                   <div class="ques-item">
                     <div class="row">
                       <div class="col-md-10 col-10">
-                        <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p v-if="ques1">
-                          هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
-                          تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
-                          نص تجريبي
-                        </p>
+                        <h4>{{studentsQuestions[0].question}}</h4>
+                        <p v-if="ques1">{{studentsQuestions[0].answer}}</p>
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
-                          <button @click="ques1 = !ques1">
+                          <button @click="ques1= !ques1">
                             <img src="../assets/imgs/add.png" alt />
                           </button>
                         </div>
@@ -398,12 +385,8 @@
                   <div class="ques-item">
                     <div class="row">
                       <div class="col-md-10 col-10">
-                        <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p v-if="ques2">
-                          هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
-                          تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
-                          نص تجريبي
-                        </p>
+                        <h4>{{studentsQuestions[1].question}}</h4>
+                        <p v-if="ques2">{{studentsQuestions[1].answer}}</p>
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
@@ -418,12 +401,8 @@
                   <div class="ques-item">
                     <div class="row">
                       <div class="col-md-10 col-10">
-                        <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p v-if="ques3">
-                          هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
-                          تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
-                          نص تجريبي
-                        </p>
+                        <h4>{{studentsQuestions[2].question}}</h4>
+                        <p v-if="ques3">{{studentsQuestions[2].answer}}</p>
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
@@ -438,12 +417,8 @@
                   <div class="ques-item">
                     <div class="row">
                       <div class="col-md-10 col-10">
-                        <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p v-if="ques4">
-                          هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
-                          تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
-                          نص تجريبي
-                        </p>
+                        <h4>{{studentsQuestions[3].question}}</h4>
+                        <p v-if="ques4">{{studentsQuestions[3].answer}}</p>
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
@@ -458,12 +433,8 @@
                   <div class="ques-item">
                     <div class="row">
                       <div class="col-md-10 col-10">
-                        <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p v-if="ques5">
-                          هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
-                          تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
-                          نص تجريبي
-                        </p>
+                        <h4>{{studentsQuestions[4].question}}</h4>
+                        <p v-if="ques5">{{studentsQuestions[4].answer}}</p>
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
@@ -478,12 +449,8 @@
                   <div class="ques-item" style="overflow: hidden;">
                     <div class="row">
                       <div class="col-md-10 col-10">
-                        <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p v-if="ques6">
-                          هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
-                          تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
-                          نص تجريبي
-                        </p>
+                        <h4>{{studentsQuestions[5].question}}</h4>
+                        <p v-if="ques6">{{studentsQuestions[5].answer}}</p>
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
@@ -522,8 +489,19 @@
                   <Loading v-if="isLoading" />
                   <div v-else class="send">
                     <div class="form-groub">
-                      <img @click="sendQuestion" src="../assets/imgs/send.png" style="cursor:pointer" alt />
-                      <input v-model="question"  placeholder="أرسل سؤالك" type="text" class="form-control" />
+                      <img
+                        v-if="$auth.loggedIn"
+                        @click="sendQuestion"
+                        src="../assets/imgs/send.png"
+                        style="cursor:pointer"
+                        alt
+                      />
+                      <input
+                        v-model="question"
+                        placeholder="أرسل سؤالك"
+                        type="text"
+                        class="form-control"
+                      />
                     </div>
                   </div>
                 </div>
@@ -570,8 +548,8 @@
 import Loading from '../components/Loading'
 
 export default {
-  components:{
-    Loading
+  components: {
+    Loading,
   },
   data() {
     return {
@@ -594,47 +572,66 @@ export default {
       this.partners = res.data
     })
     this.getBestStudents()
+    this.getStudentsQuestions()
   },
-  methods:{
-     sendQuestion: function(){
-            this.isLoading = true
-            this.$axios.post(`questions-students`, {question: this.question})
-            .then(res => {
-                console.log(res)
-                this.$snotify.success(`تم إرسال السؤال بنجاح`);
-            }).finally(() => this.isLoading = false)
-        },
-        
-         getBestStudents() {
-      // /classes/5/rank
+  methods: {
+    toggleQuestion(index) {
+      let quest = 'ques' + index
+      this.quest = !this.quest
+    },
+    getStudentsQuestions() {
+      // /questions-admin
       this.isLoading = true
       this.$axios
-        .get(`classes/${this.$auth.user.class.id}/rank`)
+        .get(`questions-admin`)
         .then((res) => {
-          this.students = res.data
+          this.studentsQuestions = res.data
           console.log(res)
         })
         .finally(() => (this.isLoading = false))
     },
-    
+    sendQuestion: function () {
+      this.isLoading = true
+      this.$axios
+        .post(`questions-students`, { question: this.question })
+        .then((res) => {
+          console.log(res)
+          this.question = ''
+          this.$snotify.success(`تم إرسال السؤال بنجاح`)
+        })
+        .finally(() => (this.isLoading = false))
+    },
+    getBestStudents() {
+      // /classes/5/rank
+      if (this.$auth.loggedIn) {
+        this.isLoading = true
+        this.$axios
+          .get(`classes/${this.$auth.user.class.id}/rank`)
+          .then((res) => {
+            this.students = res.data
+            console.log(res)
+          })
+          .finally(() => (this.isLoading = false))
+      }
+    },
   },
-  filters:{
-    getLevels(val){
-      if(val == 1){
+  filters: {
+    getLevels(val) {
+      if (val == 1) {
         return 'الصف الأول الثانوي'
-      }else if(val == 2){
+      } else if (val == 2) {
         return 'الصف الثاني الثانوي'
-      }else if(val == 3){
+      } else if (val == 3) {
         return 'الصف الثالث الثانوي'
-      }else if(val == 4){
+      } else if (val == 4) {
         return 'الصف الرابع الإبتدائي'
-      }else if(val == 5){
+      } else if (val == 5) {
         return 'الصف الخامس الإبتدائي'
-      }else if(val == 6){
+      } else if (val == 6) {
         return 'الصف السادس الإبتدائي'
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

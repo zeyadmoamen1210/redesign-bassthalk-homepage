@@ -112,7 +112,7 @@ export default {
       studentForm.append('username', this.userData.username)
       studentForm.append('email', this.userData.email)
       studentForm.append('gender', this.userData.gender)
-      studentForm.append('phone', this.userData.phone)
+      // studentForm.append('phone', this.userData.phone)
 
       this.isLoading = true
       this.$axios

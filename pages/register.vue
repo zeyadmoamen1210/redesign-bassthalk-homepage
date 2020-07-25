@@ -34,12 +34,19 @@
             </div>
 
             <div class="col-md-2">
-              <v-select v-model="gender" label="name" :options="options"></v-select>
+              <v-select v-model="gender" label="name" placeholder="النوع" :options="options"></v-select>
             </div>
 
             <div class="col-md-2">
               <div class="form-groub">
-                <input v-model="country" type="text" class="form-control" placeholder="الدولة" />
+                <v-select
+                  v-model="country"
+                  label="name"
+                  placeholder="الدولة"
+                  :options="countyOptions"
+                ></v-select>
+
+                <!-- <input v-model="country" type="text" class="form-control" placeholder="الدولة" /> -->
               </div>
             </div>
 
@@ -156,6 +163,12 @@ export default {
         { name: 'ذكر', value: 'male' },
         { name: 'أنثي', value: 'female' },
       ],
+      // Egypt SaudiArabia
+
+      countyOptions: [
+        { name: 'مصر', value: 'Egypt' },
+        { name: 'السعودية', value: 'SaudiArabia' },
+      ],
 
       name: '',
       email: '',
@@ -196,7 +209,7 @@ export default {
       signUpForm.append('phone', this.phone)
       signUpForm.append('role', this.role)
       signUpForm.append('gender', this.gender.value)
-      signUpForm.append('country', this.country)
+      signUpForm.append('country', this.country.value)
 
       await this.$axios
         .post('signup', signUpForm, {
