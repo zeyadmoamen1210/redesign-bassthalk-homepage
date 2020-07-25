@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-
+<!-- 
        <div class="subjects-navbar" style="text-align:center">
          <button
           :style="{
@@ -55,7 +55,7 @@
         >
         <img src="../../assets/imgs/noun_knowledge_2042727.png" alt="">
         المتفوقين</button>
-       </div>
+       </div> -->
 
 
       <div v-show="tabIndex == 1" class="subjects">
@@ -92,7 +92,7 @@
 
 
 
-
+<!-- 
 
       <div v-show="tabIndex == 2" class="subjects">
         <div class="form-title">
@@ -115,7 +115,7 @@
                 <h3>{{ subject.nameAr }}</h3>
               </div>
             </nuxt-link>
-          </div>
+          </div> -->
 
           <!-- <div class="annoncment" style="width: 100%; height: 200px;">
             <img
@@ -123,12 +123,12 @@
               alt
             />
           </div> -->
-        </div>
-      </div>
+        <!-- </div>
+      </div> -->
 
 
 
-
+<!-- 
 
     
 
@@ -154,7 +154,7 @@
                 <h3>{{ subject.nameAr }}</h3>
               </div>
             </nuxt-link>
-          </div>
+          </div> -->
 
           <!-- <div class="annoncment" style="width: 100%; height: 200px;">
             <img
@@ -162,8 +162,8 @@
               alt
             />
           </div> -->
-        </div>
-      </div>
+        <!-- </div>
+      </div> -->
 
 
     </div>
