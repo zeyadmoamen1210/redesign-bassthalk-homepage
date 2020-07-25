@@ -14,6 +14,8 @@ import '../assets/css/global.css'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 export default {
+  name: 'MainLayout',
+
   components: {
     Navbar,
     Footer,

@@ -30,8 +30,13 @@
 
             <div class="question-head" style="overflow:hidden">
               <div class="question-head-one">
-                <h6 style="text-align:left" :style="{visibility: correctAnswer ? 'visible' : 'hidden'}">
-                  <span style="padding: 10px;background: #EEE;color: #058ac6;font-size: 19px;">{{point}} درجة</span>
+                <h6
+                  style="text-align:left"
+                  :style="{visibility: correctAnswer ? 'visible' : 'hidden'}"
+                >
+                  <span
+                    
+                  >{{point}} </span>
                   <img style="width: 196px;" src="@/assets/imgs/right.png" alt />
                 </h6>
               </div>
@@ -144,6 +149,8 @@ import truefalse from '@/components/question-bank/truefalse'
 import Loading from '@/components/Loading'
 
 export default {
+  middleware: 'auth-student',
+
   components: {
     truefalse,
     choose,
@@ -315,12 +322,12 @@ export default {
   }
 }
 .question-bank .unit.lesson-unit div > div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 18px;
-    color: #FFF;
-    font-family: "CustomFontBold";
-    transform: translate(-50%,-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 18px;
+  color: #fff;
+  font-family: 'CustomFontBold';
+  transform: translate(-50%, -50%);
 }
 </style>
