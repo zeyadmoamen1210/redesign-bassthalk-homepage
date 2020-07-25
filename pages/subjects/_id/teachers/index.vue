@@ -7,7 +7,7 @@
             <div class="live-details-item">
               <div class="title">
                 <h4>
-                  <img src="../../../../assets/imgs/live-blue.png" alt="" />
+                  <img src="../../../../assets/imgs/live-blue.png" alt />
                   مدرسين المادة
                 </h4>
               </div>
@@ -22,14 +22,15 @@
             <div class="col-md-6" v-for="teacher of teachers" :key="teacher.id">
               <nuxt-link :to="`/subjects/${$route.params.id}/teachers/${teacher.id}`">
                 <div class="time-course" style="position: relative;">
-                  
                   <div>
-                   <nuxt-link :to="'/general-exam-join'">
-                      <button style="position: absolute;bottom: 0px;left: 0px;background: #088cc0;border: none;color: #FFF;font-family: 'CustomFontBold';">
-                      <div style="position: relative;padding: 6px 19px 0 3px;">
-                        أشتراك الأن
-                        <span
-                          style="
+                    <nuxt-link :to="'/general-exam-join'">
+                      <button
+                        style="position: absolute;bottom: 0px;left: 0px;background: #088cc0;border: none;color: #FFF;font-family: 'CustomFontBold';"
+                      >
+                        <div style="position: relative;padding: 6px 19px 0 3px;">
+                          أشتراك الأن
+                          <span
+                            style="
                                 position: absolute;
                                 background-color: rgb(255, 255, 255);
                                 width: 12px;
@@ -38,20 +39,20 @@
                                 right: 0;
                                 border-radius: 50%;
                           "
-                        ></span>
-                      </div>
-                    </button>
-                   </nuxt-link>
+                          ></span>
+                        </div>
+                      </button>
+                    </nuxt-link>
                   </div>
 
                   <div>
-                    <h6> {{teacher.username}} </h6>
-                    <h6 style="color: #6c6c6c;"> {{teacher.email}} </h6>
+                    <h6>{{teacher.username}}</h6>
+                    <h6 style="color: #6c6c6c;">{{teacher.email}}</h6>
                   </div>
                   <div>
                     <div class="teacher">
-                      <img :src="teacher.photo" alt="" />
-                      <img src="../../../../assets/imgs/live-red.png" alt="" />
+                      <img :src="teacher.photo" alt />
+                      <img src="../../../../assets/imgs/live-red.png" alt />
                     </div>
                   </div>
                 </div>
@@ -69,6 +70,8 @@
 
 <script>
 export default {
+  middleware: 'auth-student',
+
   data() {
     return {
       teachers: [],
@@ -78,7 +81,7 @@ export default {
     this.$axios
       .get(`subjects/${this.$route.params.id}/teachers`)
       .then((res) => {
-        console.log("Teachers",res)
+        console.log('Teachers', res)
         this.teachers = res.data
       })
   },
