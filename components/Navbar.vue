@@ -19,19 +19,24 @@
                     exact-active-class="active"
                   >الرئيسية</nuxt-link>
                 </li>
-                <li>
+                
+                <!-- <li>
                   <nuxt-link to>من نحن</nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to>رؤيتنا</nuxt-link>
+                </li> -->
+
+                <li>
+                  <nuxt-link to="/best-students">المتفوقين</nuxt-link>
                 </li>
 
                 <li>
-                  <nuxt-link to>المتفوقين</nuxt-link>
+                  <nuxt-link to="/info-bank">بنك المعرفة</nuxt-link>
                 </li>
 
-                <li>
+                <!-- <li>
                   <nuxt-link to>حمل التطبيق</nuxt-link>
                 </li>
 
@@ -41,7 +46,7 @@
 
                 <li>
                   <nuxt-link to class-active="active">شركاؤنا</nuxt-link>
-                </li>
+                </li> -->
                 <li>
                   <nuxt-link to="/links" class-active="active">
                     <a href data-custom="partnars">الصفحات</a>
@@ -73,7 +78,7 @@
 
               <div
                 class="droped"
-                style="position:absolute;right:0;width: 116px;box-shadow: 0 2px 13px 1px #ddd;"
+                style="position:absolute;right:0;width: 116px;box-shadow: 0 2px 13px 1px #ddd;z-index:99"
                 v-if="dropdown"
               >
                 <ul style="list-style:none;padding-right:0;">
@@ -210,8 +215,8 @@ export default {
       float: right;
       height: 60px;
       img {
-        width: 100%;
-        height: 100%;
+        width: 64%;
+    height: 65%;
       }
     }
   }
@@ -329,6 +334,7 @@ export default {
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
     padding: 10px 0;
+        height: 64px;
   }
   .tests-level {
     margin-top: 120px;
@@ -396,6 +402,7 @@ export default {
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
     padding: 10px 0;
+        height: 64px;
   }
   .navbar-before {
     .navlinks {

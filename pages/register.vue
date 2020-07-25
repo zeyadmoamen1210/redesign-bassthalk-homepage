@@ -29,6 +29,7 @@
                   class="form-control"
                   placeholder="البريد الالكتروني"
                 />
+                
               </div>
             </div>
 

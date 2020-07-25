@@ -276,7 +276,7 @@ span:nth-of-type(6) {
 .best-sort .user-sort-item .profile-pic .profile-cont-point {
   overflow: hidden;
   position: relative;
-  left: -55px;
+  // left: -55px;
   width: 48%;
   transform: translate(-50%);
 }
@@ -354,7 +354,6 @@ span:nth-of-type(6) {
 }
 .question-and-answer .questions-sec .ques .ques-item {
   overflow: hidden;
-  height: 37px;
   transition: all 0.3s linear;
     padding: 6px 18px;
       background: #f0f0f0;

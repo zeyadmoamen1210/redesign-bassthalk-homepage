@@ -2,7 +2,8 @@
   <div>
     <div class="container">
       <Loading v-if="isLoading" />
-      <div class="login" v-else>
+       <ValidationObserver  v-else v-slot="{ invalid }">
+      <div class="login">
         <div class="form-title">
           <h4>
             <img src="../assets/imgs/noun_User_-2.png" alt />
@@ -10,25 +11,43 @@
           </h4>
         </div>
         <div class="form-groub">
+          <ValidationProvider rules="required|email" v-slot="email">
           <input
             v-model="form.email"
             type="text"
             class="form-control"
             placeholder="البريد الالكتروني أو رقم الجوال"
           />
+           <div
+                  class="text-danger"
+                  style="font-family:'CustomFontLight';margin-bottom:20px"
+                  v-if="email.errors[0]"
+                >
+                  {{ email.errors[0] }}
+                </div>
+          </ValidationProvider>
         </div>
         <div class="form-groub">
+           <ValidationProvider rules="required|email" v-slot="email">
           <input
             v-model="form.password"
             type="password"
             class="form-control"
             placeholder="كلمة المرور"
           />
+           <div
+                  class="text-danger"
+                  style="font-family:'CustomFontLight';margin-bottom:20px"
+                  v-if="email.errors[0]"
+                >
+                  {{ email.errors[0] }}
+                </div>
+                </ValidationProvider>
         </div>
         <div class="forget-pass">
           <nuxt-link to>هل نسيت كلمة مرورك ؟</nuxt-link>
         </div>
-        <input type="button" @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
+        <input type="button" @click="login" :disabled="invalid" value="تسجيل الدخول" class="basth-btn-primary" />
         <div class="two-way">
           <h6>او عن طريق</h6>
           <img src="../assets/imgs/facebook.png" alt />
@@ -44,6 +63,7 @@
           </div>
         </div>
       </div>
+      </ValidationObserver>
     </div>
   </div>
 </template>

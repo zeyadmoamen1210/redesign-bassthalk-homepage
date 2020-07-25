@@ -30,8 +30,8 @@
 
             <div class="question-head" style="overflow:hidden">
               <div class="question-head-one">
-                <h6 style="text-align:left" v-if="correctAnswer">
-                  <span>{{point}}</span>
+                <h6 style="text-align:left" :style="{visibility: correctAnswer ? 'visible' : 'hidden'}">
+                  <span style="padding: 10px;background: #EEE;color: #058ac6;font-size: 19px;">{{point}} درجة</span>
                   <img style="width: 196px;" src="@/assets/imgs/right.png" alt />
                 </h6>
               </div>
@@ -259,7 +259,18 @@ export default {
   pointer-events: none;
 }
 @import '../../assets/sass/question-info-bank.scss';
-
+.ques-answer-btns{
+  button{
+        width: 100%;
+    text-align: center;
+    border: none;
+    padding: 7px;
+    background: #058ac6;
+    color: #FFF;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+}
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   .general-exam-test .title .sub-name h4 {
@@ -301,5 +312,14 @@ export default {
   .general-exam-test {
     padding-top: 60px;
   }
+}
+.question-bank .unit.lesson-unit div > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 18px;
+    color: #FFF;
+    font-family: "CustomFontBold";
+    transform: translate(-50%,-50%);
 }
 </style>

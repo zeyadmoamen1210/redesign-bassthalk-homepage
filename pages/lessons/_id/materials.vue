@@ -9,7 +9,7 @@
                 <div class="row" v-if="lessonData">
                   <div class="col-md-6">
                     <h6 class="subject-name">
-                      <img src="../../../assets/imgs/laboratory-1.png" alt />
+                      <img src="../../../assets/imgs/noun_teaching_-1.png" alt />
                       {{ lessonData.unit.nameAr }}
                     </h6>
                   </div>
@@ -99,17 +99,19 @@
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
             <div class="col-md-12">
-              <button type="button" class="fullWidthBtn" @click="modelRate = true">أبدء الأختبار</button>
+               <b-button v-b-modal.modal-1 class="fullWidthBtn">تقييم الدرس</b-button>
               <button @click="showLessonExams" class="fullWidthBtn">أبدء الأختبار</button>
             </div>
-            <!-- @click="showLessonExams"  -->
 
-            <!-- Button trigger modal -->
+            
 
-            <div class="col-md-12" v-if="modelRate">
+  <b-modal id="modal-1" title="تقييم الدرس" hide-footer>
+   
+
+       <div class="col-md-12" >
               <div
                 class="model-rating"
-                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;padding: 13px 10px;border: 1px dashed #0989c3;margin-top: 14px;"
+                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
               >
                 <h5 style="color:#0989c3">هل فهمت الدرس ؟</h5>
                 <button @click="rate = 0" style="background:none;border:none;outline:none">
@@ -119,15 +121,20 @@
                   <img style="width:100%;" src="../../../assets/imgs/sad.png" alt />
                 </button>
                 <div>
-                  <span v-for="x in 5">
-                    <button @click="rateing(x)">
-                      <i class="fas fa-star"></i>
-                    </button>
-                  </span>
+                  <b-form-rating v-model="value" variant="warning" class="mb-2"></b-form-rating>
                 </div>
                 <button class="fullWidthBtn">استمرار</button>
               </div>
             </div>
+ 
+
+
+  </b-modal>
+            <!-- @click="showLessonExams"  -->
+
+            <!-- Button trigger modal -->
+
+           
 
             <!-- <div class="col-md-6" v-for="(video, index) in videos" :key="index">
               <div class="video-cart">
@@ -314,6 +321,7 @@ export default {
       isLoading: false,
       modelRate: false,
       videos: [],
+      value: 0,
       selectedVideoComments: [],
       selectedVideo: null,
       pdfs: [],
@@ -567,6 +575,12 @@ export default {
     height: 100%;
   }
 }
+
+.b-rating {
+    direction: ltr !important;
+    margin-top: 18px;
+}
+
 .current-video-comment,
 .nested-comment-reply {
   position: relative;
@@ -607,7 +621,17 @@ export default {
     }
   }
 }
-
+.model-rating{
+  button.fullWidthBtn{
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    background: #0989c3;
+    color: #FFF;
+  }
+}
 .video-bannar {
   min-height: 400px;
   // background: url('../../../assets/imgs/carousel_header_1_0.jpg');
@@ -660,6 +684,21 @@ export default {
     padding-top: 40px !important;
     padding-bottom: 26px;
   }
+  .video-cart-blur{
+    &:hover{
+      .fa-play{
+        color:red !important;
+      }
+    }
+    .fa-play{
+      transition: all .5s ease;
+      cursor: pointer;
+      &:hover{
+        color:#058ac6
+      }
+    }
+  }
+  
   .swiper-container-rtl .swiper-button-prev {
     right: 10px !important;
     left: auto;
