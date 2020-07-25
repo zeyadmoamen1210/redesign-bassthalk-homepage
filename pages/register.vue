@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div class="register" v-if="showVerify">
+      <div class="register" v-if="!showVerify">
         <div class="form-title">
           <h4>
             <img src="../assets/imgs/Group 6945.png" alt />
@@ -12,12 +12,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-groub">
-                <input
-                  v-model="name"
-                  type="text"
-                  class="form-control"
-                  placeholder="اسم المستخدم "
-                />
+                <input v-model="name" type="text" class="form-control" placeholder="اسم المستخدم " />
               </div>
             </div>
 
@@ -29,33 +24,22 @@
                   class="form-control"
                   placeholder="البريد الالكتروني"
                 />
-                
               </div>
             </div>
 
             <div class="col-md-4">
               <div class="form-groub">
-                <input
-                  v-model="phone"
-                  type="text"
-                  class="form-control"
-                  placeholder="رقم الجوال"
-                />
+                <input v-model="phone" type="text" class="form-control" placeholder="رقم الجوال" />
               </div>
             </div>
 
             <div class="col-md-2">
-              <v-select v-model="gender" :options="['ذكر', 'أنثي']"></v-select>
+              <v-select v-model="gender" label="name" :options="options"></v-select>
             </div>
 
             <div class="col-md-2">
               <div class="form-groub">
-                <input
-                  v-model="country"
-                  type="text"
-                  class="form-control"
-                  placeholder="الدولة"
-                />
+                <input v-model="country" type="text" class="form-control" placeholder="الدولة" />
               </div>
             </div>
 
@@ -84,26 +68,19 @@
         </div>
 
         <div class="form-bottom">
-          <input
-            type="button"
-            @click="register"
-            value="انشاء حساب جديد"
-            class="basth-btn-primary"
-          />
-          <div class="two-way">
+          <input type="button" @click="register" value="انشاء حساب جديد" class="basth-btn-primary" />
+          <!-- <div class="two-way">
             <h6>او عن طريق</h6>
             <img src="../assets/imgs/facebook.png" alt />
             <img src="../assets/imgs/brands-and-logotypes.png" alt />
-          </div>
+          </div>-->
 
           <div class="dont-have-acc">
             <div>
               <h6>ليس لديك حساب ؟</h6>
             </div>
             <div>
-              <button @click="$router.push({ path: '/login' })">
-                تسجيل الدخول
-              </button>
+              <button @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
             </div>
           </div>
         </div>
@@ -114,22 +91,15 @@
             <div class="varified">
               <div class="form-title">
                 <h4 style="margin-bottom: 20px;">
-                  <img
-                    src="../assets/imgs/profile.png"
-                    style="width: 35px; margin-left: 9px;"
-                    alt
-                  />
+                  <img src="../assets/imgs/profile.png" style="width: 35px; margin-left: 9px;" alt />
                   كود التفعيل
                 </h4>
               </div>
               <!-- <div class="form-groub" v-if="resend">
             <input v-model="email" type="text" class="form-control" placeholder="البريد الالكتروني" />
-        </div>-->
+              </div>-->
               <!-- v-else -->
-              <div
-                class="form-groub"
-                style="margin-bottom: 40px; margin-top: 40px;"
-              >
+              <div class="form-groub" style="margin-bottom: 40px; margin-top: 40px;">
                 <client-only placeholder="...تحميل ">
                   <CodeInput
                     :fields="count"
@@ -153,9 +123,7 @@
                   <h6>لم يتم إستلام الكود</h6>
                 </div>
                 <div style="text-align: left;">
-                  <button @click="resendCode" class="light-btn">
-                    إعادة إرسال
-                  </button>
+                  <button @click="resendCode" class="light-btn">إعادة إرسال</button>
                 </div>
               </div>
             </div>
@@ -184,7 +152,10 @@ export default {
       confirmPassword: '',
       isLoading: false,
       showVerify: false,
-      options: [{ name: 'ذكر' }, { name: 'أنثي' }],
+      options: [
+        { name: 'ذكر', value: 'male' },
+        { name: 'أنثي', value: 'female' },
+      ],
 
       name: '',
       email: '',
@@ -224,7 +195,7 @@ export default {
       signUpForm.append('email', this.email)
       signUpForm.append('phone', this.phone)
       signUpForm.append('role', this.role)
-      signUpForm.append('gender', this.gender)
+      signUpForm.append('gender', this.gender.value)
       signUpForm.append('country', this.country)
 
       await this.$axios

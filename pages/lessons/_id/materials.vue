@@ -56,7 +56,7 @@
     </div>
     <Loading v-if="isLoading" />
 
-    <div v-else-if="showVideos&&!isloading">
+    <div v-else-if="showVideos&&!isLoading">
       <div class="frame-container" v-if="videos.length > 0" style="text-align: center;">
         <iframe width="853" height="480" :src="selectedVideo.embed" frameborder="0" allowfullscreen></iframe>
       </div>
@@ -69,7 +69,7 @@
 
           <div class="row">
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide  v-for="(video, index) in videos" :key="index">
+              <swiper-slide v-for="(video, index) in videos" :key="index">
                 <div class="video-cart" style="position:relative">
                   <div
                     @click="previewVideo(video)"
@@ -99,42 +99,43 @@
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
             <div class="col-md-12">
-               <b-button v-b-modal.modal-1 class="fullWidthBtn">تقييم الدرس</b-button>
-              <button @click="showLessonExams" class="fullWidthBtn">أبدء الأختبار</button>
+              <b-button v-b-modal.modal-1 class="fullWidthBtn">إبد الإختبار</b-button>
+              <!-- <button v-b-modal.modal-1 class="fullWidthBtn">أبدء الأختبار</button> -->
             </div>
 
-            
-
-  <b-modal id="modal-1" title="تقييم الدرس" hide-footer>
-   
-
-       <div class="col-md-12" >
-              <div
-                class="model-rating"
-                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
-              >
-                <h5 style="color:#0989c3;text-align: center;margin-bottom: 18px;">هل فهمت الدرس ؟</h5>
-                <button  @click="rating = 0" style="background:none;border:none;outline:none">
-                  <img :class="{selectedRate: rating == 0 ? true : false }" style="width:100%;" src="../../../assets/imgs/smile.png" alt />
-                </button>
-                <button  @click="rating = 1" style="background:none;border:none;outline:none">
-                  <img :class="{selectedRate: rating == 1 ? true : false }" style="width:100%;" src="../../../assets/imgs/sad.png" alt />
-                </button>
-                <div>
-                  <b-form-rating v-model="value" variant="warning" class="mb-2"></b-form-rating>
+            <b-modal id="modal-1" title="تقييم الدرس" hide-footer>
+              <div class="col-md-12">
+                <div
+                  class="model-rating"
+                  style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
+                >
+                  <h5 style="color:#0989c3;text-align: center;margin-bottom: 18px;">هل فهمت الدرس ؟</h5>
+                  <button @click="flag = 1" style="background:none;border:none;outline:none">
+                    <img
+                      :class="{selectedRate: flag == 1 ? true : false }"
+                      style="width:100%;"
+                      src="../../../assets/imgs/smile.png"
+                      alt
+                    />
+                  </button>
+                  <button @click="flag = 0" style="background:none;border:none;outline:none">
+                    <img
+                      :class="{selectedRate: flag == 0 ? true : false }"
+                      style="width:100%;"
+                      src="../../../assets/imgs/sad.png"
+                      alt
+                    />
+                  </button>
+                  <div>
+                    <b-form-rating v-model="rating" variant="warning" class="mb-2"></b-form-rating>
+                  </div>
+                  <button @click="addLessonRate" class="fullWidthBtn">استمرار</button>
                 </div>
-                <button class="fullWidthBtn">استمرار</button>
               </div>
-            </div>
- 
-
-
-  </b-modal>
+            </b-modal>
             <!-- @click="showLessonExams"  -->
 
             <!-- Button trigger modal -->
-
-           
 
             <!-- <div class="col-md-6" v-for="(video, index) in videos" :key="index">
               <div class="video-cart">
@@ -325,7 +326,8 @@ export default {
       selectedVideoComments: [],
       selectedVideo: null,
       pdfs: [],
-      rating: 1,
+      rating: 0,
+      flag: 1,
       showVideos: true,
       imgShow: false,
       url: '',
@@ -378,12 +380,17 @@ export default {
     rateing(x) {
       this.rating = x
     },
-    rateVideo() {
-      this.$axios.post(`/lessons/${this.$route.params.id}/rate`, {
-        flag: this.rate,
-        rating: this.rating,
-        lastVideo: 1,
-      })
+    addLessonRate() {
+      if (this.rating > 0) {
+        this.$axios
+          .post(`/lessons/${this.$route.params.id}/rate`, {
+            flag: this.flag,
+            rating: this.rating,
+            lastVideo: this.selectedVideo.id,
+          })
+          .then((res) => {})
+      }
+      this.showLessonExams()
     },
     showLessonExams() {
       this.$router.push({ path: `/lessons/${this.$route.params.id}/exams` }) // -> /user/123
@@ -577,8 +584,8 @@ export default {
 }
 
 .b-rating {
-    direction: ltr !important;
-    margin-top: 18px;
+  direction: ltr !important;
+  margin-top: 18px;
 }
 
 .current-video-comment,
@@ -621,15 +628,15 @@ export default {
     }
   }
 }
-.model-rating{
-  button.fullWidthBtn{
+.model-rating {
+  button.fullWidthBtn {
     width: 100%;
     margin-top: 15px;
     padding: 10px;
     text-align: center;
     border: none;
     background: #0989c3;
-    color: #FFF;
+    color: #fff;
   }
 }
 .video-bannar {
@@ -684,21 +691,21 @@ export default {
     padding-top: 40px !important;
     padding-bottom: 26px;
   }
-  .video-cart-blur{
-    &:hover{
-      .fa-play{
-        color:red !important;
+  .video-cart-blur {
+    &:hover {
+      .fa-play {
+        color: red !important;
       }
     }
-    .fa-play{
-      transition: all .5s ease;
+    .fa-play {
+      transition: all 0.5s ease;
       cursor: pointer;
-      &:hover{
-        color:#058ac6
+      &:hover {
+        color: #058ac6;
       }
     }
   }
-  
+
   .swiper-container-rtl .swiper-button-prev {
     right: 10px !important;
     left: auto;
@@ -1160,9 +1167,9 @@ export default {
 @media (min-width: 1200px) {
 }
 
-.selectedRate{
-      background: #EEE;
-    padding: 9px;
-    border-radius: 50%;
+.selectedRate {
+  background: #eee;
+  padding: 9px;
+  border-radius: 50%;
 }
 </style>
