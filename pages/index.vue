@@ -163,8 +163,75 @@
               </div>
             </div>
           </div>
+          <Loading v-if="isLoading" />
+          <div v-else-if="!isLoading && $auth.loggedIn" class="best-sort" style="overflow: hidden;">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="user-sort-item">
+                  <div class="profile-pic">
+                    <span>
+                      <img src="../assets/imgs/thired2x.png" alt />
+                    </span>
+                    <img style="border-radius:50%" :src="students[1].user.photo" alt />
+                    <div class="profile-cont">
+                      <h3> {{students[1].user.username}} </h3>
+                       <h3> {{students[1].user.level | getLevel}} </h3>
+                      <div class="profile-cont-point" style="overflow: hidden;">
+                        <img src="../assets/imgs/point.png" alt />
+                        <h6> {{students[1].points}} </h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          <div class="best-sort" style="overflow: hidden;">
+              <div class="col-md-4">
+                <div class="user-sort-item first-student">
+                  <div class="profile-pic">
+                    <span>
+                      <img src="../assets/imgs/first3x.png" alt />
+                    </span>
+                    <img style="border-radius:50%" :src="students[2].user.photo" alt />
+                    <div class="profile-cont">
+                      <h3>{{students[2].user.username}} </h3>
+                      <h3>{{students[2].user.level | getLevel}} </h3>
+                      <div class="profile-cont-point" style="overflow: hidden;">
+                        <img src="../assets/imgs/point.png" alt />
+                        <h6>{{students[2].points}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="user-sort-item">
+                  <div class="profile-pic">
+                    <span>
+                      <img src="../assets/imgs/second-2x.png" alt />
+                    </span>
+                    <img style="border-radius:50%" :src="students[0].user.photo" alt />
+                    <div class="profile-cont">
+                      <h3>{{students[0].user.username}} </h3>
+                      <h3>{{students[0].user.level | getLevel}}</h3>
+                      <div class="profile-cont-point" style="overflow: hidden;">
+                        <img src="../assets/imgs/point.png" alt />
+                        <h6>{{students[0].points}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+          <div v-else-if="!$auth.loggedIn" class="best-sort" style="overflow: hidden;">
             <div class="row">
               <div class="col-md-4">
                 <div class="user-sort-item">
@@ -175,10 +242,10 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <!-- <h3>الصف الاول الثانوي</h3> -->
+                      <h3>الصف الاول الثانوي</h3>
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>140</h6>
+                        <h6>150</h6>
                       </div>
                     </div>
                   </div>
@@ -194,7 +261,7 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <!-- <h3>الصف الاول الثانوي</h3> -->
+                      <h3>الصف الاول الثانوي</h3>
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>150</h6>
@@ -213,10 +280,10 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <!-- <h3>الصف الاول الثانوي</h3> -->
+                      <h3>الصف الاول الثانوي</h3>
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>145</h6>
+                        <h6>150</h6>
                       </div>
                     </div>
                   </div>
@@ -224,6 +291,9 @@
               </div>
             </div>
           </div>
+
+
+
         </div>
       </div>
 
@@ -449,10 +519,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="send">
+                  <Loading v-if="isLoading" />
+                  <div v-else class="send">
                     <div class="form-groub">
-                      <img src="../assets/imgs/send.png" alt />
-                      <input placeholder="أرسل سؤالك" type="text" class="form-control" />
+                      <img @click="sendQuestion" src="../assets/imgs/send.png" style="cursor:pointer" alt />
+                      <input v-model="question"  placeholder="أرسل سؤالك" type="text" class="form-control" />
                     </div>
                   </div>
                 </div>
@@ -501,7 +572,12 @@
 </template>
 
 <script>
+import Loading from '../components/Loading'
+
 export default {
+  components:{
+    Loading
+  },
   data() {
     return {
       ques1: false,
@@ -510,8 +586,54 @@ export default {
       ques4: false,
       ques5: false,
       ques6: false,
+      sent: [],
+            question: "",
+            isLoading: false,
+            students: []
     }
   },
+  created(){
+    
+    this.getBestStudents()
+  },
+  methods:{
+     sendQuestion: function(){
+            this.isLoading = true
+            this.$axios.post(`questions-students`, {question: this.question})
+            .then(res => {
+                console.log(res)
+                this.$snotify.success(`تم إرسال السؤال بنجاح`);
+            }).finally(() => this.isLoading = false)
+        },
+         getBestStudents() {
+      // /classes/5/rank
+      this.isLoading = true
+      this.$axios
+        .get(`classes/${this.$auth.user.class.id}/rank`)
+        .then((res) => {
+          this.students = res.data
+          console.log(res)
+        })
+        .finally(() => (this.isLoading = false))
+    },
+  },
+  filters:{
+    getLevels(val){
+      if(val == 1){
+        return 'الصف الأول الثانوي'
+      }else if(val == 2){
+        return 'الصف الثاني الثانوي'
+      }else if(val == 3){
+        return 'الصف الثالث الثانوي'
+      }else if(val == 4){
+        return 'الصف الرابع الإبتدائي'
+      }else if(val == 5){
+        return 'الصف الخامس الإبتدائي'
+      }else if(val == 6){
+        return 'الصف السادس الإبتدائي'
+      }
+    }
+  }
 }
 </script>
 
