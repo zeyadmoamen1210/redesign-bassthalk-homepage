@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="home-page">
-
       <div class="slider">
-
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
@@ -13,12 +11,12 @@
                   الأن مع بستطهالك كل دروسك من بيتك في كل المواد الدراسية
                   <br />بين افضل المتفوقين
                 </p>
-                <nuxt-link
+                <!-- <nuxt-link
                   :to="'/links'"
                   class="text-center"
                   style="display: block; font-size: 20px;"
                   >اللينكات</nuxt-link
-                >
+                >-->
               </div>
             </div>
           </div>
@@ -445,9 +443,7 @@
                         <img src="../assets/imgs/chat-avatar.png" alt />
                       </div>
                       <div class="col-md-9 col-9">
-                        <p style="margin-top: 23px;">
-                          قم بأرسال استفسارك و سنجاوب عليك في اسرع وقت
-                        </p>
+                        <p style="margin-top: 23px;">قم بأرسال استفسارك و سنجاوب عليك في اسرع وقت</p>
                       </div>
                     </div>
                   </div>
@@ -504,7 +500,6 @@
 
 <script>
 export default {
- 
   methods: {
     dropdownQustion: function (e) {
       let ele =

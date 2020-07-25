@@ -17,8 +17,7 @@
                     to="/"
                     :class="{ active: isRouteActive }"
                     exact-active-class="active"
-                    >الرئيسية</nuxt-link
-                  >
+                  >الرئيسية</nuxt-link>
                 </li>
                 <li>
                   <nuxt-link to>من نحن</nuxt-link>
@@ -54,47 +53,42 @@
 
           <div class="col-md-2 col-sm-6" v-if="!$auth.loggedIn">
             <div class="nav-login">
-              <button class="btn" @click="$router.push({ path: '/login' })">
-                تسجيل الدخول
-              </button>
+              <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
             </div>
           </div>
           <div v-else class="col-md-2 col-sm-6" style="text-align:left">
             <div class="nav-login" style="position:relative;display:inline-block">
               <button class="dropdown-head" @click="dropdown = !dropdown">
-                <h6 style="margin-bottom:0"> {{$auth.user.username}} </h6>
-                <span class="list-down"><i class="fas fa-sort-down"></i></span>  
+                <h6 style="margin-bottom:0">{{$auth.user.username}}</h6>
+                <span class="list-down">
+                  <i class="fas fa-sort-down"></i>
+                </span>
 
-                <div style=" position: absolute;left: -28px;top: -8px;width: 45px;border-radius: 50%;overflow: hidden;border: 1px solid">
-                <img :src="$auth.user.photo" style="width:100%;height:100%" alt="">
-              </div>
+                <div
+                  style=" position: absolute;left: -28px;top: -8px;width: 45px;border-radius: 50%;overflow: hidden;border: 1px solid"
+                >
+                  <img :src="$auth.user.photo" style="width:100%;height:100%" alt />
+                </div>
               </button>
-              
 
-              <div class="droped" style="position:absolute;right:0;width: 116px;box-shadow: 0 2px 13px 1px #ddd;" v-if="dropdown">
+              <div
+                class="droped"
+                style="position:absolute;right:0;width: 116px;box-shadow: 0 2px 13px 1px #ddd;"
+                v-if="dropdown"
+              >
                 <ul style="list-style:none;padding-right:0;">
                   <li>
-                    <nuxt-link to="">
-                      تعديل البيانات
-                    </nuxt-link>
+                    <nuxt-link to>تعديل البيانات</nuxt-link>
                   </li>
                   <li>
-                    <nuxt-link to="">
-                      تسجيل الخروج
-                    </nuxt-link>
+                    <nuxt-link to>تسجيل الخروج</nuxt-link>
                   </li>
                   <li>
-                    <nuxt-link to="">
-                      تسجيل الخروج
-                    </nuxt-link>
+                    <nuxt-link to>تسجيل الخروج</nuxt-link>
                   </li>
                   <li>
-                    <nuxt-link to="">
-                      تسجيل الخروج
-                    </nuxt-link>
+                    <nuxt-link to>تسجيل الخروج</nuxt-link>
                   </li>
-                  
-                 
                 </ul>
               </div>
             </div>
@@ -120,12 +114,7 @@
         <div class="dropdown">
           <ul>
             <li>
-              <nuxt-link
-                to
-                :class="{ active: isRouteActive }"
-                exact-active-class="active"
-                >الرئيسية</nuxt-link
-              >
+              <nuxt-link to :class="{ active: isRouteActive }" exact-active-class="active">الرئيسية</nuxt-link>
             </li>
 
             <li>
@@ -160,9 +149,9 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      dropdown: false
+      dropdown: false,
     }
   },
   computed: {
@@ -255,51 +244,47 @@ export default {
     }
   }
 
-
-
-   .dropdown-head{
-            background: #1087ba;
+  .dropdown-head {
+    background: #1087ba;
     border: none;
     outline: none !important;
     padding: 7px 22px;
     position: relative;
     border-radius: 0 10px 9px 0;
-    .list-down{
+    .list-down {
       position: absolute;
       top: 0;
       right: 4px;
-      i{
-        color:#FFF;
+      i {
+        color: #fff;
         font-size: 20px;
-        
       }
     }
   }
-  .droped{
-        background: #fbfbfb;
+  .droped {
+    background: #fbfbfb;
     border-radius: 0 0 15px 15px;
-    ul{
-      li{
-        &:not(:last-of-type){
-        border-bottom: 1px solid #ccc;
-        
-      }
-      transition: all .3s ease;
-      &:hover{
-        background: #058ac6;
-        a{
-          color:#FFF;
+    ul {
+      li {
+        &:not(:last-of-type) {
+          border-bottom: 1px solid #ccc;
+        }
+        transition: all 0.3s ease;
+        &:hover {
+          background: #058ac6;
+          a {
+            color: #fff;
+          }
+        }
+        padding: 5px;
+        a {
+          color: #058ac6;
+          transition: all 0.3s ease;
         }
       }
-      padding: 5px;
-      a{
-        color:#058ac6;
-        transition: all .3s ease;
-      }
-      }
     }
   }
-  
+
   .navlinks {
     padding-top: 53px;
     ul {

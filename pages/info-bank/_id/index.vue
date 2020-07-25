@@ -29,25 +29,14 @@
            <img style="width: 196px;" src="../../../assets/imgs/right.png" alt="">
          </h6>
        </div>
-        <!-- <div class="question-head-one" style="padding: 35px 0;">
-        <h6 style="color: #6c6c6c;"> {{question.head}} </h6>
-       </div> -->
-
+       
 
       <component :is="selectedComponent" @choose="chooseHandle" @trueFalse="truefalseHandle" :question="question"></component>
 
        <div class="question-head-one" style="float:right">
         <div class="buttons">
           <div class="row">
-            <!-- <div class="col-md-4">
-              <button class="first" style="width:100%">اجابة 1</button>
-            </div>
-             <div class="col-md-4">
-              <button style="width:100%">اجابة 2</button>
-            </div>
-             <div class="col-md-4">
-              <button style="width:100%">اجابة 3</button>
-            </div>-->
+       
             <button class="fullWidthBtn" @click="submitQuestion">التالي</button>
           </div> 
           
@@ -56,16 +45,6 @@
      </div>
 
 
-     <div class="question-head" style="overflow:hidden">
-       <!-- <div class="question-head-one" style="padding-left:41px">
-         <h6  style="text-align:lefttext-align: left; left: 34px;">
-
-           <span style="font-size: 29px;display: block;width: 72px;float: left; margin-top: 9px;color:#056c9e">30+</span>
-            <img style="display:block;float:left" src="../../../assets/imgs/point.png" alt="">
-         </h6>
-       </div> -->
-        
-     </div>
       </div>
     </div>
   </div>

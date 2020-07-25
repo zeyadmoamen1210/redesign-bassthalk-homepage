@@ -14,7 +14,7 @@
           />
         </div>
         <div class="desc-cont">
-          <h5 class="mr-2 mt-2">{{ title }}</h5>
+          <h5 class="mr-2 mt-2">{{ file.title }}</h5>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  props: ["title", "link"]
+  props: ["file"]
 };
 </script>
 

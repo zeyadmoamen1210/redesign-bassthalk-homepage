@@ -1,7 +1,7 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 50%;">
     <h6>{{ question.head }}</h6>
-    <selectedImg :imgUrl="'https://i.ibb.co/9HSf4R0/logo.png'"></selectedImg>
+    <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
 
     <div
       style="
@@ -19,7 +19,7 @@
           type="radio"
           name="check-ques-1"
           class="absthalk-radio"
-          id=""
+          id
         />
         <span>خطأ</span>
       </div>
@@ -31,7 +31,7 @@
           type="radio"
           name="check-ques-1"
           class="absthalk-radio"
-          id=""
+          id
         />
         <span>صح</span>
       </div>
@@ -53,8 +53,10 @@ export default {
   },
   watch: {
     truefalseform() {
-      console.log(this.truefalseform)
-      this.$emit('trueFalse', this.truefalseform)
+      // console.log('answer', this.truefalseform)
+      this.$emit('trueFalse', {
+        answer: this.truefalseform,
+      })
     },
   },
 }
