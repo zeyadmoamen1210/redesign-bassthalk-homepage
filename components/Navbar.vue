@@ -83,10 +83,10 @@
               >
                 <ul style="list-style:none;padding-right:0;">
                   <li>
-                    <nuxt-link to>تعديل البيانات</nuxt-link>
+                    <nuxt-link to="/"> <i class="fas fa-user-alt"></i>تعديل البيانات</nuxt-link>
                   </li>
                   <li>
-                    <a @click="logout">تسجيل الخروج</a>
+                    <a @click="logout"> <i class="fas fa-sign-out-alt"></i>تسجيل الخروج</a>
                   </li>
                   <!-- <li>
                     <nuxt-link to>تسجيل الخروج</nuxt-link>
@@ -272,6 +272,10 @@ export default {
   .droped {
     background: #fbfbfb;
     border-radius: 0 0 15px 15px;
+    i{
+          font-size: 13px;
+    margin-left: 7px;
+    }
     ul {
       li {
         &:not(:last-of-type) {
