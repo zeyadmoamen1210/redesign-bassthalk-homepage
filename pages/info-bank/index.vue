@@ -6,16 +6,16 @@
           <!-- <h6>
             <img src="../../assets/imgs/noun_knowledge_-1.png" alt />
             بنك المعلومات
-          </h6> -->
-           <div class="head-who">
-              <span></span>
-              <span></span>
-              <span></span>
-              <h3>المواد الدراسية</h3>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+          </h6>-->
+          <div class="head-who">
+            <span></span>
+            <span></span>
+            <span></span>
+            <h3>بنك المعرفة</h3>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
         <div class="container" v-if="selectedQuestion">
           <div class="question-bank">
@@ -43,9 +43,11 @@
                   style="text-align:left"
                   :style="{visibility: correctAnswer ? 'visible' : 'hidden'}"
                 >
-                  <span
-                    
-                  >{{point}} </span>
+                  <span>
+                    <span>{{point}}</span>
+                    <img src="@/assets/imgs/point.png" alt />
+                  </span>
+                  <br />
                   <img style="width: 196px;" src="@/assets/imgs/right.png" alt />
                 </h6>
               </div>
@@ -276,9 +278,9 @@ export default {
 }
 @import '../../assets/sass/best-student.scss';
 @import '../../assets/sass/question-info-bank.scss';
-.ques-answer-btns{
-  button{
-         width: 100%;
+.ques-answer-btns {
+  button {
+    width: 100%;
     text-align: center;
     border: none;
     padding: 7px;
@@ -341,34 +343,32 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.bank-info{
-  
-.head-who{
-    h3{
-          margin-right: 53px;
+.bank-info {
+  .head-who {
+    h3 {
+      margin-right: 53px;
     }
-    
   }
-.head-who span:nth-of-type(4) {
+  .head-who span:nth-of-type(4) {
     top: 10px;
     left: 6px;
-}
+  }
 
-.head-who span:nth-of-type(3) {
+  .head-who span:nth-of-type(3) {
     top: 13px;
     left: -16px;
     height: 14px;
     width: 15px;
-}
+  }
 
-.head-who span:nth-of-type(2) {
+  .head-who span:nth-of-type(2) {
     width: 12px;
     height: 12px;
     top: 13px;
     left: -37px;
-}
-.head-who h3 {
+  }
+  .head-who h3 {
     margin-right: 53px;
-}
+  }
 }
 </style>
