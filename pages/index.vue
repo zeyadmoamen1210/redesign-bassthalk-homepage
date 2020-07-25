@@ -158,9 +158,7 @@
             <div class="col-md-6">
               <div class="all-the-best-btn">
                 <button class="btn">
-                  <nuxt-link to="/best-students" style="color:#FFF">
-                    عرض جميع المتفوقين
-                  </nuxt-link>
+                  <nuxt-link to="/best-students" style="color:#FFF">عرض جميع المتفوقين</nuxt-link>
                 </button>
               </div>
             </div>
@@ -177,7 +175,7 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <h3>الصف الاول الثانوي</h3>
+                      <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>140</h6>
@@ -196,7 +194,7 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <h3>الصف الاول الثانوي</h3>
+                      <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>150</h6>
@@ -215,7 +213,7 @@
                     <img src="../assets/imgs/user.png" alt />
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
-                      <h3>الصف الاول الثانوي</h3>
+                      <!-- <h3>الصف الاول الثانوي</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>145</h6>
@@ -331,7 +329,7 @@
                     <div class="row">
                       <div class="col-md-10 col-10">
                         <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p  v-if="ques2">
+                        <p v-if="ques2">
                           هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
                           تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
                           نص تجريبي
@@ -339,7 +337,7 @@
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
-                          <button  @click="ques2 = !ques2">
+                          <button @click="ques2 = !ques2">
                             <img src="../assets/imgs/add.png" alt />
                           </button>
                         </div>
@@ -351,7 +349,7 @@
                     <div class="row">
                       <div class="col-md-10 col-10">
                         <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p  v-if="ques3">
+                        <p v-if="ques3">
                           هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
                           تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
                           نص تجريبي
@@ -359,7 +357,7 @@
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
-                          <button  @click="ques3 = !ques3">
+                          <button @click="ques3 = !ques3">
                             <img src="../assets/imgs/add.png" alt />
                           </button>
                         </div>
@@ -371,7 +369,7 @@
                     <div class="row">
                       <div class="col-md-10 col-10">
                         <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p  v-if="ques4">
+                        <p v-if="ques4">
                           هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
                           تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
                           نص تجريبي
@@ -379,7 +377,7 @@
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
-                          <button  @click="ques4 = !ques4">
+                          <button @click="ques4 = !ques4">
                             <img src="../assets/imgs/add.png" alt />
                           </button>
                         </div>
@@ -391,7 +389,7 @@
                     <div class="row">
                       <div class="col-md-10 col-10">
                         <h4>ما الطريقة الصحيحة للترتيب في افضل 3 متفوقين ؟</h4>
-                        <p  v-if="ques5">
+                        <p v-if="ques5">
                           هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص
                           تجريبي هذا نص تجريبي هذا نص تجريبي هذا نص تجريبي هذا
                           نص تجريبي
@@ -399,7 +397,7 @@
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
-                          <button  @click="ques5 = !ques5">
+                          <button @click="ques5 = !ques5">
                             <img src="../assets/imgs/add.png" alt />
                           </button>
                         </div>
@@ -419,7 +417,7 @@
                       </div>
                       <div class="col-md-2 col-2">
                         <div class="icon">
-                          <button  @click="ques6 = !ques6">
+                          <button @click="ques6 = !ques6">
                             <img src="../assets/imgs/add.png" alt />
                           </button>
                         </div>
@@ -504,7 +502,7 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       ques1: false,
       ques2: false,

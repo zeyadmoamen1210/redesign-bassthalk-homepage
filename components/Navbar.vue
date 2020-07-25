@@ -19,14 +19,14 @@
                     exact-active-class="active"
                   >الرئيسية</nuxt-link>
                 </li>
-                
+
                 <!-- <li>
                   <nuxt-link to>من نحن</nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to>رؤيتنا</nuxt-link>
-                </li> -->
+                </li>-->
 
                 <li>
                   <nuxt-link to="/best-students">المتفوقين</nuxt-link>
@@ -46,7 +46,7 @@
 
                 <li>
                   <nuxt-link to class-active="active">شركاؤنا</nuxt-link>
-                </li> -->
+                </li>-->
                 <li>
                   <nuxt-link to="/links" class-active="active">
                     <a href data-custom="partnars">الصفحات</a>
@@ -86,14 +86,14 @@
                     <nuxt-link to>تعديل البيانات</nuxt-link>
                   </li>
                   <li>
+                    <a @click="logout">تسجيل الخروج</a>
+                  </li>
+                  <!-- <li>
                     <nuxt-link to>تسجيل الخروج</nuxt-link>
                   </li>
                   <li>
                     <nuxt-link to>تسجيل الخروج</nuxt-link>
-                  </li>
-                  <li>
-                    <nuxt-link to>تسجيل الخروج</nuxt-link>
-                  </li>
+                  </li>-->
                 </ul>
               </div>
             </div>
@@ -169,6 +169,9 @@ export default {
     },
   },
   methods: {
+    async logout() {
+      await this.$auth.logout()
+    },
     showDropdown: function () {
       document.querySelector('.dropdown').classList.toggle('drop')
       if (document.querySelector('.dropdown').classList.contains('drop')) {
@@ -216,7 +219,7 @@ export default {
       height: 60px;
       img {
         width: 64%;
-    height: 65%;
+        height: 65%;
       }
     }
   }
@@ -334,7 +337,7 @@ export default {
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
     padding: 10px 0;
-        height: 64px;
+    height: 64px;
   }
   .tests-level {
     margin-top: 120px;
@@ -402,7 +405,7 @@ export default {
     margin-bottom: 34px;
     box-shadow: 4px -5px 12px 7px #ddd;
     padding: 10px 0;
-        height: 64px;
+    height: 64px;
   }
   .navbar-before {
     .navlinks {

@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <Loading v-if="isLoading" />
-       <ValidationObserver  v-else v-slot="{ invalid }">
+      <!-- <ValidationObserver v-else v-slot="{ invalid }"> -->
       <div class="login">
         <div class="form-title">
           <h4>
@@ -11,43 +11,45 @@
           </h4>
         </div>
         <div class="form-groub">
-          <ValidationProvider rules="required|email" v-slot="email">
+          <!-- <ValidationProvider rules="required|email" v-slot="email"> -->
           <input
             v-model="form.email"
             type="text"
             class="form-control"
             placeholder="البريد الالكتروني أو رقم الجوال"
           />
-           <div
-                  class="text-danger"
-                  style="font-family:'CustomFontLight';margin-bottom:20px"
-                  v-if="email.errors[0]"
-                >
-                  {{ email.errors[0] }}
-                </div>
-          </ValidationProvider>
+          <!-- <div
+            class="text-danger"
+            style="font-family:'CustomFontLight';margin-bottom:20px"
+            v-if="email.errors[0]"
+          >{{ email.errors[0] }}</div>-->
+          <!-- </ValidationProvider> -->
         </div>
         <div class="form-groub">
-           <ValidationProvider rules="required|email" v-slot="email">
+          <!-- <ValidationProvider rules="required|email" v-slot="email"> -->
           <input
             v-model="form.password"
             type="password"
             class="form-control"
             placeholder="كلمة المرور"
           />
-           <div
-                  class="text-danger"
-                  style="font-family:'CustomFontLight';margin-bottom:20px"
-                  v-if="email.errors[0]"
-                >
-                  {{ email.errors[0] }}
-                </div>
-                </ValidationProvider>
+          <!-- <div
+            class="text-danger"
+            style="font-family:'CustomFontLight';margin-bottom:20px"
+            v-if="email.errors[0]"
+          >{{ email.errors[0] }}</div>-->
+          <!-- </ValidationProvider> -->
         </div>
         <div class="forget-pass">
           <nuxt-link to>هل نسيت كلمة مرورك ؟</nuxt-link>
         </div>
-        <input type="button" @click="login" :disabled="invalid" value="تسجيل الدخول" class="basth-btn-primary" />
+        <input
+          type="button"
+          @click="login"
+          :disabled="invalid"
+          value="تسجيل الدخول"
+          class="basth-btn-primary"
+        />
         <div class="two-way">
           <h6>او عن طريق</h6>
           <img src="../assets/imgs/facebook.png" alt />
@@ -63,7 +65,7 @@
           </div>
         </div>
       </div>
-      </ValidationObserver>
+      <!-- </ValidationObserver> -->
     </div>
   </div>
 </template>
@@ -72,11 +74,14 @@
 import * as Cookies from 'js-cookie'
 import Loading from '@/components/Loading'
 
+// import { ValidationProvider, ValidationObserver } from 'vee-validate'
 export default {
   middleware: 'guest',
 
   components: {
     Loading,
+    // ValidationObserver,
+    // ValidationProvider,
   },
   data() {
     return {
