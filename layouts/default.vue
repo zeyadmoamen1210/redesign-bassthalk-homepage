@@ -31,6 +31,10 @@ export default {
 .cont {
   min-height: 64vh;
 }
+.snotify-leftTop, .snotify-centerTop, .snotify-rightTop {
+    top: 10px;
+    z-index: 999999999999;
+}
 .basth-btn-primary {
   display: block;
   width: 100%;
