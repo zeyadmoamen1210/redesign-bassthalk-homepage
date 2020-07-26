@@ -109,7 +109,11 @@ export default {
         })
         this.isLoading = false
         Cookies.set('account', JSON.stringify(response.data), { expires: 365 })
-        this.$router.push({ path: '/subjects' })
+        if (this.$auth?.user?.class?.id) {
+          this.$router.push({ path: '/subjects' })
+        } else {
+          this.$router.push({ path: '/path' })
+        }
 
         this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`)
       } catch (err) {

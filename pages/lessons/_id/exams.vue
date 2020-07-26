@@ -14,7 +14,7 @@
             <!-- {{exams[0].id}} -->
             <div class="col-md-4">
               <!-- <nuxt-link :to="'/exams/' + exams[0].id + '/questions'"> -->
-              <div class="level-item box-shadow-class" @click="setExam(exams[2])">
+              <div class="level-item box-shadow-class" @click="setExam(0)">
                 <img style="margin-top:40px" src="../../../assets/imgs/easy-level-1.png" alt />
                 <h6>المستوي السهل</h6>
               </div>
@@ -23,7 +23,7 @@
 
             <div class="col-md-4">
               <!-- <nuxt-link :to="'/exams/' + exams[1].id + '/questions'"> -->
-              <div class="level-item box-shadow-class" @click="setExam(exams[1])">
+              <div class="level-item box-shadow-class" @click="setExam(1)">
                 <img style="margin-top:40px" src="../../../assets/imgs/easy-level-2.png" alt />
                 <h6>المستوي المتوسط</h6>
               </div>
@@ -32,7 +32,7 @@
 
             <div class="col-md-4">
               <!-- <nuxt-link :to="'/exams/' + exams[2].id + '/questions'"> -->
-              <div class="level-item box-shadow-class" @click="setExam(exams[0])">
+              <div class="level-item box-shadow-class" @click="setExam(2)">
                 <img style="margin-top:40px" src="../../../assets/imgs/easy-level-3.png" alt />
                 <h6>المستوي الصعب</h6>
               </div>
@@ -44,10 +44,29 @@
         <div class="container" v-if="selectedExam">
           <div class="general-exam-test">
             <div class="title">
-              <div class="exam-level" v-if="lessonDetails">
+              <div class="exam-level">
+                <img
+                  v-if="selectedExam.exam.difficultyLevel=='difficult'"
+                  src="@/assets/imgs/easy-level-3.png"
+                  alt
+                />
+                <img
+                  v-if="selectedExam.exam.difficultyLevel=='middle'"
+                  src="@/assets/imgs/easy-level-2.png"
+                  alt
+                />
+                <img
+                  v-if="selectedExam.exam.difficultyLevel=='easy'"
+                  src="@/assets/imgs/easy-level-1.png"
+                  alt
+                />
+                <h6>{{selectedExam.exam.title}}</h6>
+              </div>
+
+              <!-- <div class="exam-level" v-if="lessonDetails">
                 <h4 style="display: inline-block;">{{lessonDetails.unit.subject.nameAr}}</h4>
                 <h6>{{lessonDetails.unit.nameAr }} - {{lessonDetails.nameAr}}</h6>
-              </div>
+              </div>-->
               <div class="sub-name">
                 <h4>الاختبار</h4>
                 <img src="../../../assets/imgs/noun_testing_3325786.png" alt />
@@ -55,20 +74,22 @@
             </div>
 
             <div class="general-exam-head">
-              <!--  <div class="head-three">
-                <div class="c100 p25 small" style="margin-top: 0;">
-                  <span>25%</span>
+              <div class="head-three">
+                <div class="c100 small" :class="'p'+selectedExam.mark" style="margin-top: 0;">
+                  <span v-if="selectedExam.mark">{{selectedExam.mark}}%</span>
                   <div class="slice">
                     <div class="bar"></div>
                     <div class="fill"></div>
                   </div>
                 </div>
-              </div>-->
-              <!-- <div class="unit lesson-uni head-two" v-if="lessonDetails">
-                <img src="../../../assets/imgs/laboratory.png" alt />
+              </div>
+              <div class="unit lesson-uni head-two" v-if="lessonDetails">
+                <img src="../../../assets/imgs/noun_testing_3325786.png" alt />
+
+                <!-- <img src="../../../assets/imgs/laboratory.png" alt /> -->
                 <h4 style="display: inline-block;">{{lessonDetails.unit.subject.nameAr}}</h4>
                 <h6>{{lessonDetails.unit.nameAr }} - {{lessonDetails.nameAr}}</h6>
-              </div>-->
+              </div>
             </div>
             <Loading v-if="isLoading" />
 
@@ -121,13 +142,15 @@
                   </div>
                 </div>
 
+                <!-- <div v-if="questions.length>0"> -->
                 <input
-                  v-if="questions.length>0"
+                  v-if="questions.length>0&&selectedExam.mark<75"
                   class="mt-5 basth-btn-primary"
                   type="button"
                   @click="setExamTODone"
                   value="تصحيح"
                 />
+                <!-- </div> -->
               </div>
             </div>
           </div>
@@ -159,6 +182,7 @@ export default {
   data() {
     return {
       selectedExam: null,
+      selectedIndex: null,
 
       isLoading: true,
       exams: [],
@@ -185,15 +209,42 @@ export default {
   },
   watch: {},
   methods: {
-    setExam(exam) {
-      if (exam.isSolving == true) {
-        this.selectedExam = exam
-        this.startExam()
+    setExam(index) {
+      if (index == 0) {
+        this.selectedExam = this.exams[index]
+        console.log(index, this.exams[index].mark)
+        console.log('title', this.exams[index]['exam'].title)
+        if (this.exams[index].mark < 75) {
+          this.startExam(this.exams[index])
+        } else {
+          this.getExamQuestions()
+        }
+      } else if (this.exams[index - 1].mark > 75) {
+        if (this.exams[index].mark < 75) {
+          this.startExam(this.exams[index])
+        } else {
+          this.getExamQuestions()
+        }
       } else {
         this.$snotify.warning(
           ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
         )
       }
+      // if (this.exams[this.selectedIndex].mark == null) {
+      //   this.startExam(this.exams[this.selectedIndex])
+      // } else if (this.exams[this.selectedIndex].mark < 75) {
+      //   this.startExam(this.exams[this.selectedIndex])
+      // } else {
+      //   this.selectedExam = this.exams[this.selectedIndex]
+
+      //   this.getExamQuestions()
+      // }
+
+      // } else {
+      //   this.$snotify.warning(
+      //     ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
+      //   )
+      // }
     },
     getLessonExams() {
       this.$axios
@@ -219,15 +270,20 @@ export default {
         })
         .finally(() => (this.isLoading = false))
     },
-    startExam() {
+    startExam(exam) {
       // exams/70/start
       this.$axios
-        .post(`exams/${this.selectedExam.exam.id}/start`)
+        .post(`exams/${exam.exam.id}/start`)
         .then((res) => {
+          this.selectedExam = exam
+
           this.getExamQuestions()
         })
         .catch((err) => {
           console.log(err)
+          this.$snotify.warning(
+            ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
+          )
         })
     },
     getExamQuestions() {
@@ -248,7 +304,10 @@ export default {
       this.$axios
         .post(`exams/${this.selectedExam.exam.id}/done`)
         .then((res) => {
-          this.$router.push({ path: '/subjects' })
+          // this.$router.push({ path: '/subjects' })
+          this.getLessonExams()
+
+          this.selectedExam.mark = res.data.mark
           this.$snotify.success(
             ` حسناً تم تسليم الإمتحان بنجاح من فضلك إنتظر تصحيح الإمتحان`
           )
