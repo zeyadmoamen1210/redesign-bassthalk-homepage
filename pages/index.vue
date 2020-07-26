@@ -38,7 +38,7 @@
             <span></span>
           </div>
           <div class="logo-who-we-are">
-            <img src="../assets/imgs/logo.png" alt />
+            <img :src="about.image" alt />
           </div>
           <div class="title-who-we-are">
             <p>
