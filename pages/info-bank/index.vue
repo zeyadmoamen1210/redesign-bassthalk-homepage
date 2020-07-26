@@ -7,11 +7,11 @@
             <img src="../../assets/imgs/noun_knowledge_-1.png" alt />
             بنك المعلومات
           </h6> -->
-           <div class="head-who" style="width:263px">
+           <div class="head-who" style="width:293px">
               <span></span>
               <span></span>
               <span></span>
-              <h3>بنك المعرفة</h3>
+              <h3>بنك المعلومات</h3>
               <span></span>
               <span></span>
               <span></span>
@@ -149,6 +149,11 @@
             </div>
           </div>
         </div>
+
+        <button class="false">
+          <i class="fas fa-thumbs-down"></i>
+         إجابة خاطئة
+        </button>
       </div>
     </div>
   </div>
@@ -290,6 +295,14 @@ export default {
     margin-top: 15px;
     border: 1px solid #058ac6;
   }
+}
+.false{
+    font-family: "CustomFontMedium";
+    color: #ffffff;
+    background: #ff0202bd;
+    padding: 13px 31px;
+    border: none;
+    border-radius: 7px;
 }
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
