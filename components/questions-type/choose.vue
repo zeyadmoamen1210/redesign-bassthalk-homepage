@@ -5,17 +5,11 @@
 
     <div class="ques-answer-btns">
       <div class="row">
-        <div
-          class="col-md-3"
-          v-for="(item, index) in question.choices"
-          :key="index"
-        >
+        <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
           <button
-            @click="answer = index"
-            :class="{ selected: answer == index }"
-          >
-            {{ question.choices[index] }}
-          </button>
+            @click="answerData = index"
+            :class="{ selected: answerData == index }"
+          >{{ question.choices[index] }}</button>
         </div>
       </div>
     </div>
@@ -36,20 +30,26 @@ export default {
     answer: {
       required: true,
     },
+    exam_id: {
+      required: true,
+    },
   },
   data() {
     return {
       id: this.question.id,
+      answerData: this.answer,
+
+      exam: this.exam_id,
     }
   },
   watch: {
-    answer: function (val) {
+    answerData: function (val) {
       // ! patch exam answer
       // !exams/70/solution
       this.$axios
         .patch(`exams/${this.exam_id}/solution`, {
           question: this.id,
-          answer: this.answer,
+          answer: this.answerData,
         })
         .then((res) => {})
         .catch((err) => {

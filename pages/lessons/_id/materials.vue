@@ -63,11 +63,11 @@
 
       <div class="container">
         <div class="another-videos">
-          <div class="title">
+          <div class="title" v-if="videos.length>1">
             <h5>الشرح بطريقة اخري</h5>
           </div>
 
-          <div class="row">
+          <div class="row" v-if="videos.length>1">
             <swiper class="swiper" :options="swiperOption">
               <swiper-slide v-for="(video, index) in videos" :key="index">
                 <div class="video-cart" style="position:relative">
@@ -372,6 +372,7 @@ export default {
   methods: {
     previewVideo(video) {
       this.selectedVideo = video
+
       this.getSelectedVideoComments()
     },
     previewPdf(link) {
@@ -437,6 +438,7 @@ export default {
           this.selectedVideoComments[index].numberOfreplies += 1
           this.selectedVideoComments[index].replies = res.data.replies
           // this.selectedVideoComments[index].replies.push(res.data.replies);
+          this.$snotify.success(`تم إضافة الرد علي التعليق بنجاح`)
 
           // this.$snotify.success(`تم تعديل البيانات بنجاح`);
         })
@@ -461,7 +463,7 @@ export default {
         .then((res) => {
           this.selectedVideoComments.unshift(res.data)
 
-          // this.$snotify.success(`تم تعديل البيانات بنجاح`);
+          this.$snotify.success(`تم إضافة تعليقك بنجاح`)
         })
         .catch((err) => {
           console.log(err)
@@ -481,8 +483,10 @@ export default {
             value['replyContent'] = ''
             value['replyImage'] = null
           })
+          this.rating = this.lessonData.rating
           if (this.videos.length > 0) {
             this.selectedVideo = this.videos[0]
+
             this.getSelectedVideoComments()
           }
         })

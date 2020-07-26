@@ -16,7 +16,7 @@
           </div>
         </div>
         <Loading v-if="isLoading" />
-        <div v-else>
+        <div v-else-if="students.length>0">
           <div class="best-sort" style="overflow:hidden;">
             <div class="row">
               <div class="col-md-4">
@@ -112,7 +112,7 @@ export default {
   },
   data() {
     return {
-      isLoading: true,
+      isLoading: false,
       students: [],
     }
   },
@@ -122,12 +122,15 @@ export default {
   methods: {
     getBestStudents() {
       // /classes/5/rank
-      this.$axios
-        .get(`classes/${this.$auth.user.class.id}/rank`)
-        .then((res) => {
-          this.students = res.data
-        })
-        .finally(() => (this.isLoading = false))
+      if (this.$auth?.user?.class?.id) {
+        this.isLoading = false
+        this.$axios
+          .get(`classes/${this.$auth.user.class.id}/rank`)
+          .then((res) => {
+            this.students = res.data
+          })
+          .finally(() => (this.isLoading = false))
+      }
     },
   },
 }

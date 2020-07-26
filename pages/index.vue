@@ -146,7 +146,7 @@
             </div>
           </div>
           <Loading v-if="isLoading" />
-          <div v-else-if="!isLoading && $auth.loggedIn" class="best-sort" style="overflow: hidden;">
+          <div v-if="isvalid" class="best-sort" style="overflow: hidden;">
             <div class="row" v-if="students.length>0">
               <div class="col-md-4">
                 <div class="user-sort-item">
@@ -207,7 +207,7 @@
             </div>
           </div>
 
-          <div v-else-if="!$auth.loggedIn" class="best-sort" style="overflow: hidden;">
+          <div v-else class="best-sort mb-5" style="overflow: hidden;">
             <div class="row">
               <div class="col-md-4">
                 <div class="user-sort-item">
@@ -219,10 +219,10 @@
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
                       <!-- <h3>الصف الاول الثانوي</h3> -->
-                      <div class="profile-cont-point" style="overflow: hidden;">
+                      <!-- <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>140</h6>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -238,10 +238,10 @@
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
                       <!-- <h3>الصف الاول الثانوي</h3> -->
-                      <div class="profile-cont-point" style="overflow: hidden;">
+                      <!-- <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>150</h6>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -257,10 +257,10 @@
                     <div class="profile-cont">
                       <!-- <h3>احمد محمود</h3> -->
                       <!-- <h3>الصف الاول الثانوي</h3> -->
-                      <div class="profile-cont-point" style="overflow: hidden;">
+                      <!-- <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
                         <h6>145</h6>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -470,9 +470,8 @@
                   </div>
                   <Loading v-if="isLoading" />
                   <div v-else class="send">
-                    <div class="form-groub">
+                    <div class="form-groub" v-if="$auth.loggedIn">
                       <img
-                        v-if="$auth.loggedIn"
                         @click="sendQuestion"
                         src="../assets/imgs/send.png"
                         style="cursor:pointer"
@@ -485,13 +484,16 @@
                         class="form-control"
                       />
                     </div>
+                    <div v-else>
+                      <p class="text-center">ولارسال سؤال من فضلك قم بتسجيل الدخول</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="partnars" id="partnars">
+          <div class="partnars" id="partnars" v-if="$auth.loggedIn">
             <div class="container">
               <div class="head-who">
                 <span></span>
@@ -538,6 +540,7 @@ export default {
   },
   data() {
     return {
+      isvalid: false,
       studentsQuestions: [],
       ques1: false,
       about: [],
@@ -595,7 +598,8 @@ export default {
     },
     getBestStudents() {
       // /classes/5/rank
-      if (this.$auth.loggedIn) {
+      if (this.$auth.loggedIn && this.$auth?.user?.class?.id) {
+        this.isvalid = true
         this.isLoading = true
         this.$axios
           .get(`classes/${this.$auth.user.class.id}/rank`)
