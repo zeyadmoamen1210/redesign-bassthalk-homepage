@@ -526,14 +526,17 @@
                   <div class="col-md-4" v-for="part in partners" :key="part.id">
                     <div class="partner">
                       <div style="text-align:center">
-                        <img style="width: 166px;height: 166px;border-radius: 50%;box-shadow: 0 2px 13px 1px #ddd;margin: auto;text-align: center;" :src="part.image" />
-                        <h4 style=" text-align: center;margin-top: 20px;color: #0989c3;"> {{part.name}} </h4>
-                        <p style="text-align: center;color: #676767;"> {{part.description}} </p>
+                        <img
+                          style="width: 166px;height: 133px;border-radius: 50%;box-shadow: 0 2px 13px 1px #ddd;margin: auto;text-align: center;"
+                          :src="part.image"
+                        />
+                        <h4
+                          style=" text-align: center;margin-top: 20px;color: #0989c3;"
+                        >{{part.name}}</h4>
+                        <p style="text-align: center;color: #676767;">{{part.description}}</p>
                       </div>
                     </div>
                   </div>
-
-                 
                 </div>
               </div>
             </div>
@@ -561,14 +564,15 @@ export default {
       ques5: false,
       ques6: false,
       sent: [],
-            question: "",
-            isLoading: false,
-            students: [],
-            partners: []
+      question: '',
+      isLoading: false,
+      students: [],
+      studentsQuestions: [],
+      partners: [],
     }
   },
-  created(){
-    this.$axios.get(`partners`).then(res => {
+  created() {
+    this.$axios.get(`partners`).then((res) => {
       console.log(res)
       this.partners = res.data
     })
