@@ -43,6 +43,40 @@
                   <nuxt-link exact-active-class="active" to="/live-teach"> البث المباشر </nuxt-link>
                 </li>
 
+                <li>
+                    <div class="notification" @click="notification = !notification">
+                      <i class="fas fa-bell"></i>
+                      <div v-if="count" class="noti-content">
+                        {{count}}
+                      </div>
+                      
+
+
+                       <div v-if="notification" class="notification-data" style="  box-shadow:rgb(0 0 0 / 35%) 0px 8px 25px 0px;  right: -69px; position: absolute;z-index: 99;width: 352px;background: rgb(5 138 198);padding: 15px;order-radius: 0px 0px 15px 15px;max-height: 352px;overflow-y: scroll;">
+                       <div>
+                         <h5 style="color: #FFF;"> الأشعارات </h5>
+                       </div>
+                        <div v-for="(noti,index) in allNotification" :key="index">
+                         <div style="margin-bottom:15px;overflow:hidden;padding: 10px;background: #ececec;">
+                            <div class="icon" style="width:50px;float:right;padding:7px">
+                            <img style="border-radius:50%;width:100%;height:100%" :src="noti.icon" alt="">
+                          </div>
+                          <div class="body" style="width: calc(100% - 50px);float:right">
+                            <h6> {{noti.title}} </h6>
+                            <p style="    font-size: 12px;margin-bottom:0"> {{noti.body}} </p>
+                          </div>
+                         </div>
+                        </div>
+                      </div>
+
+
+                      
+                    </div>
+          
+                </li>
+
+                
+
                 <!-- <li>
                   <nuxt-link to>حمل التطبيق</nuxt-link>
                 </li>
@@ -62,6 +96,10 @@
               </ul>
             </div>
           </div>
+
+
+
+          
 
           <div class="col-md-2 col-sm-6" v-if="!$auth.loggedIn">
             <div class="nav-login">
@@ -113,7 +151,13 @@
                 </ul>
               </div>
             </div>
+
+           
           </div>
+
+         
+
+
         </div>
       </div>
     </div>
@@ -157,14 +201,23 @@
         </div>
       </div>
     </div>
+
+
+    
+         
   </div>
 </template>
 
 <script>
+import Loading from '../components/Loading'
 export default {
   data() {
     return {
       dropdown: false,
+      count: 0,
+      notification: false,
+      allNotification: [],
+      isLoaing: false
     }
   },
   computed: {
@@ -175,6 +228,18 @@ export default {
         return false
       }
     },
+  },
+  created(){
+    this.isLoading = true
+    this.$axios.get('notifications/count').then((res) => {
+      console.log(res)
+      this.count = res.data.count
+    }).finally(() => this.isLoading = false)
+
+     this.$axios.get('notifications?limit=20').then((res) => {
+      console.log(res)
+      this.allNotification = res.data.docs
+    }).finally(() => this.isLoading = false)
   },
   methods: {
     async logout() {
@@ -240,6 +305,26 @@ export default {
     }
   }
 }
+/* width */
+.notification-data::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.notification-data::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.notification-data::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.notification-data::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 .navbar-before {
   .nav-logo {
     height: 100px;
@@ -259,7 +344,23 @@ export default {
       font-family: 'CustomFontMedium';
     }
   }
-
+  .notification{
+        font-size: 25px;
+    margin-right: 17px;
+    color: #272727;
+    cursor: pointer;
+    position: relative;
+    .noti-content{
+             position: absolute;
+    top: -5px;
+    right: -3px;
+    background: #058ac6;
+    border-radius: 50%;
+    font-size: 10px;
+    padding: 2px 6px;
+    color: #FFF;
+    }
+  }
   .dropdown-head {
     background: #1087ba;
     border: none;
