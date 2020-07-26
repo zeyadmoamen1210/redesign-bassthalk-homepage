@@ -6,7 +6,7 @@
               <div class="col-md-5"  style="margin:auto">
                   <div class="personal-info">
                       <div style="    width: 90px;margin: auto;margin-bottom: 7px;">
-                          <img style="width:100%;height:100%;border-radius: 50%;border: 3px solid #058ac6;" :src="$auth.user.photo" alt="">
+                                                        <img style="width:100%;height:100%;border-radius: 50%;border: 3px solid #058ac6;" :src="$auth.user.photo" alt="">
                       </div>
               <div>
                   <h6> الأسم: </h6>
@@ -51,13 +51,25 @@
       </div>
           <div class="point-cont" style="margin-top: 50px;">
         <div class="row">
-          <div class="col-md-12" v-for="x in 6" :key="x">
-            <div class="question-point-cont">
-              <span>  <span>33</span> <img  src="../../assets/imgs/point.png" alt=""></span>
-                            <h6>هنا جملة تفصيلية لسبب النقطة </h6>
+          <div class="col-md-12" v-for="(point) in points" :key="point.id" >
 
+            <div class="question-point-cont" >
+              <span>  <span>{{point.points}}</span> <img  src="../../assets/imgs/point.png" alt=""></span>
+                            <h6 v-if="point.bank">{{point.bank.head}}</h6>
+                             <h6 v-else>{{point.exam.title}}</h6>
             </div>
           </div>
+          <div>
+                <b-pagination
+      v-model="currentPage"
+      :total-rows="totalPages"
+      :per-page="perPage"
+      aria-controls="my-table"
+    ></b-pagination>
+          </div>
+
+       
+
 
 
         </div>
@@ -71,7 +83,28 @@
 
 <script>
 export default {
-
+    created(){
+        this.$axios.get(`mypoints`).then(res => {
+            console.log("points ", res)
+            this.points = res.data.docs
+        })
+    },
+    data(){
+        return {
+            points: [],
+            currentPage:1,
+            totalPages: 10,
+            perPage: 1,
+        }
+    },
+    watch:{
+        currentPage(val){
+            this.$axios.get(`mypoints?page=${val}`).then(res => {
+                console.log("points ", res)
+                this.points = res.data.docs
+            })
+        }
+    }
 }
 </script>
 
@@ -107,6 +140,14 @@ export default {
     }
             }
         }
+    }
+    .showAll{
+            padding: 4px 12px;
+    margin-right: 14px;
+    border: none;
+    background: #058ac6;
+    color: #FFF;
+    font-family: "CustomFontBold";
     }
 }
 </style>
