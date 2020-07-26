@@ -36,7 +36,11 @@
                 </li>
 
                 <li>
-                  <nuxt-link exact-active-class="active" to="/info-bank">بنك المعرفة</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/info-bank">بنك المعلومات</nuxt-link>
+                </li>
+
+                <li>
+                  <nuxt-link exact-active-class="active" to="/live-teach"> البث المباشر </nuxt-link>
                 </li>
 
                 <!-- <li>

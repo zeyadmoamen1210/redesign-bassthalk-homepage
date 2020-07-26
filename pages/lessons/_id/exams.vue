@@ -44,9 +44,9 @@
         <div class="container" v-if="selectedExam">
           <div class="general-exam-test">
             <div class="title">
-              <div class="exam-level">
-                <img src="../../../assets/imgs/easy-level-1.png" alt />
-                <h6>المستوي السهل</h6>
+              <div class="exam-level" v-if="lessonDetails">
+                <h4 style="display: inline-block;">{{lessonDetails.unit.subject.nameAr}}</h4>
+                <h6>{{lessonDetails.unit.nameAr }} - {{lessonDetails.nameAr}}</h6>
               </div>
               <div class="sub-name">
                 <h4>الاختبار</h4>
@@ -55,7 +55,7 @@
             </div>
 
             <div class="general-exam-head">
-              <div class="head-three">
+              <!--  <div class="head-three">
                 <div class="c100 p25 small" style="margin-top: 0;">
                   <span>25%</span>
                   <div class="slice">
@@ -63,13 +63,12 @@
                     <div class="fill"></div>
                   </div>
                 </div>
-              </div>
-              <div class="unit lesson-uni head-two">
+              </div>-->
+              <!-- <div class="unit lesson-uni head-two" v-if="lessonDetails">
                 <img src="../../../assets/imgs/laboratory.png" alt />
-                <h4 style="display: inline-block;">الكمياء</h4>
-                <span>1</span>
-                <h6>الوحدة الأولي - الدرس الأول</h6>
-              </div>
+                <h4 style="display: inline-block;">{{lessonDetails.unit.subject.nameAr}}</h4>
+                <h6>{{lessonDetails.unit.nameAr }} - {{lessonDetails.nameAr}}</h6>
+              </div>-->
             </div>
             <Loading v-if="isLoading" />
 
@@ -77,7 +76,7 @@
               <div class="row">
                 <div class="col-md-12" style="min-height: 320px;">
                   <div v-for="(item, index) in questions" :key="index">
-                    <div class="exam-cont-item ">
+                    <div class="exam-cont-item">
                       <div>
                         <h6>{{ index + 1 }}</h6>
                       </div>
@@ -164,6 +163,7 @@ export default {
       isLoading: true,
       exams: [],
       questions: null,
+      lessonDetails: null,
 
       examQuestions: [],
 
@@ -180,6 +180,7 @@ export default {
   created() {
     if (this.$route.params.id) {
       this.getLessonExams()
+      this.getLessonDetails()
     }
   },
   watch: {},
@@ -199,6 +200,18 @@ export default {
         .get(`lessons/${this.$route.params.id}/exams`)
         .then((res) => {
           this.exams = res.data
+        })
+
+        .catch((err) => {
+          console.log(err)
+        })
+        .finally(() => (this.isLoading = false))
+    },
+    getLessonDetails() {
+      this.$axios
+        .get(`lessons/${this.$route.params.id}`)
+        .then((res) => {
+          this.lessonDetails = res.data
         })
 
         .catch((err) => {

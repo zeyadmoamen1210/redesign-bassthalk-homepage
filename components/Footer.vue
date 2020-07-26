@@ -5,34 +5,42 @@
         <div class="row">
           <div class="col-md-3 col-6 col-sm-6">
             <ul>
-              <li>الرئيسية</li>
-              <li>من نحن</li>
-              <li>رؤيتنا</li>
-              <li>المتفوقين</li>
+              <li>
+                  <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
+                </li>
+
+                
+
+                <li>
+                  <nuxt-link exact-active-class="active" to="/info-bank">بنك المعلومات</nuxt-link>
+                </li>
+
+                
             </ul>
           </div>
 
            <div class="col-md-3 col-6 col-sm-6">
             <ul>
-              <li>حمل التطبيق</li>
-              <li>أسئلة و أجوبة</li>
-              <li>مشاركتنا</li>
-              <li>سجل النقاط</li>
+              <li>
+                  <nuxt-link exact-active-class="active" to="/live-teach"> البث المباشر </nuxt-link>
+                </li>
             </ul>
           </div>
 
            <div class="col-md-3 col-6 col-sm-6">
             <ul>
-              <li>بنك المعلومات</li>
-              <li>الأمتحانات العامة</li>
-              <li>بث مباشر</li>
+              <li>
+                  <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
+                </li>
 
             </ul>
           </div>
 
            <div class="col-md-3 col-6 col-sm-3">
             <ul>
-              <li>تابعنا علي</li>
+              <li>
+                <nuxt-link to="/"> الرئيسية </nuxt-link>
+              </li>
             </ul>
             <div>
 
@@ -70,6 +78,9 @@ export default {
             margin-bottom: 45px;
             list-style-type: none;
             li{
+              a{
+                color:#FFF !important;
+              }
               color:#FFF;
               margin-bottom: 10px;
               font-family: "CustomFontMedium";
