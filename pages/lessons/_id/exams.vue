@@ -113,12 +113,14 @@
                       v-if="item.question.type == 'truefalse'"
                       :question="item.question"
                       :exam_id="selectedExam.exam.id"
+                      :isSolving="selectedExam.isSolving"
                     />
                     <choose
                       :answer="item.answer"
                       v-if="item.question.type == 'choose'"
                       :question="item.question"
                       :exam_id="selectedExam.exam.id"
+                      :isSolving="selectedExam.isSolving"
                     />
                     <complete
                       :answer="item.answer"
@@ -138,6 +140,7 @@
                       :childrenQuestions="item.childrenQuestions"
                       :question="item.question"
                       :exam_id="selectedExam.exam.id"
+                      :isSolving="selectedExam.isSolving"
                     />
                   </div>
                 </div>
@@ -212,8 +215,7 @@ export default {
     setExam(index) {
       if (index == 0) {
         this.selectedExam = this.exams[index]
-        console.log(index, this.exams[index].mark)
-        console.log('title', this.exams[index]['exam'].title)
+
         if (this.exams[index].mark < 75) {
           this.startExam(this.exams[index])
         } else {
@@ -223,6 +225,7 @@ export default {
         if (this.exams[index].mark < 75) {
           this.startExam(this.exams[index])
         } else {
+          this.selectedExam = this.exams[index]
           this.getExamQuestions()
         }
       } else {

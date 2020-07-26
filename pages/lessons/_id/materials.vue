@@ -98,41 +98,7 @@
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
-            <div class="col-md-12">
-              <b-button v-b-modal.modal-1 class="fullWidthBtn">إبد الإختبار</b-button>
-              <!-- <button v-b-modal.modal-1 class="fullWidthBtn">أبدء الأختبار</button> -->
-            </div>
 
-            <b-modal id="modal-1" title="تقييم الدرس" hide-footer>
-              <div class="col-md-12">
-                <div
-                  class="model-rating"
-                  style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
-                >
-                  <h5 style="color:#0989c3;text-align: center;margin-bottom: 18px;">هل فهمت الدرس ؟</h5>
-                  <button @click="flag = 1" style="background:none;border:none;outline:none">
-                    <img
-                      :class="{selectedRate: flag == 1 ? true : false }"
-                      style="width:100%;"
-                      src="../../../assets/imgs/smile.png"
-                      alt
-                    />
-                  </button>
-                  <button @click="flag = 0" style="background:none;border:none;outline:none">
-                    <img
-                      :class="{selectedRate: flag == 0 ? true : false }"
-                      style="width:100%;"
-                      src="../../../assets/imgs/sad.png"
-                      alt
-                    />
-                  </button>
-                  <div>
-                    <b-form-rating v-model="rating" variant="warning" class="mb-2"></b-form-rating>
-                  </div>
-                  <button @click="addLessonRate" class="fullWidthBtn">استمرار</button>
-                </div>
-              </div>
-            </b-modal>
             <!-- @click="showLessonExams"  -->
 
             <!-- Button trigger modal -->
@@ -145,6 +111,40 @@
             <div class="col-md-12">
               <button class="fullWidthBtn">أبدء الأختبار</button>
             </div>-->
+          </div>
+          <b-modal id="modal-1" title="تقييم الدرس" hide-footer>
+            <div class="col-md-12">
+              <div
+                class="model-rating"
+                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
+              >
+                <h5 style="color:#0989c3;text-align: center;margin-bottom: 18px;">هل فهمت الدرس ؟</h5>
+                <button @click="flag = 1" style="background:none;border:none;outline:none">
+                  <img
+                    :class="{selectedRate: flag == 1 ? true : false }"
+                    style="width:100%;"
+                    src="../../../assets/imgs/smile.png"
+                    alt
+                  />
+                </button>
+                <button @click="flag = 0" style="background:none;border:none;outline:none">
+                  <img
+                    :class="{selectedRate: flag == 0 ? true : false }"
+                    style="width:100%;"
+                    src="../../../assets/imgs/sad.png"
+                    alt
+                  />
+                </button>
+                <div>
+                  <b-form-rating v-model="rating" variant="warning" class="mb-2"></b-form-rating>
+                </div>
+                <button @click="addLessonRate" class="fullWidthBtn">استمرار</button>
+              </div>
+            </div>
+          </b-modal>
+          <div class="col-md-12">
+            <b-button v-b-modal.modal-1 class="fullWidthBtn">إبد الإختبار</b-button>
+            <!-- <button v-b-modal.modal-1 class="fullWidthBtn">أبدء الأختبار</button> -->
           </div>
           <div class="video-comments">
             <div class="container">
