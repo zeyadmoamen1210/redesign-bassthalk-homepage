@@ -9,6 +9,7 @@
       leave-active-class="animate__animated animate__backOutRight"
     >
       <div class="img-preview" v-if="imgShow">
+        <a target="_blank" :href="imgUrl"><i style="font-size:25px" class="fas fa-expand-arrows-alt"></i></a>
         <img @click="imgShow = false" :src="imgUrl" alt />
       </div>
     </transition>
