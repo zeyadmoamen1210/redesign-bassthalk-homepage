@@ -6,16 +6,16 @@
           <!-- <h6>
             <img src="../../assets/imgs/noun_knowledge_-1.png" alt />
             بنك المعلومات
-          </h6> -->
-           <div class="head-who" style="width:293px">
-              <span></span>
-              <span></span>
-              <span></span>
-              <h3>بنك المعلومات</h3>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+          </h6>-->
+          <div class="head-who" style="width:293px">
+            <span></span>
+            <span></span>
+            <span></span>
+            <h3>بنك المعلومات</h3>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
         <div class="container" v-if="selectedQuestion">
           <div class="question-bank">
@@ -50,6 +50,10 @@
                   <br />
                   <img style="width: 196px;" src="@/assets/imgs/right.png" alt />
                 </h6>
+                <button class="false" v-if="point==0">
+                  <i class="fas fa-thumbs-down"></i>
+                  إجابة خاطئة
+                </button>
               </div>
               <truefalse
                 :key="selectedQuestion.id"
@@ -149,11 +153,6 @@
             </div>
           </div>
         </div>
-
-        <button class="false">
-          <i class="fas fa-thumbs-down"></i>
-         إجابة خاطئة
-        </button>
       </div>
     </div>
   </div>
@@ -193,7 +192,7 @@ export default {
       this.correctAnswer = false
       this.solving = true
       this.answer = null
-      this.point = 0
+      this.point = null
       this.seconds = 30
 
       if (this.questions.length == 4) {
@@ -296,13 +295,13 @@ export default {
     border: 1px solid #058ac6;
   }
 }
-.false{
-    font-family: "CustomFontMedium";
-    color: #ffffff;
-    background: #ff0202bd;
-    padding: 13px 31px;
-    border: none;
-    border-radius: 7px;
+.false {
+  font-family: 'CustomFontMedium';
+  color: #ffffff;
+  background: #ff0202bd;
+  padding: 13px 31px;
+  border: none;
+  border-radius: 7px;
 }
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
