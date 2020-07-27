@@ -386,6 +386,12 @@ export default {
     }
   }
   .check-box-ques {
+    button{
+      padding: 4px 15px;
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+    color: #5a5a5a;
+    }
     span {
       display: block;
       width: 34px;
