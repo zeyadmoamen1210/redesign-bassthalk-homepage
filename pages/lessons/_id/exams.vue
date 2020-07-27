@@ -309,11 +309,10 @@ export default {
         .then((res) => {
           // this.$router.push({ path: '/subjects' })
           this.getLessonExams()
+          this.getExamQuestions()
 
           this.selectedExam.mark = res.data.mark
-          this.$snotify.success(
-            ` حسناً تم تسليم الإمتحان بنجاح من فضلك إنتظر تصحيح الإمتحان`
-          )
+          this.$snotify.success(` حسناً تم تصحيح الإمتحان`)
         })
         .catch((err) => {
           console.log(err)

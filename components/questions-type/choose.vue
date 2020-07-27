@@ -4,13 +4,16 @@
     <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
 
     <div class="ques-answer-btns">
-      <div class="row">
+      <div class="row" v-if="isSolving">
         <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
           <button
-            v-if="isSolving"
             @click="answerData = index"
             :class="{ selected: answerData == index }"
           >{{ question.choices[index] }}</button>
+        </div>
+      </div>
+      <div class="row" v-else>
+        <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
           <button
             v-if="answerData == index && answerData != question.modelAnswer"
             class="danger"
