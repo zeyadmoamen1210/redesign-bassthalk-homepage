@@ -81,14 +81,6 @@
                   class="mt-2"
                   style="color:#0989c3;text-align: center;margin-bottom: 18px;"
                 >لقد تخطيت المستوي بنسبة {{selectedExam.mark}}</h5>
-                <!-- <button style="background:none;border:none;outline:none">
-                  <img
-                    
-                    style="width:100%;"
-                    src="../../../assets/imgs/smile.png"
-                    alt
-                  />
-                </button>-->
 
                 <button @click="restExam()" class="basth-btn-primary">الانتقال إلي المستوي التالي</button>
                 <button
@@ -96,6 +88,26 @@
                   class="light-btn"
                   style="width: 100%;"
                 >عرض إجاباتي + الاجابة النموذجية</button>
+              </div>
+            </div>
+          </b-modal>
+          <b-modal id="confirm" hide-footer hide-header no-close-on-backdrop>
+            <div class="col-md-12">
+              <div
+                class="model-rating"
+                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
+              >
+                <h5
+                  class="mt-2"
+                  style="color:#0989c3;text-align: center;margin-bottom: 18px;"
+                >هل تريد تسليم الامتحان الآن ؟</h5>
+
+                <button @click="setExamTODone()" class="basth-btn-primary">تسليم</button>
+                <button
+                  @click="$bvModal.hide('confirm')"
+                  class="danger-btn mt-2"
+                  style="width: 100%;"
+                >إستكمال الحل</button>
               </div>
             </div>
           </b-modal>
@@ -213,8 +225,8 @@
                   v-if="questions.length>0&&selectedExam.mark<75"
                   class="mt-5 basth-btn-primary"
                   type="button"
-                  @click="setExamTODone"
-                  value="تصحيح"
+                  @click="$bvModal.show('confirm')"
+                  value="تسليم"
                 />
                 <!-- </div> -->
               </div>
@@ -378,6 +390,7 @@ export default {
     },
     setExamTODone() {
       // alert('ddd')
+      this.$bvModal.hide('confirm')
       this.isLoading = true
       this.$axios
         .post(`exams/${this.selectedExam.exam.id}/done`)
