@@ -68,8 +68,9 @@
                 <h6>{{lessonDetails.unit.nameAr }} - {{lessonDetails.nameAr}}</h6>
               </div>-->
               <div class="sub-name">
-                <h4>الاختبار</h4>
-                <img src="../../../assets/imgs/noun_testing_3325786.png" alt />
+                <button @click="selectedExam = null" style="padding: 9px;margin-bottom: 10px;border: none;background: #058ac6;color: #FFF;font-family: 'CustomFontBold';border-radius: 5px;"> عرض المستويات </button>
+                <h4 style="width:100%">الاختبار</h4>
+                
               </div>
             </div>
 
@@ -353,6 +354,7 @@ export default {
 .general-exam-content {
   .exam-cont-item {
     overflow: hidden;
+        margin-top: 30px;
     > div {
       float: right;
 

@@ -44,12 +44,42 @@
                 </li>
 
                 <li>
-                    <div class="notification" @click="notification = !notification">
-                      <i class="fas fa-bell"></i>
-                      <div v-if="count" class="noti-content">
-                        {{count}}
-                      </div>
-                      
+                  <div>
+
+
+                     <b-dropdown class="notification" size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
+                        <template v-slot:button-content>
+                          <div style='position:absolute'>
+                            <div style='position: absolute;color:#FFF;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
+
+                        {{count}}</div></div>
+                          <i class='fas fa-bell'></i>
+                        </template>
+                         <b-dropdown-item v-for="(noti,index) in allNotification" :key="index">
+                         <div style="margin-bottom:15px;overflow:hidden;padding: 10px;background: #ececec;">
+                            <div class="icon" style="width:50px;float:right;padding:7px">
+                            <img style="border-radius:50%;width:100%;height:100%" :src="noti.icon" alt="">
+                          </div>
+                          <div class="body" style="width: calc(100% - 50px);float:right">
+                            <h6> {{noti.title}} </h6>
+                            <p style="    font-size: 12px;margin-bottom:0"> {{noti.body}} </p>
+                          </div>
+                         </div>
+    </b-dropdown-item>
+                      </b-dropdown>
+
+
+
+  <!-- <b-dropdown :html="`<div style='position:absolute'><i class='fas fa-bell'></i><div style='position: absolute;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
+                        ${count}</div></div>`" style="position:relative" id="dropdown-1" text="Dropdown Button"  class="m-md-2 notification">
+    
+   
+    
+  </b-dropdown> -->
+</div>
+                    <!-- <div  @click="notification = !notification">
+                     
+
 
 
                        <div v-if="notification" class="notification-data" style="  box-shadow:rgb(0 0 0 / 35%) 0px 8px 25px 0px;  right: -69px; position: absolute;z-index: 99;width: 352px;background: rgb(5 138 198);padding: 15px;order-radius: 0px 0px 15px 15px;max-height: 352px;overflow-y: scroll;">
@@ -71,7 +101,7 @@
 
 
                       
-                    </div>
+                    </div> -->
           
                 </li>
 
@@ -106,54 +136,32 @@
               <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
             </div>
           </div>
-          <div v-else class="col-md-2 col-sm-6" style="text-align:left">
-            <div class="nav-login" style="position:relative;display:inline-block">
-              <button class="dropdown-head" @click="dropdown = !dropdown">
-                <h6 style="margin-bottom:0">{{$auth.user.username}}</h6>
+
+          <b-dropdown class="auth" v-else size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
+    <template v-slot:button-content>
+      <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
                 <span class="list-down">
                   <i class="fas fa-sort-down"></i>
                 </span>
 
                 <div
-                  style=" position: absolute;left: -28px;top: -8px;width: 45px;border-radius: 50%;overflow: hidden;border: 1px solid"
+                  style="position: absolute;left: -39px;top: -13px;width: 59px;border-radius: 50%;overflow: hidden;border: 1px solid;"
                 >
                   <img :src="$auth.user.photo" style="width:100%;height:100%" alt />
                 </div>
-              </button>
-
-              <div
-                class="droped"
-                style="position:absolute;right:0;width: 116px;box-shadow: 0 2px 13px 1px #ddd;z-index:99"
-                v-if="dropdown"
-              >
-                <ul style="list-style:none;padding-right:0;">
-                  <li>
-                    <nuxt-link to="/profile/edit">
+    </template>
+    <b-dropdown-item href="#"><nuxt-link to="/profile/edit">
                       <i class="fas fa-user-alt"></i>تعديل البيانات
-                    </nuxt-link>
-                  </li>
-                  <li>
-                    <nuxt-link to="/edit-path">
+                    </nuxt-link></b-dropdown-item>
+    <b-dropdown-item href="#"> <nuxt-link to="/edit-path">
                       <i class="fas fa-user-alt"></i>تعديل المسار
-                    </nuxt-link>
-                  </li>
-                  <li>
-                    <a @click="logout">
+                    </nuxt-link></b-dropdown-item>
+    <b-dropdown-item href="#"> <a @click="logout">
                       <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
-                    </a>
-                  </li>
-                  <!-- <li>
-                    <nuxt-link to>تسجيل الخروج</nuxt-link>
-                  </li>
-                  <li>
-                    <nuxt-link to>تسجيل الخروج</nuxt-link>
-                  </li>-->
-                </ul>
-              </div>
-            </div>
-
-           
-          </div>
+                    </a></b-dropdown-item>
+  </b-dropdown>
+          
+        
 
          
 
@@ -209,6 +217,7 @@
 </template>
 
 <script>
+
 import Loading from '../components/Loading'
 export default {
   data() {
@@ -263,7 +272,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .navbar-before-small {
   .dropdown {
     margin-top: 13px;
@@ -306,22 +315,22 @@ export default {
   }
 }
 /* width */
-.notification-data::-webkit-scrollbar {
+.dropdown-menu::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
-.notification-data::-webkit-scrollbar-track {
+.dropdown-menu::-webkit-scrollbar-track {
   background: #f1f1f1; 
 }
  
 /* Handle */
-.notification-data::-webkit-scrollbar-thumb {
+.dropdown-menu::-webkit-scrollbar-thumb {
   background: #888; 
 }
 
 /* Handle on hover */
-.notification-data::-webkit-scrollbar-thumb:hover {
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
 
@@ -344,7 +353,11 @@ export default {
       font-family: 'CustomFontMedium';
     }
   }
+   .dropdown-menu{
+    left: -27px !important;
+    }
   .notification{
+   outline: none;
         font-size: 25px;
     margin-right: 17px;
     color: #272727;
@@ -360,6 +373,30 @@ export default {
     padding: 2px 6px;
     color: #FFF;
     }
+
+    .fas.fa-bell{
+      color:#333;
+    }
+.dropdown.dropdown-menu:focus{
+  top: 0 !important;
+    left: -27px !important;
+    max-height: 300px;
+    overflow-y: scroll;
+ }
+  .dropdown-toggle{
+    outline:none;
+  }
+ .dropdown-menu{
+    width: 300px;
+    max-height:300px;
+    overflow-y: scroll;
+    li{
+      width:100%;
+      a{
+        padding:0;
+      }
+    }
+ }
   }
   .dropdown-head {
     background: #1087ba;
@@ -574,6 +611,45 @@ export default {
   }
   .navbar-before-small {
     display: none;
+  }
+}
+
+
+
+// .navbar-before .navlinks ul{
+//   width: 300px;
+// }
+// .navbar-before .navlinks ul li{
+//   padding:0;
+//   width: 100%;
+// }
+// .navbar-before .navlinks ul li a{
+//   padding: 0;
+//     margin: 0;
+//     width: 100%;
+// }
+
+.auth{
+  button{
+             width: 187px;
+    height: 49px;
+    margin-top: 54px;
+    background: #058ac6;
+    color: #FFF;
+    padding: 0;
+    height: 40px;
+  }
+  li{
+    a{
+      margin: 0;
+    padding: 10px 12px;
+    i{
+      margin-left: 5px;
+    }
+    }
+  }
+  .btn-link:hover{
+    color:#FFF;
   }
 }
 </style>
