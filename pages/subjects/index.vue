@@ -73,7 +73,9 @@
             <span></span>
           </div>
         </div>
-        <div class="row">
+        <Loading v-if="isLoading" />
+
+        <div class="row" v-else>
           <div class="col-md-3" v-for="(subject, index) in subjects" :key="index">
             <nuxt-link :to="'/subjects/' + subject.id + '/units'">
               <div class="subject-cont">
@@ -84,98 +86,26 @@
               </div>
             </nuxt-link>
           </div>
-
-          <!-- <div class="annoncment" style="width: 100%; height: 200px;">
-            <img
-              src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
-              alt
-            />
-          </div>-->
         </div>
       </div>
-
-      <!-- 
-
-      <div v-show="tabIndex == 2" class="subjects">
-        <div class="form-title">
-          <h4>
-            <img src="../../assets/imgs/noun_classroom_-1.png" alt />
-            المواد الدراسية
-          </h4>
-        </div>
-        <div class="row">
-          <div
-            class="col-md-3"
-            v-for="(subject, index) in subjects"
-            :key="index"
-          >
-            <nuxt-link :to="'/info-bank'">
-              <div class="subject-cont">
-                <div class="subject-icon-img">
-                  <img :src="subject.icon" alt />
-                </div>
-                <h3>{{ subject.nameAr }}</h3>
-              </div>
-            </nuxt-link>
-      </div>-->
-
-      <!-- <div class="annoncment" style="width: 100%; height: 200px;">
-            <img
-              src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
-              alt
-            />
-      </div>-->
-      <!-- </div>
-      </div>-->
-
-      <!-- 
-
-    
-
-
-       <div v-show="tabIndex == 4" class="subjects">
-        <div class="form-title">
-          <h4>
-            <img src="../../assets/imgs/noun_classroom_-1.png" alt />
-            المواد الدراسية
-          </h4>
-        </div>
-        <div class="row">
-          <div
-            class="col-md-3"
-            v-for="(subject, index) in subjects"
-            :key="index"
-          >
-            <nuxt-link :to="'/best-students'">
-              <div class="subject-cont">
-                <div class="subject-icon-img">
-                  <img :src="subject.icon" alt />
-                </div>
-                <h3>{{ subject.nameAr }}</h3>
-              </div>
-            </nuxt-link>
-      </div>-->
-
-      <!-- <div class="annoncment" style="width: 100%; height: 200px;">
-            <img
-              src="../../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg"
-              alt
-            />
-      </div>-->
-      <!-- </div>
-      </div>-->
     </div>
   </div>
 </template>
 
 <script>
+import Loading from '@/components/Loading'
+
 export default {
   middleware: 'auth-student',
-
+  name: 'Subjects',
+  components: {
+    Loading,
+  },
   data() {
     return {
       subjects: [],
       tabIndex: 1,
+      isLoading: true,
     }
   },
   created() {
@@ -189,14 +119,13 @@ export default {
       this.$axios
         .get(`subjects`)
         .then((res) => {
-          this.isLoading = false
           this.subjects = res.data
           console.log(res)
         })
         .catch((err) => {
-          this.isLoading = false
           console.log(err)
         })
+        .finally(() => (this.isLoading = false))
     },
   },
 }
@@ -222,13 +151,12 @@ export default {
   }
 }
 
-
-.form-title{
-  .head-who{
-  width: 317px !important;
-    h3{
-          margin-right: 53px;
-          color:#333;
+.form-title {
+  .head-who {
+    width: 317px !important;
+    h3 {
+      margin-right: 53px;
+      color: #333;
     }
   }
   .head-who span:nth-of-type(4) {

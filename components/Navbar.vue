@@ -40,44 +40,55 @@
                 </li>
 
                 <li>
-                  <nuxt-link exact-active-class="active" to="/live-teach"> البث المباشر </nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/live-teach">البث المباشر</nuxt-link>
                 </li>
 
                 <li>
                   <div>
-
-
-                     <b-dropdown class="notification" size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
-                        <template v-slot:button-content>
-                          <div style='position:absolute'>
-                            <div v-if="count>0" style='position: absolute;color:#FFF;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
-
-                        {{count}}</div></div>
-                          <i class='fas fa-bell'></i>
-                        </template>
-                         <b-dropdown-item v-for="(noti,index) in allNotification" :key="index">
-                         <div style="margin-bottom:15px;overflow:hidden;padding: 10px;background: #ececec;">
-                            <div class="icon" style="width:50px;float:right;padding:7px">
-                            <img style="border-radius:50%;width:100%;height:100%" :src="noti.icon" alt="">
+                    <b-dropdown
+                      class="notification"
+                      size="lg"
+                      variant="link"
+                      toggle-class="text-decoration-none"
+                      no-caret
+                    >
+                      <template v-slot:button-content>
+                        <div style="position:absolute">
+                          <div
+                            v-if="count>0"
+                            style="position: absolute;color:#FFF;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;"
+                            class="noti-content"
+                          >{{count}}</div>
+                        </div>
+                        <i class="fas fa-bell"></i>
+                      </template>
+                      <b-dropdown-item v-for="(noti,index) in allNotification" :key="index">
+                        <div
+                          style="margin-bottom:15px;overflow:hidden;padding: 10px;background: #ececec;"
+                        >
+                          <div class="icon" style="width:50px;float:right;padding:7px">
+                            <img
+                              style="border-radius:50%;width:100%;height:100%"
+                              :src="noti.icon"
+                              alt
+                            />
                           </div>
                           <div class="body" style="width: calc(100% - 50px);float:right">
-                            <h6> {{noti.title}} </h6>
-                            <p style="    font-size: 12px;margin-bottom:0"> {{noti.body}} </p>
+                            <h6>{{noti.title}}</h6>
+                            <p style="    font-size: 12px;margin-bottom:0">{{noti.body}}</p>
                           </div>
-                         </div>
-    </b-dropdown-item>
-                      </b-dropdown>
+                        </div>
+                      </b-dropdown-item>
+                    </b-dropdown>
 
-
-
-  <!-- <b-dropdown :html="`<div style='position:absolute'><i class='fas fa-bell'></i><div style='position: absolute;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
+                    <!-- <b-dropdown :html="`<div style='position:absolute'><i class='fas fa-bell'></i><div style='position: absolute;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
                         ${count}</div></div>`" style="position:relative" id="dropdown-1" text="Dropdown Button"  class="m-md-2 notification">
     
    
     
-  </b-dropdown> -->
-</div>
-                    <!-- <div  @click="notification = !notification">
+                    </b-dropdown>-->
+                  </div>
+                  <!-- <div  @click="notification = !notification">
                      
 
 
@@ -101,11 +112,8 @@
 
 
                       
-                    </div> -->
-          
+                  </div>-->
                 </li>
-
-                
 
                 <!-- <li>
                   <nuxt-link to>حمل التطبيق</nuxt-link>
@@ -127,45 +135,49 @@
             </div>
           </div>
 
-
-
-          
-
           <div class="col-md-2 col-sm-6" v-if="!$auth.loggedIn">
             <div class="nav-login">
               <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
             </div>
           </div>
 
-          <b-dropdown class="auth" v-else size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
-    <template v-slot:button-content>
-      <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
-                <span class="list-down">
-                  <i class="fas fa-sort-down"></i>
-                </span>
+          <b-dropdown
+            class="auth"
+            v-else
+            size="lg"
+            variant="link"
+            toggle-class="text-decoration-none"
+            no-caret
+          >
+            <template v-slot:button-content>
+              <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
+              <span class="list-down">
+                <i class="fas fa-sort-down"></i>
+              </span>
 
-                <div
-                  style="position: absolute;left: -39px;top: -13px;width: 59px;border-radius: 50%;overflow: hidden;border: 1px solid;"
-                >
-                  <img :src="$auth.user.photo" style="width:100%;height:100%" alt />
-                </div>
-    </template>
-    <b-dropdown-item href="#"><nuxt-link to="/profile/edit">
-                      <i class="fas fa-user-alt"></i>تعديل البيانات
-                    </nuxt-link></b-dropdown-item>
-    <b-dropdown-item href="#"> <nuxt-link to="/edit-path">
-                      <i class="fas fa-user-alt"></i>تعديل المسار
-                    </nuxt-link></b-dropdown-item>
-    <b-dropdown-item href="#"> <a @click="logout">
-                      <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
-                    </a></b-dropdown-item>
-  </b-dropdown>
-          
-        
-
-         
-
-
+              <div
+                style="position: absolute;left: -39px;top: -13px;    width: 54px;
+    height: 60px;border-radius: 50%;overflow: hidden;border: 1px solid;"
+              >
+                <img :src="$auth.user.photo" style="width:100%;height:100%" alt />
+              </div>
+            </template>
+            <b-dropdown-item href="#">
+              <nuxt-link to="/profile/edit">
+                <i class="fas fa-user-alt"></i>تعديل البيانات
+              </nuxt-link>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <nuxt-link to="/edit-path">
+                <i class="fas fa-user-alt"></i>تعديل المسار
+              </nuxt-link>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <a @click="logout">
+                <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
+              </a>
+            </b-dropdown-item>
+          </b-dropdown>
         </div>
       </div>
     </div>
@@ -209,15 +221,10 @@
         </div>
       </div>
     </div>
-
-
-    
-         
   </div>
 </template>
 
 <script>
-
 import Loading from '../components/Loading'
 export default {
   data() {
@@ -226,7 +233,7 @@ export default {
       count: 0,
       notification: false,
       allNotification: [],
-      isLoaing: false
+      isLoaing: false,
     }
   },
   computed: {
@@ -238,17 +245,23 @@ export default {
       }
     },
   },
-  created(){
+  created() {
     this.isLoading = true
-    this.$axios.get('notifications/count').then((res) => {
-      console.log(res)
-      this.count = res.data.count
-    }).finally(() => this.isLoading = false)
+    this.$axios
+      .get('notifications/count')
+      .then((res) => {
+        console.log(res)
+        this.count = res.data.count
+      })
+      .finally(() => (this.isLoading = false))
 
-     this.$axios.get('notifications?limit=20').then((res) => {
-      console.log(res)
-      this.allNotification = res.data.docs
-    }).finally(() => this.isLoading = false)
+    this.$axios
+      .get('notifications?limit=20')
+      .then((res) => {
+        console.log(res)
+        this.allNotification = res.data.docs
+      })
+      .finally(() => (this.isLoading = false))
   },
   methods: {
     async logout() {
@@ -321,17 +334,17 @@ export default {
 
 /* Track */
 .dropdown-menu::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 .dropdown-menu::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 .dropdown-menu::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 .navbar-before {
@@ -353,50 +366,50 @@ export default {
       font-family: 'CustomFontMedium';
     }
   }
-   .dropdown-menu{
+  .dropdown-menu {
     left: -27px !important;
-    }
-  .notification{
-   outline: none;
-        font-size: 25px;
+  }
+  .notification {
+    outline: none;
+    font-size: 25px;
     margin-right: 17px;
     color: #272727;
     cursor: pointer;
     position: relative;
-    .noti-content{
-             position: absolute;
-    top: -5px;
-    right: -3px;
-    background: #058ac6;
-    border-radius: 50%;
-    font-size: 10px;
-    padding: 2px 6px;
-    color: #FFF;
+    .noti-content {
+      position: absolute;
+      top: -5px;
+      right: -3px;
+      background: #058ac6;
+      border-radius: 50%;
+      font-size: 10px;
+      padding: 2px 6px;
+      color: #fff;
     }
 
-    .fas.fa-bell{
-      color:#333;
+    .fas.fa-bell {
+      color: #333;
     }
-.dropdown.dropdown-menu:focus{
-  top: 0 !important;
-    left: -27px !important;
-    max-height: 300px;
-    overflow-y: scroll;
- }
-  .dropdown-toggle{
-    outline:none;
-  }
- .dropdown-menu{
-    width: 300px;
-    max-height:300px;
-    overflow-y: scroll;
-    li{
-      width:100%;
-      a{
-        padding:0;
+    .dropdown.dropdown-menu:focus {
+      top: 0 !important;
+      left: -27px !important;
+      max-height: 300px;
+      overflow-y: scroll;
+    }
+    .dropdown-toggle {
+      outline: none;
+    }
+    .dropdown-menu {
+      width: 300px;
+      max-height: 300px;
+      overflow-y: scroll;
+      li {
+        width: 100%;
+        a {
+          padding: 0;
+        }
       }
     }
- }
   }
   .dropdown-head {
     background: #1087ba;
@@ -614,8 +627,6 @@ export default {
   }
 }
 
-
-
 // .navbar-before .navlinks ul{
 //   width: 300px;
 // }
@@ -629,27 +640,27 @@ export default {
 //     width: 100%;
 // }
 
-.auth{
-  button{
-             width: 187px;
+.auth {
+  button {
+    width: 187px;
     height: 49px;
     margin-top: 54px;
     background: #058ac6;
-    color: #FFF;
+    color: #fff;
     padding: 0;
     height: 40px;
   }
-  li{
-    a{
+  li {
+    a {
       margin: 0;
-    padding: 10px 12px;
-    i{
-      margin-left: 5px;
-    }
+      padding: 10px 12px;
+      i {
+        margin-left: 5px;
+      }
     }
   }
-  .btn-link:hover{
-    color:#FFF;
+  .btn-link:hover {
+    color: #fff;
   }
 }
 </style>

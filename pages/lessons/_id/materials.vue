@@ -260,7 +260,7 @@
                           "
                           v-if="reply.user"
                         >
-                          <img style="width: 100%;" :src="reply.user.photo" alt />
+                          <img height="70" style="width: 100%;" :src="reply.user.photo" alt />
                         </div>
                       </div>
                     </div>
@@ -462,6 +462,7 @@ export default {
         })
         .then((res) => {
           this.selectedVideoComments.unshift(res.data)
+          this.commentContent = ''
 
           this.$snotify.success(`تم إضافة تعليقك بنجاح`)
         })
@@ -1038,7 +1039,7 @@ export default {
 
       .double-comment-cont {
         overflow: hidden;
-        margin-top: 25px;
+        margin-top: 7px;
         border-bottom: 1px solid #c7c7c7;
         position: relative;
         .comment-content-img {
