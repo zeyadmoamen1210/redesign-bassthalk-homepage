@@ -82,8 +82,8 @@ export default {
     return {
       isLoading: false,
       form: {
-        email: 'samehmourad05@gmail.com',
-        password: '123456',
+        email: '',
+        password: '',
       },
     }
   },
