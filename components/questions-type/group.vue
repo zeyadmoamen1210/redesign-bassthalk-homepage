@@ -16,16 +16,18 @@
             <div>
               <h6>السؤال الأول</h6>
             </div>
-          </div> -->
+          </div>-->
 
           <truefalse
             :answer="item.answer"
             v-if="item.child.type == 'truefalse'"
             :question="item.child"
             :exam_id="exam_id"
+            :isSolving="isSolving"
           />
           <choose
             :answer="item.answer"
+            :isSolving="isSolving"
             v-if="item.child.type == 'choose'"
             :question="item.child"
           />
@@ -74,40 +76,42 @@ export default {
     exam_id: {
       required: true,
     },
+
+    isSolving: {
+      required: false,
+    },
   },
 }
 </script>
 
 <style lang="scss">
-.exam-cont-item{
-    overflow: hidden;
-    > div {
-      float: right;
+.exam-cont-item {
+  overflow: hidden;
+  > div {
+    float: right;
 
-      &:first-of-type {
-        width: 9%;
+    &:first-of-type {
+      width: 9%;
 
-        h6 {
-          color: #ddd;
-          background-color: #058ac6;
-          padding: 15px;
-          text-align: center;
-          border-radius: 0 6px 6px 0;
-        }
+      h6 {
+        color: #ddd;
+        background-color: #058ac6;
+        padding: 15px;
+        text-align: center;
+        border-radius: 0 6px 6px 0;
       }
-      &:last-of-type {
-        width: 91%;
+    }
+    &:last-of-type {
+      width: 91%;
 
-        h6 {
-          color: #058ac6;
-          background-color: #f2f2f2;
-          padding: 15px;
-          margin: 0;
-          border-radius: 6px 0 0 6px;
-        }
+      h6 {
+        color: #058ac6;
+        background-color: #f2f2f2;
+        padding: 15px;
+        margin: 0;
+        border-radius: 6px 0 0 6px;
       }
     }
   }
- 
-
+}
 </style>

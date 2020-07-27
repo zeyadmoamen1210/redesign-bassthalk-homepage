@@ -1,136 +1,153 @@
 <template>
   <div>
     <div class="container">
-      <div class="register" v-if="!showVerify">
-        <div class="form-title">
-          <h4>
-            <img src="../assets/imgs/Group 6945.png" alt />
-            انشاء حساب جديد
-          </h4>
-        </div>
-        <div class="form-grid">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-groub">
-                <input v-model="name" type="text" class="form-control" placeholder="اسم المستخدم " />
+      <Loading v-if="isLoading" />
+      <div v-if="!isLoading">
+        <div class="register" v-if="!showVerify">
+          <div class="form-title">
+            <h4>
+              <img src="../assets/imgs/Group 6945.png" alt />
+              انشاء حساب جديد
+            </h4>
+          </div>
+          <div class="form-grid">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-groub">
+                  <input
+                    v-model="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="اسم المستخدم "
+                  />
+                </div>
               </div>
-            </div>
 
-            <div class="col-md-4">
-              <div class="form-groub">
-                <input
-                  v-model="email"
-                  type="text"
-                  class="form-control"
-                  placeholder="البريد الالكتروني"
-                />
+              <div class="col-md-4">
+                <div class="form-groub">
+                  <input
+                    v-model="email"
+                    type="text"
+                    class="form-control"
+                    placeholder="البريد الالكتروني"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div class="col-md-4">
-              <div class="form-groub">
-                <input v-model="phone" type="text" class="form-control" placeholder="رقم الجوال" />
+              <div class="col-md-4">
+                <div class="form-groub">
+                  <input v-model="phone" type="text" class="form-control" placeholder="رقم الجوال" />
+                </div>
               </div>
-            </div>
 
-            <div class="col-md-2">
-              <v-select v-model="gender" label="name" placeholder="النوع" :options="options"></v-select>
-            </div>
-
-            <div class="col-md-2">
-              <div class="form-groub">
-                <v-select
-                  v-model="country"
-                  label="name"
-                  placeholder="الدولة"
-                  :options="countyOptions"
-                ></v-select>
-
-                <!-- <input v-model="country" type="text" class="form-control" placeholder="الدولة" /> -->
+              <div class="col-md-2">
+                <v-select v-model="gender" label="name" placeholder="النوع" :options="options"></v-select>
               </div>
-            </div>
 
-            <div class="col-md-4">
-              <div class="form-groub">
-                <input
-                  v-model="password"
-                  type="password"
-                  class="form-control"
-                  placeholder="كلمة المرور"
-                />
+              <div class="col-md-2">
+                <div class="form-groub">
+                  <v-select
+                    v-model="country"
+                    label="name"
+                    placeholder="الدولة"
+                    :options="countyOptions"
+                  ></v-select>
+
+                  <!-- <input v-model="country" type="text" class="form-control" placeholder="الدولة" /> -->
+                </div>
               </div>
-            </div>
 
-            <div class="col-md-4">
-              <div class="form-groub">
-                <input
-                  v-model="confirmPassword"
-                  type="password"
-                  class="form-control"
-                  placeholder="تأكيد كلمة المرور"
-                />
+              <div class="col-md-4">
+                <div class="form-groub">
+                  <input
+                    v-model="password"
+                    type="password"
+                    class="form-control"
+                    placeholder="كلمة المرور"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-groub">
+                  <input
+                    v-model="confirmPassword"
+                    type="password"
+                    class="form-control"
+                    placeholder="تأكيد كلمة المرور"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="form-bottom">
-          <input type="button" @click="register" value="انشاء حساب جديد" class="basth-btn-primary" />
-          <!-- <div class="two-way">
+          <div class="form-bottom">
+            <input
+              type="button"
+              @click="register"
+              value="انشاء حساب جديد"
+              class="basth-btn-primary"
+            />
+            <!-- <div class="two-way">
             <h6>او عن طريق</h6>
             <img src="../assets/imgs/facebook.png" alt />
             <img src="../assets/imgs/brands-and-logotypes.png" alt />
-          </div>-->
+            </div>-->
 
-          <div class="dont-have-acc">
-            <div>
-              <h6>ليس لديك حساب ؟</h6>
-            </div>
-            <div>
-              <button @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
+            <div class="dont-have-acc">
+              <div>
+                <h6>ليس لديك حساب ؟</h6>
+              </div>
+              <div>
+                <button @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="varifiy" v-else>
-        <div class="row">
-          <div class="col-md-6" style="margin: auto;">
-            <div class="varified">
-              <div class="form-title">
-                <h4 style="margin-bottom: 20px;">
-                  <img src="../assets/imgs/profile.png" style="width: 35px; margin-left: 9px;" alt />
-                  كود التفعيل
-                </h4>
-              </div>
-              <!-- <div class="form-groub" v-if="resend">
-            <input v-model="email" type="text" class="form-control" placeholder="البريد الالكتروني" />
-              </div>-->
-              <!-- v-else -->
-              <div class="form-groub" style="margin-bottom: 40px; margin-top: 40px;">
-                <client-only placeholder="...تحميل ">
-                  <CodeInput
-                    :fields="count"
-                    :loading="false"
-                    class="input"
-                    v-on:complete="onComplete"
-                  />
-                </client-only>
-              </div>
-
-              <input
-                type="button"
-                @click="verifyEmail"
-                style="margin-bottom: 25px;"
-                value="تفعيل"
-                class="basth-btn-primary"
-              />
-
-              <div class="dont-have-acc">
-                <div>
-                  <h6>لم يتم إستلام الكود</h6>
+        <div class="varifiy" v-else>
+          <div class="row">
+            <div class="col-md-6" style="margin: auto;">
+              <div class="varified">
+                <div class="form-title">
+                  <h4 style="margin-bottom: 20px;">
+                    <img
+                      src="../assets/imgs/profile.png"
+                      style="width: 35px; margin-left: 9px;"
+                      alt
+                    />
+                    كود التفعيل
+                  </h4>
                 </div>
-                <div style="text-align: left;">
-                  <button @click="resendCode" class="light-btn">إعادة إرسال</button>
+                <!-- <div class="form-groub" v-if="resend">
+            <input v-model="email" type="text" class="form-control" placeholder="البريد الالكتروني" />
+                </div>-->
+                <!-- v-else -->
+                <div class="form-groub" style="margin-bottom: 40px; margin-top: 40px;">
+                  <client-only placeholder="...تحميل ">
+                    <CodeInput
+                      :fields="count"
+                      :loading="false"
+                      class="input"
+                      v-on:complete="onComplete"
+                    />
+                  </client-only>
+                </div>
+
+                <input
+                  type="button"
+                  @click="verifyEmail"
+                  style="margin-bottom: 25px;"
+                  value="تفعيل"
+                  class="basth-btn-primary"
+                />
+
+                <div class="dont-have-acc">
+                  <div>
+                    <h6>لم يتم إستلام الكود</h6>
+                  </div>
+                  <div style="text-align: left;">
+                    <button @click="resendCode" class="light-btn">إعادة إرسال</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -143,10 +160,12 @@
 
 <script>
 import * as Cookies from 'js-cookie'
+import Loading from '@/components/Loading'
 
 export default {
   middleware: 'guest',
   components: {
+    Loading,
     CodeInput: () =>
       process.client
         ? import('vue-verification-code-input')
@@ -228,6 +247,8 @@ export default {
           this.showVerify = true
         })
         .catch((error) => {
+          this.$snotify.error(`عفوا من فضلك تحديد البيانات بشكل صحيح`)
+
           this.isLoading = false
         })
     },
@@ -239,6 +260,8 @@ export default {
           email: this.email,
         })
         .then((res) => {
+          this.$snotify.success(`تم إرسال الكود بنجاح  `)
+
           this.isLoading = false
         })
         .catch((error) => {
@@ -254,9 +277,12 @@ export default {
         })
         .then((res) => {
           this.isLoading = false
+
           this.login()
         })
         .catch((error) => {
+          this.$snotify.error(`عفواً من فضلك تأكد من الكود  `)
+
           this.isLoading = false
         })
     },
@@ -277,7 +303,7 @@ export default {
           // localStorage.setItem('account', JSON.stringify(res.data))
           Cookies.remove('user')
           if (this.$auth?.user?.class?.id) {
-            this.$router.push({ path: '/' })
+            this.$router.push({ path: '/subjects' })
           } else {
             this.$router.push({ path: '/path' })
           }
