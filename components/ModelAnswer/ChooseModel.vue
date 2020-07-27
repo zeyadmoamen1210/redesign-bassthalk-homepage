@@ -6,7 +6,7 @@
     </a>
 
     <div class="ques-answer-btns">
-      <div class="row" v-if="mark<75">
+      <div class="row" v-if="isSolving">
         <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
           <button
             @click="answerData = index"
@@ -16,11 +16,20 @@
       </div>
       <div class="row" v-else>
         <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
-          <button :class="{ selected: answerData == index }">{{ question.choices[index] }}</button>
+          <button
+            v-if="answerData == index && answerData != question.modelAnswer"
+            class="danger"
+          >{{ question.choices[index] }}</button>
+          <button
+            v-else-if="answerData == index && answerData ==question.modelAnswer"
+            class="selected"
+          >{{ question.choices[index] }}</button>
+          <button
+            v-else-if="question.modelAnswer == index"
+            class="selected"
+          >{{ question.choices[index] }}</button>
+          <button v-else>{{ question.choices[index] }}</button>
         </div>
-
-        <button class="btn btn-success">الإجابة الصحيحة</button>
-        <button class="selected">{{ question.choices[question.modelAnswer] }}</button>
       </div>
     </div>
   </div>
@@ -46,9 +55,6 @@ export default {
     isSolving: {
       required: false,
     },
-    mark: {
-      required: false,
-    },
   },
   data() {
     return {
@@ -62,17 +68,15 @@ export default {
     answerData: function (val) {
       // ! patch exam answer
       // !exams/70/solution
-      // if (this.isSolving) {
-        this.$axios
-          .patch(`exams/${this.exam_id}/solution`, {
-            question: this.id,
-            answer: this.answerData,
-          })
-          .then((res) => {})
-          .catch((err) => {
-            console.log(err)
-          })
-      // }
+      this.$axios
+        .patch(`exams/${this.exam_id}/solution`, {
+          question: this.id,
+          answer: this.answerData,
+        })
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="check-box-ques">
     <h6>{{ question.head }}</h6>
-    <a :href="question.image" target="_blank">
-      <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
-    </a>
-    <a :href="question.image" target="_blank">اضغط</a>
+     <a :href="question.image" target="_blank">
+    <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
+     </a>
+     <a :href="question.image" target="_blank"> اضغط </a>
 
     <!-- <img src="../../assets/imgs/chemical-equation-color.jpg" alt=""> -->
 
@@ -19,7 +19,11 @@
     </div>
 
     <div class="file-choose">
-      <input @change="imguploadQuestion" type="file" placeholder="قم بأرفاق صورة بالحل" />
+      <input
+        @change="imguploadQuestion"
+        type="file"
+        placeholder="قم بأرفاق صورة بالحل"
+      />
       <span v-if="url">
         <img :src="url" width="300" height="150" />
       </span>

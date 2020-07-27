@@ -24,21 +24,18 @@
             :question="item.child"
             :exam_id="exam_id"
             :isSolving="isSolving"
-            :mark="mark"
           />
           <choose
             :answer="item.answer"
             :isSolving="isSolving"
             v-if="item.child.type == 'choose'"
             :question="item.child"
-            :mark="mark"
           />
           <complete
             :answer="item.answer"
             v-if="item.child.type == 'complete'"
             :question="item.child"
             :exam_id="exam_id"
-            :mark="mark"
           />
           <paragraph
             :answer="item.answer"
@@ -46,7 +43,6 @@
             v-if="item.child.type == 'paragraph'"
             :question="item.child"
             :exam_id="exam_id"
-            :mark="mark"
           />
         </div>
       </div>
@@ -82,9 +78,6 @@ export default {
     },
 
     isSolving: {
-      required: false,
-    },
-    mark: {
       required: false,
     },
   },
