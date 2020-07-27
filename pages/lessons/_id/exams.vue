@@ -91,7 +91,11 @@
                 </button>-->
 
                 <button @click="restExam()" class="basth-btn-primary">الانتقال إلي المستوي التالي</button>
-                <button @click="getExamQuestions" class="light-btn">عرض إجاباتي + الاجابة النموذجية</button>
+                <button
+                  @click="getExamQuestions"
+                  class="light-btn"
+                  style="width: 100%;"
+                >عرض إجاباتي + الاجابة النموذجية</button>
               </div>
             </div>
           </b-modal>
