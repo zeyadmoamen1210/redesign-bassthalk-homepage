@@ -163,13 +163,18 @@
               </div>
             </template>
             <b-dropdown-item href="#">
+              <nuxt-link to="/profile">
+                <i class="fas fa-user-alt"></i> الملف الشخصى
+              </nuxt-link>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
               <nuxt-link to="/profile/edit">
-                <i class="fas fa-user-alt"></i>تعديل البيانات
+                <i class="fas fa-user-edit"></i>تعديل البيانات
               </nuxt-link>
             </b-dropdown-item>
             <b-dropdown-item href="#">
               <nuxt-link to="/edit-path">
-                <i class="fas fa-user-alt"></i>تعديل المسار
+                <i class="fas fa-book-reader"></i>تعديل المسار
               </nuxt-link>
             </b-dropdown-item>
             <b-dropdown-item href="#">
