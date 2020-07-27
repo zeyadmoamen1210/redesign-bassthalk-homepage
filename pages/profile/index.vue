@@ -3,7 +3,7 @@
       <div class="container">
          <div>
               <div class="row">
-              <div class="col-md-5"  style="margin:auto">
+              <div class="col-md-5">
                   <div class="personal-info">
                       <div style="    width: 90px;margin: auto;margin-bottom: 7px;">
                                                         <img style="width:100%;height:100%;border-radius: 50%;border: 3px solid #058ac6;" :src="$auth.user.photo" alt="">
@@ -41,7 +41,9 @@
               </div>
           </div>
               </div>
+
               <div class="col-md-7">
+                  
                    <div class="point-datails">
         <div class="title">
           <h5>
@@ -49,7 +51,8 @@
             سجل النقاط</h5>
         </div>
       </div>
-          <div class="point-cont" style="margin-top: 50px;">
+      <Loading v-if="isLoading" />
+          <div v-else class="point-cont" style="margin-top: 50px;">
         <div class="row">
           <div class="col-md-12" v-for="(point) in points" :key="point.id" >
 
@@ -82,12 +85,16 @@
 </template>
 
 <script>
+import Loading from '../../components/Loading'
 export default {
     created(){
         this.$axios.get(`mypoints`).then(res => {
             console.log("points ", res)
             this.points = res.data.docs
-        })
+        }).finally(() => this.isLoading = false)
+    },
+    components:{
+        Loading
     },
     data(){
         return {
@@ -95,6 +102,7 @@ export default {
             currentPage:1,
             totalPages: 10,
             perPage: 1,
+            isLoading:true,
         }
     },
     watch:{

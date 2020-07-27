@@ -1,7 +1,9 @@
 <template>
   <div class="check-box-ques">
     <h6>{{ question.head }}</h6>
-    <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
+    <a href="question.image" target="_blank">
+      <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
+    </a>
 
     <div class="ques-answer-btns">
       <div class="row" v-if="isSolving">

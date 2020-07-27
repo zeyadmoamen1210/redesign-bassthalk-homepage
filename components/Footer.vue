@@ -8,12 +8,16 @@
               <li>
                   <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
                 </li>
+                <li>تواصل معنا</li>
+                <li>الرئيسية</li>
+                
 
                 
 
                 <li>
                   <nuxt-link exact-active-class="active" to="/info-bank">بنك المعلومات</nuxt-link>
                 </li>
+                
 
                 
             </ul>
@@ -24,6 +28,9 @@
               <li>
                   <nuxt-link exact-active-class="active" to="/live-teach"> البث المباشر </nuxt-link>
                 </li>
+                <li>امتحانات الدروس</li>
+                <li>شركاؤنا</li>
+                <li>عن بسطتهالك</li>
             </ul>
           </div>
 
@@ -32,6 +39,9 @@
               <li>
                   <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
                 </li>
+                <li>واجهتنا</li>
+                <li>حمل التطبيق</li>
+                <li>المعلمين</li>
 
             </ul>
           </div>

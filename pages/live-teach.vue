@@ -3,8 +3,10 @@
       <div class="container">
           <div class="bannar">
               <div class="container">
-                  <h3>قريباً فى بستطهالك سوف يتوافر لدينا 
-العديد من المدرسين لشرح جميع الدروس اون لاين</h3>
+                  <h3>قريباً فى بستطهالك</h3>
+                  <h3 style="margin-top: 20px;font-size: 24px;color: #5f5f5f;line-height: 1.5;">
+                       سوف يتوافر لدينا العديد من المدرسين لشرح جميع الدروس اون لاين
+                  </h3>
               </div>
           </div>
       </div>
