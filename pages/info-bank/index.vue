@@ -41,7 +41,7 @@
               <div class="question-head-one">
                 <h6 style="text-align:left" v-show="correctAnswer">
                   <!-- :style="{visibility: correctAnswer ? 'visible' : 'hidden'}" -->
-                  <span>
+                  <span v-if="point>0">
                     <span>{{point}}</span>
                     <img src="@/assets/imgs/point.png" alt />
                   </span>
