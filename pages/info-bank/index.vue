@@ -39,21 +39,22 @@
 
             <div class="question-head" style="overflow:hidden">
               <div class="question-head-one">
-                <h6
-                  style="text-align:left"
-                  :style="{visibility: correctAnswer ? 'visible' : 'hidden'}"
-                >
+                <h6 style="text-align:left" v-show="correctAnswer">
+                  <!-- :style="{visibility: correctAnswer ? 'visible' : 'hidden'}" -->
                   <span>
                     <span>{{point}}</span>
                     <img src="@/assets/imgs/point.png" alt />
                   </span>
                   <br />
                   <img style="width: 196px;" src="@/assets/imgs/right.png" alt />
+                  <!-- <img v-else style="width: 196px;" src="@/assets/imgs/wrong.png" alt /> -->
                 </h6>
-                <button class="false" v-if="point==0">
-                  <i class="fas fa-thumbs-down"></i>
-                  إجابة خاطئة
-                </button>
+                <h6
+                  style="text-align:left"
+                  :style="{visibility: inCorrectAnswer ? 'visible' : 'hidden'}"
+                >
+                  <img style="width: 196px;" src="@/assets/imgs/wrong.png" alt />
+                </h6>
               </div>
               <truefalse
                 :key="selectedQuestion.id"
@@ -178,8 +179,9 @@ export default {
       arrCheck: [],
       correctNum: 0,
       point: 0,
-      correctAnswer: false,
       solving: false,
+      correctAnswer: false,
+      inCorrectAnswer: false,
       selectedQuestion: null,
       seconds: 30,
       answer: null,
@@ -189,8 +191,9 @@ export default {
   computed: {},
   methods: {
     getBankInfoQuestions() {
-      this.correctAnswer = false
       this.solving = true
+      this.inCorrectAnswer = false
+      this.correctAnswer = false
       this.answer = null
       this.point = null
       this.seconds = 30
@@ -223,13 +226,15 @@ export default {
         })
         .then((res) => {
           if (res.data.correct) {
-            this.correctAnswer = true
+            this.correctAnswer = res.data.correct
             this.point = res.data.point
             this.correctNum += 1
             let questionIndex = this.questions.findIndex(
               (question) => question.id == this.selectedQuestion.id
             )
             this.questions.splice(questionIndex, 1)
+          } else {
+            this.inCorrectAnswer = true
           }
           this.solving = false
 
