@@ -14,7 +14,7 @@
           <!-- <ValidationProvider rules="required|email" v-slot="email"> -->
           <input
             v-model="form.email"
-            type="email"
+            type="text"
             class="form-control"
             placeholder="البريد الالكتروني أو رقم الجوال"
           />
@@ -41,7 +41,7 @@
           <!-- </ValidationProvider> -->
         </div>
         <div class="forget-pass">
-          <nuxt-link to>هل نسيت كلمة مرورك ؟</nuxt-link>
+          <nuxt-link to="/reset-password">هل نسيت كلمة مرورك ؟</nuxt-link>
         </div>
         <!-- :disabled="invalid" -->
         <input type="button" @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
