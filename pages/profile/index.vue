@@ -38,7 +38,7 @@
               </div>
               <div>
                 <button>
-                  <nuxt-link to="profile/edit-profile">تغير المعلومات الشخصية</nuxt-link>
+                  <nuxt-link to="profile/edit">تغير المعلومات الشخصية</nuxt-link>
                 </button>
               </div>
             </div>
