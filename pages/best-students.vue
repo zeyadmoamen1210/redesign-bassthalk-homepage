@@ -130,6 +130,8 @@ export default {
             this.students = res.data
           })
           .finally(() => (this.isLoading = false))
+      } else {
+        this.$router.push({ path: '/edit-path' })
       }
     },
   },
