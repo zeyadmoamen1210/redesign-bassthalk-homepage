@@ -140,7 +140,6 @@
               <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
             </div>
           </div>
-
           <b-dropdown
             class="auth"
             v-else

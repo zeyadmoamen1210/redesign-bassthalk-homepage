@@ -59,6 +59,9 @@ export default {
   color: rgba(5, 138, 198, 0.74118);
   font-family: 'CustomFontRegular';
 }
+.pointer {
+  cursor: pointer;
+}
 .danger-btn {
   padding: 7px 13px;
   background: #fff;
