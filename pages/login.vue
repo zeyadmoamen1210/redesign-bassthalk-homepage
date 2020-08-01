@@ -14,7 +14,8 @@
           <!-- <ValidationProvider rules="required|email" v-slot="email"> -->
           <input
             v-model="form.email"
-            type="text"
+            type="email"
+            name="email"
             class="form-control"
             placeholder="البريد الالكتروني أو رقم الجوال"
           />

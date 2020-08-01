@@ -120,6 +120,7 @@ export default {
           headers: { 'Content-Type': 'multipart/form-data' },
         })
         .then((res) => {
+          this.$router.go()
           this.$snotify.success(`تم تحديث البيانات بنجاح`)
         })
         .catch((err) => {

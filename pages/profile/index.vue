@@ -37,9 +37,9 @@
                 <h6>{{$auth.user.gender}}</h6>
               </div>
               <div>
-                <button>
-                  <nuxt-link to="profile/edit">تغير المعلومات الشخصية</nuxt-link>
-                </button>
+                <nuxt-link to="profile/edit">
+                  <button>تغير المعلومات الشخصية</button>
+                </nuxt-link>
               </div>
             </div>
           </div>
