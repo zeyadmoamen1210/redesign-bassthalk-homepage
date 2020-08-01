@@ -79,7 +79,11 @@
               <div class="question-head-one" style="float:right">
                 <div class="buttons">
                   <div class="row">
-                    <button class="fullWidthBtn" v-if="solving" @click="submitQuestion">أجب</button>
+                    <button
+                      class="fullWidthBtn"
+                      v-if="solving && seconds>0"
+                      @click="submitQuestion"
+                    >أجب</button>
                     <button class="fullWidthBtn" v-else @click="getBankInfoQuestions
 ">التالي</button>
                   </div>
@@ -127,7 +131,7 @@
             <h6>المستويات</h6>
           </div>
           <div class="row">
-            <div class="col-md-2" v-for="(x,index) in correctNum" :key="index+'c'">
+            <div class="col-md-2 pointer" v-for="(x,index) in correctNum" :key="index+'c'">
               <div class="info-cicles">
                 <!-- <nuxt-link
                   :class="index < correctNum  ? 'disabled' : ''"
@@ -140,15 +144,27 @@
                 <!-- </nuxt-link> -->
               </div>
             </div>
-            <div class="col-md-2" v-for="(x,index) in questions" :key="index+'q'">
+            <div class="col-md-2 pointer">
               <div class="info-cicles" @click="getBankInfoQuestions">
+                <!-- <nuxt-link
+                  :class="index < correctNum  ? 'disabled' : ''"
+                  :to="`/info-bank/${x.id}`"
+                >-->
+                <img src="../../assets/imgs/info-next-wrong.png" alt />
+                <!-- <span style v-if="index >= correctNum ">{{index + 1}}</span> -->
+                <span>{{correctNum + 1}}</span>
+                <!-- </nuxt-link> -->
+              </div>
+            </div>
+            <div class="col-md-2 pointer" v-for="(x,index) in questions" :key="index+'q'">
+              <div class="info-cicles" @click="notifyPathPrevious">
                 <!-- <nuxt-link
                   :class="index < correctNum  ? 'disabled' : ''"
                   :to="`/info-bank/${x.id}`"
                 >-->
                 <img src="../../assets/imgs/info-lock.png" alt />
                 <!-- <span style v-if="index >= correctNum ">{{index + 1}}</span> -->
-                <span>{{correctNum+ index + 1}}</span>
+                <span>{{correctNum+ index + 2}}</span>
                 <!-- </nuxt-link> -->
               </div>
             </div>
@@ -188,8 +204,20 @@ export default {
       x: null,
     }
   },
+  watch: {
+    seconds: function (val) {
+      if (val == 0) {
+        this.$snotify.warning(
+          `عفواً لقد تجاوز الوقت المتاح لحل السؤال إضغط التالي لتغير السؤال`
+        )
+      }
+    },
+  },
   computed: {},
   methods: {
+    notifyPathPrevious() {
+      this.$snotify.info(`عفواً من فضلك تجاوز المستوي السابق أولا`)
+    },
     getBankInfoQuestions() {
       this.solving = true
       this.inCorrectAnswer = false
