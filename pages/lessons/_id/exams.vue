@@ -67,6 +67,16 @@
                 <h4 style="display: inline-block;">{{lessonDetails.unit.subject.nameAr}}</h4>
                 <h6>{{lessonDetails.unit.nameAr }} - {{lessonDetails.nameAr}}</h6>
               </div>-->
+                  <b-button id="show-btn" @click="showModal">Open Modal</b-button>
+
+              
+    <b-modal ref="my-modal" hide-footer >
+      <div class="d-block text-center">
+        <h3> تهانيا ! لقد تجاوزت 75% من الأمتحان </h3>
+      </div>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">عرض الأمتحان</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">الأنتقال للمستوي الأخر</b-button>
+    </b-modal>
               <div class="sub-name">
                 <button @click="selectedExam = null" style="padding: 9px;margin-bottom: 10px;border: none;background: #058ac6;color: #FFF;font-family: 'CustomFontBold';border-radius: 5px;"> عرض المستويات </button>
                 <h4 style="width:100%">الاختبار</h4>
@@ -213,6 +223,12 @@ export default {
   },
   watch: {},
   methods: {
+    showModal() {
+        this.$refs['my-modal'].show()
+      },
+      hideModal() {
+        this.$refs['my-modal'].hide()
+      },
     setExam(index) {
       if (index == 0) {
         this.selectedExam = this.exams[index]
