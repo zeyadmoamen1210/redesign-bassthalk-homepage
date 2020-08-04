@@ -31,9 +31,11 @@ export default {
 .cont {
   min-height: 64vh;
 }
-.snotify-leftTop, .snotify-centerTop, .snotify-rightTop {
-    top: 10px;
-    z-index: 999999999999;
+.snotify-leftTop,
+.snotify-centerTop,
+.snotify-rightTop {
+  top: 10px;
+  z-index: 999999999999;
 }
 .basth-btn-primary {
   display: block;
@@ -50,8 +52,24 @@ export default {
 .light-btn {
   padding: 7px 13px;
   background: #fff;
+  text-align: center;
+  border-radius: 6px;
+
   border: 1px solid rgba(5, 138, 198, 0.74118);
   color: rgba(5, 138, 198, 0.74118);
+  font-family: 'CustomFontRegular';
+}
+.pointer {
+  cursor: pointer;
+}
+.danger-btn {
+  padding: 7px 13px;
+  background: #fff;
+  text-align: center;
+  border-radius: 6px;
+
+  border: 1px solid red;
+  color: red;
   font-family: 'CustomFontRegular';
 }
 </style>

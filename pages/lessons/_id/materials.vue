@@ -206,11 +206,12 @@
                         style="width: auto; right: 7px; top: 0px;"
                       />
                     </div>
-                    <div class="double-comment mb-2">
-                      <div class="form-groub nested-comment-reply">
+                    <div class="double-comment mb-2" style="width:85%;margin:auto">
+                      <div class="form-groub nested-comment-reply" >
                         <input
                           v-model="comment.replyContent"
                           type="text"
+                          
                           placeholder="اكتب رد علي التعليق"
                         />
                         <div class="submit">
@@ -251,16 +252,12 @@
 
                         <div
                           class="user-pic"
-                          style="
-                            width: 7%;
-                            float: left;
-                            overflow: hidden;
-                            border-radius: 50%;
-                            margin-left: 16px;
-                          "
+                          style="width: 63px;float: left;"
                           v-if="reply.user"
                         >
-                          <img style="width: 100%;" :src="reply.user.photo" alt />
+                          <div style="width: 96%;border-radius: 50%;overflow: hidden;border-radius: 50%;height: 54px;border: 3px solid rgba(5, 138, 198, 0.74);padding: 0px;background: rgb(235, 235, 235);margin-left: 6px;margin-bottom: 7px;margin-top: 0px;">
+                            <img style="width: 100%;height:100%" :src="reply.user.photo" alt />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -462,6 +459,7 @@ export default {
         })
         .then((res) => {
           this.selectedVideoComments.unshift(res.data)
+          this.commentContent = ''
 
           this.$snotify.success(`تم إضافة تعليقك بنجاح`)
         })
@@ -1026,7 +1024,7 @@ export default {
 
     .double-comment {
       clear: both;
-      width: 85%;
+      // width: 85%;
       display: none;
       margin-top: 30px;
       margin: auto;
@@ -1038,7 +1036,8 @@ export default {
 
       .double-comment-cont {
         overflow: hidden;
-        margin-top: 25px;
+        margin-top: 7px;
+        margin-top: 10px;
         border-bottom: 1px solid #c7c7c7;
         position: relative;
         .comment-content-img {

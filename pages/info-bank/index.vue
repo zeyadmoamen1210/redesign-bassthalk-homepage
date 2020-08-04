@@ -6,16 +6,16 @@
           <!-- <h6>
             <img src="../../assets/imgs/noun_knowledge_-1.png" alt />
             بنك المعلومات
-          </h6> -->
-           <div class="head-who" style="width:293px">
-              <span></span>
-              <span></span>
-              <span></span>
-              <h3>بنك المعلومات</h3>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+          </h6>-->
+          <div class="head-who" style="width:293px">
+            <span></span>
+            <span></span>
+            <span></span>
+            <h3>بنك المعلومات</h3>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
         <div class="container" v-if="selectedQuestion">
           <div class="question-bank">
@@ -39,16 +39,21 @@
 
             <div class="question-head" style="overflow:hidden">
               <div class="question-head-one">
-                <h6
-                  style="text-align:left"
-                  :style="{visibility: correctAnswer ? 'visible' : 'hidden'}"
-                >
-                  <span>
+                <h6 style="text-align:left" v-show="correctAnswer">
+                  <!-- :style="{visibility: correctAnswer ? 'visible' : 'hidden'}" -->
+                  <span v-if="point>0">
                     <span>{{point}}</span>
                     <img src="@/assets/imgs/point.png" alt />
                   </span>
                   <br />
                   <img style="width: 196px;" src="@/assets/imgs/right.png" alt />
+                  <!-- <img v-else style="width: 196px;" src="@/assets/imgs/wrong.png" alt /> -->
+                </h6>
+                <h6
+                  style="text-align:left"
+                  :style="{visibility: inCorrectAnswer ? 'visible' : 'hidden'}"
+                >
+                  <img style="width: 196px;" src="@/assets/imgs/wrong.png" alt />
                 </h6>
               </div>
               <truefalse
@@ -74,7 +79,11 @@
               <div class="question-head-one" style="float:right">
                 <div class="buttons">
                   <div class="row">
-                    <button class="fullWidthBtn" v-if="solving" @click="submitQuestion">أجب</button>
+                    <button
+                      class="fullWidthBtn"
+                      v-if="solving && seconds>0"
+                      @click="submitQuestion"
+                    >أجب</button>
                     <button class="fullWidthBtn" v-else @click="getBankInfoQuestions
 ">التالي</button>
                   </div>
@@ -122,7 +131,7 @@
             <h6>المستويات</h6>
           </div>
           <div class="row">
-            <div class="col-md-2" v-for="(x,index) in correctNum" :key="index+'c'">
+            <div class="col-md-2 pointer" v-for="(x,index) in correctNum" :key="index+'c'">
               <div class="info-cicles">
                 <!-- <nuxt-link
                   :class="index < correctNum  ? 'disabled' : ''"
@@ -135,25 +144,32 @@
                 <!-- </nuxt-link> -->
               </div>
             </div>
-            <div class="col-md-2" v-for="(x,index) in questions" :key="index+'q'">
+            <div class="col-md-2 pointer">
               <div class="info-cicles" @click="getBankInfoQuestions">
+                <!-- <nuxt-link
+                  :class="index < correctNum  ? 'disabled' : ''"
+                  :to="`/info-bank/${x.id}`"
+                >-->
+                <img src="../../assets/imgs/info-next-wrong.png" alt />
+                <!-- <span style v-if="index >= correctNum ">{{index + 1}}</span> -->
+                <span>{{correctNum + 1}}</span>
+                <!-- </nuxt-link> -->
+              </div>
+            </div>
+            <div class="col-md-2 pointer" v-for="(x,index) in questions" :key="index+'q'">
+              <div class="info-cicles" @click="notifyPathPrevious">
                 <!-- <nuxt-link
                   :class="index < correctNum  ? 'disabled' : ''"
                   :to="`/info-bank/${x.id}`"
                 >-->
                 <img src="../../assets/imgs/info-lock.png" alt />
                 <!-- <span style v-if="index >= correctNum ">{{index + 1}}</span> -->
-                <span>{{correctNum+ index + 1}}</span>
+                <span>{{correctNum+ index + 2}}</span>
                 <!-- </nuxt-link> -->
               </div>
             </div>
           </div>
         </div>
-
-        <button class="false">
-          <i class="fas fa-thumbs-down"></i>
-         إجابة خاطئة
-        </button>
       </div>
     </div>
   </div>
@@ -179,21 +195,35 @@ export default {
       arrCheck: [],
       correctNum: 0,
       point: 0,
-      correctAnswer: false,
       solving: false,
+      correctAnswer: false,
+      inCorrectAnswer: false,
       selectedQuestion: null,
       seconds: 30,
       answer: null,
       x: null,
     }
   },
+  watch: {
+    seconds: function (val) {
+      if (val == 0) {
+        this.$snotify.warning(
+          `عفواً لقد تجاوز الوقت المتاح لحل السؤال إضغط التالي لتغير السؤال`
+        )
+      }
+    },
+  },
   computed: {},
   methods: {
+    notifyPathPrevious() {
+      this.$snotify.info(`عفواً من فضلك تجاوز المستوي السابق أولا`)
+    },
     getBankInfoQuestions() {
-      this.correctAnswer = false
       this.solving = true
+      this.inCorrectAnswer = false
+      this.correctAnswer = false
       this.answer = null
-      this.point = 0
+      this.point = null
       this.seconds = 30
 
       if (this.questions.length == 4) {
@@ -224,13 +254,15 @@ export default {
         })
         .then((res) => {
           if (res.data.correct) {
-            this.correctAnswer = true
+            this.correctAnswer = res.data.correct
             this.point = res.data.point
             this.correctNum += 1
             let questionIndex = this.questions.findIndex(
               (question) => question.id == this.selectedQuestion.id
             )
             this.questions.splice(questionIndex, 1)
+          } else {
+            this.inCorrectAnswer = true
           }
           this.solving = false
 
@@ -296,13 +328,13 @@ export default {
     border: 1px solid #058ac6;
   }
 }
-.false{
-    font-family: "CustomFontMedium";
-    color: #ffffff;
-    background: #ff0202bd;
-    padding: 13px 31px;
-    border: none;
-    border-radius: 7px;
+.false {
+  font-family: 'CustomFontMedium';
+  color: #ffffff;
+  background: #ff0202bd;
+  padding: 13px 31px;
+  border: none;
+  border-radius: 7px;
 }
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {

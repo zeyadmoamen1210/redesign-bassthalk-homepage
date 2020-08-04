@@ -1,9 +1,9 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 100%;">
     <h6>{{ question.head }}</h6>
-
+    
     <a href="question.image" target="_blank">
-      <selectedImg v-if="question.image" style="float: right;" :imgUrl="question.image"></selectedImg>
+    <selectedImg v-if="question.image" style="float: right;" :imgUrl="question.image"></selectedImg>
     </a>
     <div
       style="
@@ -14,14 +14,17 @@
         margin-right: 50px;
       "
     >
-      <div style="overflow: hidden; display: block; float: left; width: 20%;" v-if="mark>=75">
-        <Button class="selected" v-if="question.modelAnswer==answerData">الإجابة صحيحة</Button>
-        <Button class="danger" v-else>الإجابة خاطئة</Button>
+      <div style="overflow: hidden; display: block; float: left; width: 20%;" v-if="!isSolving">
+        <Button>
+          الاجابة
+          <i class="text-success fa fa-check" v-if="question.modelAnswer==answerData"></i>
+          <i class="text-danger fa fa-times" v-else></i>
+        </Button>
       </div>
       <div style="overflow: hidden; display: block; float: left; width: 40%;">
         <input
           type="radio"
-          :disabled="mark>=75"
+          :disabled="!isSolving"
           :name="id"
           class="absthalk-radio"
           id
@@ -34,7 +37,7 @@
       <div style="overflow: hidden; display: block; float: left; width: 40%;">
         <input
           type="radio"
-          :disabled="mark>=75"
+          :disabled="!isSolving"
           :name="id"
           class="absthalk-radio"
           id
@@ -67,9 +70,6 @@ export default {
     isSolving: {
       required: false,
     },
-    mark: {
-      required: false,
-    },
   },
   data() {
     return {
@@ -83,28 +83,18 @@ export default {
       // ! patch exam answer
       // alert(this.exam_id)
       // !exams/70/solution
-      // if (this.isSolving) {
-      this.$axios
-        .patch(`exams/${this.exam}/solution`, {
-          question: this.id,
-          answer: this.answerData,
-        })
-        .then((res) => {})
-        .catch((err) => {
-          console.log(err)
-        })
-      // }
+      if (this.isSolving) {
+        this.$axios
+          .patch(`exams/${this.exam}/solution`, {
+            question: this.id,
+            answer: this.answerData,
+          })
+          .then((res) => {})
+          .catch((err) => {
+            console.log(err)
+          })
+      }
     },
   },
 }
 </script>
-<style lang="scss">
-.selected {
-  background: #00aa00 !important;
-  color: #fff !important;
-}
-.danger {
-  background: red !important;
-  color: #fff !important;
-}
-</style>

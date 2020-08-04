@@ -42,6 +42,75 @@
         </div>
 
         <div class="container" v-if="selectedExam">
+          <b-modal id="not-path" hide-footer hide-header no-close-on-backdrop>
+            <div class="col-md-12">
+              <div
+                class="model-rating"
+                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
+              >
+                <button style="background:none;border:none;outline:none">
+                  <img style="width:100%;" src="@/assets/imgs/sad.png" alt />
+                </button>
+                <h5
+                  class="mt-2"
+                  style="color:#0989c3;text-align: center;margin-bottom: 18px;"
+                >لم تتخطي نسبة 75 % قم بإعادة الإختبار مرة آخري للإنتقال إلي المستوي التالي</h5>
+                <!-- <button style="background:none;border:none;outline:none">
+                  <img
+                    
+                    style="width:100%;"
+                    src="../../../assets/imgs/smile.png"
+                    alt
+                  />
+                </button>-->
+
+                <button @click="startExam(selectedExam)" class="basth-btn-primary">إعادة الإختبار</button>
+              </div>
+            </div>
+          </b-modal>
+          <b-modal id="path" hide-footer hide-header no-close-on-backdrop>
+            <div class="col-md-12">
+              <div
+                class="model-rating"
+                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
+              >
+                <button style="background:none;border:none;outline:none">
+                  <img style="width:100%;" src="@/assets/imgs/smile.png" alt />
+                </button>
+                <h5
+                  class="mt-2"
+                  style="color:#0989c3;text-align: center;margin-bottom: 18px;"
+                >لقد تخطيت المستوي بنسبة {{selectedExam.mark}}</h5>
+
+                <button @click="restExam()" class="basth-btn-primary">الانتقال إلي المستوي التالي</button>
+                <button
+                  @click="getExamQuestions"
+                  class="light-btn"
+                  style="width: 100%;"
+                >عرض إجاباتي + الاجابة النموذجية</button>
+              </div>
+            </div>
+          </b-modal>
+          <b-modal id="confirm" hide-footer hide-header no-close-on-backdrop>
+            <div class="col-md-12">
+              <div
+                class="model-rating"
+                style="text-align:center;font-family:'CustomFontBold'text-align: center;font-family: CustomFontBold;margin-top: 14px;"
+              >
+                <h5
+                  class="mt-2"
+                  style="color:#0989c3;text-align: center;margin-bottom: 18px;"
+                >هل تريد تسليم الامتحان الآن ؟</h5>
+
+                <button @click="setExamTODone()" class="basth-btn-primary">تسليم</button>
+                <button
+                  @click="$bvModal.hide('confirm')"
+                  class="danger-btn mt-2"
+                  style="width: 100%;"
+                >إستكمال الحل</button>
+              </div>
+            </div>
+          </b-modal>
           <div class="general-exam-test">
             <div class="title">
               <div class="exam-level">
@@ -67,20 +136,12 @@
                 <h4 style="display: inline-block;">{{lessonDetails.unit.subject.nameAr}}</h4>
                 <h6>{{lessonDetails.unit.nameAr }} - {{lessonDetails.nameAr}}</h6>
               </div>-->
-                  <b-button id="show-btn" @click="showModal">Open Modal</b-button>
-
-              
-    <b-modal ref="my-modal" hide-footer >
-      <div class="d-block text-center">
-        <h3> تهانيا ! لقد تجاوزت 75% من الأمتحان </h3>
-      </div>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">عرض الأمتحان</b-button>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">الأنتقال للمستوي الأخر</b-button>
-    </b-modal>
               <div class="sub-name">
-                <button @click="selectedExam = null" style="padding: 9px;margin-bottom: 10px;border: none;background: #058ac6;color: #FFF;font-family: 'CustomFontBold';border-radius: 5px;"> عرض المستويات </button>
+                <button
+                  @click="selectedExam = null"
+                  style="padding: 9px;margin-bottom: 10px;border: none;background: #058ac6;color: #FFF;font-family: 'CustomFontBold';border-radius: 5px;"
+                >عرض المستويات</button>
                 <h4 style="width:100%">الاختبار</h4>
-                
               </div>
             </div>
 
@@ -125,6 +186,7 @@
                       :question="item.question"
                       :exam_id="selectedExam.exam.id"
                       :isSolving="selectedExam.isSolving"
+                      :mark="selectedExam.mark"
                     />
                     <choose
                       :answer="item.answer"
@@ -132,6 +194,7 @@
                       :question="item.question"
                       :exam_id="selectedExam.exam.id"
                       :isSolving="selectedExam.isSolving"
+                      :mark="selectedExam.mark"
                     />
                     <complete
                       :answer="item.answer"
@@ -152,6 +215,7 @@
                       :question="item.question"
                       :exam_id="selectedExam.exam.id"
                       :isSolving="selectedExam.isSolving"
+                      :mark="selectedExam.mark"
                     />
                   </div>
                 </div>
@@ -161,8 +225,8 @@
                   v-if="questions.length>0&&selectedExam.mark<75"
                   class="mt-5 basth-btn-primary"
                   type="button"
-                  @click="setExamTODone"
-                  value="تصحيح"
+                  @click="$bvModal.show('confirm')"
+                  value="تسليم"
                 />
                 <!-- </div> -->
               </div>
@@ -223,12 +287,11 @@ export default {
   },
   watch: {},
   methods: {
-    showModal() {
-        this.$refs['my-modal'].show()
-      },
-      hideModal() {
-        this.$refs['my-modal'].hide()
-      },
+    restExam() {
+      this.$bvModal.hide('path')
+
+      this.selectedExam = null
+    },
     setExam(index) {
       if (index == 0) {
         this.selectedExam = this.exams[index]
@@ -238,7 +301,7 @@ export default {
         } else {
           this.getExamQuestions()
         }
-      } else if (this.exams[index - 1].mark > 75) {
+      } else if (this.exams[index - 1].mark >= 75) {
         if (this.exams[index].mark < 75) {
           this.startExam(this.exams[index])
         } else {
@@ -292,6 +355,9 @@ export default {
     },
     startExam(exam) {
       // exams/70/start
+      this.isLoading = true
+      this.$bvModal.hide('not-path')
+
       this.$axios
         .post(`exams/${exam.exam.id}/start`)
         .then((res) => {
@@ -301,12 +367,16 @@ export default {
         })
         .catch((err) => {
           console.log(err)
+          this.isLoading = false
+
           this.$snotify.warning(
             ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
           )
         })
     },
     getExamQuestions() {
+      this.$bvModal.hide('path')
+
       this.isLoading = true
       this.$axios
         .get(`exams/${this.selectedExam.exam.id}`)
@@ -320,17 +390,22 @@ export default {
     },
     setExamTODone() {
       // alert('ddd')
+      this.$bvModal.hide('confirm')
       this.isLoading = true
       this.$axios
         .post(`exams/${this.selectedExam.exam.id}/done`)
         .then((res) => {
           // this.$router.push({ path: '/subjects' })
-          this.getLessonExams()
+          // this.getLessonExams()
+          // this.getExamQuestions()
 
           this.selectedExam.mark = res.data.mark
-          this.$snotify.success(
-            ` حسناً تم تسليم الإمتحان بنجاح من فضلك إنتظر تصحيح الإمتحان`
-          )
+          if (res.data.mark >= 75) {
+            this.$bvModal.show('path')
+          } else {
+            this.$bvModal.show('not-path')
+          }
+          // this.$snotify.success(` حسناً تم تصحيح الإمتحان`)
         })
         .catch((err) => {
           console.log(err)
@@ -373,7 +448,7 @@ export default {
 .general-exam-content {
   .exam-cont-item {
     overflow: hidden;
-        margin-top: 30px;
+    margin-top: 30px;
     > div {
       float: right;
 
@@ -402,11 +477,11 @@ export default {
     }
   }
   .check-box-ques {
-    button{
+    button {
       padding: 4px 15px;
-    border: 1px solid #ccc;
-    background: #f2f2f2;
-    color: #5a5a5a;
+      border: 1px solid #ccc;
+      background: #f2f2f2;
+      color: #5a5a5a;
     }
     span {
       display: block;
