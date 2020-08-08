@@ -165,7 +165,7 @@
                     </span>
                   </div>
 
-                                      <b-alert v-if="lessonStats.length == 0" show variant="primary">لا توجد نقاط </b-alert>
+                                      <b-alert v-if="examStats.length == 0" show variant="primary">لا توجد نقاط </b-alert>
 
                   <div v-else>
                     <div class="row">
