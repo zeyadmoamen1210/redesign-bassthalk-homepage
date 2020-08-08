@@ -59,8 +59,8 @@
               <div class="col-md-4" style="margin-bottom:15px">
                  <Loading v-if="isLoading"/>
 
-                <div v-else style="padding: 10px;background: #DDD;">
-                  <h6 style="padding: 15px;background: #058ac6;color: #FFF;">إجمالي النقاط الحاصل عليها من بنك المعلومات</h6>
+                <div v-else style="padding: 10px;background: #fff;">
+                  <h6 style="padding: 15px;background: #058ac6;color: rgb(255 255 255);">إجمالي النقاط الحاصل عليها من بنك المعلومات</h6>
                   <div class="question-bank-cont">
                      <span style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px;overflow:hidden">
                       <span style=""> {{bankTotalPoints}} </span>
@@ -106,7 +106,7 @@
 
                <div class="col-md-4" style="margin-bottom:15px">
                  <Loading v-if="isLoading"/>
-                <div v-else style="padding: 10px;background: #DDD;">
+                <div v-else style="padding: 10px;background: #fff;">
                   <h6 style="padding: 15px;background: #058ac6;color: #FFF;">إجمالي النقاط الحاصل عليها من الدروس</h6>
                   <div class="question-bank-cont">
                      <span style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px; overflow:hidden">
@@ -156,7 +156,7 @@
                <div class="col-md-4" style="margin-bottom:15px">
                  <Loading v-if="isLoading"/>
 
-                <div v-else style="padding: 10px;background: #DDD;">
+                <div v-else style="padding: 10px;background: #fff;">
                   <h6 style="padding: 15px;background: #058ac6;color: #FFF;">إجمالي النقاط الحاصل عليها من الإمتحانات</h6>
                   <div class="question-bank-cont">
                      <span style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px;overflow:hidden">
@@ -391,7 +391,7 @@ export default {
     div {
       &:not(:first-of-type) {
         padding: 8px;
-        background: #eee;
+        background: #f3f3f3;
         margin-bottom: 10px;
       }
       h6 {
@@ -425,6 +425,7 @@ export default {
   .points-stats{
     .col-md-4{
       >div{
+        box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
         height: 413px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -440,12 +441,12 @@ export default {
  
 /* Handle */
 &::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #ddd; 
 }
 
 /* Handle on hover */
 &::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #ddd; 
 }
     h6{
           font-size: 15px;
@@ -456,7 +457,7 @@ export default {
       >div{
         padding: 15px;
         margin-bottom: 10px;
-        background: #FFF;
+        background: #f3f3f3;
         h6{
         float:right;
         width: 76%;
