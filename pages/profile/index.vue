@@ -460,10 +460,12 @@ export default {
         margin-bottom: 10px;
         background: #f3f3f3;
         h6{
-        float:right;
-        width: 76%;
-        padding-top: 12px;
+              float: right;
+    width: 76%;
+    padding-top: 3px;
     margin-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
       }
       div{
         float: right;
