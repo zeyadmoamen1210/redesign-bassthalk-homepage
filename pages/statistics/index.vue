@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="count-students">
+                  <div class="count-lightBlue" style="background:#6c5ce7;border-color:#6c5ce7">
                     <h5>عدد الأسئلة</h5>
                     <i class="fas fa-question"></i>
 
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-md-3">
-                  <div class="count-students">
+                  <div class="count-pink" style="background:pink;border-color:pink">
                     <h5>الإمتحانات المحلوله</h5>
                     <i class="fas fa-tasks"></i>
                     <span> {{stats.numberOfSolutionsOnExams}} </span>
@@ -174,6 +174,20 @@ export default {
       padding: 23px;
       border: 1px solid #dc3545;
       border-radius: 4px;
+    }
+    .count-lightBlue{
+      padding: 23px;
+      border: 1px solid #6c5ce7;
+      border-radius: 4px;
+      background:#6c5ce7;
+      border-color:#6c5ce7
+    }
+    .count-pink{
+        background: pink;
+      padding: 23px;
+      border: 1px solid pink;
+      border-radius: 4px;
+      
     }
     .count-reports {
       background-color: #ffc107;
