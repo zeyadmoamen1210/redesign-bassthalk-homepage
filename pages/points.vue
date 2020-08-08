@@ -27,7 +27,7 @@
         </div>
 
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="advestiment" style="margin-top: 50px;margin-right: 13px;">
               <div style="height: 167px;margin-bottom: 20px;">
                 <img style="width: 100%;height: 100%;" src="../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg" alt="">
@@ -36,7 +36,7 @@
                 <img style="width: 100%;height: 100%;" src="../assets/imgs/Why-You-Should-Be-Focusing-Your-Marketing-Efforts-On-Mobile-Advertising-And-Social-Media.jpg" alt="">
               </div>
             </div>
-          </div>
+          </div> -->
       </div>
     </div>
   </div>
