@@ -167,6 +167,11 @@
               </nuxt-link>
             </b-dropdown-item>
             <b-dropdown-item href="#">
+              <nuxt-link to="/statistics">
+                <i class="fas fa-chart-bar"></i> الإحصائيات
+              </nuxt-link>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
               <nuxt-link to="/profile/edit">
                 <i class="fas fa-user-edit"></i>تعديل البيانات
               </nuxt-link>
