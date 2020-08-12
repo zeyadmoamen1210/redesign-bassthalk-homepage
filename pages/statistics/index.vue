@@ -6,6 +6,45 @@
           <div class="container">
             <div class="stats">
               <div class="row">
+                <div class="col-md-3" @click="$router.push('/mylessons')">
+                  <div class="count-students" style="background-color:#e67e22;border:#e67e22">
+                    <h5>عدد الدروس</h5>
+                   <i class="fas fa-school"></i>
+                    <span> {{stats.numberOfLessons}} </span>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3" @click="$router.push('/myexams')">
+                  <div class="count-pink" style="background:pink;border-color:pink">
+                    <h5>الإمتحانات المحلوله</h5>
+                    <i class="fas fa-tasks"></i>
+                    <span> {{stats.numberOfSolutionsOnExams}} </span>
+                  </div>
+                </div>
+
+
+
+                   <div class="col-md-3" @click="$router.push('/myquestions')">
+                  <div class="count-lightBlue" style="background:#6c5ce7;border-color:#6c5ce7">
+                    <h5>عدد الأسئلة</h5>
+                    <i class="fas fa-question"></i>
+
+                    <span> {{stats.numberOfQuestions}} </span>
+                  </div>
+                </div>
+
+
+                 <div class="col-md-3">
+                  <div class="count-reports">
+                    <h5>عدد التقيمات</h5>
+                    <i class="fas fa-star"></i>
+                    <span> {{stats.numberOfFeedback}} </span>
+                  </div>
+                </div>
+
+
                 <div class="col-md-3">
                   <div class="count-students">
                     <h5>عدد التعليقات</h5>
@@ -20,13 +59,7 @@
                     <span> {{stats.numberOfCourses}} </span>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="count-reports">
-                    <h5>عدد الملاحظات</h5>
-                    <i class="fas fa-comment-medical"></i>
-                    <span> {{stats.numberOfFeedback}} </span>
-                  </div>
-                </div>
+               
                 <div class="col-md-3">
                   <div class="count-admins">
                     <h5>عدد المحاضرات</h5>
@@ -41,22 +74,9 @@
                     <span> {{stats.numberOfPosts}} </span>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="count-lightBlue" style="background:#6c5ce7;border-color:#6c5ce7">
-                    <h5>عدد الأسئلة</h5>
-                    <i class="fas fa-question"></i>
+               
 
-                    <span> {{stats.numberOfQuestions}} </span>
-                  </div>
-                </div>
-
-                <div class="col-md-3">
-                  <div class="count-pink" style="background:pink;border-color:pink">
-                    <h5>الإمتحانات المحلوله</h5>
-                    <i class="fas fa-tasks"></i>
-                    <span> {{stats.numberOfSolutionsOnExams}} </span>
-                  </div>
-                </div>
+                
                
                
               </div>
