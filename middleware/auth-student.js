@@ -1,7 +1,16 @@
-export default async function({ $auth, redirect }) {
-    let user = $auth.user
+export default async function({
+    $auth,
+    redirect,
 
-    if (user && user.role == 'student') {} else {
+}) {
+    let user = $auth.user;
+    if (!user) {
         redirect('/login')
+
+    } else if (user && user.role == "student") {
+
+    } else {
+
+        redirect('/')
     }
 }
