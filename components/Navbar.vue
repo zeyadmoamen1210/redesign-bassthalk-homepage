@@ -26,6 +26,7 @@
 
                 <li>
                   <nuxt-link to>رؤيتنا</nuxt-link>
+                  
                 </li>-->
                 <li>
                   <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
@@ -43,6 +44,9 @@
                   <nuxt-link exact-active-class="active" to="/live-teach">الكورسات</nuxt-link>
                 </li>
 
+                <li>
+                  <nuxt-link exact-active-class="active" to="/educourses">المعسكرات</nuxt-link>
+                </li>
                 <li>
                   <div>
                     <b-dropdown
@@ -166,6 +170,7 @@
                 <i class="fas fa-user-alt"></i> الملف الشخصى
               </nuxt-link>
             </b-dropdown-item>
+            
             <b-dropdown-item href="#">
               <nuxt-link to="/statistics">
                 <i class="fas fa-chart-bar"></i> الإحصائيات

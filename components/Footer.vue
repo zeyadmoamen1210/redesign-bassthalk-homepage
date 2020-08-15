@@ -39,6 +39,33 @@
             </ul>
           </div>
 
+
+           <div class="col-md-3">
+              <div class="foot-item" style="color:#FFF;font-family:'CustomFontBold'">
+                <h5 style="color:#FFF">
+                  حمل التطبيق مجانا
+                </h5>
+                <p style="margin-bottom: 10px;color:#FFF;font-family:'CustomFontRegular'">لتتمكن من الوصول لكل جديد</p>
+                <div class="mobil-apps" style="padding: 0 36px;padding-right: 0;">
+                  <div class="row">
+                    <div class="col-md-6" style="padding: 6px;">
+                         <div class="android">
+                          <img style="width:100%;height: 35px;cursor: pointer;" src="@/assets/imgs/android-logo.png">
+                        </div>
+                    </div>
+                      <div class="col-md-6" style="padding: 6px;">
+                    <div class="ios">
+                    <img style="width:100%;height: 35px;cursor: pointer;" src="@/assets/imgs/ios-logo.png">
+                  </div>
+                  </div>
+                  </div>
+               
+                
+                </div>
+              </div>
+            </div>
+
+
           <div class="col-md-3 col-6 col-sm-3">
             <!-- <ul>
               <li>
