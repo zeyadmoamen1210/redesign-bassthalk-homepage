@@ -20,6 +20,9 @@ export default {
     Navbar,
     Footer,
   },
+  created() {
+    // console.log(this.$auth.user.role)
+  },
   mounted() {
     // console.log(this.$moment.locale())
     this.$moment.locale('ar')

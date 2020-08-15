@@ -481,7 +481,7 @@ export default {
             value['replyContent'] = ''
             value['replyImage'] = null
           })
-          this.rating = this.lessonData.rating
+          this.rating = this.lessonData.myRating
           if (this.videos.length > 0) {
             this.selectedVideo = this.videos[0]
 

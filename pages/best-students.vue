@@ -117,6 +117,11 @@ export default {
     }
   },
   created() {
+    console.log('logined user', this.$auth.user.role)
+    if (this.$auth?.user?.role == 'student') {
+    } else {
+      this.$router.push({ path: '/' })
+    }
     this.getBestStudents()
   },
   methods: {

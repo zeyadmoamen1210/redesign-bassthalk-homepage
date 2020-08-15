@@ -40,7 +40,7 @@
                 </li>
 
                 <li>
-                  <nuxt-link exact-active-class="active" to="/live-teach">البث المباشر</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/live-teach">الكورسات</nuxt-link>
                 </li>
 
                 <li>

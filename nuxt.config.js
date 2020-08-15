@@ -49,7 +49,8 @@ export default {
         './plugins/swiper.js',
         './plugins/vselect.js',
         './plugins/moment.js',
-        './plugins/snotify.js'
+        './plugins/snotify.js',
+
     ],
     /*
      ** Nuxt.js dev-modules
