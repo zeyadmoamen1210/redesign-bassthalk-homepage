@@ -156,18 +156,7 @@
                 <!-- </nuxt-link> -->
               </div>
             </div>
-            <div class="col-md-2 pointer" v-for="(x,index) in questions" :key="index+'q'">
-              <div class="info-cicles" @click="notifyPathPrevious">
-                <!-- <nuxt-link
-                  :class="index < correctNum  ? 'disabled' : ''"
-                  :to="`/info-bank/${x.id}`"
-                >-->
-                <img src="../../assets/imgs/info-lock.png" alt />
-                <!-- <span style v-if="index >= correctNum ">{{index + 1}}</span> -->
-                <span>{{correctNum+ index + 2}}</span>
-                <!-- </nuxt-link> -->
-              </div>
-            </div>
+         
           </div>
         </div>
       </div>

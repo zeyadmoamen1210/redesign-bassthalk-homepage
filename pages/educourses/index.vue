@@ -1,35 +1,53 @@
 <template>
-  <div>
+  <div class="camping">
     <div class="container">
-     
-      <div v-show="tabIndex == 1" class="subjects">
-        <div class="form-title">
-         
-          <div class="head-who">
+      <div class="camping-head">
+        <div class="title">
+          <!-- <h6>
+            <img src="../../assets/imgs/noun_knowledge_-1.png" alt />
+            بنك المعلومات
+          </h6>-->
+          <div class="head-who" style="width:293px">
             <span></span>
             <span></span>
             <span></span>
-            <h3>المواد الدراسية</h3>
+            <h3>المعسكرات</h3>
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
-        <Loading v-if="isLoading" />
+      </div>
 
-        <div class="row" v-else>
-          <div class="col-md-3" v-for="(subject, index) in subjects" :key="index">
-            <nuxt-link :to="'/subjects/' + subject.id + '/units'">
-              <div class="subject-cont">
-                <div class="subject-icon-img">
-                  <img :src="subject.icon" alt />
-                </div>
-                <h3>{{ subject.nameAr }}</h3>
+      <div class="camping-card-container">
+        <Loading v-if="isLoading" />
+        <div v-else class="row">
+          <div class="col-md-4"  v-for="camp in camps" :key="camp.id">
+             <div class="camp-card">
+            <div class="camp-card-head">
+              <img :src="camp.image" alt="">
+            </div>
+            <div class="camp-card-content">
+              <h5> {{camp.name}} </h5>
+              <span> {{camp.description}} </span>
+              <h6> عدد المحاضرات : <span> {{camp.numberOfLectures}} </span> </h6>
+            </div>
+
+            <div class="camp-teacher">
+               <div class="camp-teacher-head">
+                <img :src="camp.teacher.photo"/>
               </div>
-            </nuxt-link>
+              <div class="camp-teacher-content">
+                <h5> {{camp.teacher.username}} </h5>
+                <span> {{camp.teacher.email}} </span>
+                
+              </div>
+            </div>
+            <a :href="camp.link" target="_blank" class="goToCourse">الذهاب إلي الكورس
+ </a>
+          </div>
           </div>
         </div>
-        
       </div>
     </div>
   </div>
@@ -37,88 +55,108 @@
 
 <script>
 import Loading from '@/components/Loading'
-
 export default {
-  middleware: 'auth-student',
-  name: 'Subjects',
-  components: {
-    Loading,
+  components:{
+    Loading
   },
-  data() {
+  data(){
     return {
-      subjects: [],
-      tabIndex: 1,
+      camps: [],
       isLoading: true,
     }
   },
-  created() {
-    this.getSubjects()
-  },
-  methods: {
-    // setSubjects(){
-    //   this.$store.commit('setSubject', this.subjects)
-    // },
-    getSubjects() {
-      this.$axios
-        .get(`subjects`)
-        .then((res) => {
-          this.subjects = res.data
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-        .finally(() => (this.isLoading = false))
-    },
-  },
+  created(){
+    this.$axios.get(`edu-course`).then(res => {
+      console.log(res)
+      this.camps = res.data
+    }).finally(() => this.isLoading = false)
+  }
 }
 </script>
 
 <style lang="scss">
-@import '../../assets/sass/subject-dynamic.scss';
-.subjects {
-  margin-top: 20px !important;
-}
-.subjects-navbar {
-  margin-top: 30px;
-  button {
-    font-family: 'CustomFontMedium';
-    background: none;
-    border: none;
-    margin-top: 20px;
-    box-shadow: 0px 1px 21px 0px #ddd;
-    img {
+.camping{
+  .camping-card-container{
+    .goToCourse{
+      background: #058ac6;
+      color:#FFF;
+      text-decoration: none;
       display: block;
-      margin: auto;
+      font-family: "CustomFontBold";
+      width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #CCC;
     }
-  }
-}
-
-.form-title {
-  .head-who {
-    width: 317px !important;
-    h3 {
-      margin-right: 53px;
-      color: #333;
+    h6,h5{
+      margin-bottom: 0;
     }
-  }
-  .head-who span:nth-of-type(4) {
-    top: 10px;
-    left: 6px;
-  }
+    .camp-card{
+      transition: all .5s ease;
+      &:hover{
+        transform: translateY(-10px);
+      }
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow:0 4px 25px 0 rgba(0,0,0,.1);
+      margin-bottom: 15px;
+      margin-top: 15px;
+      .camp-card-head{
+        img{
+          width:100%;
+          height:130px;
+        }
+      }
+    }
+    .camp-card-content{
+      span{
+        margin-bottom: 10px;
+        display: inline-block;
+      }   
+          padding: 10px 15px;
+          h5{
+            
+            color:#058ac6;
+            span{
+              color:#333;
+              font-family: "CustomFontRegular";
+            }
+          }
+    }
+    .camp-teacher{
+          border-top: 1px solid #CCC;
+      h5{
+        color: #058ac6;
+      }
+      span{
+                    font-family: arial;
 
-  .head-who span:nth-of-type(3) {
-    top: 13px;
-    left: -16px;
-    height: 14px;
-    width: 15px;
-  }
-
-  .head-who span:nth-of-type(2) {
-    width: 12px;
-    height: 12px;
-    top: 13px;
-    left: -37px;
+      }
+          overflow: hidden;
+    padding: 10px 15px;
+    background: #f7f7f7;
+      .camp-teacher-head{
+        img{
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 1px solid #ccc;
+        }
+      }
+      div{
+        &:first-of-type{
+          width: 14%;
+    margin-left: 15px;
+        }
+        &:last-of-type{
+          width: 80%;
+        }
+      }
+      >div{
+        float: right;
+      }
+    }
   }
 }
 </style>
