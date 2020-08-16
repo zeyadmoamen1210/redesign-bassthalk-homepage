@@ -7,10 +7,11 @@ export default async function({
     if (!$auth.loggedIn) {
         redirect('/login')
 
-    } else if ($auth.user.role == 'student') {
-
     } else {
+        // if ($auth.user.role == 'student') {
 
-        redirect('/')
+        // } else {
+
+        //     redirect('/')
     }
 }

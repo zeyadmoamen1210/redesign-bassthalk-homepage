@@ -117,6 +117,7 @@ export default {}
       }
     }
   }
+  
   .copyright {
     margin: 24px auto 0;
     width: 44%;
@@ -138,4 +139,13 @@ export default {}
     }
   }
 }
+
+
+@media (max-width: 575px) {
+   .footer{
+      .copyright{
+      width: 90% !important;
+    }
+   }
+  }
 </style>
