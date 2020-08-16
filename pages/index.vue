@@ -632,7 +632,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// @import '../assets/sass/index.scss';
+@import '../assets/sass/index.scss';
 
 .navbar-before .navbar-big{
   
@@ -761,9 +761,9 @@ span:nth-of-type(6) {
   height: 100%;
   display: inline-block;
 }
-   .our-view .desc-image {
+ .our-view .desc-image {
   width: 442px;
-  margin: 177px 0;
+  margin:0 !important;
 }
 .our-view .desc-image img {
   width: 100%;
@@ -1052,6 +1052,11 @@ span:nth-of-type(6) {
   .head-who {
     width: auto !important;
   }
+  .footer .copyright[data-v-0d2d6594] {
+    margin: 24px auto 0;
+     width: 90%; 
+    text-align: center;
+}
 
   .navbar-before-small .nav-small .logo  {
     width: 51px;
@@ -1173,6 +1178,12 @@ span:nth-of-type(6) {
   .download-app .android-ios .android {
     margin-bottom: 15px;
   }
+
+
+  .our-view .desc-image {
+    // width: 376px !important;
+    margin: 0 !important;
+}
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
