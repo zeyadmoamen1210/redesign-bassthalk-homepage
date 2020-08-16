@@ -633,4 +633,16 @@ export default {
 
 <style scoped lang="scss">
 @import '../assets/sass/index.scss';
+
+.our-view .desc-image {
+  width: 442px;
+  margin: 177px 0;
+}
+
+@media (max-width: 575px){
+  .our-view .desc-cont{
+    margin-top: 80px !important;
+  }
+}
+
 </style>
