@@ -41,9 +41,7 @@
             <img :src="about.image" alt />
           </div>
           <div class="title-who-we-are">
-            <p>
-             {{about.description}}
-            </p>
+            <p>{{about.description}}</p>
           </div>
         </div>
       </div>
@@ -562,8 +560,8 @@ export default {
       console.log(res)
       this.partners = res.data
     })
-    this.$axios.get(`about`).then(res => {
-      console.log("ABOUT ",res)
+    this.$axios.get(`about`).then((res) => {
+      console.log('ABOUT ', res)
       this.about = res.data
     })
     this.getBestStudents()
@@ -634,9 +632,8 @@ export default {
 <style scoped lang="scss">
 @import '../assets/sass/index.scss';
 
-.navbar-before .navbar-big{
-  
-    display: none;
+.navbar-before .navbar-big {
+  display: none;
 }
 
 .blue-ball {
@@ -763,7 +760,7 @@ span:nth-of-type(6) {
 }
  .our-view .desc-image {
   width: 442px;
-  margin:0 !important;
+  margin: 0 !important;
 }
 .our-view .desc-image img {
   width: 100%;
@@ -992,8 +989,8 @@ span:nth-of-type(6) {
 .question-and-answer .questions-sec .ques .ques-item {
   overflow: hidden;
   transition: all 0.3s linear;
-    padding: 6px 18px;
-      background: #f0f0f0;
+  padding: 6px 18px;
+  background: #f0f0f0;
   border-radius: 5px;
   margin: 10px 0;
   border: 1px dashed #ccc;
@@ -1054,9 +1051,9 @@ span:nth-of-type(6) {
   }
   .footer .copyright[data-v-0d2d6594] {
     margin: 24px auto 0;
-     width: 90%; 
+    width: 90%;
     text-align: center;
-}
+  }
 
   .navbar-before-small .nav-small .logo  {
     width: 51px;
@@ -1073,7 +1070,7 @@ span:nth-of-type(6) {
   .main-content {
     padding: 121px 27px 0 0;
   }
-  .our-view .desc-cont{
+  .our-view .desc-cont {
     margin-top: 80px !important;
   }
   .our-view .desc-cont h3 {
@@ -1150,10 +1147,10 @@ span:nth-of-type(6) {
   .home-page .download-app .download-app-cont .head-who h3 {
     font-size: 30px;
   }
-  .home-page .download-app .download-app-cont h3{
+  .home-page .download-app .download-app-cont h3 {
     font-size: 29px;
   }
-  .home-page .download-app .android-ios .android{
+  .home-page .download-app .android-ios .android {
     margin-bottom: 30px;
   }
   .home-page .question-and-answer .questions-sec .ques .ques-item h4 {
@@ -1179,11 +1176,10 @@ span:nth-of-type(6) {
     margin-bottom: 15px;
   }
 
-
   .our-view .desc-image {
     // width: 376px !important;
     margin: 0 !important;
-}
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -1234,7 +1230,7 @@ span:nth-of-type(6) {
   .home-page .our-view .desc-cont {
     margin-top: 221px;
   }
-  .home-page .question-and-answer .questions-sec .ques .ques-item h4{
+  .home-page .question-and-answer .questions-sec .ques .ques-item h4 {
     font-size: 14px;
     padding-top: 5px;
   }
@@ -1298,7 +1294,7 @@ span:nth-of-type(6) {
   .home-page .download-app .android-ios div {
     font-size: 13px;
   }
-  .download-app .android-ios div{
+  .download-app .android-ios div {
     font-size: 15px;
   }
   .test-image-div {
