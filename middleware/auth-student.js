@@ -3,15 +3,15 @@ export default async function({
     redirect,
 
 }) {
-    let user = $auth.user;
+
     if (!$auth.loggedIn) {
         redirect('/login')
 
+    } else
+    if ($auth.user.role == 'student') {
+
     } else {
-        // if ($auth.user.role == 'student') {
 
-        // } else {
-
-        //     redirect('/')
+        redirect('/')
     }
 }
