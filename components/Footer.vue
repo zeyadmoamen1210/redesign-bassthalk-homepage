@@ -49,13 +49,13 @@
                 <div class="mobil-apps" style="padding: 0 36px;padding-right: 0;">
                   <div class="row">
                     <div class="col-md-6" style="padding: 6px;">
-                         <div class="android">
-                          <img style="width:100%;height: 35px;cursor: pointer;" src="@/assets/imgs/android-logo.png">
+                         <div class="android" style="text-align:center">
+                          <img style="width: 124px;height: 35px;cursor: pointer;margin: auto;text-align: center;" src="@/assets/imgs/android-logo.png">
                         </div>
                     </div>
                       <div class="col-md-6" style="padding: 6px;">
-                    <div class="ios">
-                    <img style="width:100%;height: 35px;cursor: pointer;" src="@/assets/imgs/ios-logo.png">
+                    <div class="ios" style="text-align:center">
+                    <img style=" width: 124px;height: 35px;cursor: pointer;margin: auto;text-align: center;" src="@/assets/imgs/ios-logo.png">
                   </div>
                   </div>
                   </div>
@@ -66,14 +66,7 @@
             </div>
 
 
-          <div class="col-md-3 col-6 col-sm-3">
-            <!-- <ul>
-              <li>
-                <nuxt-link to="/"> الرئيسية </nuxt-link>
-              </li>
-            </ul>-->
-            <div></div>
-          </div>
+         
 
           <div class="copyright">
             <hr />
@@ -99,7 +92,7 @@ export default {}
   min-height: 29vh;
   margin-top: 100px;
   .foot {
-    padding-top: 136px;
+    padding-top: 190px;
     ul {
       margin-bottom: 45px;
       list-style-type: none;
