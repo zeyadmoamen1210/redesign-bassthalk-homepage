@@ -69,6 +69,9 @@ export default {
     auth: {
         // Options
         strategies: {
+            google: {
+                client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com'
+            },
             local: {
                 endpoints: {
                     login: {
