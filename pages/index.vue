@@ -632,7 +632,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// @import '../assets/sass/index.scss';
+@import '../assets/sass/index.scss';
 
 .navbar-before .navbar-big{
   
@@ -763,7 +763,7 @@ span:nth-of-type(6) {
 }
    .our-view .desc-image {
   width: 442px;
-  margin: 177px 0;
+  margin:0 !important;
 }
 .our-view .desc-image img {
   width: 100%;
