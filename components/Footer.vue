@@ -28,14 +28,14 @@
             </ul>
           </div>
 
-          <div class="col-md-3 col-6 col-sm-6">
+          <div class="col-md-3 col-12 col-sm-6">
             <ul>
-              <li>
+              <li class="mobile-center" style="text-align:center">
                 <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
               </li>
               <!-- <li>واجهتنا</li> -->
-              <li>حمل التطبيق</li>
-              <li>المعلمين</li>
+              <li class="mobile-center" style="text-align:center">حمل التطبيق</li>
+              <li class="mobile-center" style="text-align:center">المعلمين</li>
             </ul>
           </div>
 
@@ -46,7 +46,7 @@
                   حمل التطبيق مجانا
                 </h5>
                 <p style="margin-bottom: 10px;color:#FFF;font-family:'CustomFontRegular'">لتتمكن من الوصول لكل جديد</p>
-                <div class="mobil-apps" style="padding: 0 36px;padding-right: 0;">
+                <div class="mobil-apps" style="">
                   <div class="row">
                     <div class="col-md-6" style="padding: 6px;">
                          <div class="android" style="text-align:center">
@@ -85,6 +85,11 @@ export default {}
 
 <style lang="scss" scoped>
 .footer {
+  
+  .mobil-apps{
+    padding: 0 36px !important;
+    padding-right: 0 !important;
+  }
   background: url('../assets/imgs/footer.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -147,5 +152,9 @@ export default {}
       width: 90% !important;
     }
    }
+   .mobil-apps{
+    padding: 0  !important;
+    padding-right: 0 !important;
+  }
   }
 </style>

@@ -761,7 +761,7 @@ span:nth-of-type(6) {
   height: 100%;
   display: inline-block;
 }
-   .our-view .desc-image {
+ .our-view .desc-image {
   width: 442px;
   margin:0 !important;
 }
@@ -1181,8 +1181,8 @@ span:nth-of-type(6) {
 
 
   .our-view .desc-image {
-    width: 361px !important;
-    margin:0 !important; 
+    // width: 376px !important;
+    margin: 0 !important;
 }
 }
 
