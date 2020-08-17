@@ -48,7 +48,7 @@
         <input type="button" @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
         <div class="two-way">
           <h6>او عن طريق</h6>
-          <img @click="loginWithGoogle" class="pointer" src="../assets/imgs/facebook.png" alt />
+          <!-- <img @click="loginWithGoogle" class="pointer" src="../assets/imgs/facebook.png" alt /> -->
           <img
             @click="loginWithGoogle"
             class="pointer"
@@ -109,13 +109,12 @@ export default {
   methods: {
     async loginWithGoogle() {
       // this.isLoading = true
-      try {
-        await this.$auth.loginWith('google')
-      } catch (err) {
-        // this.isLoading = false
-
-        console.log(err)
-      }
+      await this.$auth
+        .loginWith('google')
+        .then((res) => {})
+        .catch((e) => {
+          console.log(e)
+        })
     },
     async login() {
       this.isLoading = true

@@ -1,5 +1,6 @@
 export default async function({
     $auth,
+    app,
     redirect,
 
 }) {
@@ -7,11 +8,39 @@ export default async function({
     if (!$auth.loggedIn) {
         redirect('/login')
 
-    } else
-    if ($auth.user.role == 'student') {
-
     } else {
 
-        redirect('/')
+
+        if ($auth.user.role == 'student') {
+
+        } else {
+
+            redirect('/')
+        }
     }
 }
+
+
+// 
+
+// try {
+//     const token = $auth.getToken(authStrategy).substr(7)
+
+//     app.$axios
+//         .$post('login-google', {
+//             access_token: token,
+//         })
+//         .then((res) => {
+//             console.log('After login', res)
+//             auth.setToken('local', 'Bearer ' + res.token)
+//             setTimeout(async() => {
+//                 $auth.setStrategy('local')
+//                 setTimeout(async() => {
+//                     await $auth.fetchUser()
+//                 })
+//             })
+//         })
+//         // console.log(data)
+// } catch (e) {
+//     console.log(e)
+// }

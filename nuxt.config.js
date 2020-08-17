@@ -51,6 +51,7 @@ export default {
         './plugins/moment.js',
         './plugins/snotify.js',
 
+
     ],
     /*
      ** Nuxt.js dev-modules
@@ -69,8 +70,17 @@ export default {
     auth: {
         // Options
         strategies: {
+            facebook: {
+                client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
+                userinfo_endpoint: false,
+                scope: ['public_profile', 'email'],
+                redirect_uri: 'http://localhost:3000'
+            },
             google: {
-                client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com'
+                client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
+                user: false,
+                redirect_uri: 'http://localhost:3000/callback'
+
             },
             local: {
                 endpoints: {
@@ -90,6 +100,10 @@ export default {
                 tokenType: 'Bearer',
             },
         },
+        plugins: [{
+            src: '~plugins/auth.js',
+            ssr: false
+        }, ]
     },
     /*
      ** Axios module configuration
@@ -99,6 +113,7 @@ export default {
         baseURL: 'https://basthalk-be.herokuapp.com/api/v1/',
         common: {
             Accept: 'application/json',
+            Authorization: '',
         },
     },
     /*
