@@ -38,12 +38,12 @@
               </div>
               <div>
                 <h6>إجمالي النقاط :</h6>
-                 <div class="question-bank-cont" style="display:inline-block;margin-right:10px">
-                          <span style="">
-                            <span style=""> {{totalPoints}} </span>
-                            <img style="margin-top: -12px;" src="../../assets/imgs/point.png" alt />
-                          </span>
-                        </div>
+                <div class="question-bank-cont" style="display:inline-block;margin-right:10px">
+                  <span style>
+                    <span style>{{totalPoints}}</span>
+                    <img style="margin-top: -12px;" src="../../assets/imgs/point.png" alt />
+                  </span>
+                </div>
               </div>
               <div>
                 <nuxt-link to="profile/edit">
@@ -52,154 +52,157 @@
               </div>
             </div>
           </div>
-          </div>
+        </div>
 
-          <div class="points-stats" style="margin-top: 45px;">
-            <div class="row">
-              <div class="col-md-4" style="margin-bottom:15px">
-                 <Loading v-if="isLoading"/>
+        <div class="points-stats" style="margin-top: 45px;">
+          <div class="row">
+            <div class="col-md-4" style="margin-bottom:15px">
+              <Loading v-if="isLoading" />
 
-                <div v-else style="padding: 10px;background: #fff;">
-                  <h6 style="padding: 15px;background: #058ac6;color: rgb(255 255 255);">إجمالي النقاط الحاصل عليها من بنك المعلومات</h6>
-                  <div class="question-bank-cont">
-                     <span style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px;overflow:hidden">
-                      <span style=""> {{bankTotalPoints}} </span>
-                      <img style="margin-top: -12px;" src="../../assets/imgs/point.png" alt />
-                    </span>
-                  </div>
-                    <b-alert v-if="bankStats.length == 0" show variant="primary">لا توجد نقاط</b-alert>
+              <div v-else style="padding: 10px;background: #fff;">
+                <h6
+                  style="padding: 15px;background: #058ac6;color: rgb(255 255 255);"
+                >إجمالي النقاط الحاصل عليها من بنك المعلومات</h6>
+                <div class="question-bank-cont">
+                  <span
+                    style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px;overflow:hidden"
+                  >
+                    <span style>{{bankTotalPoints}}</span>
+                    <img style="margin-top: -12px;" src="../../assets/imgs/point.png" alt />
+                  </span>
+                </div>
+                <b-alert v-if="bankStats.length == 0" show variant="primary">لا توجد نقاط</b-alert>
 
-                 <div v-else>
-                    <div class="row">
+                <div v-else>
+                  <div class="row">
                     <div class="col-md-12" v-for="point in bankStats" :key="point.id">
-                     <div style="overflow:hidden;">
-                        <h6> {{point.bank.head}}  </h6>
-                       <div class="question-bank-cont">
+                      <div style="overflow:hidden;">
+                        <h6>{{point.bank.head}}</h6>
+                        <div class="question-bank-cont">
                           <span style="overflow:hidden">
-                            <span style="float:right"> {{point.points}} </span>
-                            <img style="margin-top: -12px;float:right" src="../../assets/imgs/point.png" alt />
+                            <span style="float:right">{{point.points}}</span>
+                            <img
+                              style="margin-top: -12px;float:right"
+                              src="../../assets/imgs/point.png"
+                              alt
+                            />
                           </span>
                         </div>
-                     </div>
+                      </div>
                     </div>
                   </div>
 
-                <div>
-                   <b-pagination
-                      v-model=bankPage
+                  <div>
+                    <b-pagination
+                      v-model="bankPage"
                       :total-rows="bankTotalPages"
                       per-page="1"
                       v-if="bankTotalPages > 1"
                     ></b-pagination>
-
-    
-                </div>
-                 </div>
-
-                </div>
-                
-                   
-              </div>
-
-
-
-
-               <div class="col-md-4" style="margin-bottom:15px">
-                 <Loading v-if="isLoading"/>
-                <div v-else style="padding: 10px;background: #fff;">
-                  <h6 style="padding: 15px;background: #058ac6;color: #FFF;">إجمالي النقاط الحاصل عليها من الدروس</h6>
-                  <div class="question-bank-cont">
-                     <span style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px; overflow:hidden">
-                      <span> {{lessonTotalPoints}} </span>
-                      <img style="margin-top: -12px;" src="../../assets/imgs/point.png" alt />
-                    </span>
                   </div>
-                                      <b-alert v-if="lessonStats.length == 0" show variant="primary">لا توجد نقاط </b-alert>
+                </div>
+              </div>
+            </div>
 
-                  <div v-else>
-                    <div class="row">
+            <div class="col-md-4" style="margin-bottom:15px">
+              <Loading v-if="isLoading" />
+              <div v-else style="padding: 10px;background: #fff;">
+                <h6
+                  style="padding: 15px;background: #058ac6;color: #FFF;"
+                >إجمالي النقاط الحاصل عليها من الدروس</h6>
+                <div class="question-bank-cont">
+                  <span
+                    style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px; overflow:hidden"
+                  >
+                    <span>{{lessonTotalPoints}}</span>
+                    <img style="margin-top: -12px;" src="../../assets/imgs/point.png" alt />
+                  </span>
+                </div>
+                <b-alert v-if="lessonStats.length == 0" show variant="primary">لا توجد نقاط</b-alert>
+
+                <div v-else>
+                  <div class="row">
                     <div class="col-md-12" v-for="point in lessonStats" :key="point.id">
-                     <div style="overflow:hidden;">
-                        <h6> {{point.lesson.nameAr}}  </h6>
-                       <div class="question-bank-cont">
+                      <div style="overflow:hidden;">
+                        <h6>{{point.lesson.nameAr}}</h6>
+                        <div class="question-bank-cont">
                           <span style="overflow:hidden">
-                            <span style="float: right;"> {{point.points}} </span>
-                            <img style="margin-top: -12px;float:right"  src="../../assets/imgs/point.png" alt />
+                            <span style="float: right;">{{point.points}}</span>
+                            <img
+                              style="margin-top: -12px;float:right"
+                              src="../../assets/imgs/point.png"
+                              alt
+                            />
                           </span>
                         </div>
-                     </div>
+                      </div>
                     </div>
                   </div>
 
-                <div>
-                   <b-pagination
-                      v-model=lessonPage
-                      :total-rows=lessonTotalPages
+                  <div>
+                    <b-pagination
+                      v-model="lessonPage"
+                      :total-rows="lessonTotalPages"
                       per-page="1"
                       v-if="lessonTotalPages > 1"
                     ></b-pagination>
-                </div>
                   </div>
-
                 </div>
-                
-                   
               </div>
+            </div>
 
+            <div class="col-md-4" style="margin-bottom:15px">
+              <Loading v-if="isLoading" />
 
+              <div v-else style="padding: 10px;background: #fff;">
+                <h6
+                  style="padding: 15px;background: #058ac6;color: #FFF;"
+                >إجمالي النقاط الحاصل عليها من الإمتحانات</h6>
+                <div class="question-bank-cont">
+                  <span
+                    style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px;overflow:hidden"
+                  >
+                    <span style>{{examTotalPoints}}</span>
+                    <img style="margin-top:-12px" src="../../assets/imgs/point.png" alt />
+                  </span>
+                </div>
 
+                <b-alert v-if="examStats.length == 0" show variant="primary">لا توجد نقاط</b-alert>
 
-
-
-
-
-               <div class="col-md-4" style="margin-bottom:15px">
-                 <Loading v-if="isLoading"/>
-
-                <div v-else style="padding: 10px;background: #fff;">
-                  <h6 style="padding: 15px;background: #058ac6;color: #FFF;">إجمالي النقاط الحاصل عليها من الإمتحانات</h6>
-                  <div class="question-bank-cont">
-                     <span style="display:block;text-align:center;margin-bottom: 15px;margin-top: 10px;overflow:hidden">
-                      <span style=""> {{examTotalPoints}} </span>
-                      <img style="margin-top:-12px" src="../../assets/imgs/point.png" alt />
-                    </span>
-                  </div>
-
-                                      <b-alert v-if="examStats.length == 0" show variant="primary">لا توجد نقاط </b-alert>
-
-                  <div v-else>
-                    <div class="row">
-                    <div class="col-md-12" v-for="point in examStats"  :key="point.id">
-                     <div style="overflow:hidden;">
-                        <h6> {{point.exam.title}}  </h6>
-                       <div class="question-bank-cont">
+                <div v-else>
+                  <div class="row">
+                    <div class="col-md-12" v-for="point in examStats" :key="point.id">
+                      <div style="overflow:hidden;">
+                        <h6>{{point.exam.title}}</h6>
+                        <div class="question-bank-cont">
                           <span style="overflow:hidden">
-                            <span style="float:right"> {{point.points}} </span>
-                            <img style="float:right;margin-top:-12px" src="../../assets/imgs/point.png" alt />
+                            <span style="float:right">{{point.points}}</span>
+                            <img
+                              style="float:right;margin-top:-12px"
+                              src="../../assets/imgs/point.png"
+                              alt
+                            />
                           </span>
                         </div>
-                     </div>
+                      </div>
                     </div>
                   </div>
 
-                <div>
-                   <b-pagination
+                  <div>
+                    <b-pagination
                       v-model="examPage"
                       :total-rows="examTotalPages"
                       per-page="1"
                       v-if="examTotalPages > 1"
                     ></b-pagination>
-                </div>
                   </div>
-
                 </div>
-                
-                   
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- <div class="col-md-7">
+        <!-- <div class="col-md-7">
             <div class="point-datails">
               <div class="title">
                 <h5>
@@ -232,7 +235,7 @@
                 </div>
               </div>
             </div>
-          </div> -->
+        </div>-->
       </div>
     </div>
   </div>
@@ -241,6 +244,8 @@
 <script>
 import Loading from '../../components/Loading'
 export default {
+  middleware: 'auth-student',
+
   created() {
     // this.$axios
     //   .get(`mypoints`)
@@ -250,45 +255,45 @@ export default {
     //   })
     //   .finally(() => (this.isLoading = false))
 
-    this.$axios.get(`mystatistics?type=exam`).then(res => {
-      console.log("exam => " , res)
-      this.examStats = res.data.docs
-      this.examStatsExams=res.data.docs.exam
-      this.examPage = res.data.page
-      // this.examTotalPages = res.data.totalPages
-      this.examTotalPoints = res.data.total
+    this.$axios
+      .get(`mystatistics?type=exam`)
+      .then((res) => {
+        console.log('exam => ', res)
+        this.examStats = res.data.docs
+        this.examStatsExams = res.data.docs.exam
+        this.examPage = res.data.page
+        // this.examTotalPages = res.data.totalPages
+        this.examTotalPoints = res.data.total
+      })
+      .finally(() => (this.isLoading = false))
 
-    }).finally(() => this.isLoading = false)
+    this.$axios
+      .get(`mystatistics?type=lesson`)
+      .then((res) => {
+        this.isLoading = true
+        console.log('lesson => ', res)
+        this.lessonStats = res.data.docs
+        this.lessonStatsLesson = res.data.docs.lesson
+        this.TotalLessonspoints = res.data.total
 
-    this.$axios.get(`mystatistics?type=lesson`).then(res => {
-      this.isLoading = true
-      console.log("lesson => " , res)
-      this.lessonStats = res.data.docs
-      this.lessonStatsLesson=res.data.docs.lesson
-      this.TotalLessonspoints = res.data.total
+        this.lessonPage = res.data.page
+        this.lessonTotalPoints = res.data.total
+      })
+      .finally(() => (this.isLoading = false))
 
+    this.$axios
+      .get(`mystatistics?type=bank`)
+      .then((res) => {
+        console.log('bank => ', res)
+        this.isLoading = true
 
-      this.lessonPage = res.data.page
-      this.lessonTotalPoints = res.data.total
+        this.bankStats = res.data.docs
+        this.bankPage = res.data.page
+        this.bankTotalPages = res.data.totalPages
 
-
-    }).finally(() => this.isLoading = false)
-
-    this.$axios.get(`mystatistics?type=bank`).then(res => {
-      console.log("bank => " , res)
-      this.isLoading = true
-
-      this.bankStats = res.data.docs
-      this.bankPage = res.data.page
-      this.bankTotalPages = res.data.totalPages
-
-      this.bankTotalPoints = res.data.total
-
-
-
-      
-
-    }).finally(() => this.isLoading = false)
+        this.bankTotalPoints = res.data.total
+      })
+      .finally(() => (this.isLoading = false))
   },
   components: {
     Loading,
@@ -303,26 +308,28 @@ export default {
       lessonStats: [],
       examStats: [],
       bankStats: [],
-      bankStatsBank:{},
-      lessonStatsLesson:{},
-      examStatsExam:{},
+      bankStatsBank: {},
+      lessonStatsLesson: {},
+      examStatsExam: {},
       lessonTotalPages: 0,
       examTotalPages: 0,
       bankTotalPages: 0,
 
-      examPage:0,
-      bankPage:0,
-      lessonPage:0,
+      examPage: 0,
+      bankPage: 0,
+      lessonPage: 0,
 
-      lessonTotalPoints:0,
-      bankTotalPoints:0,
-      examTotalPoints:0,
+      lessonTotalPoints: 0,
+      bankTotalPoints: 0,
+      examTotalPoints: 0,
     }
   },
-  computed:{
-    totalPoints(){
-      return this.lessonTotalPoints + this.bankTotalPoints + this.examTotalPoints
-    }
+  computed: {
+    totalPoints() {
+      return (
+        this.lessonTotalPoints + this.bankTotalPoints + this.examTotalPoints
+      )
+    },
   },
   watch: {
     currentPage(val) {
@@ -333,49 +340,49 @@ export default {
       })
     },
 
-    examPage(val){
-      this.$axios.get(`mystatistics?type=exam&page=${val}`).then(res => {
-      console.log("exam page => " , res)
-      this.examStats = res.data.docs
-      this.examStatsExams=res.data.docs.exam
-      this.examPage = res.data.page
-      this.examTotalPages = res.data.totalPages
-      this.examTotalPoints = res.data.total
-
-    }).finally(() => this.isLoading = false)
+    examPage(val) {
+      this.$axios
+        .get(`mystatistics?type=exam&page=${val}`)
+        .then((res) => {
+          console.log('exam page => ', res)
+          this.examStats = res.data.docs
+          this.examStatsExams = res.data.docs.exam
+          this.examPage = res.data.page
+          this.examTotalPages = res.data.totalPages
+          this.examTotalPoints = res.data.total
+        })
+        .finally(() => (this.isLoading = false))
     },
-    bankPage(val){
-      this.$axios.get(`mystatistics?type=bank&page=${val}`).then(res => {
-      console.log("bank => " , res)
-      this.isLoading = true
+    bankPage(val) {
+      this.$axios
+        .get(`mystatistics?type=bank&page=${val}`)
+        .then((res) => {
+          console.log('bank => ', res)
+          this.isLoading = true
 
-      this.bankStats = res.data.docs
-      this.bankPage = res.data.page
-      this.bankTotalPages = res.data.totalPages
+          this.bankStats = res.data.docs
+          this.bankPage = res.data.page
+          this.bankTotalPages = res.data.totalPages
 
-      this.bankTotalPoints = res.data.total
-
-
-
-      
-
-    }).finally(() => this.isLoading = false)
+          this.bankTotalPoints = res.data.total
+        })
+        .finally(() => (this.isLoading = false))
     },
-    lessonPage(val){
-      this.$axios.get(`mystatistics?type=lesson`).then(res => {
-      this.isLoading = true
-      console.log("lesson => " , res)
-      this.lessonStats = res.data.docs
-      this.lessonStatsLesson=res.data.docs.lesson
-      this.TotalLessonspoints = res.data.total
+    lessonPage(val) {
+      this.$axios
+        .get(`mystatistics?type=lesson`)
+        .then((res) => {
+          this.isLoading = true
+          console.log('lesson => ', res)
+          this.lessonStats = res.data.docs
+          this.lessonStatsLesson = res.data.docs.lesson
+          this.TotalLessonspoints = res.data.total
 
-
-      this.lessonPage = res.data.page
-      this.lessonTotalPoints = res.data.total
-
-
-    }).finally(() => this.isLoading = false)
-    }
+          this.lessonPage = res.data.page
+          this.lessonTotalPoints = res.data.total
+        })
+        .finally(() => (this.isLoading = false))
+    },
   },
 }
 </script>
@@ -422,55 +429,55 @@ export default {
     font-family: 'CustomFontBold';
   }
 
-  .points-stats{
-    .col-md-4{
-      >div{
+  .points-stats {
+    .col-md-4 {
+      > div {
         box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
         height: 413px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding:10px 0; 
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 10px 0;
         margin-bottom: 27px;
-    &::-webkit-scrollbar {
-  width: 10px;
-}
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
 
-/* Track */
-&::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-&::-webkit-scrollbar-thumb {
-  background: #ddd; 
-}
+        /* Track */
+        &::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
 
-/* Handle on hover */
-&::-webkit-scrollbar-thumb:hover {
-  background: #ddd; 
-}
-    h6{
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: #ddd;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+          background: #ddd;
+        }
+        h6 {
           font-size: 15px;
-    }
+        }
       }
     }
-    .col-md-12{
-      >div{
+    .col-md-12 {
+      > div {
         padding: 15px;
         margin-bottom: 10px;
         background: #f3f3f3;
-        h6{
-              float: right;
-    width: 76%;
-    padding-top: 3px;
-    margin-left: 10px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-      }
-      div{
-        float: right;
-        width: 20%;
-      }
+        h6 {
+          float: right;
+          width: 76%;
+          padding-top: 3px;
+          margin-left: 10px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        div {
+          float: right;
+          width: 20%;
+        }
       }
     }
   }
@@ -479,23 +486,23 @@ export default {
     color: #058ac6;
     background-color: #cce5ff;
     border-color: #b8daff;
-    font-family: "CustomFontBold";
+    font-family: 'CustomFontBold';
     text-align: center;
     font-size: 18px;
-}
-.question-bank-cont{
-  span{
-    span{
-      font-weight: bold;
+  }
+  .question-bank-cont {
+    span {
+      span {
+        font-weight: bold;
         font-size: 15px;
-    margin-left: 5px;
+        margin-left: 5px;
+      }
     }
   }
-}
-.pagination {
+  .pagination {
     padding-right: 0;
-    
-    margin:auto
-}
+
+    margin: auto;
+  }
 }
 </style>
