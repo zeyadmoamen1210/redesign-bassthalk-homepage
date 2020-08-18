@@ -46,11 +46,16 @@
         </div>
         <!-- :disabled="invalid" -->
         <input type="button" @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
-        <!-- <div class="two-way">
+        <div class="two-way">
           <h6>او عن طريق</h6>
-          <img src="../assets/imgs/facebook.png" alt />
-          <img src="../assets/imgs/brands-and-logotypes.png" alt />
-        </div>-->
+          <!-- <img @click="loginWithGoogle" class="pointer" src="../assets/imgs/facebook.png" alt /> -->
+          <img
+            @click="loginWithGoogle"
+            class="pointer"
+            src="../assets/imgs/brands-and-logotypes.png"
+            alt
+          />
+        </div>
 
         <div class="dont-have-acc">
           <div>
@@ -102,6 +107,15 @@ export default {
     }
   },
   methods: {
+    async loginWithGoogle() {
+      // this.isLoading = true
+      await this.$auth
+        .loginWith('google')
+        .then((res) => {})
+        .catch((e) => {
+          console.log(e)
+        })
+    },
     async login() {
       this.isLoading = true
       try {

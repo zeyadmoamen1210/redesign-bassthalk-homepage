@@ -9,84 +9,71 @@
                 <div class="col-md-3" @click="$router.push('/mylessons')">
                   <div class="count-students" style="background-color:#e67e22;border:#e67e22">
                     <h5>عدد الدروس</h5>
-                   <i class="fas fa-school"></i>
-                    <span> {{stats.numberOfLessons}} </span>
+                    <i class="fas fa-school"></i>
+                    <span>{{stats.numberOfLessons}}</span>
                   </div>
                 </div>
-
-
 
                 <div class="col-md-3" @click="$router.push('/myexams')">
                   <div class="count-pink" style="background:pink;border-color:pink">
                     <h5>الإمتحانات المحلوله</h5>
                     <i class="fas fa-tasks"></i>
-                    <span> {{stats.numberOfSolutionsOnExams}} </span>
+                    <span>{{stats.numberOfSolutionsOnExams}}</span>
                   </div>
                 </div>
 
-
-
-                   <div class="col-md-3" @click="$router.push('/myquestions')">
+                <div class="col-md-3" @click="$router.push('/myquestions')">
                   <div class="count-lightBlue" style="background:#6c5ce7;border-color:#6c5ce7">
                     <h5>عدد الأسئلة</h5>
                     <i class="fas fa-question"></i>
 
-                    <span> {{stats.numberOfQuestions}} </span>
+                    <span>{{stats.numberOfQuestions}}</span>
                   </div>
                 </div>
 
-
-                 <div class="col-md-3">
+                <div class="col-md-3">
                   <div class="count-reports">
                     <h5>عدد التقيمات</h5>
                     <i class="fas fa-star"></i>
-                    <span> {{stats.numberOfFeedback}} </span>
+                    <span>{{stats.numberOfFeedback}}</span>
                   </div>
                 </div>
-
 
                 <div class="col-md-3">
                   <div class="count-students">
                     <h5>عدد التعليقات</h5>
-                   <i class="far fa-comment"></i>
-                    <span> {{stats.numberOfComments}} </span>
+                    <i class="far fa-comment"></i>
+                    <span>{{stats.numberOfComments}}</span>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="count-teachers">
                     <h5>عدد الكورسات</h5>
                     <i class="fas fa-chalkboard-teacher"></i>
-                    <span> {{stats.numberOfCourses}} </span>
+                    <span>{{stats.numberOfCourses}}</span>
                   </div>
                 </div>
-               
+
                 <div class="col-md-3">
                   <div class="count-admins">
                     <h5>عدد المحاضرات</h5>
                     <i class="fas fa-book-reader"></i>
-                    <span> {{stats.numberOfLectures}} </span>
+                    <span>{{stats.numberOfLectures}}</span>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="count-reports" style="background-color:#40407a">
                     <h5>عدد المنشورات</h5>
                     <i class="fas fa-blog"></i>
-                    <span> {{stats.numberOfPosts}} </span>
+                    <span>{{stats.numberOfPosts}}</span>
                   </div>
                 </div>
-               
-
-                
-               
-               
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-   
   </div>
 </template>
 
@@ -98,28 +85,27 @@ export default {
 
   data() {
     return {
-     stats:[]
-    };
+      stats: [],
+    }
   },
-  
-  
-  created(){
-      this.$axios.get(`statistics/student`).then(res => {
-          console.log(res)
-         this.stats = res.data
-      })
-  }
-};
+
+  created() {
+    this.$axios.get(`statistics/student`).then((res) => {
+      console.log(res)
+      this.stats = res.data
+    })
+  },
+}
 </script>
 
 <style lang="scss">
 .table-container {
-  font-family: "CustomFontBold";
+  font-family: 'CustomFontBold';
   .table-body {
     border: 1px solid #eee;
   }
   .label-search {
-    font-family: "CustomFontMEdium";
+    font-family: 'CustomFontMEdium';
     color: #fff;
     padding-top: 17px;
     padding-right: 12px;
@@ -127,7 +113,7 @@ export default {
   .table-head {
     background: #0689c5;
   }
-  font-family: "CustomFontBold";
+  font-family: 'CustomFontBold';
   background: #f9f9f9;
   padding: 18px 0;
   .search-15-users {
@@ -141,11 +127,11 @@ export default {
       margin-top: 12px;
       border-radius: 4px;
       &::placeholder {
-        font-family: "CustomFontLight";
+        font-family: 'CustomFontLight';
       }
     }
     h5 {
-      font-family: "CustomFontBold";
+      font-family: 'CustomFontBold';
       padding-top: 17px;
       font-size: 22px;
     }
@@ -156,7 +142,7 @@ export default {
   width: 100% !important;
 }
 .dashboard {
-  font-family: "CustomFontBold";
+  font-family: 'CustomFontBold';
   margin: 45px 0;
   .col-md-3 {
     margin: 10px 0;
@@ -195,19 +181,18 @@ export default {
       border: 1px solid #dc3545;
       border-radius: 4px;
     }
-    .count-lightBlue{
+    .count-lightBlue {
       padding: 23px;
       border: 1px solid #6c5ce7;
       border-radius: 4px;
-      background:#6c5ce7;
-      border-color:#6c5ce7
+      background: #6c5ce7;
+      border-color: #6c5ce7;
     }
-    .count-pink{
-        background: pink;
+    .count-pink {
+      background: pink;
       padding: 23px;
       border: 1px solid pink;
       border-radius: 4px;
-      
     }
     .count-reports {
       background-color: #ffc107;

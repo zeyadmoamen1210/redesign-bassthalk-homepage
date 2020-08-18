@@ -20,7 +20,7 @@
           <div class="col-md-3 col-6 col-sm-6">
             <ul>
               <li>
-                <nuxt-link exact-active-class="active" to="/live-teach">البث المباشر</nuxt-link>
+                <nuxt-link exact-active-class="active" to="/live-teach">الكورسات</nuxt-link>
               </li>
               <li>امتحانات الدروس</li>
               <li>شركاؤنا</li>
@@ -31,6 +31,9 @@
           <div class="col-md-3 col-12 col-sm-6">
             <ul>
               <li class="mobile-center">
+                <nuxt-link exact-active-class="active" to="/educourses">المعسكرات</nuxt-link>
+              </li>
+              <li class="mobile-center">
                 <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
               </li>
               <!-- <li>واجهتنا</li> -->
@@ -39,34 +42,34 @@
             </ul>
           </div>
 
-
-           <div class="col-md-3">
-              <div class="foot-item" style="color:#FFF;font-family:'CustomFontBold'">
-                <h5 style="color:#FFF">
-                  حمل التطبيق مجانا
-                </h5>
-                <p style="margin-bottom: 10px;color:#FFF;font-family:'CustomFontRegular'">لتتمكن من الوصول لكل جديد</p>
-                <div class="mobil-apps" style="">
-                  <div class="row">
-                    <div class="col-md-6" style="padding: 6px;">
-                         <div class="android" style="text-align:center">
-                          <img style="width: 124px;height: 35px;cursor: pointer;margin: auto;text-align: center;" src="@/assets/imgs/android-logo.png">
-                        </div>
+          <div class="col-md-3">
+            <div class="foot-item" style="color:#FFF;font-family:'CustomFontBold'">
+              <h5 style="color:#FFF">حمل التطبيق مجانا</h5>
+              <p
+                style="margin-bottom: 10px;color:#FFF;font-family:'CustomFontRegular'"
+              >لتتمكن من الوصول لكل جديد</p>
+              <div class="mobil-apps" style>
+                <div class="row">
+                  <div class="col-md-6" style="padding: 6px;">
+                    <div class="android" style="text-align:center">
+                      <img
+                        style="width: 124px;height: 35px;cursor: pointer;margin: auto;text-align: center;"
+                        src="@/assets/imgs/android-logo.png"
+                      />
                     </div>
-                      <div class="col-md-6" style="padding: 6px;">
+                  </div>
+                  <div class="col-md-6" style="padding: 6px;">
                     <div class="ios" style="text-align:center">
-                    <img style=" width: 124px;height: 35px;cursor: pointer;margin: auto;text-align: center;" src="@/assets/imgs/ios-logo.png">
+                      <img
+                        style=" width: 124px;height: 35px;cursor: pointer;margin: auto;text-align: center;"
+                        src="@/assets/imgs/ios-logo.png"
+                      />
+                    </div>
                   </div>
-                  </div>
-                  </div>
-               
-                
                 </div>
               </div>
             </div>
-
-
-         
+          </div>
 
           <div class="copyright">
             <hr />
@@ -85,8 +88,7 @@ export default {}
 
 <style lang="scss" scoped>
 .footer {
-  
-  .mobil-apps{
+  .mobil-apps {
     padding: 0 36px !important;
     padding-right: 0 !important;
   }
@@ -122,7 +124,7 @@ export default {}
       }
     }
   }
-  
+
   .copyright {
     margin: 24px auto 0;
     width: 44%;
@@ -145,16 +147,15 @@ export default {}
   }
 }
 
-
 @media (max-width: 575px) {
-   .footer{
-      .copyright{
+  .footer {
+    .copyright {
       width: 90% !important;
     }
-   }
-   .mobil-apps{
-    padding: 0  !important;
+  }
+  .mobil-apps {
+    padding: 0 !important;
     padding-right: 0 !important;
   }
-  }
+}
 </style>

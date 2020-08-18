@@ -1,15 +1,23 @@
 <template>
   <div>
-    <Navbar />
-    <div class="cont">
-      <nuxt />
+    <div style="margin-top: 200px;" v-if="initLoading">
+      <Loading />
     </div>
-    <vue-snotify></vue-snotify>
 
-    <Footer />
+    <div v-else>
+      <Navbar />
+      <div class="cont">
+        <nuxt />
+      </div>
+      <vue-snotify></vue-snotify>
+
+      <Footer />
+    </div>
   </div>
 </template>
 <script>
+import Loading from '@/components/Loading'
+
 import '../assets/css/global.css'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
@@ -19,8 +27,18 @@ export default {
   components: {
     Navbar,
     Footer,
+    Loading,
+  },
+  data() {
+    return {
+      initLoading: true,
+    }
   },
   created() {
+    let vm = this
+    setTimeout(function () {
+      vm.initLoading = false
+    }, 3500)
     // console.log(this.$auth.user.role)
   },
   mounted() {

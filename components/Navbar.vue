@@ -330,6 +330,7 @@ export default {
   .dropdown {
     margin-top: 13px;
     ul {
+      font-size: 14px;
       list-style: none;
       padding-right: 0;
       li {
@@ -476,7 +477,7 @@ export default {
     }
     ul {
           padding: 0;
-    font-size: 15px;
+    font-size: 14px;
       li {
         &:not(:last-of-type) {
           border-bottom: 1px solid #ccc;
@@ -502,7 +503,9 @@ export default {
     ul {
       list-style: none;
       text-align: right;
+      font-size: 14px;
       li {
+        font-size: 14px;
         display: inline-block;
         padding: 0 10px;
         font-family: 'CustomFontMedium';
