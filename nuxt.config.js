@@ -74,12 +74,12 @@ export default {
                 client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
                 userinfo_endpoint: false,
                 scope: ['public_profile', 'email'],
-                redirect_uri: 'http://localhost:3000'
+                redirect_uri: 'https://bassthalk.com/callback'
             },
             google: {
                 client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
                 user: false,
-                redirect_uri: 'http://localhost:3000/callback'
+                redirect_uri: 'https://bassthalk.com/callback'
 
             },
             local: {
