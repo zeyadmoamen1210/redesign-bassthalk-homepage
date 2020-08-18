@@ -30,12 +30,12 @@
 
           <div class="col-md-3 col-12 col-sm-6">
             <ul>
-              <li class="mobile-center" style="text-align:center">
+              <li class="mobile-center">
                 <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
               </li>
               <!-- <li>واجهتنا</li> -->
-              <li class="mobile-center" style="text-align:center">حمل التطبيق</li>
-              <li class="mobile-center" style="text-align:center">المعلمين</li>
+              <li class="mobile-center">حمل التطبيق</li>
+              <li class="mobile-center">المعلمين</li>
             </ul>
           </div>
 

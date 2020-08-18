@@ -44,7 +44,7 @@
               </div>
             </div>
             <a :href="camp.link" target="_blank" class="goToCourse">الذهاب إلي الكورس
- </a>
+</a>
           </div>
           </div>
         </div>

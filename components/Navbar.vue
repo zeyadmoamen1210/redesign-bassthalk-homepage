@@ -47,6 +47,9 @@
                 <li>
                   <nuxt-link exact-active-class="active" to="/educourses">المعسكرات</nuxt-link>
                 </li>
+                 <li>
+                  <nuxt-link exact-active-class="active" to="/allteachers">المعلمين </nuxt-link>
+                </li>
                 <li>
                   <div>
                     <b-dropdown
@@ -472,6 +475,8 @@ export default {
       margin-left: 7px;
     }
     ul {
+          padding: 0;
+    font-size: 15px;
       li {
         &:not(:last-of-type) {
           border-bottom: 1px solid #ccc;
