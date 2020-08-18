@@ -37,7 +37,7 @@
                 </li>
 
                 <li>
-                  <nuxt-link exact-active-class="active" to="/info-bank">بنك المعلومات</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/information-bank">بنك المعلومات</nuxt-link>
                 </li>
 
                 <li>
@@ -45,10 +45,10 @@
                 </li>
 
                 <li>
-                  <nuxt-link exact-active-class="active" to="/educourses">المعسكرات</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/camps">المعسكرات</nuxt-link>
                 </li>
-                 <li>
-                  <nuxt-link exact-active-class="active" to="/allteachers">المعلمين </nuxt-link>
+                <li>
+                  <nuxt-link exact-active-class="active" to="/teachers">المعلمين</nuxt-link>
                 </li>
                 <li>
                   <div>
@@ -173,7 +173,7 @@
                 <i class="fas fa-user-alt"></i> الملف الشخصى
               </nuxt-link>
             </b-dropdown-item>
-            
+
             <b-dropdown-item href="#">
               <nuxt-link to="/statistics">
                 <i class="fas fa-chart-bar"></i> الإحصائيات
@@ -210,53 +210,58 @@
             <button v-if="!dropdown" class="btn" @click="dropdown = !dropdown">
               <img src="../assets/imgs/open-menu1.png" alt />
             </button>
-            <button v-else class="btn" @click="dropdown = !dropdown" >
+            <button v-else class="btn" @click="dropdown = !dropdown">
               <img src="https://i.ibb.co/1mW3ssH/close.png" alt />
             </button>
-            
           </div>
         </div>
 
         <div class="dropdown" v-if="dropdown">
           <ul>
- <li @click="dropdown = false">
-                  <nuxt-link
-                    to="/"
-                    :class="{ active: isRouteActive }"
-                    exact-active-class="active"
-                    @click="dropdown = false"
-                  >الرئيسية</nuxt-link>
-                </li>
+            <li @click="dropdown = false">
+              <nuxt-link
+                to="/"
+                :class="{ active: isRouteActive }"
+                exact-active-class="active"
+                @click="dropdown = false"
+              >الرئيسية</nuxt-link>
+            </li>
 
-                <!-- <li>
+            <!-- <li>
                   <nuxt-link to>من نحن</nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link to>رؤيتنا</nuxt-link>
                   
-                </li>-->
-                <li @click="dropdown = false">
-                    
-                  <nuxt-link exact-active-class="active" to="/subjects" >المواد الدراسية</nuxt-link>
-                </li>
+            </li>-->
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
+            </li>
 
-                <li @click="dropdown = false">
-                  <nuxt-link exact-active-class="active" to="/best-students" >المتفوقين</nuxt-link>
-                </li>
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
+            </li>
 
-                <li @click="dropdown = false">
-                  <nuxt-link exact-active-class="active" to="/info-bank" @click="dropdown = !dropdown">بنك المعلومات</nuxt-link>
-                </li>
+            <li @click="dropdown = false">
+              <nuxt-link
+                exact-active-class="active"
+                to="/info-bank"
+                @click="dropdown = !dropdown"
+              >بنك المعلومات</nuxt-link>
+            </li>
 
-                <li @click="dropdown = false">
-                  <nuxt-link exact-active-class="active" to="/live-teach" @click="dropdown = false">الكورسات</nuxt-link>
-                </li>
+            <li @click="dropdown = false">
+              <nuxt-link
+                exact-active-class="active"
+                to="/live-teach"
+                @click="dropdown = false"
+              >الكورسات</nuxt-link>
+            </li>
 
-                <li @click="dropdown = false">
-                  <nuxt-link exact-active-class="active" to="/educourses" @click="dropdown = false">المعسكرات</nuxt-link>
-                </li>
-                
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/camps" @click="dropdown = false">المعسكرات</nuxt-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -476,8 +481,8 @@ export default {
       margin-left: 7px;
     }
     ul {
-          padding: 0;
-    font-size: 14px;
+      padding: 0;
+      font-size: 14px;
       li {
         &:not(:last-of-type) {
           border-bottom: 1px solid #ccc;

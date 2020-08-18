@@ -31,7 +31,7 @@
           <div class="col-md-3 col-12 col-sm-6">
             <ul>
               <li class="mobile-center">
-                <nuxt-link exact-active-class="active" to="/educourses">المعسكرات</nuxt-link>
+                <nuxt-link exact-active-class="active" to="/camps">المعسكرات</nuxt-link>
               </li>
               <li class="mobile-center">
                 <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>

@@ -81,7 +81,7 @@
 // import Loading from "../components/Loading";
 export default {
   // name: "Statistics",
-  // middleware: "auth-admin",
+  middleware: 'auth-student',
 
   data() {
     return {
