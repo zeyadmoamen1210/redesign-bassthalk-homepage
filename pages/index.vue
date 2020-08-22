@@ -27,7 +27,7 @@
         <div class="background-who-we-are">
           <img src="../assets/imgs/logo.png" alt style="width: 100%;" />
         </div>
-        <div class="container">
+        <div class="container" v-if="about">
           <div class="head-who">
             <span></span>
             <span></span>
