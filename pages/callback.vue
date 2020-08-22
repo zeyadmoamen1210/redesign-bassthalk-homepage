@@ -21,7 +21,12 @@ export default {
   async mounted() {
     let vm = this
     setTimeout(function () {
-      vm.$router.push({ path: '/subjects' })
+      if (vm.$auth?.user?.class?.id) {
+        vm.$router.push({ path: '/subjects' })
+      } else {
+        vm.$router.push({ path: '/path' })
+      }
+      // vm.$router.push({ path: '/subjects' })
     }, 2000)
   },
 }
