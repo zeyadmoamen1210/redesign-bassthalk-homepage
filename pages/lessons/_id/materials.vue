@@ -156,9 +156,10 @@
                     style="width: 100%; margin-bottom: 13px; padding: 15px;"
                     type="text"
                     placeholder="أدخل تعليقك"
+                    @keydown.enter="addComment"
                   />
                   <div class="submit">
-                    <button class="basth-btn-primary" @click="addComment">
+                    <button class="basth-btn-primary" @click="addComment" >
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </div>
@@ -230,7 +231,7 @@
                         <input
                           v-model="comment.replyContent"
                           type="text"
-                          
+                          @keydown.enter="addCommentReply(comment.id, index)"
                           placeholder="اكتب رد علي التعليق"
                         />
                         <div class="submit">
@@ -361,7 +362,7 @@
       </span>
     </div> -->
 
-    <vs-button @click="commentEditMain" color="primary" type="filled"> تعديل الرد</vs-button>
+    <vs-button @click="commentEditMain" color="primary" type="filled"> تعديل </vs-button>
 
            </div>
     </vs-popup>
