@@ -216,15 +216,28 @@
                     </div>
 
                     <!-- comment replay  -->
-                    <div class="teacher">
+                    <div class="teacher" style="position:relative">
 
                       
-                      <img :src="comment.user.photo" alt />
+                    <template v-if="comment.user.role=='teacher'">
+                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="comment.user.photo" alt />
                       <img
                         src="../../../assets/imgs/teacher-icon.png"
                         alt
-                        style="width: auto; right: 7px; top: 0px;"
+                        style="width: auto;right: 9px;bottom: -40px;position: absolute;"
                       />
+                      </template>
+
+                      <template v-else-if="comment.user.role=='admin'">
+                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="comment.user.photo" alt />
+                     
+                      <i style="z-index:5;width: auto;right: 29px;bottom: -8px;position: absolute;font-size: 13px;background: #4ab54a;padding: 6px 6px;border-radius: 50%;color: #FFF;" class="fas fa-user-cog"></i>
+                      </template>
+
+                      <template v-else-if="comment.user.role=='student'">
+                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="comment.user.photo" alt />
+                      </template>
+
                     </div>
                     <div class="double-comment mb-2" style="width:85%;margin:auto">
                       <div class="form-groub nested-comment-reply" >
@@ -278,8 +291,25 @@
                           style="width: 63px;float: left;"
                           v-if="reply.user"
                         >
-                          <div style="width: 96%;border-radius: 50%;overflow: hidden;border-radius: 50%;height: 54px;border: 3px solid rgba(5, 138, 198, 0.74);padding: 0px;background: rgb(235, 235, 235);margin-left: 6px;margin-bottom: 7px;margin-top: 0px;">
-                            <img style="width: 100%;height:100%" :src="reply.user.photo" alt />
+                          <div style="width: 96%;border-radius: 50%;border-radius: 50%;height: 54px;position: relative;border: 3px solid rgba(5, 138, 198, 0.74);padding: 0px;background: rgb(235, 235, 235);margin-left: 6px;margin-bottom: 7px;margin-top: 0px;">
+                             <template v-if="reply.user.role=='teacher'">
+                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="reply.user.photo" alt />
+                      <img
+                        src="../../../assets/imgs/teacher-icon.png"
+                        alt
+                        style="width: auto;right: 4px;bottom: -40px;position: absolute;"
+                      />
+                      </template>
+
+                      <template v-else-if="reply.user.role=='admin'">
+                        <img style="width: 100%;height: 100%;border-radius: 50%;" :src="reply.user.photo" alt />
+                      <i style="z-index:5;width: auto;right: 29px;bottom: -8px;position: absolute;font-size: 13px;background: #4ab54a;padding: 6px 6px;border-radius: 50%;color: #FFF;" class="fas fa-user-cog"></i>
+
+                      </template>
+
+                      <template v-else-if="reply.user.role=='student'">
+                        <img style="width: 100%;height: 100%;border-radius: 50%;" :src="reply.user.photo" alt />
+                      </template>
                           </div>
                         </div>
 
@@ -502,6 +532,7 @@ export default {
         this.$snotify.success("تم التعديل بنجاح")
         let x = this.selectedVideoComments.findIndex(ele => ele.id == this.currentComment.id)
         this.selectedVideoComments[x] = res.data
+        
       }).finally(() => this.isLoading = false)
     },
     commentDropFalse(){
@@ -738,6 +769,7 @@ export default {
         .get(`videos/${this.selectedVideo.id}/comments`)
         .then((res) => {
           this.selectedVideoComments = res.data.docs
+          console.log("questions ",res)
           this.selectedVideoComments.map(function (value, key) {
             value['replyContent'] = ''
             value['replyImage'] = null
