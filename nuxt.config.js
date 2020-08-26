@@ -50,6 +50,7 @@ export default {
         './plugins/vselect.js',
         './plugins/moment.js',
         './plugins/snotify.js',
+        './plugins/vuesax.js',
 
 
     ],

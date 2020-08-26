@@ -148,11 +148,11 @@
             <div class="row" v-if="students.length>0">
               <div class="col-md-4">
                 <div class="user-sort-item">
-                  <div class="profile-pic">
+                  <div class="profile-pic" v-if="$auth.loggedIn && students.length > 0">
                     <span>
                       <img src="../assets/imgs/thired2x.png" alt />
                     </span>
-                    <img style="border-radius:50%" :src="students[2].user.photo" alt />
+                    <img style="border-radius:50%" v-if="students[2].user" :src="students[2].user.photo" alt />
                     <div class="profile-cont">
                       <h3>{{students[2].user.username}}</h3>
                       <!-- <h3> {{students[1].user.level | getLevel}} </h3> -->

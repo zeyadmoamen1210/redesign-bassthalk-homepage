@@ -2,6 +2,16 @@
   <div>
     <div class="lesson">
       <div class="container">
+        <vs-alert solid>
+    <template #title>
+      Vuesax Framework
+    </template>
+    Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
+    created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
+    Unique and pleasant style, Vuesax is created from scratch and designed for all types of
+    developed from the frontend lover to the backend that wants to easily create
+    your visual approach to the end user
+  </vs-alert>
         <div class="lesson-grid">
           <div class="row">
             <div class="col-md-6">
@@ -161,7 +171,7 @@
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </div>
-                  <div class="uploads">
+                    <div class="uploads">
                     <!-- <div class="upload-files">
                       <input type="file" @change="fileSelected" />
                       <i class="fas fa-paperclip"></i>
@@ -176,10 +186,26 @@
                   class="time-line-comment-teacher"
                   v-for="(comment, index) in selectedVideoComments"
                   :key="index"
+                  style="position:relative"
                 >
+                 <div v-if="$auth.user.id == comment.user.id" style="position: absolute;top: -2px;left: 100px;">
+  <b-dropdown style="z-index:9" size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
+    <template v-slot:button-content>
+      <i class="fas fa-ellipsis-h"></i>
+    </template>
+    <b-dropdown-item href="#" @click.native="editComment(comment)"> <i class="fas fa-edit"></i> تعديل</b-dropdown-item>
+    <b-dropdown-item href="#" @click.native="deleteComment(comment)"> <i class="fas fa-trash-alt"></i> حذف</b-dropdown-item>
+  </b-dropdown>
+</div>
+
+
+
                   <div class="item">
                     <div class="item-content">
                       <h6>{{ comment.user.username }}</h6>
+                       
+                      
+
                       <span>{{ $moment(comment.createdAt).fromNow() }}</span>
                       <p>{{ comment.content }}</p>
                       <div class="comment-content-img" v-if="comment.image">
@@ -199,6 +225,8 @@
 
                     <!-- comment replay  -->
                     <div class="teacher">
+
+                      
                       <img :src="comment.user.photo" alt />
                       <img
                         src="../../../assets/imgs/teacher-icon.png"
@@ -239,6 +267,9 @@
                         v-for="(reply, index) in comment.replies"
                         :key="index"
                       >
+
+                   
+
                         <div style>
                           <h6 v-if="reply.user">{{ reply.user.username }}</h6>
                           <span>{{ $moment(reply.createdAt).fromNow() }}</span>
@@ -259,6 +290,18 @@
                             <img style="width: 100%;height:100%" :src="reply.user.photo" alt />
                           </div>
                         </div>
+
+
+                           <div v-if="$auth.user.id == reply.user.id" style="position: absolute;top: -2px;left: 15px;">
+  <b-dropdown style="z-index:9" size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
+    <template v-slot:button-content>
+      <i class="fas fa-ellipsis-h"></i>
+    </template>
+    <b-dropdown-item href="#" @click.native="editReplyComment(comment,reply)"> <i class="fas fa-edit"></i> تعديل</b-dropdown-item>
+    <b-dropdown-item href="#" @click.native="deleteReplyComment(comment,reply)"> <i class="fas fa-trash-alt"></i> حذف</b-dropdown-item>
+  </b-dropdown>
+</div>
+
                       </div>
                     </div>
                   </div>
@@ -298,6 +341,69 @@
         </FilePdf>
       </div>
     </div>
+
+
+
+
+     
+
+
+
+
+         <vs-popup class="holamundo"  title="تعديل التعليق" :active.sync="modelPopupEdit">
+           <div >
+             <div class="form-group">
+               <input type="text" placeholder="تعديل التعليق" v-model="currentComment.content" class="form-control">
+             </div>
+            <!-- <div class="file-choose">
+      <input
+        @change="fileSelected"
+        type="file"
+        placeholder="قم بأرفاق صورة بالتعليق"
+      />
+      <span v-if="url">
+        <img :src="url" width="300" height="150" />
+      </span>
+      <span v-else>
+        <img src="../../../assets/imgs/noun_Camera_1903011.png" /> قم بأرفاق صورة
+        بالحل
+      </span>
+    </div> -->
+
+    <vs-button @click="commentReplyEditMain" color="primary" type="filled"> تعديل الرد</vs-button>
+
+           </div>
+    </vs-popup>
+
+
+
+
+     <vs-popup class="holamundo"  title="تعديل التعليق" :active.sync="modelPopupEditReply">
+           <div >
+             <div class="form-group">
+               <input type="text" placeholder="تعديل التعليق" v-model="currentReplyReply.content" class="form-control">
+             </div>
+            <!-- <div class="file-choose">
+      <input
+        @change="fileSelected"
+        type="file"
+        placeholder="قم بأرفاق صورة بالتعليق"
+      />
+      <span v-if="url">
+        <img :src="url" width="300" height="150" />
+      </span>
+      <span v-else>
+        <img src="../../../assets/imgs/noun_Camera_1903011.png" /> قم بأرفاق صورة
+        بالحل
+      </span>
+    </div> -->
+
+    <vs-button @click="commentReplyEditMain" color="primary" type="filled">تعديل</vs-button>
+
+           </div>
+    </vs-popup>
+
+
   </div>
 </template>
 
@@ -316,15 +422,26 @@ export default {
   },
   data() {
     return {
+      commentDrop: false,
       isLoading: false,
       modelRate: false,
       videos: [],
+      modelPopupEdit:false,
       value: 0,
+      currentComment: {
+        content:""
+      },
+      currentCommentReply:{
+        content:""
+      },
+      currentCommentReply: '',
+      currentReplyReply: '',
       selectedVideoComments: [],
       selectedVideo: null,
       pdfs: [],
       rating: 0,
       flag: 1,
+      modelPopupEditReply: false,
       showVideos: true,
       imgShow: false,
       url: '',
@@ -366,7 +483,135 @@ export default {
     //   this.getSelectedVideoComments()
     // },
   },
+  // mounted(){
+  //   if(process.client){
+  //     window.onclick = () => {
+  //       this.commentDrop = false
+  //     }
+  //   }
+  // },
+   mounted() {
+  },
   methods: {
+    editComment(comment){
+      this.currentComment = comment
+      this.modelPopupEdit = true
+      this.photo = comment.image
+      this.url = comment.image
+    },
+    commentEditMain(){
+      this.isLoading = true
+      let form_data = new FormData()
+      form_data.append("content", this.currentComment.content)
+      // form_data.append("image", this.photo)
+      this.$axios.put(`comments/${this.currentComment.id}`, form_data ).then(res => {
+        console.log(res)
+        this.modelPopupEdit = false
+        this.$snotify.success("تم التعديل بنجاح")
+        let x = this.selectedVideoComments.findIndex(ele => ele.id == this.currentComment.id)
+        this.selectedVideoComments[x] = res.data
+      }).finally(() => this.isLoading = false)
+    },
+    commentDropFalse(){
+      this.commentDrop = false
+    },
+
+    editReplyComment(comment, replay){
+      this.currentCommentReply = comment
+      this.currentReplyReply = replay
+      this.modelPopupEditReply = true
+    },
+
+    commentReplyEditMain(){
+      this.isLoading = true
+      let form_data = new FormData()
+      form_data.append("content", this.currentReplyReply.content)
+      this.$axios.put(`comments/${this.currentCommentReply.id}/replies/${this.currentReplyReply.id}`, form_data)
+      .then(res => {
+        this.$snotify.success("تم التعديل بنجاح")
+        this.currentCommentReply = res.data
+        this.modelPopupEditReply = false
+      }).finally(() => this.isLoading = false)
+    },
+
+
+
+     deleteReplyComment(comment,reply) {
+      this.$snotify.confirm("هل تريد حذف  التعليق المُحدد ", " هل أنت متأكد", {
+        showProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        buttons: [
+          {
+            text: "موافق",
+            action: (toast) => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = true;
+              this.$axios
+                .delete(`comments/${comment.id}/replies/${reply.id}`)
+                .then((res) => {
+                  console.log(res)
+                  let x = this.selectedVideoComments.find(ele => ele.id == comment.id)
+                  let y = this.selectedVideoComments.indexOf(x)
+                  let z = this.selectedVideoComments[y].replies.findIndex(ele2 => ele2.id == reply.id)
+                  this.selectedVideoComments[y].replies.splice(z, 1)
+                  this.selectedVideoComments[y].numberOfreplies--
+                  this.$snotify.success(" تم الحذف بنجاح");
+                })
+                .catch((err) => {
+                  this.$snotify.error("للاسف حصل خطأ ما  ");
+                })
+                .finally(() => (this.isLoading = false));
+            },
+          },
+          {
+            text: "إلغاء",
+            action: (toast) => {
+              this.$snotify.remove(toast.id);
+            },
+          },
+        ],
+      });
+
+    },
+
+
+
+    deleteComment(comment) {
+      this.$snotify.confirm("هل تريد حذف  التعليق المُحدد ", " هل أنت متأكد", {
+        showProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        buttons: [
+          {
+            text: "موافق",
+            action: (toast) => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = true;
+              this.$axios
+                .delete(`comments/${comment.id}`)
+                .then((res) => {
+                  let x = this.selectedVideoComments.find(ele => ele.id == comment.id)
+                  let y = this.selectedVideoComments.indexOf(x)
+                  this.selectedVideoComments.splice(y , 1)
+                  this.$snotify.success(" تم الحذف بنجاح");
+                })
+                .catch((err) => {
+                  this.$snotify.error("للاسف حصل خطأ ما  ");
+                })
+                .finally(() => (this.isLoading = false));
+            },
+          },
+          {
+            text: "إلغاء",
+            action: (toast) => {
+              this.$snotify.remove(toast.id);
+            },
+          },
+        ],
+      });
+
+    },
     previewVideo(video) {
       this.selectedVideo = video
 
@@ -460,6 +705,7 @@ export default {
         .then((res) => {
           this.selectedVideoComments.unshift(res.data)
           this.commentContent = ''
+          console.log(res)
 
           this.$snotify.success(`تم إضافة تعليقك بنجاح`)
         })
@@ -675,6 +921,40 @@ export default {
     background: rgba(0, 0, 0, 0.36);
   }
 }
+.dropdown-menu.show{
+  padding:0;
+}
+ .file-choose {
+                position: relative;
+                width: 100%;
+                height: 200px;
+                margin-top: 13px;
+                input[type="file"] {
+                    position: absolute;
+                    width: 100%;
+                    /* visibility: hidden; */
+                    opacity: 0;
+                    height: 100%;
+                    cursor: pointer;
+                    margin-top: 10px;
+                }
+                span {
+                    border: 1px dashed #444444;
+                    position: absolute;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    background: #FFF;
+                    z-index: -1;
+                    margin: 10px 0;
+                    height: 100%;
+                    text-align: center;
+                    cursor: pointer;
+                    border-radius: 15px;
+                    line-height: 186px;
+                    color: #444444;
+                }
+            }
 .another-videos {
   .video-cart {
     position: relative;
@@ -889,7 +1169,9 @@ export default {
     color: #333;
   }
 }
-
+.btn.dropdown-toggle.btn-link.btn-lg.text-decoration-none.dropdown-toggle-no-caret{
+  box-shadow: none;
+}
 .video-comments {
   .time-line {
     margin-top: 30px;
@@ -966,6 +1248,37 @@ export default {
       width: 87%;
       float: left;
       padding: 18px 22px;
+     div.comment-droped{
+           position: absolute;
+    top: 24px;
+    left: 28px;
+        .droped{
+            position: relative;
+    top: 0;
+    left: 0;
+    >div{
+          position: absolute;
+    top: 22px;
+    background: #FFF;
+    padding: 10px;
+    left: 0;
+    box-shadow: 0px 1px 10px 1px #DDD;
+    border-radius: 0 9px;
+    button{
+      &:hover{
+        color:#058ac6;
+        transform: translateX(-5px);
+      }
+      transition: all .5s ease;
+    }
+    }
+        >i{
+       
+    color: #929292;
+    cursor: pointer;
+      }
+      }
+     }
       .comment-content-img {
         width: 100px;
         height: 100px;
@@ -1024,6 +1337,7 @@ export default {
 
     .double-comment {
       clear: both;
+      position: relative;
       // width: 85%;
       display: none;
       margin-top: 30px;
@@ -1037,6 +1351,7 @@ export default {
       .double-comment-cont {
         overflow: hidden;
         margin-top: 7px;
+          padding: 33px 0;
         margin-top: 10px;
         border-bottom: 1px solid #c7c7c7;
         position: relative;

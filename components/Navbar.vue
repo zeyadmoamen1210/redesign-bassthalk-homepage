@@ -51,23 +51,25 @@
                   <nuxt-link exact-active-class="active" to="/teachers">المدرسين</nuxt-link>
                 </li>
                 <li>
-                  <div>
+                  <div @click="dropdownClick" >
                     <b-dropdown
                       class="notification"
                       size="lg"
                       variant="link"
                       toggle-class="text-decoration-none"
                       no-caret
+                      @click.native="dropdownClick"
                     >
                       <template v-slot:button-content>
-                        <div style="position:absolute">
+                        <div style="position:absolute" @click="count = 0">
                           <div
-                            v-if="count>0"
+                          v-if="count > 0"
+                           @click="count = 0"
                             style="position: absolute;color:#FFF;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;"
                             class="noti-content"
                           >{{count}}</div>
                         </div>
-                        <i class="fas fa-bell"></i>
+                        <i @click="dropdownClick" class="fas fa-bell"></i>
                       </template>
                       <b-dropdown-item v-for="(noti,index) in allNotification" :key="index">
                         <div
@@ -275,7 +277,7 @@ export default {
   data() {
     return {
       dropdown: false,
-      count: 0,
+      count: 5,
       notification: false,
       allNotification: [],
       isLoaing: false,
@@ -309,6 +311,10 @@ export default {
       .finally(() => (this.isLoading = false))
   },
   methods: {
+    dropdownClick(){
+      this.count = 0
+      console.log("count", this.count)
+    },
     async logout() {
       await this.$auth.logout()
     },
