@@ -361,7 +361,7 @@
       </span>
     </div> -->
 
-    <vs-button @click="commentReplyEditMain" color="primary" type="filled"> تعديل الرد</vs-button>
+    <vs-button @click="commentEditMain" color="primary" type="filled"> تعديل الرد</vs-button>
 
            </div>
     </vs-popup>

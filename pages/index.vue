@@ -152,13 +152,13 @@
                     <span>
                       <img src="../assets/imgs/thired2x.png" alt />
                     </span>
-                    <img style="border-radius:50%" v-if="students[2].user" :src="students[2].user.photo" alt />
+                    <img style="border-radius:50%" v-if="students[2].user.photo" :src="students[2].user.photo" alt />
                     <div class="profile-cont">
-                      <h3>{{students[2].user.username}}</h3>
+                      <h3 v-if="students[2].user.username" >{{students[2].user.username}}</h3>
                       <!-- <h3> {{students[1].user.level | getLevel}} </h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>{{students[1].points}}</h6>
+                        <h6 v-if="students[2].points" >{{students[1].points}}</h6>
                       </div>
                     </div>
                   </div>
@@ -171,13 +171,13 @@
                     <span>
                       <img src="../assets/imgs/first3x.png" alt />
                     </span>
-                    <img style="border-radius:50%" :src="students[0].user.photo" alt />
+                    <img style="border-radius:50%" v-if="students[0].user.photo" :src="students[0].user.photo" alt />
                     <div class="profile-cont">
-                      <h3>{{students[0].user.username}}</h3>
+                      <h3 v-if="students[0].user.username">{{students[0].user.username}}</h3>
                       <!-- <h3>{{students[2].user.level | getLevel}} </h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>{{students[0].points}}</h6>
+                        <h6 v-if="students[0].points">{{students[0].points}}</h6>
                       </div>
                     </div>
                   </div>
@@ -190,13 +190,13 @@
                     <span>
                       <img src="../assets/imgs/second-2x.png" alt />
                     </span>
-                    <img style="border-radius:50%" :src="students[1].user.photo" alt />
+                    <img style="border-radius:50%" v-if="students[1].user.photo" :src="students[1].user.photo" alt />
                     <div class="profile-cont">
-                      <h3>{{students[1].user.username}}</h3>
+                      <h3 v-if="students[1].user.username">{{students[1].user.username}}</h3>
                       <!-- <h3>{{students[0].user.level | getLevel}}</h3> -->
                       <div class="profile-cont-point" style="overflow: hidden;">
                         <img src="../assets/imgs/point.png" alt />
-                        <h6>{{students[1].points}}</h6>
+                        <h6 v-if="students[1].points">{{students[1].points}}</h6>
                       </div>
                     </div>
                   </div>
