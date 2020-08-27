@@ -51,7 +51,7 @@
                   <nuxt-link exact-active-class="active" to="/teachers">المدرسين</nuxt-link>
                 </li>
                 <li>
-                  <div @click="dropdownClick" >
+                  <div >
                     <b-dropdown
                       class="notification"
                       size="lg"
@@ -175,6 +175,16 @@
                 <i class="fas fa-user-alt"></i> الملف الشخصى
               </nuxt-link>
             </b-dropdown-item>
+
+
+            <b-dropdown-item href="#">
+              <nuxt-link to="/questions">
+                <i class="fas fa-question"></i> الأسئلة
+              </nuxt-link>
+            </b-dropdown-item>
+
+                                
+
 
             <b-dropdown-item href="#">
               <nuxt-link to="/statistics">

@@ -1,8 +1,12 @@
 <template>
   <div class="FAQ-questions">
         <div class="container">
-            <Loading v-if="isLoading" />
-            <div v-else style="box-shadow:0 4px 25px 0 rgba(0,0,0,.1);min-height: 500px;border: 1px solid #EEE;margin-top: 21px;position:relative">
+
+          <vs-tabs>
+      <vs-tab label="إرسال سؤال">
+        <div class="con-tab-ejemplo">
+           <Loading v-if="isLoading" />
+            <div v-else style="box-shadow:0 4px 25px 0 rgba(0,0,0,.1);min-height: 410px;border: 1px solid #EEE;margin-top: 21px;position:relative">
                 <div class="ask-ques" >
                   <div class="ask-ques-head" style="padding:15px">
                     <div class="row">
@@ -39,21 +43,89 @@
                 </div>
             </div>
         </div>
+      </vs-tab>
+      <vs-tab label="الأسئلة الشائعة">
+        <div class="con-tab-ejemplo">
+          <div class="mylessons">
+      <div class="container">
+          <h3 style="margin-bottom:20px;color: #058ac6;">الأسئلة</h3>
+          <Loading v-if="isLoading"/>
+         <div v-else>
+            <div v-if="questions.length == 0">
+              <NoData />
+            </div>
+             <div v-else class="row">
+              <div class="col-md-6" v-for="question in questions" :key="question.id">
+                  <div class="mylesson-card">
+                      <div class="mylesson-card-head">
+                          <h6> السؤال: </h6>
+                          <h6 style="font-family: 'CustomFontRegular'"> {{question.question}} </h6>
+                      </div>
+                  </div>
+              </div>
+         </div>
+         </div>
+      </div>
+  </div>
+        </div>
+      </vs-tab>
+      <vs-tab label="أسئلتي">
+        <div class="con-tab-ejemplo">
+          
+
+          <div class="con-tab-ejemplo">
+          <div class="mylessons">
+      <div class="container">
+          <h3 style="margin-bottom:20px;color: #058ac6;">أسئلتي</h3>
+          <Loading v-if="isLoading"/>
+         <div v-else>
+            <div v-if="myQuestionsAsStud.length == 0">
+              <NoData />
+            </div>
+             <div v-else class="row">
+              <div class="col-md-6" v-for="question in myQuestionsAsStud" :key="question.id">
+                  <div class="mylesson-card">
+                      <div class="mylesson-card-head">
+                          <h6> السؤال: </h6>
+                          <h6 style="font-family: 'CustomFontRegular'"> {{question.question}} </h6>
+                      </div>
+                  </div>
+              </div>
+         </div>
+         </div>
+      </div>
+  </div>
+        </div>
+
+
+        </div>
+      </vs-tab>
+    </vs-tabs>
+
+
+
+           
+        </div>
         <vue-snotify></vue-snotify>
   </div>
 </template>
 
 <script>
 import Loading from '../components/Loading'
+import NoData from '../components/NoData'
 export default {
     components:{
-        Loading
+        Loading,
+        NoData
     },
     data(){
         return {
             sent: [],
             question: "",
-            isLoading: false
+            isLoading: false,
+            questions:[],
+            isLoading: true,
+            myQuestionsAsStud: []
         }
     },
     methods:{
@@ -63,12 +135,56 @@ export default {
             .then(res => {
                 console.log(res)
                 this.$snotify.success(`تم إرسال السؤال بنجاح`);
+                this.questions.push(res.data)
+                this.question = ''
             }).finally(() => this.isLoading = false)
+        },
+
+        getMyQuestions(){
+          this.$axios.get(`statistics/myquestions`).then(res => {
+            this.myQuestionsAsStud = res.data
+            console.log(res)
+          })
         }
+    },
+    created(){
+      this.$axios.get(`statistics/myquestions`).then(res => {
+            console.log(res)
+            this.questions = res.data
+        }).finally(() => this.isLoading = false)
+
+        this.getMyQuestions()
     }
 }
 </script>
 
 <style lang="scss">
-
+.FAQ-questions{
+  padding-top:80px;
+}
+.mylessons{
+    padding-top: 30px;
+    .mylesson-card{
+        &:hover{
+            transform: translateY(-10px);
+        }
+        transition: all .5s ease;
+        box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+        padding: 15px;
+        margin-bottom: 26px;
+        >div{
+            overflow: hidden;
+    padding: 9px;
+    background: #f1f1f1;
+    margin-bottom: 12px;
+            h6{
+                float: right;
+                display: inline-block;
+                &:first-of-type{
+                    margin-left: 8px;
+                }
+            }
+        }
+    }
+}
 </style>
