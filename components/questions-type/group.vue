@@ -1,6 +1,7 @@
 <template>
   <div class="check-box-ques">
-    <h6>{{ question.head }}</h6>
+    <span v-html="question.head"></span>
+
     <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
 
     <!-- loop to display sub questions -->

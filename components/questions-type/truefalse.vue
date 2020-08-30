@@ -1,6 +1,6 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 100%;">
-    <h6>{{ question.head }}</h6>
+    <span v-html="question.head"></span>
 
     <a href="question.image" target="_blank">
       <selectedImg v-if="question.image" style="float: right;" :imgUrl="question.image"></selectedImg>
