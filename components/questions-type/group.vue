@@ -3,6 +3,7 @@
     <div class="question-name">
       <div>
         <span v-html="question.head"></span>
+        <br />
       </div>
     </div>
     <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>

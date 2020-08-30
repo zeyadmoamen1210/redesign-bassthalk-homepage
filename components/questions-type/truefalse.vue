@@ -4,6 +4,7 @@
     <div class="question-name">
       <div>
         <span v-html="question.head"></span>
+        <br />
       </div>
     </div>
 
