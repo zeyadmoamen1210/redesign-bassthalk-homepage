@@ -1,6 +1,11 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 100%;">
-    <span v-html="question.head"></span>
+    <!-- <span v-html="question.head"></span> -->
+    <div class="question-name">
+      <div>
+        <span v-html="question.head"></span>
+      </div>
+    </div>
 
     <a href="question.image" target="_blank">
       <selectedImg v-if="question.image" style="float: right;" :imgUrl="question.image"></selectedImg>

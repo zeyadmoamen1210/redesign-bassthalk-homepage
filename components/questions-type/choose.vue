@@ -1,7 +1,10 @@
 <template>
   <div class="check-box-ques">
-           <span v-html="question.head"></span>
-
+    <div class="question-name">
+      <div>
+        <span v-html="question.head"></span>
+      </div>
+    </div>
     <a href="question.image" target="_blank">
       <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
     </a>
@@ -64,15 +67,15 @@ export default {
       // ! patch exam answer
       // !exams/70/solution
       // if (this.isSolving) {
-        this.$axios
-          .patch(`exams/${this.exam_id}/solution`, {
-            question: this.id,
-            answer: this.answerData,
-          })
-          .then((res) => {})
-          .catch((err) => {
-            console.log(err)
-          })
+      this.$axios
+        .patch(`exams/${this.exam_id}/solution`, {
+          question: this.id,
+          answer: this.answerData,
+        })
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err)
+        })
       // }
     },
   },

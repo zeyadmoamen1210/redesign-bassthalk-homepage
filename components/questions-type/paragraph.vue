@@ -1,7 +1,10 @@
 <template>
   <div class="check-box-ques">
-    <span v-html="question.head"></span>
-
+    <div class="question-name">
+      <div>
+        <span v-html="question.head"></span>
+      </div>
+    </div>
     <a :href="question.image" target="_blank">
       <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
     </a>
