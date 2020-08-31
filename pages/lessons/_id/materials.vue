@@ -684,8 +684,9 @@ export default {
     },
     addCommentReply(commentId, index) {
       let form_data = new FormData()
-      let replyContent = this.selectedVideoComments[index].replyContent.trim()
-      if (replyContent.length > 0) {
+      let replyContent = this.selectedVideoComments[index].replyContent
+      if(replyContent != '' && replyContent != null){
+        if (replyContent.length > 0) {
         form_data.append('content', replyContent)
       }
 
@@ -700,6 +701,7 @@ export default {
         .then((res) => {
           this.selectedVideoComments[index].replyContent = ''
           this.replyPhoto = null
+          replyContent =''
           this.selectedVideoComments[index].numberOfreplies += 1
           this.selectedVideoComments[index].replies = res.data.replies
           // this.selectedVideoComments[index].replies.push(res.data.replies);
@@ -710,10 +712,12 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+      }
     },
     addComment() {
       let form_data = new FormData()
-      if (this.commentContent.trim().length > 0) {
+      if(this.commentContent != ''){
+        if (this.commentContent.trim().length > 0) {
         form_data.append('content', this.commentContent)
       }
 
@@ -735,6 +739,7 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+      }
     },
     getVideos() {
       this.isLoading = true

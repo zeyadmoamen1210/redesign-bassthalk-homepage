@@ -485,7 +485,7 @@ export default {
     }
     span {
       display: block;
-      width: 34px;
+      width: 100%;
       float: right;
       font-size: 18px;
       font-family: 'CustomFontMedium';
