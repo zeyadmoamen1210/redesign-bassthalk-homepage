@@ -483,15 +483,15 @@ export default {
       background: #f2f2f2;
       color: #5a5a5a;
     }
-    span {
-      display: block;
-      width: 100%;
-      float: right;
-      font-size: 18px;
-      font-family: 'CustomFontMedium';
-      padding-top: 3px;
-      margin: 0 6px;
-    }
+    //  span {
+    //   display: block;
+    //   width: 100%;
+    //   float: right;
+    //   font-size: 18px;
+    //   font-family: 'CustomFontMedium';
+    //   padding-top: 3px;
+    //   margin: 0 6px;
+    // }
     > img {
       width: 100%;
       height: 207px;
