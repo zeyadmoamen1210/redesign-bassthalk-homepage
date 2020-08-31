@@ -1,6 +1,6 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 50%;">
-    <h6>{{ question.head }}</h6>
+    <h6 v-html="question.head"></h6>
     <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
 
     <div
@@ -282,6 +282,10 @@ export default {
         color: 20px;
         margin-top: 22px;
         color: #898989;
+        p{
+          font-size: 23px;
+    font-weight: bold;
+        }
       }
       .ques-answer-btns {
         button {

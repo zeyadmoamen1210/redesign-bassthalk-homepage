@@ -1,6 +1,6 @@
 <template>
   <div class="check-box-ques">
-    <h6>{{question.head}}</h6>
+    <h6 v-html="question.head"></h6>
     <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
     <div class="ques-answer-btns">
       <div class="row">
