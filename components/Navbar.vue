@@ -228,88 +228,66 @@
           </div>
         </div>
 
-        <div class="dropdown" v-if="dropdown">
-          <ul>
-            <li @click="dropdown = false">
-              <nuxt-link
-                to="/"
-                :class="{ active: isRouteActive }"
-                exact-active-class="active"
-                @click="dropdown = false"
-              >الرئيسية</nuxt-link>
-            </li>
 
-            <!-- <li>
-                  <nuxt-link to>من نحن</nuxt-link>
-                </li>
+          <vs-sidebar position-right  parent="body" default-index="1"  color="primary" class="sidebarx" spacer v-model="dropdown">
 
-                <li>
-                  <nuxt-link to>رؤيتنا</nuxt-link>
-                  
-            </li>-->
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
-            </li>
+      <div class="header-sidebar"  slot="header">
+        <vs-avatar  size="70px" v-if="$auth.loggedIn" :src="$auth.user.photo"/>
+        <vs-avatar size="70px" v-else src="data:image/png;base64,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" />
+        <h4>
+          {{ $auth.loggedIn ? $auth.user.username : 'يرجي تسجيل الدخول ' }}
+        </h4>
 
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
-            </li>
+      </div>
 
-            <li @click="dropdown = false">
-              <nuxt-link
-                exact-active-class="active"
-                to="/information-bank"
-                @click="dropdown = !dropdown"
-              >بنك المعلومات</nuxt-link>
-            </li>
+      <vs-sidebar-item to="/" index="1">
+ 
+                
+              الرئيسية
+      </vs-sidebar-item>
 
-            <li @click="dropdown = false">
-              <nuxt-link
-                exact-active-class="active"
-                to="/live-teach"
-                @click="dropdown = false"
-              >الكورسات</nuxt-link>
-            </li>
+      <vs-sidebar-item to="/subjects" index="2">
+              المواد الدراسية
+      </vs-sidebar-item>
 
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/camps" @click="dropdown = false">المعسكرات</nuxt-link>
-            </li>
+      <vs-sidebar-item to="/information-bank" index="3">
+        بنك المعلومات
+      </vs-sidebar-item>
+      <vs-sidebar-item to="/best-students"  index="4" >
+        المتفوقين
+      </vs-sidebar-item>
+      <vs-sidebar-item to="/live-teach" index="5" > 
+              الكورسات
+      </vs-sidebar-item>
 
-           <template v-if="$auth.loggedIn">
-              
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/statistics">
-                <i class="fas fa-chart-bar"></i> الإحصائيات
-              </nuxt-link>
-            </li>
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/profile/edit">
-                <i class="fas fa-user-edit"></i>تعديل البيانات
-              </nuxt-link>
-            </li>
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/edit-path">
-                <i class="fas fa-book-reader"></i>تعديل المسار
-              </nuxt-link>
-            </li>
-            <li v-if="$auth.loggedIn" @click="dropdown = false">
-              <a @click="logout">
-                <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
-              </a>
-            </li>
-           </template>
-           <div style="text-align:left" v-else>
-              <div @click="dropdown = false" style="display: inline-block;" class="nav-login" >
-              <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
-            </div>
-            <div style="padding: 0;display: inline-block;" @click="dropdown = false"  class="nav-login" >
-              <button class="btn" style="background: #39b939;" @click="$router.push({ path: '/register' })">حساب جديد</button>
-            </div>
-           </div>
-            
+          <vs-sidebar-item to="/camps"  index="6" >
+            المعسكرات 
+          </vs-sidebar-item>
 
-          </ul>
-        </div>
+           <vs-sidebar-item v-if="$auth.loggedIn"  to="/statistics"  index="7" >
+           الإحصائيات 
+          </vs-sidebar-item>
+
+          <vs-sidebar-item v-if="$auth.loggedIn" to="/profile/edit" index="8" >
+               تعديل البيانات
+          </vs-sidebar-item>
+
+          <vs-sidebar-item v-if="$auth.loggedIn" to="/edit-path" index="9" >
+            تعديل المسار 
+          </vs-sidebar-item>
+
+      <div class="footer-sidebar"  slot="footer">
+        <vs-button icon="reply" v-if="$auth.loggedIn" @click="logout" color="danger" type="flat" icon-pack="fas fa-sign-out-alt">
+          تسجيل الخروج
+        </vs-button>
+            <vs-button icon="reply" v-else @click="$router.push('/login')" color="success" type="flat" icon-pack="fas fa-sign-in-alt">
+          تسجيل الدخول
+        </vs-button>
+      </div>
+
+    </vs-sidebar>
+
+     
       </div>
     </div>
   </div>
@@ -381,6 +359,20 @@ export default {
 </script>
 
 <style lang="scss">
+.vs-sidebar--background{
+  top:0 !important;
+}
+ .vs-sidebar{
+    z-index:9999999999 !important;
+    .vs-sidebar--header{
+      .header-sidebar{
+        text-align: center;
+        h4{
+          text-align: center;
+        }
+      }
+    }
+  }
 .navbar-before-small {
   .dropdown {
     margin-top: 13px;
@@ -418,6 +410,7 @@ export default {
     float: left;
     button {
       color: #fff;
+        box-shadow: none !important;
       font-family: 'CustomFontMedium';
     }
   }
@@ -763,3 +756,90 @@ export default {
   }
 }
 </style>
+
+
+<!-- 
+
+   <!-- <div class="dropdown" v-if="dropdown">
+          <ul>
+            <li @click="dropdown = false">
+              <nuxt-link
+                to="/"
+                :class="{ active: isRouteActive }"
+                exact-active-class="active"
+                @click="dropdown = false"
+              >الرئيسية</nuxt-link>
+            </li>
+
+            <!-- <li>
+                  <nuxt-link to>من نحن</nuxt-link>
+                </li>
+
+                <li>
+                  <nuxt-link to>رؤيتنا</nuxt-link>
+                  
+            </li>
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
+            </li>
+
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
+            </li>
+
+            <li @click="dropdown = false">
+              <nuxt-link
+                exact-active-class="active"
+                to="/information-bank"
+                @click="dropdown = !dropdown"
+              >بنك المعلومات</nuxt-link>
+            </li>
+
+            <li @click="dropdown = false">
+              <nuxt-link
+                exact-active-class="active"
+                to="/live-teach"
+                @click="dropdown = false"
+              >الكورسات</nuxt-link>
+            </li>
+
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/camps" @click="dropdown = false">المعسكرات</nuxt-link>
+            </li>
+
+           <template v-if="$auth.loggedIn">
+              
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/statistics">
+                <i class="fas fa-chart-bar"></i> الإحصائيات
+              </nuxt-link>
+            </li>
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/profile/edit">
+                <i class="fas fa-user-edit"></i>تعديل البيانات
+              </nuxt-link>
+            </li>
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/edit-path">
+                <i class="fas fa-book-reader"></i>تعديل المسار
+              </nuxt-link>
+            </li>
+            <li v-if="$auth.loggedIn" @click="dropdown = false">
+              <a @click="logout">
+                <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
+              </a>
+            </li>
+           </template>
+           <div style="text-align:left" v-else>
+              <div @click="dropdown = false" style="display: inline-block;" class="nav-login" >
+              <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
+            </div>
+            <div style="padding: 0;display: inline-block;" @click="dropdown = false"  class="nav-login" >
+              <button class="btn" style="background: #39b939;" @click="$router.push({ path: '/register' })">حساب جديد</button>
+            </div>
+           </div>
+            
+
+          </ul>
+        </div> -->
+-->
