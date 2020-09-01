@@ -225,7 +225,9 @@ export default {
       signUpForm.append('username', this.name)
       signUpForm.append('password', this.password)
       signUpForm.append('email', this.email)
-      signUpForm.append('phone', this.phone)
+      if (this.phone != '') {
+        signUpForm.append('phone', this.phone)
+      }
       signUpForm.append('role', this.role)
       signUpForm.append('gender', this.gender.value)
       signUpForm.append('country', this.country.value)

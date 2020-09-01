@@ -117,7 +117,12 @@ export default {
       this.$axios
         .put(`students/path`, pathData)
         .then((res) => {
-          this.$router.push({ path: '/subjects' })
+          setTimeout(async () => {
+            setTimeout(async () => {
+              await this.$auth.fetchUser()
+              this.$router.push({ path: '/subjects' })
+            })
+          })
         })
         .catch((err) => {
           console.log(err)

@@ -112,8 +112,12 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.$snotify.success(`تم تحديث المسار الدراسي بنجاح`)
-
-          this.$router.push({ path: '/subjects' })
+          setTimeout(async () => {
+            setTimeout(async () => {
+              await this.$auth.fetchUser()
+              this.$router.push({ path: '/subjects' })
+            })
+          })
         })
         .catch((err) => {
           this.isLoading = false
