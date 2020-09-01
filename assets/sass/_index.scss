@@ -549,9 +549,12 @@ span:nth-of-type(6) {
         width: 100%;
         margin-bottom: 0;
     }
-    .home-page .second .desc-cont,
-    .home-page .forth .desc-cont {
-        margin-top: -120px !important;
+    // .home-page .second .desc-cont,
+    // .home-page .forth .desc-cont {
+    //     margin-top: -120px !important;
+    // }
+    .home-page .forth .desc-cont{
+        margin-top: 24px !important
     }
     .home-page .main-content {
         padding: 150px 0 0 0;

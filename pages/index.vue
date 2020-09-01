@@ -66,7 +66,7 @@
               </div>
             </div>
             <div class="col-md-7">
-              <div class="desc-cont" style="margin-top: 170px;">
+              <div class="desc-cont" style="margin-top: 356px;">
                 <h3>البساطة</h3>
                 <p>
                   تطبيق بسطتهالك يقدم لك طريقة سهلة و ابداعية في شرح المواد في
