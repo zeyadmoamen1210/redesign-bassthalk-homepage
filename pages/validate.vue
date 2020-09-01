@@ -16,7 +16,7 @@
         <span>{{ errors[0] }}</span>
       </ValidationProvider>
 
-      <button type="submit">Submit</button>
+      <button type="submit" :disabled="errors.any()">Submit</button>
     </form>
   </ValidationObserver>
 </template>

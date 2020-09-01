@@ -10,48 +10,65 @@
               انشاء حساب جديد
             </h4>
           </div>
+           <ValidationObserver  ref="form" v-slot="{ invalid }">
           <div class="form-grid">
             <div class="row">
               <div class="col-md-4">
                 <div class="form-groub">
+                        <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
+
                   <input
                     v-model="name"
                     type="text"
                     class="form-control"
                     placeholder="اسم المستخدم "
                   />
+                  <span style="color:red"> {{errors[0]}} </span>
+                        </ValidationProvider>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="form-groub">
+                  <ValidationProvider name="E-mail" rules="required|email" v-slot="{ errors }">
                   <input
                     v-model="email"
                     type="text"
                     class="form-control"
                     placeholder="البريد الالكتروني"
                   />
+                  <span style="color:red"> {{errors[0]}} </span>
+                  </ValidationProvider>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="form-groub">
+                  <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
                   <input v-model="phone" type="text" class="form-control" placeholder="رقم الجوال" />
+                  <span style="color:red"> {{errors[0]}} </span>
+                  </ValidationProvider>
                 </div>
               </div>
 
               <div class="col-md-2">
+                <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
                 <v-select v-model="gender" label="name" placeholder="النوع" :options="options"></v-select>
+                <span style="color:red"> {{errors[0]}} </span>
+                  </ValidationProvider>
               </div>
 
               <div class="col-md-2">
                 <div class="form-groub">
+                  <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
                   <v-select
                     v-model="country"
                     label="name"
                     placeholder="الدولة"
                     :options="countyOptions"
                   ></v-select>
+                     <span style="color:red"> {{errors[0]}} </span>
+                  </ValidationProvider>
 
                   <!-- <input v-model="country" type="text" class="form-control" placeholder="الدولة" /> -->
                 </div>
@@ -59,23 +76,29 @@
 
               <div class="col-md-4">
                 <div class="form-groub">
+                   <ValidationProvider name="E-mail" rules="required|min:4" v-slot="{ errors }">
                   <input
                     v-model="password"
                     type="password"
                     class="form-control"
                     placeholder="كلمة المرور"
                   />
+                     <span style="color:red"> {{errors[0]}} </span>
+                  </ValidationProvider>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="form-groub">
+                   <ValidationProvider name="E-mail" rules="required|min:4" v-slot="{ errors }">
                   <input
                     v-model="confirmPassword"
                     type="password"
                     class="form-control"
                     placeholder="تأكيد كلمة المرور"
                   />
+                   <span style="color:red"> {{errors[0]}} </span>
+                  </ValidationProvider>
                 </div>
               </div>
             </div>
@@ -85,6 +108,7 @@
             <input
               type="button"
               @click="register"
+              :disabled="invalid"
               value="انشاء حساب جديد"
               class="basth-btn-primary"
             />
@@ -103,6 +127,8 @@
               </div>
             </div>
           </div>
+                    </ValidationObserver>
+
         </div>
         <div class="varifiy" v-else>
           <div class="row">
@@ -162,10 +188,39 @@
 import * as Cookies from 'js-cookie'
 import Loading from '@/components/Loading'
 
+import Vue from 'vue';
+import { ValidationProvider, extend, ValidationObserver  } from 'vee-validate';
+import { required, email, min } from 'vee-validate/dist/rules';
+
+// Add a rule.
+extend('secret', {
+  validate: value => value === 'example',
+  message: 'This is not the magic word'
+});
+
+extend('required', {
+  ...required,
+  message: 'هذا الحقل مطلوب'
+});
+extend('min', {
+  ...min,
+  message: 'يجب ان لا يقل عن 6 '
+});
+extend('email', {
+  ...email,
+  message: 'يرجي كتابة البريد الإلكتروني بشكل صحيح'
+});
+
+// Register it globally
+Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationObserver', ValidationObserver)
+
+
 export default {
   middleware: 'guest',
   components: {
     Loading,
+    
     CodeInput: () =>
       process.client
         ? import('vue-verification-code-input')
@@ -326,4 +381,9 @@ export default {
 
 <style lang="scss">
 @import '../assets/sass/register.scss';
+.form-bottom{
+  input[disabled="disabled"]{
+    opacity: .5;
+  }
+}
 </style>
