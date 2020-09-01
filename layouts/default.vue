@@ -9,7 +9,7 @@
       <div class="cont">
         <nuxt />
       </div>
-      <vue-snotify></vue-snotify>
+      <vue-snotify style="z-index=9999999999"></vue-snotify>
 
       <Footer />
     </div>
@@ -52,11 +52,14 @@ export default {
 .cont {
   min-height: 64vh;
 }
+.snotify{
+  z-index:999999999999 !important;
+}
 .snotify-leftTop,
 .snotify-centerTop,
 .snotify-rightTop {
   top: 10px;
-  z-index: 999999999999;
+  z-index: 999999999999 !important;
 }
 .basth-btn-primary {
   display: block;

@@ -82,6 +82,7 @@ export default {
 
 <style lang="scss">
 .camping {
+  padding-top: 56px;
   .camping-card-container {
     .goToCourse {
       background: #058ac6;

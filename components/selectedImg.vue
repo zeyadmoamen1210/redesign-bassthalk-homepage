@@ -9,8 +9,16 @@
       leave-active-class="animate__animated animate__backOutRight"
     >
       <div class="img-preview" v-if="imgShow">
-        <a target="_blank" :href="imgUrl"><i style="font-size:25px" class="fas fa-expand-arrows-alt"></i></a>
-        <img @click="imgShow = false" :src="imgUrl" alt />
+        <!-- <a target="_blank" :href="imgUrl">
+          <i style="font-size:25px" class="fas fa-expand-arrows-alt"></i>
+        </a> -->
+        <a style="cursor:pointer" @click="imgShow = false">
+            <span @click="imgShow = false"><i style="font-size:20px;" class="fas fa-times"></i></span>
+        </a>
+
+      <a :href="imgUrl" target="_blank">
+            <img  :src="imgUrl" alt />
+      </a>
       </div>
     </transition>
   </div>
@@ -21,9 +29,9 @@ export default {
   props: ["imgUrl"],
   data() {
     return {
-      imgShow: false
+      imgShow: false,
     };
-  }
+  },
 };
 </script>
 
@@ -37,21 +45,27 @@ export default {
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
   background: #fff;
   padding: 10px;
+  overflow: hidden;
   border-radius: 10px;
-  z-index: 9;
+    z-index: 9999999;
+
   img {
     width: 100%;
     height: 100%;
+  }
+}
+.fa-times{
+  transition: all .5s ease;
+  &:hover{
+    color:red;
   }
 }
 .upload-img {
   width: 100px;
   height: 100px;
   overflow: hidden;
-  border: 2px #058ac6;
   margin: 10px 0;
   cursor: pointer;
-  border-radius: 25px;
   padding: 7px;
 
   img {

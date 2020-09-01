@@ -258,7 +258,7 @@
             <li @click="dropdown = false">
               <nuxt-link
                 exact-active-class="active"
-                to="/info-bank"
+                to="/information-bank"
                 @click="dropdown = !dropdown"
               >بنك المعلومات</nuxt-link>
             </li>
@@ -274,6 +274,40 @@
             <li @click="dropdown = false">
               <nuxt-link exact-active-class="active" to="/camps" @click="dropdown = false">المعسكرات</nuxt-link>
             </li>
+
+           <template v-if="$auth.loggedIn">
+              
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/statistics">
+                <i class="fas fa-chart-bar"></i> الإحصائيات
+              </nuxt-link>
+            </li>
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/profile/edit">
+                <i class="fas fa-user-edit"></i>تعديل البيانات
+              </nuxt-link>
+            </li>
+            <li @click="dropdown = false">
+              <nuxt-link exact-active-class="active" to="/edit-path">
+                <i class="fas fa-book-reader"></i>تعديل المسار
+              </nuxt-link>
+            </li>
+            <li v-if="$auth.loggedIn" @click="dropdown = false">
+              <a @click="logout">
+                <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
+              </a>
+            </li>
+           </template>
+           <div style="text-align:left" v-else>
+              <div @click="dropdown = false" style="display: inline-block;" class="nav-login" >
+              <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
+            </div>
+            <div style="padding: 0;display: inline-block;" @click="dropdown = false"  class="nav-login" >
+              <button class="btn" style="background: #39b939;" @click="$router.push({ path: '/register' })">حساب جديد</button>
+            </div>
+           </div>
+            
+
           </ul>
         </div>
       </div>

@@ -6,9 +6,7 @@
         <br />
       </div>
     </div>
-    <a :href="question.image" target="_blank">
       <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
-    </a>
     <a :href="question.image" target="_blank">اضغط</a>
 
     <!-- <img src="../../assets/imgs/chemical-equation-color.jpg" alt=""> -->

@@ -8,9 +8,7 @@
       </div>
     </div>
 
-    <a href="question.image" target="_blank">
       <selectedImg v-if="question.image" style="float: right;" :imgUrl="question.image"></selectedImg>
-    </a>
     <div
       style="
         margin-top: 46px;
