@@ -44,10 +44,7 @@
 
               <div class="col-md-4">
                 <div class="form-groub">
-                  <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
                   <input v-model="phone" type="text" class="form-control" placeholder="رقم الجوال" />
-                  <span style="color:red"> {{errors[0]}} </span>
-                  </ValidationProvider>
                 </div>
               </div>
 
