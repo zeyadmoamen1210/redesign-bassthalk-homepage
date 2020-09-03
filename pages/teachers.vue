@@ -27,13 +27,22 @@
                 <!-- <h6 v-if="teacher.enable"> <i class="fas fa-circle"></i>  متاح </h6>
                 <h6 v-else>  <i class="fas fa-circle"></i>  متاح </h6>-->
                 <h6>{{teacher.email}}</h6>
+                <h6>{{teacher.username}}</h6>
               </div>
               <div class="teacher-body">
                 <h6
+                v-if="teacher.description"
                   style="font-family: 'CustomFontBold';margin-bottom: 0;font-size: 19px;background: rgb(255 255 255 / 10%);padding: 10px;"
                 >
                   <i class="fas fa-circle"></i>
-                  {{teacher.username}}
+                  {{teacher.description}}
+                </h6>
+                <h6
+                v-else
+                  style="font-family: 'CustomFontBold';margin-bottom: 0;font-size: 19px;background: rgb(255 255 255 / 10%);padding: 10px;"
+                >
+                  <i class="fas fa-circle"></i>
+                  لا يوجد وصف
                 </h6>
                 <!-- <h6 style="font-size: 16px;font-family: 'CustomFontRegular';padding-right: 8px;"> مدرس لغة عربية </h6> -->
               </div>
@@ -121,17 +130,16 @@ export default {
         &:first-of-type {
           text-align: center;
           font-family: 'CustomFontBold';
-          font-size: 19px;
+          font-size: 13px;
           margin-bottom: 6px;
           color: #525252;
         }
         &:last-of-type {
-          text-align: center;
-          padding-bottom: 2px;
-          color: #656565;
-          font-size: large;
-          font-family: arial;
-          font-size: 14px;
+              text-align: center;
+    padding-bottom: 2px;
+    color: #656565;
+    font-size: large;
+    font-family: CustomFontBold;
         }
       }
     }
