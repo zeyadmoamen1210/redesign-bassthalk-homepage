@@ -26,8 +26,9 @@
               <div class="teacher-info">
                 <!-- <h6 v-if="teacher.enable"> <i class="fas fa-circle"></i>  متاح </h6>
                 <h6 v-else>  <i class="fas fa-circle"></i>  متاح </h6>-->
-                <h6>{{teacher.email}}</h6>
                 <h6>{{teacher.username}}</h6>
+                <h6>{{teacher.email}}</h6>
+                
               </div>
               <div class="teacher-body">
                 <h6
@@ -130,7 +131,7 @@ export default {
         &:first-of-type {
           text-align: center;
           font-family: 'CustomFontBold';
-          font-size: 13px;
+          font-size: large;
           margin-bottom: 6px;
           color: #525252;
         }
@@ -138,7 +139,7 @@ export default {
               text-align: center;
     padding-bottom: 2px;
     color: #656565;
-    font-size: large;
+    font-size: 13px;
     font-family: CustomFontBold;
         }
       }
