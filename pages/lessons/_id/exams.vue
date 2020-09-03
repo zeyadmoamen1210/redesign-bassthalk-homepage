@@ -5,7 +5,7 @@
         <div class="title">
           <h3>
             <!-- <img src="../assets/imgs/noun_exam_-1.png" alt /> -->
-            إمتحانات الدرس
+            امتحانات الدرس
           </h3>
         </div>
         <Loading v-if="isLoading" />
@@ -16,7 +16,7 @@
               <!-- <nuxt-link :to="'/exams/' + exams[0].id + '/questions'"> -->
               <div class="level-item box-shadow-class" @click="setExam(0)">
                 <img style="margin-top:40px" src="../../../assets/imgs/easy-level-1.png" alt />
-                <h6>المستوي السهل</h6>
+                <h6>المستوى السهل</h6>
               </div>
               <!-- </nuxt-link> -->
             </div>
@@ -25,7 +25,7 @@
               <!-- <nuxt-link :to="'/exams/' + exams[1].id + '/questions'"> -->
               <div class="level-item box-shadow-class" @click="setExam(1)">
                 <img style="margin-top:40px" src="../../../assets/imgs/easy-level-2.png" alt />
-                <h6>المستوي المتوسط</h6>
+                <h6>المستوى المتوسط</h6>
               </div>
               <!-- </nuxt-link> -->
             </div>
@@ -34,7 +34,7 @@
               <!-- <nuxt-link :to="'/exams/' + exams[2].id + '/questions'"> -->
               <div class="level-item box-shadow-class" @click="setExam(2)">
                 <img style="margin-top:40px" src="../../../assets/imgs/easy-level-3.png" alt />
-                <h6>المستوي الصعب</h6>
+                <h6>المستوى الصعب</h6>
               </div>
               <!-- </nuxt-link> -->
             </div>

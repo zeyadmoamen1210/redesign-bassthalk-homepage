@@ -144,7 +144,7 @@
             </div>
           </b-modal>
           <div class="col-md-12">
-            <b-button v-b-modal.modal-1 class="fullWidthBtn">إبد الإختبار</b-button>
+            <b-button v-b-modal.modal-1 class="fullWidthBtn">ابدأ الاختبار</b-button>
             <!-- <button v-b-modal.modal-1 class="fullWidthBtn">أبدء الأختبار</button> -->
           </div>
           <div class="video-comments">

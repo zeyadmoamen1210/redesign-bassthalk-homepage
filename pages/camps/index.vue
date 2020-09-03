@@ -45,7 +45,7 @@
                   <span>{{camp.teacher.email}}</span>
                 </div>
               </div>
-              <a :href="camp.link" target="_blank" class="goToCourse">الذهاب إلي الكورس</a>
+              <a :href="camp.link" target="_blank" class="goToCourse">الذهاب إلى الكورس</a>
             </div>
           </div>
         </div>

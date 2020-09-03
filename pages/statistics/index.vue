@@ -16,7 +16,7 @@
 
                 <div class="col-md-3" @click="$router.push('/myexams')">
                   <div class="count-pink" style="background:pink;border-color:pink">
-                    <h5>الإمتحانات المحلوله</h5>
+                    <h5> الامتحانات المحلولة</h5>
                     <i class="fas fa-tasks"></i>
                     <span>{{stats.numberOfSolutionsOnExams}}</span>
                   </div>
