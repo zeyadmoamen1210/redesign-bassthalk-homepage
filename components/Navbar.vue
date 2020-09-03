@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-before">
+  <div class="navbar-before" >
     <div class="navbar-big">
       <div class="container">
         <div class="row">

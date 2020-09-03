@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="home-page">
-      <div class="slider">
+      <div class="outer-slider">
+        <div class="slider">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-6">
@@ -21,6 +22,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       <div class="who-we-are" id="who-we-are">
@@ -1306,6 +1308,11 @@ span:nth-of-type(6) {
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
+  .outer-slider{
+        position: relative;
+    top: -118px;
+    z-index: -1;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -1314,6 +1321,12 @@ span:nth-of-type(6) {
   }
   .test-image-div .desc-image img {
     height: 100% !important;
+  }
+
+  .outer-slider{
+        position: relative;
+    top: -118px;
+    z-index: -1;
   }
 }
 </style>
