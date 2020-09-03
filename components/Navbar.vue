@@ -264,6 +264,11 @@
             المعسكرات 
           </vs-sidebar-item>
 
+          <vs-sidebar-item to="/teachers"  index="15" >
+            المدرسين 
+          </vs-sidebar-item>
+          
+
            <vs-sidebar-item v-if="$auth.loggedIn"  to="/statistics"  index="7" >
            الإحصائيات 
           </vs-sidebar-item>
