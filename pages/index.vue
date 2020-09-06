@@ -39,6 +39,9 @@
             <span></span>
             <span></span>
           </div>
+
+         
+
           <div class="logo-who-we-are">
             <img :src="about.image" alt />
           </div>
@@ -60,6 +63,23 @@
             <span></span>
           </div>
         </div>
+
+        <div class="container">
+          
+           <div class="row" style="margin-top:15px;">
+            <div class="col-md-4">
+            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+          </div>
+           <div class="col-md-4">
+            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+          </div>
+           <div class="col-md-4">
+            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+          </div>
+          
+          </div>
+        </div>
+
         <div class="view-cont first" style="overflow: hidden;">
           <div class="row">
             <div class="col-md-5">

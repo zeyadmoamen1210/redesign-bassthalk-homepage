@@ -38,6 +38,21 @@
               </div>
               <!-- </nuxt-link> -->
             </div>
+
+
+
+            <div class="col-md-4" style="margin-bottom:10px">
+            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+          </div>
+           <div class="col-md-4" style="margin-bottom:10px">
+            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+          </div>
+           <div class="col-md-4" style="margin-bottom:10px">
+            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+          </div>
+          
+
+
           </div>
         </div>
 

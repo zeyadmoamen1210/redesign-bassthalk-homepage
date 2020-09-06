@@ -67,6 +67,9 @@ export default {
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
         '@nuxtjs/auth',
+        ['@nuxtjs/google-adsense', {
+            id:"ca-app-pub-3940256099942544/6300978111" 
+          }]
     ],
     auth: {
         // Options
