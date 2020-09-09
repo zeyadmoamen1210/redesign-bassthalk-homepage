@@ -23,6 +23,10 @@ export default {
                 content: process.env.npm_package_description || '',
             },
         ],
+        script: [{
+            src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+            async: true,
+        }, ],
         link: [{
                 rel: 'icon',
                 type: 'image/x-icon',
@@ -30,8 +34,8 @@ export default {
             },
             {
                 rel: 'stylesheet',
-                href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css'
-            }
+                href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css',
+            },
         ],
     },
     /*
@@ -43,10 +47,7 @@ export default {
     /*
      ** Global CSS
      */
-    css: [
-        './assets/circle.css',
-        './assets/all.min.css'
-    ],
+    css: ['./assets/circle.css', './assets/all.min.css'],
     /*
      ** Plugins to load before mounting the App
      */
@@ -56,9 +57,6 @@ export default {
         './plugins/moment.js',
         './plugins/snotify.js',
         './plugins/vuesax.js',
-        { src: '~/plugins/vue-google-adsense', ssr: false }
-
-
     ],
     /*
      ** Nuxt.js dev-modules
@@ -72,7 +70,7 @@ export default {
         'bootstrap-vue/nuxt',
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
-        '@nuxtjs/auth'
+        '@nuxtjs/auth',
     ],
     auth: {
         // Options
@@ -81,13 +79,12 @@ export default {
                 client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
                 userinfo_endpoint: false,
                 scope: ['public_profile', 'email'],
-                redirect_uri: 'https://bassthalk.com/callback'
+                redirect_uri: 'https://bassthalk.com/callback',
             },
             google: {
                 client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
                 user: false,
-                redirect_uri: 'https://bassthalk.com/callback'
-
+                redirect_uri: 'https://bassthalk.com/callback',
             },
             local: {
                 endpoints: {
@@ -109,15 +106,16 @@ export default {
         },
         plugins: [{
             src: '~plugins/auth.js',
-            ssr: false
-        }, ]
+            ssr: false,
+        }, ],
     },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
      */
     axios: {
-        baseURL: 'https://basthalk-be.herokuapp.com/api/v1/',
+        // baseURL: 'https://basthalk-be.herokuapp.com/api/v1/',
+        baseURL: 'https://api.bassthalk.com/api/v1/',
         common: {
             Accept: 'application/json',
             Authorization: '',

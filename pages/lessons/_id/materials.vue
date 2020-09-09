@@ -2,7 +2,6 @@
   <div>
     <div class="lesson">
       <div class="container">
-      
         <div class="lesson-grid">
           <div class="row">
             <div class="col-md-6">
@@ -159,11 +158,11 @@
                     @keydown.enter="addComment"
                   />
                   <div class="submit">
-                    <button class="basth-btn-primary" @click="addComment" >
+                    <button class="basth-btn-primary" @click="addComment">
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </div>
-                    <div class="uploads">
+                  <div class="uploads">
                     <!-- <div class="upload-files">
                       <input type="file" @change="fileSelected" />
                       <i class="fas fa-paperclip"></i>
@@ -180,23 +179,32 @@
                   :key="index"
                   style="position:relative"
                 >
-                 <div v-if="$auth.user.id == comment.user.id" style="position: absolute;top: -2px;left: 100px;">
-  <b-dropdown style="z-index:9" size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
-    <template v-slot:button-content>
-      <i class="fas fa-ellipsis-h"></i>
-    </template>
-    <b-dropdown-item href="#" @click.native="editComment(comment)"> <i class="fas fa-edit"></i> تعديل</b-dropdown-item>
-    <b-dropdown-item href="#" @click.native="deleteComment(comment)"> <i class="fas fa-trash-alt"></i> حذف</b-dropdown-item>
-  </b-dropdown>
-</div>
-
-
+                  <div
+                    v-if="$auth.user.id == comment.user.id"
+                    style="position: absolute;top: -2px;left: 100px;"
+                  >
+                    <b-dropdown
+                      style="z-index:9"
+                      size="lg"
+                      variant="link"
+                      toggle-class="text-decoration-none"
+                      no-caret
+                    >
+                      <template v-slot:button-content>
+                        <i class="fas fa-ellipsis-h"></i>
+                      </template>
+                      <b-dropdown-item href="#" @click.native="editComment(comment)">
+                        <i class="fas fa-edit"></i> تعديل
+                      </b-dropdown-item>
+                      <b-dropdown-item href="#" @click.native="deleteComment(comment)">
+                        <i class="fas fa-trash-alt"></i> حذف
+                      </b-dropdown-item>
+                    </b-dropdown>
+                  </div>
 
                   <div class="item">
                     <div class="item-content">
                       <h6>{{ comment.user.username }}</h6>
-                       
-                      
 
                       <span>{{ $moment(comment.createdAt).fromNow() }}</span>
                       <p>{{ comment.content }}</p>
@@ -217,30 +225,42 @@
 
                     <!-- comment replay  -->
                     <div class="teacher" style="position:relative">
-
-                      
-                    <template v-if="comment.user.role=='teacher'">
-                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="comment.user.photo" alt />
-                      <img
-                        src="../../../assets/imgs/teacher-icon.png"
-                        alt
-                        style="width: auto;right: 9px;bottom: -40px;position: absolute;"
-                      />
+                      <template v-if="comment.user.role=='teacher'">
+                        <img
+                          style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0"
+                          :src="comment.user.photo"
+                          alt
+                        />
+                        <img
+                          src="../../../assets/imgs/teacher-icon.png"
+                          alt
+                          style="width: auto;right: 9px;bottom: -40px;position: absolute;"
+                        />
                       </template>
 
                       <template v-else-if="comment.user.role=='admin'">
-                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="comment.user.photo" alt />
-                     
-                      <i style="z-index:5;width: auto;right: 29px;bottom: -8px;position: absolute;font-size: 13px;background: #4ab54a;padding: 6px 6px;border-radius: 50%;color: #FFF;" class="fas fa-user-cog"></i>
+                        <img
+                          style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0"
+                          :src="comment.user.photo"
+                          alt
+                        />
+
+                        <i
+                          style="z-index:5;width: auto;right: 29px;bottom: -8px;position: absolute;font-size: 13px;background: #4ab54a;padding: 6px 6px;border-radius: 50%;color: #FFF;"
+                          class="fas fa-user-cog"
+                        ></i>
                       </template>
 
                       <template v-else-if="comment.user.role=='student'">
-                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="comment.user.photo" alt />
+                        <img
+                          style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0"
+                          :src="comment.user.photo"
+                          alt
+                        />
                       </template>
-
                     </div>
                     <div class="double-comment mb-2" style="width:85%;margin:auto">
-                      <div class="form-groub nested-comment-reply" >
+                      <div class="form-groub nested-comment-reply">
                         <input
                           v-model="comment.replyContent"
                           type="text"
@@ -272,9 +292,6 @@
                         v-for="(reply, index) in comment.replies"
                         :key="index"
                       >
-
-                   
-
                         <div style>
                           <h6 v-if="reply.user">{{ reply.user.username }}</h6>
                           <span>{{ $moment(reply.createdAt).fromNow() }}</span>
@@ -286,44 +303,73 @@
                           </section>
                         </div>
 
-                        <div
-                          class="user-pic"
-                          style="width: 63px;float: left;"
-                          v-if="reply.user"
-                        >
-                          <div style="width: 96%;border-radius: 50%;border-radius: 50%;height: 54px;position: relative;border: 3px solid rgba(5, 138, 198, 0.74);padding: 0px;background: rgb(235, 235, 235);margin-left: 6px;margin-bottom: 7px;margin-top: 0px;">
-                             <template v-if="reply.user.role=='teacher'">
-                        <img style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0" :src="reply.user.photo" alt />
-                      <img
-                        src="../../../assets/imgs/teacher-icon.png"
-                        alt
-                        style="width: auto;right: 4px;bottom: -40px;position: absolute;"
-                      />
-                      </template>
+                        <div class="user-pic" style="width: 63px;float: left;" v-if="reply.user">
+                          <div
+                            style="width: 96%;border-radius: 50%;border-radius: 50%;height: 54px;position: relative;border: 3px solid rgba(5, 138, 198, 0.74);padding: 0px;background: rgb(235, 235, 235);margin-left: 6px;margin-bottom: 7px;margin-top: 0px;"
+                          >
+                            <template v-if="reply.user.role=='teacher'">
+                              <img
+                                style="width: 100%;height: 100%;border-radius: 50%;position:absolute;top:0;right:0"
+                                :src="reply.user.photo"
+                                alt
+                              />
+                              <img
+                                src="../../../assets/imgs/teacher-icon.png"
+                                alt
+                                style="width: auto;right: 4px;bottom: -40px;position: absolute;"
+                              />
+                            </template>
 
-                      <template v-else-if="reply.user.role=='admin'">
-                        <img style="width: 100%;height: 100%;border-radius: 50%;" :src="reply.user.photo" alt />
-                      <i style="z-index:5;width: auto;right: 29px;bottom: -8px;position: absolute;font-size: 13px;background: #4ab54a;padding: 6px 6px;border-radius: 50%;color: #FFF;" class="fas fa-user-cog"></i>
+                            <template v-else-if="reply.user.role=='admin'">
+                              <img
+                                style="width: 100%;height: 100%;border-radius: 50%;"
+                                :src="reply.user.photo"
+                                alt
+                              />
+                              <i
+                                style="z-index:5;width: auto;right: 29px;bottom: -8px;position: absolute;font-size: 13px;background: #4ab54a;padding: 6px 6px;border-radius: 50%;color: #FFF;"
+                                class="fas fa-user-cog"
+                              ></i>
+                            </template>
 
-                      </template>
-
-                      <template v-else-if="reply.user.role=='student'">
-                        <img style="width: 100%;height: 100%;border-radius: 50%;" :src="reply.user.photo" alt />
-                      </template>
+                            <template v-else-if="reply.user.role=='student'">
+                              <img
+                                style="width: 100%;height: 100%;border-radius: 50%;"
+                                :src="reply.user.photo"
+                                alt
+                              />
+                            </template>
                           </div>
                         </div>
 
-
-                           <div v-if="$auth.user.id == reply.user.id" style="position: absolute;top: -2px;left: 15px;">
-  <b-dropdown style="z-index:9" size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
-    <template v-slot:button-content>
-      <i class="fas fa-ellipsis-h"></i>
-    </template>
-    <b-dropdown-item href="#" @click.native="editReplyComment(comment,reply)"> <i class="fas fa-edit"></i> تعديل</b-dropdown-item>
-    <b-dropdown-item href="#" @click.native="deleteReplyComment(comment,reply)"> <i class="fas fa-trash-alt"></i> حذف</b-dropdown-item>
-  </b-dropdown>
-</div>
-
+                        <div
+                          v-if="$auth.user.id == reply.user.id"
+                          style="position: absolute;top: -2px;left: 15px;"
+                        >
+                          <b-dropdown
+                            style="z-index:9"
+                            size="lg"
+                            variant="link"
+                            toggle-class="text-decoration-none"
+                            no-caret
+                          >
+                            <template v-slot:button-content>
+                              <i class="fas fa-ellipsis-h"></i>
+                            </template>
+                            <b-dropdown-item
+                              href="#"
+                              @click.native="editReplyComment(comment,reply)"
+                            >
+                              <i class="fas fa-edit"></i> تعديل
+                            </b-dropdown-item>
+                            <b-dropdown-item
+                              href="#"
+                              @click.native="deleteReplyComment(comment,reply)"
+                            >
+                              <i class="fas fa-trash-alt"></i> حذف
+                            </b-dropdown-item>
+                          </b-dropdown>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -364,20 +410,17 @@
       </div>
     </div>
 
-
-
-
-     
-
-
-
-
-         <vs-popup class="holamundo"  title="تعديل التعليق" :active.sync="modelPopupEdit">
-           <div >
-             <div class="form-group">
-               <input type="text" placeholder="تعديل التعليق" v-model="currentComment.content" class="form-control">
-             </div>
-            <!-- <div class="file-choose">
+    <vs-popup class="holamundo" title="تعديل التعليق" :active.sync="modelPopupEdit">
+      <div>
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="تعديل التعليق"
+            v-model="currentComment.content"
+            class="form-control"
+          />
+        </div>
+        <!-- <div class="file-choose">
       <input
         @change="fileSelected"
         type="file"
@@ -390,22 +433,23 @@
         <img src="../../../assets/imgs/noun_Camera_1903011.png" /> قم بأرفاق صورة
         بالحل
       </span>
-    </div> -->
+        </div>-->
 
-    <vs-button @click="commentEditMain" color="primary" type="filled"> تعديل </vs-button>
-
-           </div>
+        <vs-button @click="commentEditMain" color="primary" type="filled">تعديل</vs-button>
+      </div>
     </vs-popup>
 
-
-
-
-     <vs-popup class="holamundo"  title="تعديل التعليق" :active.sync="modelPopupEditReply">
-           <div >
-             <div class="form-group">
-               <input type="text" placeholder="تعديل التعليق" v-model="currentReplyReply.content" class="form-control">
-             </div>
-            <!-- <div class="file-choose">
+    <vs-popup class="holamundo" title="تعديل التعليق" :active.sync="modelPopupEditReply">
+      <div>
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="تعديل التعليق"
+            v-model="currentReplyReply.content"
+            class="form-control"
+          />
+        </div>
+        <!-- <div class="file-choose">
       <input
         @change="fileSelected"
         type="file"
@@ -418,14 +462,11 @@
         <img src="../../../assets/imgs/noun_Camera_1903011.png" /> قم بأرفاق صورة
         بالحل
       </span>
-    </div> -->
+        </div>-->
 
-    <vs-button @click="commentReplyEditMain" color="primary" type="filled">تعديل</vs-button>
-
-           </div>
+        <vs-button @click="commentReplyEditMain" color="primary" type="filled">تعديل</vs-button>
+      </div>
     </vs-popup>
-
-
   </div>
 </template>
 
@@ -448,13 +489,13 @@ export default {
       isLoading: false,
       modelRate: false,
       videos: [],
-      modelPopupEdit:false,
+      modelPopupEdit: false,
       value: 0,
       currentComment: {
-        content:""
+        content: '',
       },
-      currentCommentReply:{
-        content:""
+      currentCommentReply: {
+        content: '',
       },
       currentCommentReply: '',
       currentReplyReply: '',
@@ -512,128 +553,136 @@ export default {
   //     }
   //   }
   // },
-   mounted() {
-  },
+  mounted() {},
   methods: {
-    editComment(comment){
+    editComment(comment) {
       this.currentComment = comment
       this.modelPopupEdit = true
       this.photo = comment.image
       this.url = comment.image
     },
-    commentEditMain(){
+    commentEditMain() {
       this.isLoading = true
       let form_data = new FormData()
-      form_data.append("content", this.currentComment.content)
+      form_data.append('content', this.currentComment.content)
       // form_data.append("image", this.photo)
-      this.$axios.put(`comments/${this.currentComment.id}`, form_data ).then(res => {
-        console.log(res)
-        this.modelPopupEdit = false
-        this.$snotify.success("تم التعديل بنجاح")
-        let x = this.selectedVideoComments.findIndex(ele => ele.id == this.currentComment.id)
-        this.selectedVideoComments[x] = res.data
-        
-      }).finally(() => this.isLoading = false)
+      this.$axios
+        .put(`comments/${this.currentComment.id}`, form_data)
+        .then((res) => {
+          console.log(res)
+          this.modelPopupEdit = false
+          this.$snotify.success('تم التعديل بنجاح')
+          let x = this.selectedVideoComments.findIndex(
+            (ele) => ele.id == this.currentComment.id
+          )
+          this.selectedVideoComments[x] = res.data
+        })
+        .finally(() => (this.isLoading = false))
     },
-    commentDropFalse(){
+    commentDropFalse() {
       this.commentDrop = false
     },
 
-    editReplyComment(comment, replay){
+    editReplyComment(comment, replay) {
       this.currentCommentReply = comment
       this.currentReplyReply = replay
       this.modelPopupEditReply = true
     },
 
-    commentReplyEditMain(){
+    commentReplyEditMain() {
       this.isLoading = true
       let form_data = new FormData()
-      form_data.append("content", this.currentReplyReply.content)
-      this.$axios.put(`comments/${this.currentCommentReply.id}/replies/${this.currentReplyReply.id}`, form_data)
-      .then(res => {
-        this.$snotify.success("تم التعديل بنجاح")
-        this.currentCommentReply = res.data
-        this.modelPopupEditReply = false
-      }).finally(() => this.isLoading = false)
+      form_data.append('content', this.currentReplyReply.content)
+      this.$axios
+        .put(
+          `comments/${this.currentCommentReply.id}/replies/${this.currentReplyReply.id}`,
+          form_data
+        )
+        .then((res) => {
+          this.$snotify.success('تم التعديل بنجاح')
+          this.currentCommentReply = res.data
+          this.modelPopupEditReply = false
+        })
+        .finally(() => (this.isLoading = false))
     },
 
-
-
-     deleteReplyComment(comment,reply) {
-      this.$snotify.confirm("هل تريد حذف  التعليق المُحدد ", " هل أنت متأكد", {
+    deleteReplyComment(comment, reply) {
+      this.$snotify.confirm('هل تريد حذف  التعليق المُحدد ', ' هل أنت متأكد', {
         showProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         buttons: [
           {
-            text: "موافق",
+            text: 'موافق',
             action: (toast) => {
-              this.$snotify.remove(toast.id);
-              this.isLoading = true;
+              this.$snotify.remove(toast.id)
+              this.isLoading = true
               this.$axios
                 .delete(`comments/${comment.id}/replies/${reply.id}`)
                 .then((res) => {
                   console.log(res)
-                  let x = this.selectedVideoComments.find(ele => ele.id == comment.id)
+                  let x = this.selectedVideoComments.find(
+                    (ele) => ele.id == comment.id
+                  )
                   let y = this.selectedVideoComments.indexOf(x)
-                  let z = this.selectedVideoComments[y].replies.findIndex(ele2 => ele2.id == reply.id)
+                  let z = this.selectedVideoComments[y].replies.findIndex(
+                    (ele2) => ele2.id == reply.id
+                  )
                   this.selectedVideoComments[y].replies.splice(z, 1)
                   this.selectedVideoComments[y].numberOfreplies--
-                  this.$snotify.success(" تم الحذف بنجاح");
+                  this.$snotify.success(' تم الحذف بنجاح')
                 })
                 .catch((err) => {
-                  this.$snotify.error("للاسف حصل خطأ ما  ");
+                  this.$snotify.error('للاسف حصل خطأ ما  ')
                 })
-                .finally(() => (this.isLoading = false));
+                .finally(() => (this.isLoading = false))
             },
           },
           {
-            text: "إلغاء",
+            text: 'إلغاء',
             action: (toast) => {
-              this.$snotify.remove(toast.id);
+              this.$snotify.remove(toast.id)
             },
           },
         ],
-      });
-
+      })
     },
 
-
-
     deleteComment(comment) {
-      this.$snotify.confirm("هل تريد حذف  التعليق المُحدد ", " هل أنت متأكد", {
+      this.$snotify.confirm('هل تريد حذف  التعليق المُحدد ', ' هل أنت متأكد', {
         showProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         buttons: [
           {
-            text: "موافق",
+            text: 'موافق',
             action: (toast) => {
-              this.$snotify.remove(toast.id);
-              this.isLoading = true;
+              this.$snotify.remove(toast.id)
+              this.isLoading = true
               this.$axios
                 .delete(`comments/${comment.id}`)
                 .then((res) => {
-                  let x = this.selectedVideoComments.find(ele => ele.id == comment.id)
+                  let x = this.selectedVideoComments.find(
+                    (ele) => ele.id == comment.id
+                  )
                   let y = this.selectedVideoComments.indexOf(x)
-                  this.selectedVideoComments.splice(y , 1)
-                  this.$snotify.success(" تم الحذف بنجاح");
+                  this.selectedVideoComments.splice(y, 1)
+                  this.$snotify.success(' تم الحذف بنجاح')
                 })
                 .catch((err) => {
-                  this.$snotify.error("للاسف حصل خطأ ما  ");
+                  this.$snotify.error('للاسف حصل خطأ ما  ')
                 })
-                .finally(() => (this.isLoading = false));
+                .finally(() => (this.isLoading = false))
             },
           },
           {
-            text: "إلغاء",
+            text: 'إلغاء',
             action: (toast) => {
-              this.$snotify.remove(toast.id);
+              this.$snotify.remove(toast.id)
             },
           },
         ],
-      });
-
+      })
     },
     previewVideo(video) {
       this.selectedVideo = video
@@ -685,60 +734,60 @@ export default {
     addCommentReply(commentId, index) {
       let form_data = new FormData()
       let replyContent = this.selectedVideoComments[index].replyContent
-      if(replyContent != '' && replyContent != null){
+      if (replyContent != '' && replyContent != null) {
         if (replyContent.length > 0) {
-        form_data.append('content', replyContent)
-      }
+          form_data.append('content', replyContent)
+        }
 
-      if (this.replyPhoto != null) {
-        form_data.append('image', this.replyPhoto)
-      }
+        if (this.replyPhoto != null) {
+          form_data.append('image', this.replyPhoto)
+        }
 
-      this.$axios
-        .post(`comments/${commentId}/replies`, form_data, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        })
-        .then((res) => {
-          this.selectedVideoComments[index].replyContent = ''
-          this.replyPhoto = null
-          replyContent =''
-          this.selectedVideoComments[index].numberOfreplies += 1
-          this.selectedVideoComments[index].replies = res.data.replies
-          // this.selectedVideoComments[index].replies.push(res.data.replies);
-          this.$snotify.success(`تم إضافة الرد علي التعليق بنجاح`)
+        this.$axios
+          .post(`comments/${commentId}/replies`, form_data, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          })
+          .then((res) => {
+            this.selectedVideoComments[index].replyContent = ''
+            this.replyPhoto = null
+            replyContent = ''
+            this.selectedVideoComments[index].numberOfreplies += 1
+            this.selectedVideoComments[index].replies = res.data.replies
+            // this.selectedVideoComments[index].replies.push(res.data.replies);
+            this.$snotify.success(`تم إضافة الرد علي التعليق بنجاح`)
 
-          // this.$snotify.success(`تم تعديل البيانات بنجاح`);
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+            // this.$snotify.success(`تم تعديل البيانات بنجاح`);
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     },
     addComment() {
       let form_data = new FormData()
-      if(this.commentContent != ''){
+      if (this.commentContent != '') {
         if (this.commentContent.trim().length > 0) {
-        form_data.append('content', this.commentContent)
-      }
+          form_data.append('content', this.commentContent)
+        }
 
-      if (this.commentPhoto != null) {
-        form_data.append('image', this.commentPhoto)
-      }
+        if (this.commentPhoto != null) {
+          form_data.append('image', this.commentPhoto)
+        }
 
-      this.$axios
-        .post(`videos/${this.selectedVideo.id}/comments`, form_data, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        })
-        .then((res) => {
-          this.selectedVideoComments.unshift(res.data)
-          this.commentContent = ''
-          console.log(res)
+        this.$axios
+          .post(`videos/${this.selectedVideo.id}/comments`, form_data, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          })
+          .then((res) => {
+            this.selectedVideoComments.unshift(res.data)
+            this.commentContent = ''
+            console.log(res)
 
-          this.$snotify.success(`تم إضافة تعليقك بنجاح`)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+            this.$snotify.success(`تم إضافة تعليقك بنجاح`)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     },
     getVideos() {
@@ -751,7 +800,9 @@ export default {
           this.lessonData = res.data
           this.videos = res.data.materials
           this.videos.map(function (value, key) {
-            value['embed'] = value['link'].replace('watch?v=', 'embed/')
+            let index = value['link'].indexOf('&')
+            let link = value['link'].substring(0, index)
+            value['embed'] = link.replace('watch?v=', 'embed/')
             value['replyContent'] = ''
             value['replyImage'] = null
           })
@@ -774,7 +825,7 @@ export default {
         .get(`videos/${this.selectedVideo.id}/comments`)
         .then((res) => {
           this.selectedVideoComments = res.data.docs
-          console.log("questions ",res)
+          console.log('questions ', res)
           this.selectedVideoComments.map(function (value, key) {
             value['replyContent'] = ''
             value['replyImage'] = null
@@ -950,40 +1001,40 @@ export default {
     background: rgba(0, 0, 0, 0.36);
   }
 }
-.dropdown-menu.show{
-  padding:0;
+.dropdown-menu.show {
+  padding: 0;
 }
- .file-choose {
-                position: relative;
-                width: 100%;
-                height: 200px;
-                margin-top: 13px;
-                input[type="file"] {
-                    position: absolute;
-                    width: 100%;
-                    /* visibility: hidden; */
-                    opacity: 0;
-                    height: 100%;
-                    cursor: pointer;
-                    margin-top: 10px;
-                }
-                span {
-                    border: 1px dashed #444444;
-                    position: absolute;
-                    width: 100%;
-                    top: 0;
-                    left: 0;
-                    background: #FFF;
-                    z-index: -1;
-                    margin: 10px 0;
-                    height: 100%;
-                    text-align: center;
-                    cursor: pointer;
-                    border-radius: 15px;
-                    line-height: 186px;
-                    color: #444444;
-                }
-            }
+.file-choose {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-top: 13px;
+  input[type='file'] {
+    position: absolute;
+    width: 100%;
+    /* visibility: hidden; */
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  span {
+    border: 1px dashed #444444;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: -1;
+    margin: 10px 0;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 15px;
+    line-height: 186px;
+    color: #444444;
+  }
+}
 .another-videos {
   .video-cart {
     position: relative;
@@ -1198,7 +1249,7 @@ export default {
     color: #333;
   }
 }
-.btn.dropdown-toggle.btn-link.btn-lg.text-decoration-none.dropdown-toggle-no-caret{
+.btn.dropdown-toggle.btn-link.btn-lg.text-decoration-none.dropdown-toggle-no-caret {
   box-shadow: none;
 }
 .video-comments {
@@ -1277,37 +1328,36 @@ export default {
       width: 87%;
       float: left;
       padding: 18px 22px;
-     div.comment-droped{
-           position: absolute;
-    top: 24px;
-    left: 28px;
-        .droped{
-            position: relative;
-    top: 0;
-    left: 0;
-    >div{
-          position: absolute;
-    top: 22px;
-    background: #FFF;
-    padding: 10px;
-    left: 0;
-    box-shadow: 0px 1px 10px 1px #DDD;
-    border-radius: 0 9px;
-    button{
-      &:hover{
-        color:#058ac6;
-        transform: translateX(-5px);
+      div.comment-droped {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        .droped {
+          position: relative;
+          top: 0;
+          left: 0;
+          > div {
+            position: absolute;
+            top: 22px;
+            background: #fff;
+            padding: 10px;
+            left: 0;
+            box-shadow: 0px 1px 10px 1px #ddd;
+            border-radius: 0 9px;
+            button {
+              &:hover {
+                color: #058ac6;
+                transform: translateX(-5px);
+              }
+              transition: all 0.5s ease;
+            }
+          }
+          > i {
+            color: #929292;
+            cursor: pointer;
+          }
+        }
       }
-      transition: all .5s ease;
-    }
-    }
-        >i{
-       
-    color: #929292;
-    cursor: pointer;
-      }
-      }
-     }
       .comment-content-img {
         width: 100px;
         height: 100px;
@@ -1380,7 +1430,7 @@ export default {
       .double-comment-cont {
         overflow: hidden;
         margin-top: 7px;
-          padding: 33px 0;
+        padding: 33px 0;
         margin-top: 10px;
         border-bottom: 1px solid #c7c7c7;
         position: relative;
