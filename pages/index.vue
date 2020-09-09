@@ -1341,15 +1341,9 @@ span:nth-of-type(6) {
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-<<<<<<< Updated upstream
-  .outer-slider{
-        position: relative;
-    top: -106px;
-=======
   .outer-slider {
     position: relative;
     top: -118px;
->>>>>>> Stashed changes
     z-index: -1;
   }
 }
@@ -1362,15 +1356,9 @@ span:nth-of-type(6) {
     height: 100% !important;
   }
 
-<<<<<<< Updated upstream
-  .outer-slider{
-        position: relative;
-    top: -106px;
-=======
   .outer-slider {
     position: relative;
     top: -118px;
->>>>>>> Stashed changes
     z-index: -1;
   }
 }
