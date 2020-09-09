@@ -52,13 +52,59 @@
                 </li>
                 <li>
                   <div >
+
+
+                      <vs-dropdown 
+                        :color="colorx"  
+                        :vs-trigger-click="true"	
+                        @click.native="dropdownClick"
+                        class="notification"
+                        v-if="$auth.loggedIn">
+
+                        <a class="a-icon" href="#">
+                        <div style="position:absolute" @click="count = 0">
+                          <div
+                          v-if="count > 0"
+                           @click="count = 0"
+                            style="position: absolute;color:#FFF;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;"
+                            class="noti-content"
+                          >{{count}}</div>
+                        </div>
+                        <i @click="dropdownClick" class="fas fa-bell"></i>
+                        الإشعارات
+                        </a>
+
+                        <vs-dropdown-menu>
+                          <vs-dropdown-item  v-for="(noti,index) in allNotification" :key="index">
+                              <div
+                          style="margin-bottom:15px;overflow:hidden;padding: 10px;background: #ececec;"
+                        >
+                          <div class="icon" style="width:50px;float:right;padding:7px">
+                            <img
+                              style="border-radius:50%;width:100%;height:100%"
+                              :src="noti.icon"
+                              alt
+                            />
+                          </div>
+                          <div class="body" style="width: calc(100% - 50px);float:right">
+                            <h6>{{noti.title}}</h6>
+                            <p style="    font-size: 12px;margin-bottom:0">{{noti.body}}</p>
+                          </div>
+                        </div>
+                          </vs-dropdown-item>
+                          
+                        </vs-dropdown-menu>
+                      </vs-dropdown>
+
+
+<!-- 
                     <b-dropdown
-                      class="notification"
+                      
                       size="lg"
                       variant="link"
                       toggle-class="text-decoration-none"
                       no-caret
-                      @click.native="dropdownClick"
+                     
                     >
                       <template v-slot:button-content>
                         <div style="position:absolute" @click="count = 0">
@@ -88,7 +134,7 @@
                           </div>
                         </div>
                       </b-dropdown-item>
-                    </b-dropdown>
+                    </b-dropdown> -->
 
                     <!-- <b-dropdown :html="`<div style='position:absolute'><i class='fas fa-bell'></i><div style='position: absolute;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
                         ${count}</div></div>`" style="position:relative" id="dropdown-1" text="Dropdown Button"  class="m-md-2 notification">
@@ -149,64 +195,123 @@
               <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
             </div>
           </div>
+
+
+
+
+
+
+
+    <div class="loggedDropdown" style="width:16%;position: relative;">
+              <vs-dropdown 
+                        :color="colorx"
+                        style="text-align: left;position: absolute;left: 0;margin-top: 50px;padding: 0 30px;height: 36px;background: #0989c3;color: #FFF;"
+                        :vs-trigger-click="true"	
+                        @click.native="dropdownClick"
+                        v-if="$auth.loggedIn">
+
+                        <a class="a-icon" href="#">
+                         <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
+              <span class="list-down">
+                <i class="fas fa-sort-down"></i>
+              </span>
+
+              <div
+                style="position: absolute;left: -39px;top: -13px;width: 60px;height: 60px;border-radius: 50%;overflow: hidden;border: 4px solid; border-color: #0989c3;"
+              >
+                <img class="img-circle" :src="$auth.user.photo" style="width:100%;height:100%" alt />
+              </div>
+                        </a>
+
+                        <vs-dropdown-menu style="min-width: 132px;">
+                          <vs-dropdown-item style="font-size: 13px;" to="/profile">
+                <i class="fas fa-user-alt"></i> الملف الشخصى
+                          </vs-dropdown-item>
+
+
+
+
+                            <vs-dropdown-item style="font-size: 13px;" >
+                            <nuxt-link to="/questions">
+                <i class="fas fa-question"></i> الأسئلة
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+                           <vs-dropdown-item >
+                             <nuxt-link to="/statistics">
+                <i style="    margin-left: 5px;" class="fas fa-chart-bar"></i> الإحصائيات
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+
+                          <vs-dropdown-item style="font-size: 13px;">
+                             <nuxt-link to="/profile/edit">
+                <i style="    margin-left: 5px;" class="fas fa-user-edit"></i>تعديل البيانات
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+
+                           <vs-dropdown-item >
+                              <nuxt-link to="/edit-path">
+                <i style="    margin-left: 5px;" class="fas fa-book-reader"></i>تعديل المسار
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+                           <vs-dropdown-item style="font-size:13px">
+                               <a @click="logout">
+                <i style="    margin-left: 5px;" class="fas fa-sign-out-alt"></i>تسجيل الخروج
+              </a>
+                          </vs-dropdown-item>
+
+                          
+                        </vs-dropdown-menu>
+                      </vs-dropdown>
+    </div>
+
+
+
+
+<!-- 
           <b-dropdown
             class="auth"
-            v-else
+            
             size="lg"
             variant="link"
             toggle-class="text-decoration-none"
             no-caret
           >
             <template v-slot:button-content>
-              <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
-              <span class="list-down">
-                <i class="fas fa-sort-down"></i>
-              </span>
-
-              <div
-                style="position: absolute;left: -39px;top: -13px;    width: 60px;
-    height: 60px;border-radius: 50%;overflow: hidden;border: 1px solid;"
-              >
-                <img class="img-circle" :src="$auth.user.photo" style="width:100%;height:100%" alt />
-              </div>
+             
             </template>
             <b-dropdown-item href="#">
-              <nuxt-link to="/profile">
-                <i class="fas fa-user-alt"></i> الملف الشخصى
-              </nuxt-link>
+             
             </b-dropdown-item>
 
 
             <b-dropdown-item href="#">
-              <nuxt-link to="/questions">
-                <i class="fas fa-question"></i> الأسئلة
-              </nuxt-link>
+             
             </b-dropdown-item>
 
                                 
 
 
             <b-dropdown-item href="#">
-              <nuxt-link to="/statistics">
-                <i class="fas fa-chart-bar"></i> الإحصائيات
-              </nuxt-link>
+             
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <nuxt-link to="/profile/edit">
-                <i class="fas fa-user-edit"></i>تعديل البيانات
-              </nuxt-link>
+             
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <nuxt-link to="/edit-path">
-                <i class="fas fa-book-reader"></i>تعديل المسار
-              </nuxt-link>
+             
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <a @click="logout">
-                <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
-              </a>
+            
             </b-dropdown-item>
-          </b-dropdown>
+          </b-dropdown> -->
         </div>
       </div>
     </div>
@@ -441,6 +546,7 @@ export default {
 }
 
 .navbar-before {
+ 
   .nav-logo {
     height: 100px;
     width: 96px;
@@ -464,11 +570,15 @@ export default {
   }
   .notification {
     outline: none;
-    font-size: 25px;
-    margin-right: 17px;
-    color: #272727;
+    font-size: 15px;
+    /* margin-right: 17px; */
+    color: #464646;
     cursor: pointer;
     position: relative;
+    padding: 9px 12px 6px;
+    background: #f1f1f1;
+    border-radius: 9px;
+    // box-shadow: 0 4px 25px 0 rgb(33 37 41 / 13%);
     .noti-content {
       position: absolute;
       top: -5px;
@@ -481,7 +591,7 @@ export default {
     }
 
     .fas.fa-bell {
-      color: #333;
+          color: #5d5d5d;
     }
     .dropdown.dropdown-menu:focus {
       top: 0 !important;
@@ -551,6 +661,24 @@ export default {
     }
   }
 
+  .vs-dropdown--item-link{
+      font-size: 11px;
+
+  }
+
+  .loggedDropdown{
+    .vs-dropdown--item-link{
+    }
+    .vs-con-dropdown{
+      h6{
+            margin-bottom: 0px;
+    display: inline-block;
+    color: #FFF;
+    text-transform: capitalize;
+      }
+    }
+  }
+
   .navlinks {
     padding-top: 53px;
     ul {
@@ -561,9 +689,10 @@ export default {
         font-size: 14px;
         display: inline-block;
         padding: 0 10px;
-        font-family: 'CustomFontMedium';
+         font-family: "CustomFontBold";
         a {
           color: #333;
+           font-family: "customFontMedium";
           &:hover {
             text-decoration: none;
           }

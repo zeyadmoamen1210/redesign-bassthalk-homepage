@@ -68,13 +68,13 @@
           
            <div class="row" style="margin-top:15px;">
             <div class="col-md-4">
-            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+            <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  />
           </div>
            <div class="col-md-4">
-            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+            <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  />
           </div>
            <div class="col-md-4">
-            <adsbygoogle id="ca-app-pub-6232929088678094~7612698346"  />
+            <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  />
           </div>
           
           </div>
@@ -1330,7 +1330,7 @@ span:nth-of-type(6) {
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .outer-slider{
         position: relative;
-    top: -118px;
+    top: -106px;
     z-index: -1;
   }
 }
@@ -1345,7 +1345,7 @@ span:nth-of-type(6) {
 
   .outer-slider{
         position: relative;
-    top: -118px;
+    top: -106px;
     z-index: -1;
   }
 }

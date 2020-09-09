@@ -5,6 +5,11 @@ export default {
      */
     head: {
         title: process.env.npm_package_name || '',
+        script: [{
+            src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+            'data-ad-client': "ca-pub-6232929088678094",
+            async: true
+        }],
         meta: [{
                 charset: 'utf-8',
             },
@@ -51,6 +56,7 @@ export default {
         './plugins/moment.js',
         './plugins/snotify.js',
         './plugins/vuesax.js',
+        { src: '~/plugins/vue-google-adsense', ssr: false }
 
 
     ],
@@ -66,10 +72,7 @@ export default {
         'bootstrap-vue/nuxt',
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
-        '@nuxtjs/auth',
-        ['@nuxtjs/google-adsense', {
-            id:"ca-app-pub-3940256099942544/6300978111" 
-          }]
+        '@nuxtjs/auth'
     ],
     auth: {
         // Options
