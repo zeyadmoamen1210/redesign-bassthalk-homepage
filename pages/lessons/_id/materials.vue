@@ -537,8 +537,7 @@ export default {
   created() {
     this.getVideos()
     this.getPdfs()
-    console.log('moment', this.$moment('2020-06-29T02:37:12.641Z').fromNow())
-    console.log('moment locale', this.$moment.locale())
+   
   },
   watch: {
     // selectedVideo: function (val) {
@@ -569,7 +568,6 @@ export default {
       this.$axios
         .put(`comments/${this.currentComment.id}`, form_data)
         .then((res) => {
-          console.log(res)
           this.modelPopupEdit = false
           this.$snotify.success('تم التعديل بنجاح')
           let x = this.selectedVideoComments.findIndex(
@@ -620,7 +618,6 @@ export default {
               this.$axios
                 .delete(`comments/${comment.id}/replies/${reply.id}`)
                 .then((res) => {
-                  console.log(res)
                   let x = this.selectedVideoComments.find(
                     (ele) => ele.id == comment.id
                   )
@@ -717,7 +714,6 @@ export default {
     fileSelected(e) {
       if (e.target.files.length > 0) {
         this.url = ''
-        // console.log("files", e.target.files);
         this.commentPhoto = e.target.files[0]
         this.url = URL.createObjectURL(this.commentPhoto)
       }
@@ -726,7 +722,6 @@ export default {
     replyImageSelected(e) {
       if (e.target.files.length > 0) {
         this.url = ''
-        //  console.log(e.target.attributes.getNamedItem('comment').value);
         this.replyPhoto = e.target.files[0]
         // this.url = URL.createObjectURL(this.replyPhoto);
       }
@@ -759,7 +754,6 @@ export default {
             // this.$snotify.success(`تم تعديل البيانات بنجاح`);
           })
           .catch((err) => {
-            console.log(err)
           })
       }
     },
@@ -781,12 +775,10 @@ export default {
           .then((res) => {
             this.selectedVideoComments.unshift(res.data)
             this.commentContent = ''
-            console.log(res)
 
             this.$snotify.success(`تم إضافة تعليقك بنجاح`)
           })
           .catch((err) => {
-            console.log(err)
           })
       }
     },
@@ -816,7 +808,6 @@ export default {
         .catch((err) => {
           this.isLoading = false
 
-          console.log(err)
         })
     },
     getSelectedVideoComments() {
@@ -825,14 +816,12 @@ export default {
         .get(`videos/${this.selectedVideo.id}/comments`)
         .then((res) => {
           this.selectedVideoComments = res.data.docs
-          console.log('questions ', res)
           this.selectedVideoComments.map(function (value, key) {
             value['replyContent'] = ''
             value['replyImage'] = null
           })
         })
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },
@@ -843,11 +832,9 @@ export default {
           this.pdfs = res.data.materials
         })
         .catch((err) => {
-          console.log(err)
         })
     },
     likedFunc: function (e) {
-      console.log(e.target.children[0])
       e.target.classList.toggle('liked')
       if (e.target.classList.contains('liked')) {
         e.target.classList.add('liked')
@@ -864,10 +851,7 @@ export default {
       }
     },
     commentActive: function (e) {
-      console.log(
-        e.target.parentElement.parentElement.parentElement.nextElementSibling
-          .nextElementSibling
-      )
+  
 
       e.target.parentElement.parentElement.parentElement.nextElementSibling.nextElementSibling.classList.toggle(
         'doubleCommentView'

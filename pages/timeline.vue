@@ -177,7 +177,6 @@ export default {
 
 methods:{
   likedFunc: function(e){
-    console.log(e.target.children[0])
     e.target.classList.toggle('liked')
     if(e.target.classList.contains('liked')){
       e.target.classList.add('liked')
@@ -189,7 +188,6 @@ methods:{
     }
   },
   commentActive: function(e){
-    console.log(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling)
 
     e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.classList.toggle('doubleCommentView')
     if(e.target.parentElement.parentElement.nextElementSibling.nextElementSibling.classList.contains('doubleCommentView')){

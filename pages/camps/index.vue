@@ -72,7 +72,6 @@ export default {
     this.$axios
       .get(`edu-course`)
       .then((res) => {
-        console.log(res)
         this.camps = res.data
       })
       .finally(() => (this.isLoading = false))

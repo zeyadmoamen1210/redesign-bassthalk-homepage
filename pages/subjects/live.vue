@@ -57,17 +57,14 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.subjects = res.data
-          console.log(res)
         })
         .catch((err) => {
           this.isLoading = false
-          console.log(err)
         })
     },
     clicked(subject){
         this.sub = subject
         this.setSubjects()
-        console.log(this.$store.state.subject)
     },
     setSubjects(){
         this.$store.commit('setSubject', this.sub)

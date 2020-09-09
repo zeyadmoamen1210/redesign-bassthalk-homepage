@@ -162,10 +162,8 @@ export default {
         .get(`subjects`)
         .then((res) => {
           this.subjects = res.data
-          console.log(res)
         })
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },

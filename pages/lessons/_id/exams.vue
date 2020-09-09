@@ -352,7 +352,6 @@ export default {
         })
 
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },
@@ -364,7 +363,6 @@ export default {
         })
 
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },
@@ -381,7 +379,6 @@ export default {
           this.getExamQuestions()
         })
         .catch((err) => {
-          console.log(err)
           this.isLoading = false
 
           this.$snotify.warning(
@@ -399,7 +396,6 @@ export default {
           this.questions = res.data.questions
         })
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },
@@ -423,7 +419,6 @@ export default {
           // this.$snotify.success(` حسناً تم تصحيح الإمتحان`)
         })
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
       // this.$snotify.confirm(

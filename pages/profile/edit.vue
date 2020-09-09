@@ -98,7 +98,6 @@ export default {
   methods: {
     changeUserPhoto(e) {
       if (e.target.files.length > 0) {
-        // console.log('files', e.target.files)
         this.photo = e.target.files[0]
 
         this.userPhoto = URL.createObjectURL(this.photo)
@@ -124,7 +123,6 @@ export default {
           this.$snotify.success(`تم تحديث البيانات بنجاح`)
         })
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },

@@ -4,7 +4,9 @@
       <div>
         <div class="dashboard">
           <div class="container">
-            <div class="stats">
+
+            <Loading v-if="isLoading" />
+            <div class="stats" v-else>
               <div class="row">
                 <div class="col-md-3" @click="$router.push('/mylessons')">
                   <div class="count-students" style="background-color:#e67e22;border:#e67e22">
@@ -78,22 +80,25 @@
 </template>
 
 <script>
-// import Loading from "../components/Loading";
+import Loading from "@/components/Loading";
 export default {
   // name: "Statistics",
   middleware: 'auth-student',
+  components:{
+    Loading
+  },
 
   data() {
     return {
       stats: [],
+      isLoading:true
     }
   },
 
   created() {
     this.$axios.get(`statistics/student`).then((res) => {
-      console.log(res)
       this.stats = res.data
-    })
+    }).finally(() => this.isLoading = false)
   },
 }
 </script>

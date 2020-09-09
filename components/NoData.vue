@@ -10,7 +10,7 @@
                       alt
                     />
                     <div class="alert" style="width:90%;margin:auto">
-                      <h6 style="text-align:center;">لاتوجد بيانات في هذا القسم</h6>
+                      <h6 style="text-align:center;"> {{msg || "لاتوجد بيانات في هذا القسم"}} </h6>
                     </div>
                   </div>
           </div>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-
+  props:["msg"]
 }
 </script>
 

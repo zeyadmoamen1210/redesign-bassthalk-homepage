@@ -3,6 +3,7 @@
       <div class="container">
           <h3 style="margin-bottom:20px;color: #058ac6;">الإمتحانات</h3>
           <Loading v-if="isLoading"/>
+          <NoData v-if="!isLoading && exams.length == 0"/>
          <div v-else>
              <div class="row">
               <div class="col-md-4" v-for="ex in exams" :key="ex.id">
@@ -46,9 +47,11 @@
 
 <script>
 import Loading from '@/components/Loading'
+import NoData from '@/components/NoData'
 export default {
     components:{
-        Loading
+        Loading,
+        NoData
     },
     data(){
         return {
@@ -58,7 +61,6 @@ export default {
     },
     created(){
         this.$axios.get(`statistics/myexams`).then(res => {
-            console.log(res)
             this.exams = res.data
         }).finally(() => this.isLoading = false)
     }

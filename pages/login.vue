@@ -113,7 +113,6 @@ export default {
         .loginWith('google')
         .then((res) => {})
         .catch((e) => {
-          console.log(e)
         })
     },
     async login() {
@@ -135,7 +134,6 @@ export default {
         this.isLoading = false
 
         this.$snotify.error(`عفوا من فضلك تاكد من اسم المستخدم وكلمة المرور`)
-        console.log(err)
       }
     },
   },

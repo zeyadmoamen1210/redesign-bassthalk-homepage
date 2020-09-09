@@ -72,7 +72,6 @@ export default {
     }
   },
   created() {
-    // console.log(this.$auth.user.level)
     if (this.$auth.user.level > 0) {
       this.$router.push({ path: '/subjects' })
     }
@@ -85,11 +84,9 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.systems = res.data
-          console.log('systems', res.data)
         })
         .catch((err) => {
           this.isLoading = false
-          console.log(err)
         })
     },
     systemChange() {
@@ -105,7 +102,6 @@ export default {
       this.classes = this.levels.find((level) => {
         return level.id === this.form.level.id
       }).classes
-      // console.log('classes', this.form.level)
     },
     setLearningPath() {
       this.isLoading = true
@@ -125,7 +121,6 @@ export default {
           })
         })
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },

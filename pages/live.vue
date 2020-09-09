@@ -158,7 +158,6 @@ methods:{
     }
   },
   placeholdInput: function(e){
-    console.log('clicked');
     e.target.previousElementSibling.classList.toggle("show")
     if(e.target.previousElementSibling.classList.contains('show')){
       e.target.previousElementSibling.style.display="none"

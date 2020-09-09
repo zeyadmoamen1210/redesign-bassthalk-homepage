@@ -150,7 +150,6 @@ export default {
         })
 
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },

@@ -3,6 +3,7 @@
       <div class="container">
           <h3 style="margin-bottom:20px;color: #058ac6;">دروسي</h3>
           <Loading v-if="isLoading"/>
+            <NoData v-if="!isLoading && lessons.length == 0"/>
          <div v-else>
              <div class="row">
               <div class="col-md-4" v-for="lesson in lessons" :key="lesson.id">
@@ -29,9 +30,11 @@
 
 <script>
 import Loading from '@/components/Loading'
+import NoData from '@/components/NoData'
 export default {
     components:{
-        Loading
+        Loading,
+        NoData
     },
     data(){
         return {

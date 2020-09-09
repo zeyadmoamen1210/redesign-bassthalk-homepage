@@ -75,7 +75,9 @@
                         </a>
 
                         <vs-dropdown-menu>
-                          <vs-dropdown-item  v-for="(noti,index) in allNotification" :key="index">
+                          <Loading v-if="isLoading" />
+                          <NoData msg="لا توجد إشعارات جديدة" v-else-if="!isLoading && allNotification.length == 0" />
+                          <vs-dropdown-item  v-else v-for="(noti,index) in allNotification" :key="index">
                               <div
                           style="margin-bottom:15px;overflow:hidden;padding: 10px;background: #ececec;"
                         >
@@ -405,14 +407,19 @@
 
 <script>
 import Loading from '../components/Loading'
+import NoData from '@/components/NoData'
 export default {
+  components:{
+    Loading,
+    NoData
+  },
   data() {
     return {
       dropdown: false,
       count: 5,
       notification: false,
       allNotification: [],
-      isLoaing: false,
+      isLoading: false,
     }
   },
   computed: {
@@ -667,7 +674,14 @@ export default {
   }
 
   .loggedDropdown{
-    .vs-dropdown--item-link{
+    .a-icon{
+      white-space: nowrap;
+          max-width: 75px;
+    display: inline-block;
+    /* direction: ltr; */
+    overflow: hidden;
+    padding-top: 7px;
+    text-overflow: ellipsis;
     }
     .vs-con-dropdown{
       h6{

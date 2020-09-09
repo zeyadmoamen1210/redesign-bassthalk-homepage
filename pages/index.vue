@@ -579,11 +579,9 @@ export default {
   },
   created() {
     this.$axios.get(`partners`).then((res) => {
-      console.log(res)
       this.partners = res.data
     })
     this.$axios.get(`about`).then((res) => {
-      console.log('ABOUT ', res)
       this.about = res.data
     })
     this.getBestStudents()
@@ -601,7 +599,6 @@ export default {
         .get(`questions-admin`)
         .then((res) => {
           this.studentsQuestions = res.data
-          console.log(res)
         })
         .finally(() => (this.isLoading = false))
     },
@@ -610,7 +607,6 @@ export default {
       this.$axios
         .post(`questions-students`, { question: this.question })
         .then((res) => {
-          console.log(res)
           this.question = ''
           this.$snotify.success(`تم إرسال السؤال بنجاح`)
         })
@@ -625,7 +621,6 @@ export default {
           .get(`classes/${this.$auth.user.class.id}/rank`)
           .then((res) => {
             this.students = res.data
-            console.log(res)
           })
           .finally(() => (this.isLoading = false))
       }

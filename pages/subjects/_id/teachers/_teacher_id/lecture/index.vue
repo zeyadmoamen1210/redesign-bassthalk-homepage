@@ -104,15 +104,12 @@ export default {
         }
     },
     created(){
-        // console.log(this.$store.state.teacher)
-        // console.log(this.$store.state.subject)
+    
         this.$axios.get(`subjects/${this.$route.params.id}/lectures?teacher=${this.$route.params.teacher_id}`).then(res => {
-            console.log(res)
             this.lectures = res.data.lectures
         })
 
         this.$axios.get('teachers').then(res => {
-          console.log(res.data)
           this.teacher = res.data.find(teach => teach.id == this.$route.params.teacher_id)
         })
     },

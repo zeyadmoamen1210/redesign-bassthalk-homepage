@@ -64,7 +64,6 @@ export default {
     }
   },
   created() {
-    // console.log('logined user', this.$auth.user.role)
     // if (this.$auth?.user?.role == 'student') {
     // } else {
     //   this.$router.push({ path: '/' })
@@ -78,11 +77,9 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.systems = res.data
-          console.log('systems', res.data)
         })
         .catch((err) => {
           this.isLoading = false
-          console.log(err)
         })
     },
     systemChange() {
@@ -98,7 +95,6 @@ export default {
       this.classes = this.levels.find((level) => {
         return level.id === this.form.level.id
       }).classes
-      // console.log('classes', this.form.level)
     },
     updateLearningPath() {
       this.isLoading = true
@@ -121,7 +117,6 @@ export default {
         })
         .catch((err) => {
           this.isLoading = false
-          console.log(err)
         })
     },
   },

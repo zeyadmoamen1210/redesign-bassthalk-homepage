@@ -66,7 +66,6 @@ export default {
         (teach) => teach.id == this.$route.params.teacher_id
       )
       this.setTeacher()
-      console.log(this.$store.state.teacher)
     })
   },
   methods: {

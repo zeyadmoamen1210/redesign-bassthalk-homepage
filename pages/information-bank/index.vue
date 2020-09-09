@@ -289,7 +289,6 @@ export default {
         if (this.seconds > 0) {
           this.seconds--
         }
-        // console.log(this.seconds)
         if (this.seconds == 0) {
           clearInterval(this.x)
         }
@@ -304,7 +303,6 @@ export default {
       if (this.seconds > 0) {
         this.answer = e.answer
       }
-      // console.log(this.chooseModel)
     },
     getBankQuestions() {
       this.$axios

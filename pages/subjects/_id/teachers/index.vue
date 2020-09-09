@@ -81,7 +81,6 @@ export default {
     this.$axios
       .get(`subjects/${this.$route.params.id}/teachers`)
       .then((res) => {
-        console.log('Teachers', res)
         this.teachers = res.data
       })
   },

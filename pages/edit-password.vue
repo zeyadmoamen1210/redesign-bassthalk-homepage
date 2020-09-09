@@ -135,7 +135,6 @@ export default {
         })
     },
     async register() {
-      //console.log(this.Servies_Offer);
       this.isLoading = true
 
       let signUpForm = new FormData()
@@ -211,7 +210,6 @@ export default {
         .catch((error) => {
           this.isLoading = false
 
-          //console.log(error.res);
         })
     },
 

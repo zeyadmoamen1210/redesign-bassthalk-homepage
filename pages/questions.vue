@@ -133,7 +133,6 @@ export default {
             this.isLoading = true
             this.$axios.post(`questions-students`, {question: this.question})
             .then(res => {
-                console.log(res)
                 this.$snotify.success(`تم إرسال السؤال بنجاح`);
                 this.questions.push(res.data)
                 this.question = ''
@@ -143,13 +142,11 @@ export default {
         getMyQuestions(){
           this.$axios.get(`statistics/myquestions`).then(res => {
             this.myQuestionsAsStud = res.data
-            console.log(res)
           })
         }
     },
     created(){
       this.$axios.get(`statistics/myquestions`).then(res => {
-            console.log(res)
             this.questions = res.data
         }).finally(() => this.isLoading = false)
 

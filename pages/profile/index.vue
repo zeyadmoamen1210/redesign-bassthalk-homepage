@@ -250,7 +250,6 @@ export default {
     // this.$axios
     //   .get(`mypoints`)
     //   .then((res) => {
-    //     console.log('points ', res)
     //     this.points = res.data.docs
     //   })
     //   .finally(() => (this.isLoading = false))
@@ -258,7 +257,6 @@ export default {
     this.$axios
       .get(`mystatistics?type=exam`)
       .then((res) => {
-        console.log('exam => ', res)
         this.examStats = res.data.docs
         this.examStatsExams = res.data.docs.exam
         this.examPage = res.data.page
@@ -271,7 +269,6 @@ export default {
       .get(`mystatistics?type=lesson`)
       .then((res) => {
         this.isLoading = true
-        console.log('lesson => ', res)
         this.lessonStats = res.data.docs
         this.lessonStatsLesson = res.data.docs.lesson
         this.TotalLessonspoints = res.data.total
@@ -284,7 +281,6 @@ export default {
     this.$axios
       .get(`mystatistics?type=bank`)
       .then((res) => {
-        console.log('bank => ', res)
         this.isLoading = true
 
         this.bankStats = res.data.docs
@@ -334,7 +330,6 @@ export default {
   watch: {
     currentPage(val) {
       this.$axios.get(`mypoints?page=${val}`).then((res) => {
-        console.log('points ', res)
         this.points = res.data.docs
         this.totalPages = res.data.totalPages
       })
@@ -344,7 +339,6 @@ export default {
       this.$axios
         .get(`mystatistics?type=exam&page=${val}`)
         .then((res) => {
-          console.log('exam page => ', res)
           this.examStats = res.data.docs
           this.examStatsExams = res.data.docs.exam
           this.examPage = res.data.page
@@ -357,7 +351,6 @@ export default {
       this.$axios
         .get(`mystatistics?type=bank&page=${val}`)
         .then((res) => {
-          console.log('bank => ', res)
           this.isLoading = true
 
           this.bankStats = res.data.docs
@@ -373,7 +366,6 @@ export default {
         .get(`mystatistics?type=lesson`)
         .then((res) => {
           this.isLoading = true
-          console.log('lesson => ', res)
           this.lessonStats = res.data.docs
           this.lessonStatsLesson = res.data.docs.lesson
           this.TotalLessonspoints = res.data.total

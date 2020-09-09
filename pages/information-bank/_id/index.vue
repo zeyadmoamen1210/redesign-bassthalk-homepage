@@ -78,7 +78,6 @@ export default {
         })
         .then(res => {
           clearInterval(this.x)
-          console.log(res)
         })
       }else if(this.question.type == 'truefalse'){
         this.$axios.post(`information-bank/questions/${this.$route.params.id}/done`, {
@@ -87,7 +86,6 @@ export default {
         })
         .then(res => {
           clearInterval(this.x)
-          console.log(res)
         })
       }
       
@@ -95,8 +93,8 @@ export default {
     secondsCountDown(){
          this.x = setInterval(() => {
        this.seconds--
-       console.log(this.seconds)
-       if(this.seconds == 0){
+
+if(this.seconds == 0){
          clearInterval(this.x)
        } 
       }, 1000);
@@ -104,16 +102,13 @@ export default {
     },
     truefalseHandle(val){
       this.truefalseModel = Boolean(val)
-      console.log(this.truefalseModel)
     },
     chooseHandle(val){
       this.chooseModel = val
-      console.log(this.chooseModel)
     }
   },
   created(){
     this.$axios.get(`information-bank/questions/${this.$route.params.id}`).then(res => {
-      console.log(res)
       this.question = res.data
       this.selectedComponent = res.data.type
       this.secondsCountDown()

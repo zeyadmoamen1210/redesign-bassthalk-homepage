@@ -142,7 +142,6 @@ export default {
           this.getExamQuestions()
         })
         .catch((err) => {
-          console.log(err)
         })
     },
     getExamQuestions() {
@@ -155,7 +154,6 @@ export default {
           this.questions = res.data.questions
         })
         .catch((err) => {
-          console.log(err)
         })
         .finally(() => (this.isLoading = false))
     },
@@ -184,7 +182,6 @@ export default {
                     )
                   })
                   .catch((err) => {
-                    console.log(err)
                   })
                   .finally(() => (this.isLoading = false))
               },

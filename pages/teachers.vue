@@ -74,7 +74,6 @@ export default {
       .get('/statistics/teachers/subjects')
       .then((res) => {
         this.teachers = res.data
-        console.log(res)
       })
       .finally(() => (this.isLoading = false))
   },
