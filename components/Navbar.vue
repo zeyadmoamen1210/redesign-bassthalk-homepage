@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-before">
+  <div class="navbar-before" >
     <div class="navbar-big">
       <div class="container">
         <div class="row">
@@ -20,7 +20,6 @@
                   >الرئيسية</nuxt-link>
                 </li>
 
-                <!-- <li v-if="$auth.user">{{$auth.user}}</li> -->
                 <!-- <li>
                   <nuxt-link to>من نحن</nuxt-link>
                 </li>
@@ -52,18 +51,68 @@
                   <nuxt-link exact-active-class="active" to="/teachers">المدرسين</nuxt-link>
                 </li>
                 <li>
-                  <div>
+                  <div >
+
+
+                      <vs-dropdown 
+                        :color="colorx"  
+                        :vs-trigger-click="true"	
+                        @click.native="dropdownClick"
+                        class="notification"
+                        v-if="$auth.loggedIn">
+
+                        <a class="a-icon" href="#">
+                        <div style="position:absolute" @click="count = 0">
+                          <div
+                          v-if="count > 0"
+                           @click="count = 0"
+                            style="position: absolute;color:#FFF;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;"
+                            class="noti-content"
+                          >{{count}}</div>
+                        </div>
+                        <i @click="dropdownClick" class="fas fa-bell"></i>
+                        الإشعارات
+                        </a>
+
+                        <vs-dropdown-menu>
+                          <Loading v-if="isLoading" />
+                          <NoData msg="لا توجد إشعارات جديدة" v-else-if="!isLoading && allNotification.length == 0" />
+                          <vs-dropdown-item  v-else v-for="(noti,index) in allNotification" :key="index">
+                              <div
+                          style="margin-bottom:15px;overflow:hidden;padding: 10px;background: #ececec;"
+                        >
+                          <div class="icon" style="width:50px;float:right;padding:7px">
+                            <img
+                              style="border-radius:50%;width:100%;height:100%"
+                              :src="noti.icon"
+                              alt
+                            />
+                          </div>
+                          <div class="body" style="width: calc(100% - 50px);float:right">
+                            <h6>{{noti.title}}</h6>
+                            <p style="    font-size: 12px;margin-bottom:0">{{noti.body}}</p>
+                          </div>
+                        </div>
+                          </vs-dropdown-item>
+                          
+                        </vs-dropdown-menu>
+                      </vs-dropdown>
+
+
+<!-- 
                     <b-dropdown
+                      
                       size="lg"
                       variant="link"
                       toggle-class="text-decoration-none"
                       no-caret
+                     
                     >
                       <template v-slot:button-content>
                         <div style="position:absolute" @click="count = 0">
                           <div
-                            v-if="count > 0"
-                            @click="count = 0"
+                          v-if="count > 0"
+                           @click="count = 0"
                             style="position: absolute;color:#FFF;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;"
                             class="noti-content"
                           >{{count}}</div>
@@ -87,7 +136,8 @@
                           </div>
                         </div>
                       </b-dropdown-item>
-                    </b-dropdown>-->
+                    </b-dropdown> -->
+
                     <!-- <b-dropdown :html="`<div style='position:absolute'><i class='fas fa-bell'></i><div style='position: absolute;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
                         ${count}</div></div>`" style="position:relative" id="dropdown-1" text="Dropdown Button"  class="m-md-2 notification">
     
@@ -148,71 +198,86 @@
             </div>
           </div>
 
-          <div class="loggedDropdown" style="width:16%;position: relative;">
-            <vs-dropdown
-              :color="colorx"
-              style="text-align: left;position: absolute;left: 0;margin-top: 50px;padding: 0 30px;height: 36px;background: #0989c3;color: #FFF;"
-              :vs-trigger-click="true"
-              @click.native="dropdownClick"
-              v-if="$auth.loggedIn"
-            >
-              <a class="a-icon" href="#">
-                <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
-                <span class="list-down">
-                  <i class="fas fa-sort-down"></i>
-                </span>
 
-                <div
-                  style="position: absolute;left: -39px;top: -13px;width: 60px;height: 60px;border-radius: 50%;overflow: hidden;border: 4px solid; border-color: #0989c3;"
-                >
-                  <img
-                    class="img-circle"
-                    :src="$auth.user.photo"
-                    style="width:100%;height:100%"
-                    alt
-                  />
-                </div>
+
+
+
+
+
+    <div class="loggedDropdown" style="width:16%;position: relative;">
+              <vs-dropdown 
+                        :color="colorx"
+                        style="text-align: left;position: absolute;left: 0;margin-top: 50px;padding: 0 30px;height: 36px;background: #0989c3;color: #FFF;"
+                        :vs-trigger-click="true"	
+                        @click.native="dropdownClick"
+                        v-if="$auth.loggedIn">
+
+                        <a class="a-icon" href="#">
+                         <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
+              <span class="list-down">
+                <i class="fas fa-sort-down"></i>
+              </span>
+
+              <div
+                style="position: absolute;left: -39px;top: -13px;width: 60px;height: 60px;border-radius: 50%;overflow: hidden;border: 4px solid; border-color: #0989c3;"
+              >
+                <img class="img-circle" :src="$auth.user.photo" style="width:100%;height:100%" alt />
+              </div>
+                        </a>
+
+                        <vs-dropdown-menu style="min-width: 132px;">
+                          <vs-dropdown-item style="font-size: 13px;" to="/profile">
+                <i class="fas fa-user-alt"></i> الملف الشخصى
+                          </vs-dropdown-item>
+
+
+
+
+                            <vs-dropdown-item style="font-size: 13px;" >
+                            <nuxt-link to="/questions">
+                <i class="fas fa-question"></i> الأسئلة
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+                           <vs-dropdown-item >
+                             <nuxt-link to="/statistics">
+                <i style="    margin-left: 5px;" class="fas fa-chart-bar"></i> الإحصائيات
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+
+                          <vs-dropdown-item style="font-size: 13px;">
+                             <nuxt-link to="/profile/edit">
+                <i style="    margin-left: 5px;" class="fas fa-user-edit"></i>تعديل البيانات
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+
+                           <vs-dropdown-item >
+                              <nuxt-link to="/edit-path">
+                <i style="    margin-left: 5px;" class="fas fa-book-reader"></i>تعديل المسار
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+                           <vs-dropdown-item style="font-size:13px">
+                               <a @click="logout">
+                <i style="    margin-left: 5px;" class="fas fa-sign-out-alt"></i>تسجيل الخروج
               </a>
+                          </vs-dropdown-item>
 
-              <vs-dropdown-menu style="min-width: 132px;">
-                <vs-dropdown-item style="font-size: 13px;" to="/profile">
-                  <i class="fas fa-user-alt"></i> الملف الشخصى
-                </vs-dropdown-item>
+                          
+                        </vs-dropdown-menu>
+                      </vs-dropdown>
+    </div>
 
-                <vs-dropdown-item style="font-size: 13px;">
-                  <nuxt-link to="/questions">
-                    <i class="fas fa-question"></i> الأسئلة
-                  </nuxt-link>
-                </vs-dropdown-item>
 
-                <vs-dropdown-item>
-                  <nuxt-link to="/statistics">
-                    <i style="    margin-left: 5px;" class="fas fa-chart-bar"></i> الإحصائيات
-                  </nuxt-link>
-                </vs-dropdown-item>
 
-                <vs-dropdown-item style="font-size: 13px;">
-                  <nuxt-link to="/profile/edit">
-                    <i style="    margin-left: 5px;" class="fas fa-user-edit"></i>تعديل البيانات
-                  </nuxt-link>
-                </vs-dropdown-item>
 
-                <vs-dropdown-item>
-                  <nuxt-link to="/edit-path">
-                    <i style="    margin-left: 5px;" class="fas fa-book-reader"></i>تعديل المسار
-                  </nuxt-link>
-                </vs-dropdown-item>
-
-                <vs-dropdown-item style="font-size:13px">
-                  <a @click="logout">
-                    <i style="    margin-left: 5px;" class="fas fa-sign-out-alt"></i>تسجيل الخروج
-                  </a>
-                </vs-dropdown-item>
-              </vs-dropdown-menu>
-            </vs-dropdown>
-          </div>
-
-          <!-- 
+<!-- 
           <b-dropdown
             class="auth"
             
@@ -228,9 +293,13 @@
              
             </b-dropdown-item>
 
+
             <b-dropdown-item href="#">
              
             </b-dropdown-item>
+
+                                
+
 
             <b-dropdown-item href="#">
              
@@ -244,7 +313,7 @@
             <b-dropdown-item href="#">
             
             </b-dropdown-item>
-          </b-dropdown>-->
+          </b-dropdown> -->
         </div>
       </div>
     </div>
@@ -266,62 +335,71 @@
           </div>
         </div>
 
-        <vs-sidebar
-          position-right
-          parent="body"
-          default-index="1"
-          color="primary"
-          class="sidebarx"
-          spacer
-          v-model="dropdown"
-        >
-          <div class="header-sidebar" slot="header">
-            <vs-avatar size="70px" v-if="$auth.loggedIn" :src="$auth.user.photo" />
-            <vs-avatar
-              size="70px"
-              v-else
-              src="data:image/png;base64,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"
-            />
-            <h4>{{ $auth.loggedIn ? $auth.user.username : 'يرجي تسجيل الدخول ' }}</h4>
-          </div>
 
-          <vs-sidebar-item to="/" index="1">الرئيسية</vs-sidebar-item>
+          <vs-sidebar position-right  parent="body" default-index="1"  color="primary" class="sidebarx" spacer v-model="dropdown">
 
-          <vs-sidebar-item to="/subjects" index="2">المواد الدراسية</vs-sidebar-item>
+      <div class="header-sidebar"  slot="header">
+        <vs-avatar  size="70px" v-if="$auth.loggedIn" :src="$auth.user.photo"/>
+        <vs-avatar size="70px" v-else src="data:image/png;base64,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" />
+        <h4>
+          {{ $auth.loggedIn ? $auth.user.username : 'يرجي تسجيل الدخول ' }}
+        </h4>
 
-          <vs-sidebar-item to="/information-bank" index="3">بنك المعلومات</vs-sidebar-item>
-          <vs-sidebar-item to="/best-students" index="4">المتفوقين</vs-sidebar-item>
-          <vs-sidebar-item to="/live-teach" index="5">الكورسات</vs-sidebar-item>
+      </div>
 
-          <vs-sidebar-item to="/camps" index="6">المعسكرات</vs-sidebar-item>
+      <vs-sidebar-item to="/" index="1">
+ 
+                
+              الرئيسية
+      </vs-sidebar-item>
 
-          <vs-sidebar-item to="/teachers" index="15">المدرسين</vs-sidebar-item>
+      <vs-sidebar-item to="/subjects" index="2">
+              المواد الدراسية
+      </vs-sidebar-item>
 
-          <vs-sidebar-item v-if="$auth.loggedIn" to="/statistics" index="7">الإحصائيات</vs-sidebar-item>
+      <vs-sidebar-item to="/information-bank" index="3">
+        بنك المعلومات
+      </vs-sidebar-item>
+      <vs-sidebar-item to="/best-students"  index="4" >
+        المتفوقين
+      </vs-sidebar-item>
+      <vs-sidebar-item to="/live-teach" index="5" > 
+              الكورسات
+      </vs-sidebar-item>
 
-          <vs-sidebar-item v-if="$auth.loggedIn" to="/profile/edit" index="8">تعديل البيانات</vs-sidebar-item>
+          <vs-sidebar-item to="/camps"  index="6" >
+            المعسكرات 
+          </vs-sidebar-item>
 
-          <vs-sidebar-item v-if="$auth.loggedIn" to="/edit-path" index="9">تعديل المسار</vs-sidebar-item>
+          <vs-sidebar-item to="/teachers"  index="15" >
+            المدرسين 
+          </vs-sidebar-item>
+          
 
-          <div class="footer-sidebar" slot="footer">
-            <vs-button
-              icon="reply"
-              v-if="$auth.loggedIn"
-              @click="logout"
-              color="danger"
-              type="flat"
-              icon-pack="fas fa-sign-out-alt"
-            >تسجيل الخروج</vs-button>
-            <vs-button
-              icon="reply"
-              v-else
-              @click="$router.push('/login')"
-              color="success"
-              type="flat"
-              icon-pack="fas fa-sign-in-alt"
-            >تسجيل الدخول</vs-button>
-          </div>
-        </vs-sidebar>
+           <vs-sidebar-item v-if="$auth.loggedIn"  to="/statistics"  index="7" >
+           الإحصائيات 
+          </vs-sidebar-item>
+
+          <vs-sidebar-item v-if="$auth.loggedIn" to="/profile/edit" index="8" >
+               تعديل البيانات
+          </vs-sidebar-item>
+
+          <vs-sidebar-item v-if="$auth.loggedIn" to="/edit-path" index="9" >
+            تعديل المسار 
+          </vs-sidebar-item>
+
+      <div class="footer-sidebar"  slot="footer">
+        <vs-button icon="reply" v-if="$auth.loggedIn" @click="logout" color="danger" type="flat" icon-pack="fas fa-sign-out-alt">
+          تسجيل الخروج
+        </vs-button>
+            <vs-button icon="reply" v-else @click="$router.push('/login')" color="success" type="flat" icon-pack="fas fa-sign-in-alt">
+          تسجيل الدخول
+        </vs-button>
+      </div>
+
+    </vs-sidebar>
+
+     
       </div>
     </div>
   </div>
@@ -331,9 +409,9 @@
 import Loading from '../components/Loading'
 import NoData from '@/components/NoData'
 export default {
-  components: {
+  components:{
     Loading,
-    NoData,
+    NoData
   },
   data() {
     return {
@@ -372,9 +450,9 @@ export default {
       .finally(() => (this.isLoading = false))
   },
   methods: {
-    dropdownClick() {
+    dropdownClick(){
       this.count = 0
-      console.log('count', this.count)
+      console.log("count", this.count)
     },
     async logout() {
       await this.$auth.logout()
@@ -398,20 +476,20 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-sidebar--background {
-  top: 0 !important;
+.vs-sidebar--background{
+  top:0 !important;
 }
-.vs-sidebar {
-  z-index: 9999999999 !important;
-  .vs-sidebar--header {
-    .header-sidebar {
-      text-align: center;
-      h4 {
+ .vs-sidebar{
+    z-index:9999999999 !important;
+    .vs-sidebar--header{
+      .header-sidebar{
         text-align: center;
+        h4{
+          text-align: center;
+        }
       }
     }
   }
-}
 .navbar-before-small {
   .dropdown {
     margin-top: 13px;
@@ -449,7 +527,7 @@ export default {
     float: left;
     button {
       color: #fff;
-      box-shadow: none !important;
+        box-shadow: none !important;
       font-family: 'CustomFontMedium';
     }
   }
@@ -475,6 +553,7 @@ export default {
 }
 
 .navbar-before {
+ 
   .nav-logo {
     height: 100px;
     width: 96px;
@@ -519,7 +598,7 @@ export default {
     }
 
     .fas.fa-bell {
-      color: #5d5d5d;
+          color: #5d5d5d;
     }
     .dropdown.dropdown-menu:focus {
       top: 0 !important;
@@ -589,26 +668,27 @@ export default {
     }
   }
 
-  .vs-dropdown--item-link {
-    font-size: 11px;
+  .vs-dropdown--item-link{
+      font-size: 11px;
+
   }
 
-  .loggedDropdown {
-    .a-icon {
+  .loggedDropdown{
+    .a-icon{
       white-space: nowrap;
-      max-width: 75px;
-      display: inline-block;
-      /* direction: ltr; */
-      overflow: hidden;
-      padding-top: 7px;
-      text-overflow: ellipsis;
+          max-width: 75px;
+    display: inline-block;
+    /* direction: ltr; */
+    overflow: hidden;
+    padding-top: 7px;
+    text-overflow: ellipsis;
     }
-    .vs-con-dropdown {
-      h6 {
-        margin-bottom: 0px;
-        display: inline-block;
-        color: #fff;
-        text-transform: capitalize;
+    .vs-con-dropdown{
+      h6{
+            margin-bottom: 0px;
+    display: inline-block;
+    color: #FFF;
+    text-transform: capitalize;
       }
     }
   }
@@ -623,10 +703,10 @@ export default {
         font-size: 14px;
         display: inline-block;
         padding: 0 10px;
-        font-family: 'CustomFontBold';
+         font-family: "CustomFontBold";
         a {
           color: #333;
-          font-family: 'customFontMedium';
+           font-family: "customFontMedium";
           &:hover {
             text-decoration: none;
           }
@@ -910,3 +990,4 @@ export default {
 
           </ul>
         </div> -->
+-->
