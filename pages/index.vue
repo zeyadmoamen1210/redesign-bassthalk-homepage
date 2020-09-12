@@ -569,7 +569,6 @@
 
 <script>
 import Loading from '../components/Loading'
-import adsense from '../components/Adsense'
 
 export default {
   components: {
