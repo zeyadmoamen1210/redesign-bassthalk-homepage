@@ -586,7 +586,7 @@ export default {
     background: #f1f1f1;
   
     border-radius: 9px;
-  .vs-dropdown-menu{
+  .vs-dropdown--menu{
       height:300px;
     overflow-y: scroll;
         &::-webkit-scrollbar {
