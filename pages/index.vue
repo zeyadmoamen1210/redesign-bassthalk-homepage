@@ -6,11 +6,11 @@
           <div class="container-fluid">
             <div class="row">
               <!-- ad-format="auto" -->
-              <adsense
+              <!-- <adsense
                 ad-slot="8131047019"
                 ad-client="ca-pub-6232929088678094"
                 ad-style="display:block"
-              ></adsense>
+              ></adsense> -->
               <div class="col-md-6">
                 <div class="main-content">
                   <h1>دروسك في بيتك</h1>
@@ -573,7 +573,6 @@ import Loading from '../components/Loading'
 export default {
   components: {
     Loading,
-    adsense,
   },
   data() {
     return {
