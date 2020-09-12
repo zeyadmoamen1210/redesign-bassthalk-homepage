@@ -64,21 +64,7 @@
           </div>
         </div>
 
-        <div class="container">
-          
-           <div class="row" style="margin-top:15px;">
-            <div class="col-md-4">
-            <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  />
-          </div>
-           <div class="col-md-4">
-            <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  />
-          </div>
-           <div class="col-md-4">
-            <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  />
-          </div>
-          
-          </div>
-        </div>
+    
 
         <div class="view-cont first" style="overflow: hidden;">
           <div class="row">

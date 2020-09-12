@@ -136,6 +136,7 @@ export default {
                 this.$snotify.success(`تم إرسال السؤال بنجاح`);
                 this.questions.push(res.data)
                 this.question = ''
+                
             }).finally(() => this.isLoading = false)
         },
 

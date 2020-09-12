@@ -88,42 +88,7 @@
           </div>
         </div>
 
-        <div class="row" style="margin-top:35px;">
-            <div class="col-md-4" style="margin-bottom:10px">
-               <in-feed-adsense
-        root-class="VueAdsense"
-        class="Ads-wrapper"
-        data-ad-client="ca-pub-6232929088678094"
-                data-ad-slot="8131047019"
-         />
-
-            <Adsense
-            data-ad-client="ca-pub-6232929088678094"
-                data-ad-slot="8131047019"
-                >
-            </Adsense>
-
-            <InArticleAdsense
-    data-ad-client="ca-pub-6232929088678094"
-                data-ad-slot="8131047019">
-</InArticleAdsense>
-
-          </div>
-           <!-- <div class="col-md-4" style="margin-bottom:10px">
-            <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  />
-          </div>  -->
-           <!-- <div class="col-md-4" style="margin-bottom:10px"> -->
-            <!-- <adsbygoogle id="ca-app-pub-6232929088678094/1782859577"  /> -->
-
-            <!-- <ins class="adsbygoogle"
-              style="display:block"
-              data-ad-client="ca-app-pub-6232929088678094/1782859577"
-              data-ad-format="auto"
-              data-full-width-responsive="true"></ins>
-          </div> -->
-         
-        </div>
-
+      
       </div>
     </div>
   </div>
