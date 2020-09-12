@@ -74,7 +74,7 @@
                         الإشعارات
                         </a>
 
-                        <vs-dropdown-menu>
+                        <vs-dropdown-menu class="notification-content">
                           <Loading v-if="isLoading" />
                           <NoData msg="لا توجد إشعارات جديدة" v-else-if="!isLoading && allNotification.length == 0" />
                           <vs-dropdown-item  v-else v-for="(noti,index) in allNotification" :key="index">
@@ -476,6 +476,38 @@ export default {
 </script>
 
 <style lang="scss">
+
+
+.notification-content{
+        padding-bottom: 10px;
+
+    ul{
+      box-shadow: 1px solid rgba(0,0,0,.1) !important;
+            max-height:400px;
+
+      overflow-y: scroll;
+        &::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+&::-webkit-scrollbar-track {
+  background: #0000002e; 
+}
+ 
+/* Handle */
+&::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+&::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+    }
+  }
+
+
 .vs-sidebar--background{
   top:0 !important;
 }
@@ -586,28 +618,7 @@ export default {
     background: #f1f1f1;
   
     border-radius: 9px;
-  .vs-dropdown--menu{
-      height:300px;
-    overflow-y: scroll;
-        &::-webkit-scrollbar {
-  width: 6px;
-}
-
-/* Track */
-&::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-/* Handle */
-&::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-/* Handle on hover */
-&::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
-  }
+  
     // box-shadow: 0 4px 25px 0 rgb(33 37 41 / 13%);
     .noti-content {
       position: absolute;
