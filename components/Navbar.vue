@@ -215,7 +215,7 @@
                         <a class="a-icon" href="#">
                          <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
               <span class="list-down">
-                <i class="fas fa-sort-down"></i>
+                <i style="color:#FFF" class="fas fa-sort-down"></i>
               </span>
 
               <div
