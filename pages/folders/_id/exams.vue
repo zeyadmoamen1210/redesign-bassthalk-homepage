@@ -9,10 +9,10 @@
                     <div class="exam-section" @click="$router.push(`/courseExam/${exam.id}`)">
                         <h5> {{exam.title}} </h5>
                         <div class="exam-difficultyLevel">
-
-                             <img v-if="exam.difficultyLevel == 'difficult'" src="@/assets/imgs/easy-level-3.png" alt="">
+                            <img src="@/assets/imgs/school-sport-day-008-512.png" style="width:100px;height:100px" />
+                             <!-- <img v-if="exam.difficultyLevel == 'difficult'" src="@/assets/imgs/easy-level-3.png" alt="">
                             <img v-else-if="exam.difficultyLevel == 'middle'" src="@/assets/imgs/easy-level-2.png" alt="">
-                            <img v-else-if="exam.difficultyLevel == 'easy'" src="@/assets/imgs/easy-level-1.png" alt="">
+                            <img v-else-if="exam.difficultyLevel == 'easy'" src="@/assets/imgs/easy-level-1.png" alt=""> -->
 
                             <span> {{exam.difficultyLevel}} </span> 
                            
@@ -64,8 +64,14 @@ export default {
     .exam-section{
         padding: 15px;
         box-shadow: 0px 1px 9px 0px #DDD;
+        transition: all .5s ease;
+        cursor: pointer;
+        &:hover{
+            transform: translateY(-10px);
+        }
         h5{
             text-align: center;
+            font-size: 25px;
         }
         >span{
             display: block;

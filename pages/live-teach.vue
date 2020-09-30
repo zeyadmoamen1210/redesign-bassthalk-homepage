@@ -4,27 +4,84 @@
     <div class="container" >
       <Loading v-if="isLoading" />
     <NoData v-else-if="!isLoading && studCourses.length == 0" />
-      <div class="row" v-else>
-        <div class="col-md-4" v-for="course in studCourses" :key="course.id">
-          <div class="course" @click="startInCourse(course)">
-            <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
-            <h5> {{course.course.nameAr}} </h5>
-            <span> {{course.course.descriptionAr}} </span>
 
-            <div class="teacher">
-              <div>
-                <vs-avatar size="60px" v-if="course.course.teacher.photo" :src="course.course.teacher.photo"></vs-avatar>
-                <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
+         <div>
+          <vs-tabs :color="colorx">
+            <vs-tab label="قيد الإنتظار"  @click="colorx = '#0989c3'">
+                <div class="row">
+                  <div :style="{cursor: course.status == 'accepted' ? 'pointer':'auto'}" v-if="course.status == 'pending'" class="col-md-4" v-for="course in studCourses" :key="course.id">
+                <div class="course" @click="startInCourse(course)">
+                  <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
+                  <h5> {{course.course.nameAr}} </h5>
+                  <span> {{course.course.descriptionAr}} </span>
+
+                  <div class="teacher">
+                    <div>
+                      <vs-avatar size="60px" v-if="course.course.teacher.photo" :src="course.course.teacher.photo"></vs-avatar>
+                      <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
+                    </div>
+                    <div>
+                      <h6> {{course.course.teacher.username}} </h6>
+                      <p> {{course.course.teacher.description}} </p>
+                    </div>
+                    
+                  </div>
+                </div>
               </div>
-              <div>
-                <h6> {{course.course.teacher.username}} </h6>
-                <p> {{course.course.teacher.description}} </p>
+                </div>
+            </vs-tab>
+            <vs-tab label="تم الموافقة"  @click="colorx = '#27ae60'">
+             <div class="row">
+                 <div class="col-md-4" v-if="course.status == 'accepted'" v-for="course in studCourses" :key="course.id">
+                <div class="course" @click="startInCourse(course)">
+                  <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
+                  <h5> {{course.course.nameAr}} </h5>
+                  <span> {{course.course.descriptionAr}} </span>
+
+                  <div class="teacher">
+                    <div>
+                      <vs-avatar size="60px" v-if="course.course.teacher.photo" :src="course.course.teacher.photo"></vs-avatar>
+                      <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
+                    </div>
+                    <div>
+                      <h6> {{course.course.teacher.username}} </h6>
+                      <p> {{course.course.teacher.description}} </p>
+                    </div>
+                    
+                  </div>
+                </div>
               </div>
-              
-            </div>
-          </div>
+             </div>
+
+            </vs-tab>
+            <vs-tab label="تم الرفض"  @click="colorx = '#c0392b'">
+              <div class="row">
+                 <div class="col-md-4" v-if="course.status == 'refused'" v-for="course in studCourses" :key="course.id">
+                  <div class="course" @click="startInCourse(course)">
+                    <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
+                    <h5> {{course.course.nameAr}} </h5>
+                    <span> {{course.course.descriptionAr}} </span>
+
+                    <div class="teacher">
+                      <div>
+                        <vs-avatar size="60px" v-if="course.course.teacher.photo" :src="course.course.teacher.photo"></vs-avatar>
+                        <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
+                      </div>
+                      <div>
+                        <h6> {{course.course.teacher.username}} </h6>
+                        <p> {{course.course.teacher.description}} </p>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </vs-tab>
+          </vs-tabs>
         </div>
-      </div>
+
+       
     </div>
   </div>
 </template>
@@ -40,6 +97,7 @@ export default {
   },
   data(){
     return{
+      colorx: '#0989c3',
       page: 0,
       isLoading: true,
       totalPage:0,
@@ -79,6 +137,11 @@ export default {
     position:relative;
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
     padding: 19px;
+    transition: all .5s ease;
+    margin-bottom: 15px;
+        &:hover{
+          transform: translateY(-10px);
+        }
     .status{
       position: absolute;
       top: 15px;

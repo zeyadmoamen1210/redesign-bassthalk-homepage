@@ -138,6 +138,12 @@ export default {
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
     padding: 19px;
     padding-bottom: 38px;
+
+    transition: all .5s ease;
+    margin-bottom: 15px;
+        &:hover{
+          transform: translateY(-10px);
+        }
     .status{
       position: absolute;
     bottom: 0;
