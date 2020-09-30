@@ -77,14 +77,16 @@
 
         <div class="row" v-else>
           <div class="col-md-3" v-for="(subject, index) in subjects" :key="index">
-            <nuxt-link :to="'/subjects/' + subject.id + '/units'">
               <div class="subject-cont">
-                <div class="subject-icon-img">
+                <div class="subject-icon-img" @click="$router.push('/subjects/' + subject.id + '/units')">
                   <img :src="subject.icon" alt />
                 </div>
+
                 <h3>{{ subject.nameAr }}</h3>
+                <vs-button @click="$router.push(`/subjects/${subject.id}/courses`)"> الكورسات </vs-button>
+
               </div>
-            </nuxt-link>
+
           </div>
         </div>
 

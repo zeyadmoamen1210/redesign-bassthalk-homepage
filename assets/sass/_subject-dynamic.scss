@@ -20,12 +20,15 @@
       color: #058ac6bd;
     }
     .subject-cont {
-      max-height: 220px;
-      min-height: 220px;
-      padding: 26px;
+      
+      padding: 26px 26px 7px;
       margin: 20px 0;
       box-shadow: 0px 1px 21px 0px #ddd;
       border-radius: 10px;
+      >button{
+        width: 100%;
+        text-align: center;
+      }
       .subject-icon-img{
          margin: auto;
       width: 124px;

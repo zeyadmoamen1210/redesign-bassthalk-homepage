@@ -1,12 +1,28 @@
 <template>
-  <div class="live-teaching">
-    <div class="container">
-      <div class="bannar">
-        <div class="container">
-          <h3>قريبًا فى بستطهالك</h3>
-          <h3
-            style="margin-top: 20px;font-size: 24px;color: #5f5f5f;line-height: 1.5;"
-          >سوف يتوافر لدينا العديد من المدرسين لشرح جميع الدروس أون لاين</h3>
+  <div class="live-teaching-page">
+    
+    <div class="container" >
+      <Loading v-if="isLoading" />
+    <NoData v-else-if="!isLoading && studCourses.length == 0" />
+      <div class="row" v-else>
+        <div class="col-md-4" v-for="course in studCourses" :key="course.id">
+          <div class="course" @click="startInCourse(course)">
+            <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
+            <h5> {{course.course.nameAr}} </h5>
+            <span> {{course.course.descriptionAr}} </span>
+
+            <div class="teacher">
+              <div>
+                <vs-avatar size="60px" v-if="course.course.teacher.photo" :src="course.course.teacher.photo"></vs-avatar>
+                <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
+              </div>
+              <div>
+                <h6> {{course.course.teacher.username}} </h6>
+                <p> {{course.course.teacher.description}} </p>
+              </div>
+              
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -14,29 +30,91 @@
 </template>
 
 <script>
+import Loading from '@/components/Loading'
+import NoData from '@/components/NoData'
 export default {
   middleware: 'auth-student',
+  components:{
+    Loading,
+    NoData,
+  },
+  data(){
+    return{
+      page: 0,
+      isLoading: true,
+      totalPage:0,
+      studCourses: []
+    }
+  },
+  filters:{
+    statusArabic(val){
+      if(val == 'accepted') return 'مقبول';
+      else if (val == 'refused') return 'مرفوض';
+      else return 'قيد الإنتظار'
+    }
+  },
+  methods:{
+    startInCourse(course){
+      if(course.status == 'accepted'){
+        this.$router.push(`course/${course.course.id}?nextLive=${course.course.lecture}`)
+      }
+    }
+  },
+  created(){
+    this.$axios.get(`/student/courses`).then(res => {
+      console.log(res)
+      this.studCourses = res.data.docs
+      this.page = res.data.page
+      this.totalPage = res.data.totalPages
+    }).finally(() => this.isLoading = false)
+  }
 }
 </script>
 
 <style lang="scss">
-.live-teaching {
-  position: relative;
-  height: 700px;
-  .bannar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-image: url('../assets/imgs/header.png');
-    /* background-position-y: 577px; */
-    background-repeat: no-repeat;
-    background-position: 0 -227px;
-    h3 {
-      width: 500px;
-      margin-top: 100px;
+
+.live-teaching-page{
+  padding-top:80px;
+  .course{
+    position:relative;
+    box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+    padding: 19px;
+    .status{
+      position: absolute;
+      top: 15px;
+      left: 0;
+      padding: 3px;
+      color: #FFF;
+      font-family: "CustomFontBold";
+    }
+    .accepted{
+      background: #27ae60;
+    }
+    .refused{
+      background: #c0392b;
+    }
+    .pending{
+      background: #0989c3;
+    }
+    >span{
+          display: block;
+    text-align: center;
+    color: #c5c5c5;
+    font-family: "CustomFontRegular";
+    }
+    >h5{
+      margin-bottom: 0;
+    text-align: center;
+    }
+    .teacher{
+      display: flex;
+    margin-top: 19px;
+    background: #f7f7f7;
+    border-top: 1px solid #EEE;
+    h6{
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
     }
   }
 }
