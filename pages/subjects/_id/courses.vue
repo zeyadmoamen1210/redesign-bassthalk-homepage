@@ -74,6 +74,7 @@ export default {
           this.enrollmentCourse.code = course.code
       },
       EnrollCourseMain(){
+        this.currCourseToEnrollPopup = false;
           this.isLoading = true;
           this.$axios.post(`courses/${this.enrollmentCourse.id}/enrollment`, {
               code: this.enrollmentCourse.code

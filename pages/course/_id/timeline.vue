@@ -1,12 +1,23 @@
 <template>
   <div class="timeline-page">
       <div class="container">
-         
-          <div class="timeline-section">
-              <h5> التايم لاين </h5>
-                 <Loading v-if="isLoading" />
-                 <NoData v-else-if="!isLoading && posts.length == 0" />
-              <div class="timeline-posts-comments" v-else>
+          <h5> التايم لاين </h5>
+            <div class="createPost">
+                <div class="form-group">
+                    <input @keydown.enter="createPost" type="text" v-model="postCreate.content" class="form-control" placeholder="كتابة منشور">
+                    <!-- <div class="file-upload">
+                        <div>
+                            <i class="fas fa-file-image"></i>
+                            <input type="file" @change="fileSelected">
+                        </div>
+                    </div>
+                    <div class="url-preview" v-if="url"> <img :src="url" alt=""> </div> -->
+                </div>
+            </div>
+           <Loading  v-if="isLoading"/>
+           <NoData  v-else-if="!isLoading && posts.length == 0"/>
+          <div v-else class="timeline-section">
+              <div class="timeline-posts-comments">
                   <div class="timeline-post" v-for="post in posts" :key="post.id">
                           <div class="post-grid">
                             <div class="user-img">
@@ -21,14 +32,32 @@
                                 <span> {{ $moment(post.user.createdAt).fromNow() }} </span>
                                 <p> {{post.content}} </p>
                             </div>
+
+                            <div class="img-preview" v-if="post.image"> <img :src="post.image" alt=""> </div>
                           </div>
 
                          <div class="comment-like">
-                          <div :id="`like-${post.id}`" @click="LikePost(post)"> 
+                          <div :style="{color: post.isLiked ? 'blue' : '#747474'}" :id="`like-${post.id}`" @click="LikePost(post)"> 
                               <img  src="@/assets/imgs/timeline-like.png" alt="">
                                 أعجبني
                               </div>
                           <div v-b-toggle="`collapse-${post.id}`"><img src="@/assets/imgs/timeline-comment.png" alt="">  نعليق </div>
+                          
+
+                          <vs-dropdown vs-trigger-click	class="button-operation" v-if="$auth.user.role == 'admin' || $auth.user.id == post.user.id">
+                            <a class="a-icon" href="#">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </a>
+
+                            <vs-dropdown-menu>
+                                <vs-dropdown-item @click="editPost(post)">
+                                تعديل
+                                </vs-dropdown-item>
+                                <vs-dropdown-item @click="deletePost(post)">
+                                حذف
+                                </vs-dropdown-item>
+                            </vs-dropdown-menu>
+                            </vs-dropdown>
                         </div>
 
 
@@ -39,6 +68,21 @@
                            <section class="comments">
                              <div class="row">
                                  <div class="col-md-10" style="margin:auto;margin-top: 22px;">
+
+                                     <div class="createPost">
+                <div class="form-group">
+                    <input @keydown.enter="createComment(post)" type="text" v-model="commentCreate.content" class="form-control" placeholder="كتابة منشور">
+                    <!-- <div class="file-upload">
+                        <div>
+                            <i class="fas fa-file-image"></i>
+                            <input type="file" @change="fileSelectedComment">
+                        </div>
+                    </div>
+                    <div class="url-preview" v-if="commentUrl"> <img :src="commentUrl" alt=""> </div> -->
+                </div>
+            </div>
+
+
                                        <div class="timeline-comment" v-for="comment in post.comments" :key="comment.id">
                                             <div class="post-grid">
                                                 <div class="user-img">
@@ -54,16 +98,48 @@
                                                     <p> {{comment.content}} </p>
                                                 </div>
 
-                                                  
+                                                  <div class="url-preview" v-if="comment.image"> <img :src="comment.image" alt=""> </div>
                                             </div>
 
                                             <div class="comment-like">
                                                     <div v-b-toggle="`collapse-${comment.id}`"><img src="@/assets/imgs/timeline-comment.png" alt=""> {{comment.numberOfreplies}} ردود </div>
+                                                      <vs-dropdown vs-trigger-click v-if="$auth.user.role == 'admin' || $auth.user.id == post.user.id"	class="button-operation">
+                            <a class="a-icon" href="#">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </a>
+
+                            <vs-dropdown-menu>
+                                <vs-dropdown-item @click="editComment(comment)">
+                                تعديل
+                                </vs-dropdown-item>
+                                <vs-dropdown-item @click="deleteComment(comment)">
+                                حذف
+                                </vs-dropdown-item>
+                            </vs-dropdown-menu>
+                            </vs-dropdown>
                                             </div>
+
+                                            
 
                                             <b-collapse :id="`collapse-${comment.id}`">
                                               <section class="replies">
                                                     <div class="col-md-10" style="margin:auto;margin-top: 22px;">
+
+
+                                                        <div class="createPost">
+                <div class="form-group">
+                    <input @keydown.enter="createReply(comment)" type="text" v-model="replyCreate.content" class="form-control" placeholder="كتابة رد">
+                    <!-- <div class="file-upload">
+                        <div>
+                            <i class="fas fa-file-image"></i>
+                            <input type="file" @change="fileSelectedReply">
+                        </div>
+                    </div>
+                    <div class="url-preview" v-if="replyUrl"> <img :src="replyUrl" alt=""> </div> -->
+                </div>
+            </div>
+
+
                                                     <div class="timeline-replies" v-for="reply in comment.replies" :key="reply.id">
                                                         <div class="post-grid">
                                                             <div class="user-img">
@@ -79,7 +155,23 @@
                                                                 <p> {{reply.content}} </p>
                                                             </div>
 
-                                                            
+                                                             <div class="url-preview" v-if="reply.image"> <img :src="reply.image" alt=""> </div>
+
+                                                               <vs-dropdown v-if="$auth.user.role == 'admin' || $auth.user.id == post.user.id" vs-trigger-click	class="button-operation">
+                            <a class="a-icon" href="#">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </a>
+
+                            <vs-dropdown-menu>
+                                <vs-dropdown-item @click="editReply(comment, reply)">
+                                تعديل
+                                </vs-dropdown-item>
+                                <vs-dropdown-item @click="deleteReply(comment, reply)">
+                                حذف
+                                </vs-dropdown-item>
+                            </vs-dropdown-menu>
+                            </vs-dropdown>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -96,29 +188,335 @@
               </div>
           </div>
       </div>
+
+
+      <!-- For Edit Post -->
+      <vs-popup class="holamundo"  title="تعديل المنشور" :active.sync="editPostPopup">
+        <div class="post-popup">
+            <div class="form-group">
+                <input class="form-control" type="text" v-model="forEditPost.content" id="">
+            </div>
+            <vs-button @click="editPostMain"> تعديل </vs-button>
+        </div>
+    </vs-popup>
+
+
+     <!-- For Edit Comment -->
+    <vs-popup class="holamundo"  title="تعديل التعليق" :active.sync="editCommentPopup">
+      <div class="post-popup">
+            <div class="form-group">
+                <input class="form-control" type="text" v-model="forEditComment.content" id="">
+            </div>
+            <vs-button @click="editCommentMain"> تعديل </vs-button>
+        </div>
+    </vs-popup>
+
+     <!-- For Edit Reply -->
+    <vs-popup class="holamundo"  title="تعديل الرد" :active.sync="editReplyPopup">
+      <div class="post-popup">
+            <div class="form-group">
+                <input class="form-control" type="text" v-model="forEditReply.content" id="">
+            </div>
+            <vs-button @click="editReplyMain"> تعديل </vs-button>
+        </div>
+    </vs-popup>
   </div>
 </template>
 
 <script>
-import NoData from '@/components/NoData';
-import Loading from '@/components/Loading';
+import Loading from '@/components/Loading'
+import NoData from '@/components/NoData'
 export default {
     components:{
-        NoData,
-        Loading
+        Loading,
+        NoData
     },
     data(){
         return {
             page:0,
-            isLoading: true,
             totalPages:0,
-            posts: []
+            posts: [],
+            isLoading: true,
+            photo:"",
+            url:"",
+            commentUrl:"",
+            replyUrl:"",
+            replyPhoto:"",
+            commentPhoto:"",
+            postCreate:{
+                content:""
+            },
+            commentCreate:{
+                content:""
+            },
+            replyCreate:{
+                content:""
+            },
+            forEditReply:{
+                content:"",
+                id:""
+            },
+            forEditComment:{
+                content:"",
+                id:""
+            },
+            forEditPost:{
+                content:"",
+                id:""
+            },
+        
+            editPostPopup: false,
+
+           
+            editCommentPopup: false,
+
+
+            editReplyPopup: false,
+            commentId: ""
         }
     },
     created(){
         this.fetchAllPosts()
     },
     methods:{
+        editPost(post){
+            this.forEditPost.id = post.id;
+            this.forEditPost.content = post.content;
+            this.editPostPopup = true
+        },
+        editReply(comment, reply){
+            this.forEditReply.id = reply.id;
+            this.forEditReply.content = reply.content;
+            this.commentId = comment.id
+            this.editReplyPopup = true
+        },
+        editReplyMain(){
+            this.isLoading = true
+            this.editReplyPopup = false
+            this.$axios.put(`comments/${this.commentId}/replies/${this.forEditReply.id}`, {
+                content: this.forEditReply.content
+            })
+                .then(res => {
+                    this.fetchAllPosts()
+                    this.$snotify.success("تم التعديل بنجاح")
+                
+            }).finally(() => this.isLoading = false)
+        },
+        editPostMain(){
+            this.isLoading = true
+            this.editPostPopup = false
+            this.$axios.put(`posts/${this.forEditPost.id}`, {
+                content: this.forEditPost.content
+            }).then(res => {
+                this.fetchAllPosts()
+                
+                this.$snotify.success('تم التعديل بنجاح')
+            }).finally(() => this.isLoading = false)
+        },
+
+
+
+         editComment(comment){
+            this.forEditComment.id = comment.id;
+            this.forEditComment.content = comment.content;
+            this.editCommentPopup = true
+        },
+        editCommentMain(){
+            this.isLoading = true
+            this.$axios.put(`comments/${this.forEditComment.id}`, {
+                content: this.forEditComment.content
+            }).then(res => {
+                this.fetchAllPosts()
+                this.editCommentPopup = false
+                this.$snotify.success('تم التعديل بنجاح')
+            }).finally(() => this.isLoading = false)
+        },
+
+
+
+        deletePost(post){
+
+             this.$snotify.confirm("هل تريد حذف  المنشور  المُحدد ", " هل أنت متأكد", {
+        showProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        buttons: [
+          {
+            text: "موافق",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = true;
+
+               this.$axios.delete(`posts/${post.id}`)
+                .then(res => {
+                    this.fetchAllPosts()
+                    this.$snotify.success("تم الحذف بنجاح")
+                
+            }).finally(() => this.isLoading = false)
+            }
+          },
+          {
+            text: "إلغاء",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = false;
+            }
+          }
+        ]
+      });
+        },
+
+
+
+        deleteComment(comment){
+
+             this.$snotify.confirm("هل تريد حذف  التعليق  المُحدد ", " هل أنت متأكد", {
+        showProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        buttons: [
+          {
+            text: "موافق",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = true;
+
+               this.$axios.delete(`comments/${comment.id}`)
+                .then(res => {
+                    this.fetchAllPosts()
+                    this.$snotify.success("تم الحذف بنجاح")
+                
+            }).finally(() => this.isLoading = false)
+            }
+          },
+          {
+            text: "إلغاء",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = false;
+            }
+          }
+        ]
+      });
+        },
+
+
+
+         deleteReply(comment, reply){
+
+             this.$snotify.confirm("هل تريد حذف  الرد  المُحدد ", " هل أنت متأكد", {
+        showProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        buttons: [
+          {
+            text: "موافق",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = true;
+
+               this.$axios.delete(`comments/${comment.id}/replies/${reply.id}`)
+                .then(res => {
+                    this.fetchAllPosts()
+                    this.$snotify.success("تم الحذف بنجاح")
+                
+            }).finally(() => this.isLoading = false)
+            }
+          },
+          {
+            text: "إلغاء",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = false;
+            }
+          }
+        ]
+      });
+        },
+
+        fileSelected(e){
+            if(e.target.files.length > 0){
+                this.photo = e.target.files[0];
+                this.url = URL.createObjectURL(this.photo)
+            }
+        },
+        fileSelectedComment(e){
+            if(e.target.files.length > 0){
+                this.commentPhoto = e.target.files[0];
+                this.commentUrl = URL.createObjectURL(this.commentPhoto)
+            }
+        },
+        fileSelectedReply(e){
+            if(e.target.files.length > 0){
+                this.replyPhoto = e.target.files[0];
+                this.replyUrl = URL.createObjectURL(this.replyPhoto)
+            }
+        },
+        createPost(){
+            if(this.postCreate.content !== ""){
+                this.isLoading = true;
+                let from_date = new FormData();
+                from_date.append("content", this.postCreate.content)
+                if(this.photo !== ""){
+                     from_date.append("image", this.photo)
+                }
+                this.$axios.post(`courses/${this.$route.params.id}/posts`, from_date).then(res => {
+                    this.fetchAllPosts()
+                    this.postCreate.content = ""
+                    this.photo="",
+                    this.url="",
+                    this.commentUrl="",
+                    this.replyUrl="",
+                    this.replyPhoto="",
+                    this.commentPhoto="",
+
+                    this.$snotify.success("تم إضافة المنشور بنجاح")
+                }).finally(() => this.isLoading = false)
+            }
+        },
+        createComment(post){
+            if(this.commentCreate.content !== ""){
+                this.isLoading = true;
+                let from_date = new FormData();
+                from_date.append("content", this.commentCreate.content)
+                if(this.commentPhoto !== ""){
+                     from_date.append("image", this.commentPhoto)
+                }
+                this.$axios.post(`posts/${post.id}/comments`, from_date).then(res => {
+                    this.fetchAllPosts()
+                                    this.commentCreate.content = ""
+
+                    this.photo="",
+                    this.url="",
+                    this.commentUrl="",
+                    this.replyUrl="",
+                    this.replyPhoto="",
+                    this.commentPhoto="",
+                    this.$snotify.success("تم إضافة التعليق بنجاح")
+                }).finally(() => this.isLoading = false)
+            }
+        },
+        createReply(comment){
+            if(this.replyCreate.content !== ""){
+                this.isLoading = true;
+                let from_date = new FormData();
+                from_date.append("content", this.replyCreate.content)
+                if(this.replyPhoto !== ""){
+                     from_date.append("image", this.replyPhoto)
+                }
+                this.$axios.post(`comments/${comment.id}/replies`, from_date).then(res => {
+                    this.fetchAllPosts()
+                    this.replyCreate.content = ""
+                    this.photo="",
+                    this.url="",
+                    this.commentUrl="",
+                    this.replyUrl="",
+                    this.replyPhoto="",
+                    this.commentPhoto="",
+                    this.$snotify.success("تم إضافة المنشور بنجاح")
+                }).finally(() => this.isLoading = false)
+            }
+        },
         fetchAllPosts(){
             this.$axios.get(`courses/${this.$route.params.id}/posts`).then(res => {
                 console.log(res)
@@ -142,7 +540,9 @@ export default {
             }
             this.$axios.patch(`posts/${post.id}/like`).then(res => {
                 console.log(res)
-
+                res.data
+                let postIndex = this.posts.findIndex(obj => obj.id === res.data.id)
+                this.posts[postIndex] = res.data
             })
         },
     }
@@ -152,6 +552,56 @@ export default {
 <style lang="scss">
 .timeline-page{
     padding-top:80px;
+    .container{
+        >h5{
+            font-weight: bold;
+            color: #058ac6;
+            font-size: 29px;
+            margin-bottom: 16px;
+        }
+    }
+    .createPost{
+        .form-group{
+            position: relative;
+            .url-preview{
+                width: 100px;
+                margin-top: 15px;
+                border: 1px solid #058ac6;
+                padding: 2px;
+                img{
+                    width:100%;
+                    height:100%
+                }
+            }
+            .file-upload{
+                position: absolute;
+                top: 0;
+                left: 0;
+                >div{
+                    position: relative;
+                    input{
+                            width: 50px;
+                            opacity: 0;
+                            z-index: 2;
+                            cursor: pointer;
+                    }
+                    input,i{
+                        position: absolute;
+                        top:0;
+                        left: 0;
+                    }
+                    i{
+                        cursor: pointer;
+                        left: 20px;
+                        top: 6px;
+                        z-index: 1;
+                        font-size: 22px;
+                        color: #058ac6;
+                    }
+                }
+            }
+        }
+    }
     .timeline-section{
         h5{
             font-weight: bold;
@@ -165,6 +615,12 @@ export default {
                 background: #efefef;
                 margin-bottom: 10px;
                 border-radius: 5px;
+                position: relative;
+                .button-operation{
+                    position: absolute;
+                    top: 10px;
+                    left: 19px;
+                }
                 .post-grid{
                     display: flex;
                     .user-img{
@@ -230,6 +686,7 @@ export default {
                 border-top:1px solid #CCC;
                 border-bottom:1px solid #CCC;
                 padding:10px 0;
+                position: relative;
             }
         }
         .replies{
@@ -237,6 +694,7 @@ export default {
                 border-top:1px solid #CCC;
                 border-bottom:1px solid #CCC;
                 padding:10px 0;
+                position: relative;
             }
         }
     }
