@@ -20,6 +20,10 @@
             </div>
             
           </div>
+
+          <div v-if="!isLoading && !selectedExam && !exam">
+            <h5> الإمتحان قيد التصحيح و سيتم إرسال النتيجة لك فور الإنتهاء </h5>
+          </div>
         
 
         <div class="container" v-if="selectedExam">
@@ -267,6 +271,7 @@ export default {
           this.getExamQuestions()
         }).catch(error => {
           this.getExamQuestions()
+          
         }).finally(() => this.isLoading = false)
         
         
@@ -293,7 +298,8 @@ export default {
         console.log(this.allPoints)
         console.log(this.allMarks)
         })
-        .catch((err) => {
+        .catch((e) => {
+         
         })
         .finally(() => (this.isLoading = false))
     },

@@ -1,73 +1,15 @@
 <template>
   <div>
     <div class="container">
-      <!-- 
-       <div class="subjects-navbar" style="text-align:center">
-         <button
-          :style="{
-            outline: 'none',
-            color: tabIndex == 1 ? '#46a8d5' : '',
-            'border-color': tabIndex == 1 ? '#46a8d5' : '',
-          }"
-          @click="(tabIndex = 1)"
-          type="line"
-        
-        >
-        <img src="../../assets/imgs/noun_knowledge_2042727.png" alt="">
-        الرئيسية</button>
-
-         <button
-          :style="{
-            outline: 'none',
-            color: tabIndex == 2 ? '#46a8d5' : '',
-            'border-color': tabIndex == 2 ? '#46a8d5' : '',
-          }"
-          @click="(tabIndex = 2)"
-          type="line"
-        
-        >
-        <img v-if="tabIndex !== 2" src="../../assets/imgs/noun_knowledge_2042727.png" alt="">
-        <img v-else src="../../assets/imgs/noun_knowledge_-1.png" alt="">
-        بنك المعلومات</button>
-        <button
-          :style="{
-            'padding-top': '5px',
-            outline: 'none',
-            color: tabIndex == 3 ? '#46a8d5' : '',
-            'border-color': tabIndex == 3 ? '#46a8d5' : '',
-          }"
-          
-        >
-        <nuxt-link to="/subjects/live">
-          <img v-if="tabIndex !== 3" src="../../assets/imgs/live-dark.png" alt="">
-          بث مباشر
-        </nuxt-link>
-        </button>
-
-         <button
-          :style="{
-            outline: 'none',
-            color: tabIndex == 4 ? '#46a8d5' : '',
-            'border-color': tabIndex == 4 ? '#46a8d5' : '',
-          }"
-          @click="(tabIndex = 4)"
-          type="line"
-        >
-        <img src="../../assets/imgs/noun_knowledge_2042727.png" alt="">
-        المتفوقين</button>
-      </div>-->
-
-      <div v-show="tabIndex == 1" class="subjects">
+     
+      <div  class="subjects">
         <div class="form-title">
-          <!-- <h4>
-            <img src="../../assets/imgs/noun_classroom_-1.png" alt />
-            المواد الدراسية
-          </h4>-->
-          <div class="head-who">
+       
+          <div style="width:410px" class="head-who">
             <span></span>
             <span></span>
             <span></span>
-            <h3>المواد الدراسية</h3>
+            <h3>كورسات المواد الدراسية</h3>
             <span></span>
             <span></span>
             <span></span>
@@ -78,8 +20,8 @@
         <div class="row" v-else>
           <div class="col-md-3" v-for="(subject, index) in subjects" :key="index">
               <div class="subject-cont">
-                <div class="subject-icon-img" @click="$router.push('/subjects/' + subject.id + '/units')">
-                  <img :src="subject.icon" alt />
+                <div class="subject-icon-img" @click="$router.push(`subjects/${subject.id}/courses`)">
+                  <img :src="subject.icon" alt /> 
                 </div>
 
                 <h3>{{ subject.nameAr }}</h3>

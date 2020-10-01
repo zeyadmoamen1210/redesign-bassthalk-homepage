@@ -62,6 +62,7 @@ export default {
     }
     padding-top:80px;
     .exam-section{
+        margin-bottom:15px;
         padding: 15px;
         box-shadow: 0px 1px 9px 0px #DDD;
         transition: all .5s ease;

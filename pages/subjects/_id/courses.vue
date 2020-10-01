@@ -81,6 +81,9 @@ export default {
           }).then(res => {
               this.getMyCourses()
               this.getSubjectCourse()
+          }).catch((error) => {
+            this.currCourseToEnrollPopup = false;
+            this.$snotify.error("الكود الذي أدخلته غير صحيح")
           }).finally(() => this.isLoading = false)
       },
       getSubjectCourse(){
@@ -92,7 +95,7 @@ export default {
 
       this.studCourses.map(studCourse => {
             this.myCourses.map(myCourse => {
-                if(studCourse.id === myCourse.course.id){
+                if(myCourse.course && studCourse.id === myCourse.course.id){
                     studCourse.isChecked = true
                 }
             })
@@ -106,7 +109,7 @@ export default {
 
       this.studCourses.map(studCourse => {
             this.myCourses.map(myCourse => {
-                if(studCourse.id === myCourse.course.id){
+                if(myCourse.course && studCourse.id === myCourse.course.id){
                     studCourse.isChecked = true
                 }
             })

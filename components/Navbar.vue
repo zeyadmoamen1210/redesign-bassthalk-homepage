@@ -41,15 +41,18 @@
                 </li>
 
                 <li>
-                  <nuxt-link exact-active-class="active" to="/live-teach">الكورسات</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/live-teach">كورساتي</nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link exact-active-class="active" to="/courses">الكورسات</nuxt-link>
                 </li>
 
                 <li>
                   <nuxt-link exact-active-class="active" to="/camps">المعسكرات</nuxt-link>
                 </li>
-                <li>
+                <!-- <li>
                   <nuxt-link exact-active-class="active" to="/teachers">المدرسين</nuxt-link>
-                </li>
+                </li> -->
                 <li>
                   <div >
 
@@ -259,6 +262,21 @@
                            <vs-dropdown-item >
                               <nuxt-link to="/edit-path">
                 <i style="    margin-left: 5px;" class="fas fa-book-reader"></i>تعديل المسار
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+                           <vs-dropdown-item >
+                              <nuxt-link to="/live-teach">
+                <i style="    margin-left: 5px;" class="fas fa-book-reader"></i>كورساتي
+              </nuxt-link>
+                          </vs-dropdown-item>
+
+
+
+                           <vs-dropdown-item >
+                              <nuxt-link to="/courses">
+                <i style="    margin-left: 5px;" class="fas fa-book-reader"></i>الكورسات
               </nuxt-link>
                           </vs-dropdown-item>
 
