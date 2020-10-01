@@ -86,12 +86,7 @@ export default {
       required: true,
     },
 
-    isSolving: {
-      required: false,
-    },
-    mark: {
-      required: false,
-    },
+   
   },
 }
 </script>

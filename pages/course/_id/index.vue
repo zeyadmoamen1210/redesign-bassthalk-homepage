@@ -5,7 +5,7 @@
       <div v-else class="tests-level folder-choose">
 
 
-                      <div class="course-content">
+                      <div class="course-content" v-if="$route.query.nextLive">
                       <h5 style="font-weight:100"><span style="font-weight:bold">المحاضرة القادمة : </span> {{nextLife.title}} </h5>
                       <h5 style="font-weight:100"> <span style="font-weight:bold">تاريخ الإنشاء : </span> {{ new Date(nextLife.createdAt).toLocaleDateString() }} </h5>
 
@@ -16,8 +16,14 @@
                                   <div class="course-content"> 
                                     <h6>أقصي عدد <span> {{session.limit}} </span></h6>
                                     <h6>بتاريخ <span> {{new Date(session.time).toLocaleDateString()}} </span></h6>
-                                  
+                                    <h6> عدد المشتركين: <span> {{session.users.length}} </span> </h6>
+                                    <div>
+                                        <vs-button style="text-align:center" v-if="!session.isIn" color="success" @click="addReserve(session)"> التسجيل في السيشن </vs-button>
+                                        <vs-button style="text-align:center" v-else color="danger" @click="deleteReserve(session)"> خروج من السيشن </vs-button>
+
                                   </div>
+                                  </div>
+                                  
                               </div>
                           </div>
                       </div>
@@ -75,6 +81,48 @@ export default {
         this.getNextLec()
     },
     methods:{
+        deleteReserve(session){
+            this.$snotify.confirm("هل تريد الخروج  من السيشن  المُحدد ", " هل أنت متأكد", {
+        showProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        buttons: [
+          {
+            text: "موافق",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = true;
+
+               this.$axios.delete(`/sessions/${session.id}/reserve`)
+                .then(res => {
+                    this.getNextLec()
+                    this.$snotify.success("تم الخروج بنجاح")
+                
+            }).finally(() => this.isLoading = false)
+            }
+          },
+          {
+            text: "إلغاء",
+            action: toast => {
+              this.$snotify.remove(toast.id);
+              this.isLoading = false;
+            }
+          }
+        ]
+      });
+        },
+        addReserve(session){
+            this.isLoading =true;
+            if(session.users.length < session.limit){
+                this.$axios.post(`/sessions/${session.id}/reserve`).then(res => {
+                this.getNextLec()
+                this.$snotify.success(`تم التسجيل في السيشن بنجاح`)
+            }).catch(error => {
+                this.$snotify.error(`غير مسموح بالتسجيل في اكثر من سيشن`)
+            })
+            .finally(() => this.isLoading = false)
+            }
+        },  
         getNextLec(){
            this.$axios.get(`lectures/${this.$route.query.nextLive}`).then(res => {
               console.log("last one => ", res.data)

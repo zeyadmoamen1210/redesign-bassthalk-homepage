@@ -51,6 +51,9 @@ export default {
     answerImage: {
       required: true,
     },
+    exam_id:{
+      required: true,
+    }
   },
   data() {
     return {
@@ -58,6 +61,7 @@ export default {
       answerData: this.answer,
       url: null,
       photo: null,
+      
     }
   },
   created() {
