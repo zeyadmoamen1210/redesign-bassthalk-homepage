@@ -9,8 +9,8 @@
           <vs-tabs :color="colorx">
             <vs-tab label="قيد الإنتظار"  @click="colorx = '#0989c3'">
                 <div class="row">
-                  <div :style="{cursor: course.status == 'accepted' ? 'pointer':'auto'}" v-if="course.status == 'pending'" class="col-md-4" v-for="course in studCourses" :key="course.id">
-                <div class="course" @click="startInCourse(course)">
+                  <div :style="{cursor: course.status == 'accepted' ? 'pointer':'auto'}" v-if="course.course && course.status == 'pending'" class="col-md-4" v-for="course in studCourses" :key="course.id">
+                <div  class="course" @click="startInCourse(course)">
                   <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
                   <h5> {{course.course.nameAr}} </h5>
                   <span> {{course.course.descriptionAr}} </span>
@@ -32,8 +32,8 @@
             </vs-tab>
             <vs-tab label="تم الموافقة"  @click="colorx = '#27ae60'">
              <div class="row">
-                 <div class="col-md-4" v-if="course.status == 'accepted'" v-for="course in studCourses" :key="course.id">
-                <div class="course" @click="startInCourse(course)">
+                 <div class="col-md-4" v-if="course.status == 'accepted' && course.course" v-for="course in studCourses" :key="course.id">
+                <div  class="course" @click="startInCourse(course)">
                   <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
                   <h5> {{course.course.nameAr}} </h5>
                   <span> {{course.course.descriptionAr}} </span>
@@ -56,7 +56,7 @@
             </vs-tab>
             <vs-tab label="تم الرفض"  @click="colorx = '#c0392b'">
               <div class="row">
-                 <div class="col-md-4" v-if="course.status == 'refused'" v-for="course in studCourses" :key="course.id">
+                 <div class="col-md-4" v-if="course.status == 'refused' && course.course" v-for="course in studCourses" :key="course.id">
                   <div class="course" @click="startInCourse(course)">
                     <div :class="{status: true, accepted: course.status == 'accepted', refused: course.status == 'refused', pending: course.status == 'pending'}"> {{course.status | statusArabic}} </div>
                     <h5> {{course.course.nameAr}} </h5>

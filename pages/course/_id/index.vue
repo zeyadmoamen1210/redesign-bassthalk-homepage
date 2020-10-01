@@ -4,22 +4,32 @@
         <Loading v-if="isLoading" />
       <div v-else class="tests-level folder-choose">
 
-
+                       <div style="width:335px;margin-bottom: 40px;" class="head-who">
+            <span></span>
+            <span></span>
+            <span></span>
+            <h3>محتويات الكورس </h3>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
                       <div class="course-content" v-if="$route.query.nextLive">
-                      <h5 style="font-weight:100"><span style="font-weight:bold">المحاضرة القادمة : </span> {{nextLife.title}} </h5>
-                      <h5 style="font-weight:100"> <span style="font-weight:bold">تاريخ الإنشاء : </span> {{ new Date(nextLife.createdAt).toLocaleDateString() }} </h5>
+                      <div style="padding: 28px 13px;background: #f7f7f7;border-bottom: 3px solid #eaeaea;">
+                        <h5 style="font-weight:100"><span style="font-weight:bold;color:#058ac6">المحاضرة القادمة : </span> {{nextLife.title}} </h5>
+                      <h5 style="font-weight:100"> <span style="font-weight:bold;color:#058ac6">تاريخ الإنشاء : </span> {{ new Date(nextLife.createdAt).toLocaleString() }} </h5>
+                      </div>
 
                       <div class="sessions" v-if="nextLife.sessions && nextLife.sessions.length > 0">
                           <h5 style="margin-top:25px"> السيشن : </h5>
                           <div class="row">
                               <div class="col-md-3" v-for="session in nextLife.sessions" :key="session.id">
                                   <div class="course-content"> 
-                                    <h6>أقصي عدد <span> {{session.limit}} </span></h6>
-                                    <h6>بتاريخ <span> {{new Date(session.time).toLocaleDateString()}} </span></h6>
-                                    <h6> عدد المشتركين: <span> {{session.users.length}} </span> </h6>
+                                    <h6 style="text-align:center">أقصي عدد <span> {{session.limit}} </span></h6>
+                                    <h6 style="text-align:center"> <span> {{new Date(session.time).toLocaleString()}} </span></h6>
+                                    <h6 style="text-align:center"> عدد المشتركين: <span> {{session.users.length}} </span> </h6>
                                     <div>
-                                        <vs-button style="text-align:center" v-if="!session.isIn" color="success" @click="addReserve(session)"> التسجيل في السيشن </vs-button>
-                                        <vs-button style="text-align:center" v-else color="danger" @click="deleteReserve(session)"> خروج من السيشن </vs-button>
+                                        <vs-button style="text-align:center;width:100%;font-family: 'CustomFontRegular';" v-if="!session.isIn" color="success" @click="addReserve(session)"> التسجيل في السيشن </vs-button>
+                                        <vs-button style="text-align:center;width:100%;font-family: 'CustomFontRegular';" v-else color="danger" @click="deleteReserve(session)"> خروج من السيشن </vs-button>
 
                                   </div>
                                   </div>

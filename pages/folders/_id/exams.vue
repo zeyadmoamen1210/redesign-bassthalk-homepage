@@ -14,7 +14,7 @@
                             <img v-else-if="exam.difficultyLevel == 'middle'" src="@/assets/imgs/easy-level-2.png" alt="">
                             <img v-else-if="exam.difficultyLevel == 'easy'" src="@/assets/imgs/easy-level-1.png" alt=""> -->
 
-                            <span> {{exam.difficultyLevel}} </span> 
+                            <!-- <span> {{exam.difficultyLevel}} </span>  -->
                            
                         </div>
                     </div>
@@ -70,6 +70,7 @@ export default {
             transform: translateY(-10px);
         }
         h5{
+            color: #0989c3;
             text-align: center;
             font-size: 25px;
         }

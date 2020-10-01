@@ -10,8 +10,15 @@
         </div>
         <Loading v-if="isLoading" />
         
-          <div v-if="inCorrectCase">
-            <h5>الإمتحان في مرحلة التصحيح و سيتم ارساله عند الإنتهاء </h5>
+          <div class="resultExam" v-if="isCorrected == true">
+            <img src="@/assets/imgs/white-shape.png" alt="">
+            
+            <div>
+              <h5 style="color: #FFF;font-size: 28px;padding: 10px;margin-bottom:0"> تم تصحيح الإمتحان </h5>
+              <h5 style="color:#FFF;padding: 0 15px 0;"> {{allPoints}} / <span> {{allMarks}} </span> </h5>
+              <h5 style="color:#FFF;padding: 0 15px 0;"> النسبة المئوية / {{ ((allMarks / allPoints) * 100).toFixed(1)  }} % </h5>
+            </div>
+            
           </div>
         
 
@@ -195,9 +202,12 @@ export default {
       isLoading: true,
       exams: [],
       questions: null,
+      allMarks:0,
+      allPoints:0,
       lessonDetails: null,
 
       examQuestions: [],
+      isCorrected:false,
 
       selectedExamQuestions: [],
       allQuestions: [],
@@ -256,10 +266,7 @@ export default {
 
           this.getExamQuestions()
         }).catch(error => {
-          if(error.response.status === 403){
-            console.log("في مرحلة التصحيح")
-            this.inCorrectCase = true
-          }
+          this.getExamQuestions()
         }).finally(() => this.isLoading = false)
         
         
@@ -274,6 +281,17 @@ export default {
           this.questions = res.data.questions
           this.exam = res.data
         this.selectedExam = res.data
+
+        this.allPoints = res.data.points
+        this.questions.forEach(obj => {
+           if(obj.mark){
+              
+              this.allMarks += obj.mark
+              this.isCorrected = true
+           }
+        })
+        console.log(this.allPoints)
+        console.log(this.allMarks)
         })
         .catch((err) => {
         })
@@ -285,6 +303,8 @@ export default {
       this.$axios
         .post(`exams/${this.exam.id}/done`)
         .then((res) => {
+
+          this.$snotify.success("تم تسليم الإمتحان بنجاح انتظر حتي يتم تصحيحه")
   
 
           // this.selectedExam.mark = res.data.mark
@@ -308,6 +328,30 @@ export default {
 <style lang="scss">
 @import '../../../assets/sass/general-exam-level.scss';
 @import '../../../assets/sass/general-exam-test.scss';
+.tests-level{
+   .resultExam{
+    position: relative;
+    background: #058ac6;
+    padding: 15px;
+    height: 147px;
+    div{
+      position: absolute;
+      width: 100%;
+      z-index: 30;
+    }
+    img{
+      position: absolute;
+    width: 100px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    }
+ 
+
+    
+  }
+}
 .general-exam-content {
   .exam-cont-item {
     overflow: hidden;
@@ -339,6 +383,7 @@ export default {
       }
     }
   }
+ 
   .check-box-ques {
     button {
       padding: 4px 15px;
