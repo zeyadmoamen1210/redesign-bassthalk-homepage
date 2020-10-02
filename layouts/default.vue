@@ -35,6 +35,13 @@ export default {
     }
   },
   created() {
+
+     this.$axios.get(`/student/courses`).then(res => {
+      console.log(res)
+      this.studCourses = res.data.docs
+      this.$store.commit("SET_MY_COURSES", res.data.docs)
+    }).finally(() => this.isLoading = false)
+
     let vm = this
     setTimeout(function () {
       vm.initLoading = false

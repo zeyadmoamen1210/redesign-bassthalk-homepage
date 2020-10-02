@@ -5,13 +5,13 @@
             <div class="createPost">
                 <div class="form-group">
                     <input @keydown.enter="createPost" type="text" v-model="postCreate.content" class="form-control" placeholder="كتابة منشور">
-                    <!-- <div class="file-upload">
+                    <div class="file-upload">
                         <div>
                             <i class="fas fa-file-image"></i>
                             <input type="file" @change="fileSelected">
                         </div>
                     </div>
-                    <div class="url-preview" v-if="url"> <img :src="url" alt=""> </div> -->
+                    <div class="url-preview" v-if="url"> <img :src="url" alt=""> </div>
                 </div>
             </div>
            <Loading  v-if="isLoading"/>
@@ -32,10 +32,10 @@
                                 <span> {{ $moment(post.user.createdAt).fromNow() }} </span>
                                 <p> {{post.content}} </p>
                             </div>
-
-                            <div class="img-preview" v-if="post.image"> <img :src="post.image" alt=""> </div>
                           </div>
-
+                            <div>
+                                <selectedImg style="margin-right: 81px;" :imgUrl="post.image"/>
+                            </div>
                          <div class="comment-like">
                           <div :style="{color: post.isLiked ? 'blue' : '#747474'}" :id="`like-${post.id}`" @click="LikePost(post)"> 
                               <img  src="@/assets/imgs/timeline-like.png" alt="">
@@ -72,14 +72,16 @@
                                      <div class="createPost">
                 <div class="form-group">
                     <input @keydown.enter="createComment(post)" type="text" v-model="commentCreate.content" class="form-control" placeholder="كتابة منشور">
-                    <!-- <div class="file-upload">
+                    <div class="file-upload">
                         <div>
                             <i class="fas fa-file-image"></i>
                             <input type="file" @change="fileSelectedComment">
                         </div>
                     </div>
-                    <div class="url-preview" v-if="commentUrl"> <img :src="commentUrl" alt=""> </div> -->
                 </div>
+                <div>
+                                <selectedImg style="margin-right: 81px;" :imgUrl="commentUrl"/>
+                            </div>
             </div>
 
 
@@ -98,8 +100,11 @@
                                                     <p> {{comment.content}} </p>
                                                 </div>
 
-                                                  <div class="url-preview" v-if="comment.image"> <img :src="comment.image" alt=""> </div>
                                             </div>
+
+                                            <div v-if="comment.image">
+                                <selectedImg style="margin-right: 81px;" :imgUrl="comment.image"/>
+                            </div>
 
                                             <div class="comment-like">
                                                     <div v-b-toggle="`collapse-${comment.id}`"><img src="@/assets/imgs/timeline-comment.png" alt=""> {{comment.numberOfreplies}} ردود </div>
@@ -129,14 +134,16 @@
                                                         <div class="createPost">
                 <div class="form-group">
                     <input @keydown.enter="createReply(comment)" type="text" v-model="replyCreate.content" class="form-control" placeholder="كتابة رد">
-                    <!-- <div class="file-upload">
+                    <div class="file-upload">
                         <div>
                             <i class="fas fa-file-image"></i>
                             <input type="file" @change="fileSelectedReply">
                         </div>
                     </div>
-                    <div class="url-preview" v-if="replyUrl"> <img :src="replyUrl" alt=""> </div> -->
                 </div>
+                <div>
+                                <selectedImg style="margin-right: 81px;" :imgUrl="replyUrl"/>
+                            </div>
             </div>
 
 
@@ -154,8 +161,8 @@
                                                                 <span> {{ $moment(reply.user.createdAt).fromNow() }} </span>
                                                                 <p> {{reply.content}} </p>
                                                             </div>
+                                                            
 
-                                                             <div class="url-preview" v-if="reply.image"> <img :src="reply.image" alt=""> </div>
 
                                                                <vs-dropdown v-if="$auth.user.role == 'admin' || $auth.user.id == post.user.id" vs-trigger-click	class="button-operation">
                             <a class="a-icon" href="#">
@@ -173,6 +180,9 @@
                             </vs-dropdown>
 
                                                         </div>
+                                                        <div>
+                                <selectedImg style="margin-right: 81px;" :imgUrl="reply.image"/>
+                            </div>
                                                     </div>
                                                 </div>
                                               </section>
@@ -196,6 +206,17 @@
             <div class="form-group">
                 <input class="form-control" type="text" v-model="forEditPost.content" id="">
             </div>
+             <div class="form-group">
+                <div class="file-choose">
+                  <input type="file" @change="fileSelectedEdit" placeholder="قم بأرفاق أيقونه" />
+                  <img v-if="editUrl" :src="editUrl" style="max-width: 100%; max-height: 80%;" />
+                  <span v-else>
+                    <img src="@/assets/imgs/noun_Camera_1903011.png" /> قم
+                    بأرفاق أيقونة للمادة
+                  </span>
+                </div>
+              </div>
+
             <vs-button @click="editPostMain"> تعديل </vs-button>
         </div>
     </vs-popup>
@@ -207,6 +228,17 @@
             <div class="form-group">
                 <input class="form-control" type="text" v-model="forEditComment.content" id="">
             </div>
+             <div class="form-group">
+                <div class="file-choose">
+                  <input type="file" @change="fileSelectedEdit" placeholder="قم بأرفاق أيقونه" />
+                  <img v-if="editUrl" :src="editUrl" style="max-width: 100%; max-height: 80%;" />
+                  <span v-else>
+                    <img src="@/assets/imgs/noun_Camera_1903011.png" /> قم
+                    بأرفاق أيقونة للمادة
+                  </span>
+                </div>
+              </div>
+
             <vs-button @click="editCommentMain"> تعديل </vs-button>
         </div>
     </vs-popup>
@@ -217,6 +249,19 @@
             <div class="form-group">
                 <input class="form-control" type="text" v-model="forEditReply.content" id="">
             </div>
+
+             <div class="form-group">
+                <div class="file-choose">
+                  <input type="file" @change="fileSelectedEdit" placeholder="قم بأرفاق أيقونه" />
+                  <img v-if="editUrl" :src="editUrl" style="max-width: 100%; max-height: 80%;" />
+                  <span v-else>
+                    <img src="@/assets/imgs/noun_Camera_1903011.png" /> قم
+                    بأرفاق أيقونة للمادة
+                  </span>
+                </div>
+              </div>
+
+            <div class="file-select"></div>
             <vs-button @click="editReplyMain"> تعديل </vs-button>
         </div>
     </vs-popup>
@@ -226,10 +271,12 @@
 <script>
 import Loading from '@/components/Loading'
 import NoData from '@/components/NoData'
+import selectedImg from '@/components/selectedImg'
 export default {
     components:{
         Loading,
-        NoData
+        NoData,
+        selectedImg
     },
     data(){
         return {
@@ -244,25 +291,33 @@ export default {
             replyPhoto:"",
             commentPhoto:"",
             postCreate:{
-                content:""
+                content:"",
+                image:""
             },
             commentCreate:{
-                content:""
+                content:"",
+                image:""
             },
+            editphoto:"",
             replyCreate:{
-                content:""
+                content:"",
+                image:""
             },
             forEditReply:{
                 content:"",
-                id:""
+                id:"",
+                image:""
             },
             forEditComment:{
                 content:"",
-                id:""
+                id:"",
+                image:""
             },
+            editUrl:"",
             forEditPost:{
                 content:"",
-                id:""
+                id:"",
+                image:""
             },
         
             editPostPopup: false,
@@ -279,23 +334,44 @@ export default {
         this.fetchAllPosts()
     },
     methods:{
+        fileSelectedEdit(e){
+            if (e.target.files.length > 0) {
+                // this.forEditReply.image = "";
+
+                // this.forEditComment.image = ""
+                // console.log("files", e.target.files);
+                // this.forEditReply.image = e.target.files[0];
+                // this.forEditComment.image = e.target.files[0];
+                this.editphoto = e.target.files[0];
+                    this.editUrl = URL.createObjectURL(this.editphoto);
+                // console.log(e.target.files[0]);
+            }
+        },
         editPost(post){
             this.forEditPost.id = post.id;
             this.forEditPost.content = post.content;
+                      this.editphoto =  post.image 
+                        this.editUrl = post.image ;
+
             this.editPostPopup = true
         },
         editReply(comment, reply){
             this.forEditReply.id = reply.id;
             this.forEditReply.content = reply.content;
+             this.editphoto =  reply.image 
+            this.editUrl = reply.image 
             this.commentId = comment.id
             this.editReplyPopup = true
         },
         editReplyMain(){
             this.isLoading = true
             this.editReplyPopup = false
-            this.$axios.put(`comments/${this.commentId}/replies/${this.forEditReply.id}`, {
-                content: this.forEditReply.content
-            })
+            let formData = new FormData()
+            formData.append("content", this.forEditReply.content)
+            if(this.editphoto != ""){
+                formData.append("image", this.editphoto)
+            }
+            this.$axios.put(`comments/${this.commentId}/replies/${this.forEditReply.id}`, formData)
                 .then(res => {
                     this.fetchAllPosts()
                     this.$snotify.success("تم التعديل بنجاح")
@@ -303,13 +379,16 @@ export default {
             }).finally(() => this.isLoading = false)
         },
         editPostMain(){
+            
             this.isLoading = true
             this.editPostPopup = false
-            this.$axios.put(`posts/${this.forEditPost.id}`, {
-                content: this.forEditPost.content
-            }).then(res => {
+            let formData = new FormData()
+            formData.append("content", this.forEditPost.content)
+            if(this.editphoto != ""){
+                formData.append("image", this.editphoto)
+            }
+            this.$axios.put(`posts/${this.forEditPost.id}`, formData).then(res => {
                 this.fetchAllPosts()
-                
                 this.$snotify.success('تم التعديل بنجاح')
             }).finally(() => this.isLoading = false)
         },
@@ -319,13 +398,18 @@ export default {
          editComment(comment){
             this.forEditComment.id = comment.id;
             this.forEditComment.content = comment.content;
+            this.editphoto = comment.image
+            this.editUrl = comment.image
             this.editCommentPopup = true
         },
         editCommentMain(){
             this.isLoading = true
-            this.$axios.put(`comments/${this.forEditComment.id}`, {
-                content: this.forEditComment.content
-            }).then(res => {
+            let formData = new FormData()
+            formData.append("content", this.forEditComment.content)
+            if(this.editphoto){
+                formData.append("image", this.editphoto)
+            }
+            this.$axios.put(`comments/${this.forEditComment.id}`, formData).then(res => {
                 this.fetchAllPosts()
                 this.editCommentPopup = false
                 this.$snotify.success('تم التعديل بنجاح')
@@ -698,5 +782,36 @@ export default {
             }
         }
     }
+    .file-choose {
+                position: relative;
+                width: 100%;
+                height: 200px;
+                margin-top: 13px;
+                input[type="file"] {
+                    position: absolute;
+                    width: 100%;
+                    /* visibility: hidden; */
+                    opacity: 0;
+                    height: 100%;
+                    cursor: pointer;
+                    margin-top: 10px;
+                }
+                span {
+                    border: 1px dashed #444444;
+                    position: absolute;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    background: #FFF;
+                    z-index: -1;
+                    margin: 10px 0;
+                    height: 100%;
+                    text-align: center;
+                    cursor: pointer;
+                    border-radius: 15px;
+                    line-height: 186px;
+                    color: #444444;
+                }
+            }
 }
 </style>

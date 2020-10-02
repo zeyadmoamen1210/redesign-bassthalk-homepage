@@ -7,7 +7,7 @@
       <div class="row" v-else>
         <div class="col-md-4" v-for="course in studCourses" :key="course.id">
           <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
-              <div class="status" v-if="course.isChecked === true"> من ضمن الكورسات </div>
+              <div class="status" v-if="ifMyCourseExist(course)"> من ضمن الكورسات </div>
             <h5> {{course.nameAr}} </h5>
             <span> {{course.descriptionAr}} </span>
 
@@ -24,7 +24,7 @@
               
             </div>
             <div style="text-align: left" >
-                <vs-button @click="EnrollCourse(course)" style="width: 100%;margin-top: 6px;padding: 6px;text-align: center;" color="success" v-if="!course.isChecked"> حجز الكورس </vs-button>
+                <vs-button v-if="!ifMyCourseExist(course)" @click="EnrollCourse(course)" style="width: 100%;margin-top: 6px;padding: 6px;text-align: center;" color="success" > حجز الكورس </vs-button>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
           <label> ادخل الكود السري للكورس </label>
           <input type="text" v-model="enrollmentCourse.code" class="form-control">
       </div>
-      <vs-button @click="EnrollCourseMain"> حجز الكورس </vs-button>
+      <vs-button  @click="EnrollCourseMain"> حجز الكورس </vs-button>
     </vs-popup>
 
   </div> 
@@ -59,7 +59,6 @@ export default {
       isLoading: true,
       totalPage:0,
       studCourses: [],
-      myCourses: [],
       currCourseToEnrollPopup: false,
       enrollmentCourse:{
           id:"",
@@ -67,7 +66,19 @@ export default {
       }
     }
   },
+  computed:{
+    myCourses(){
+      return this.$store.getters.getMyCourses;
+    }
+  },
   methods:{
+    ifMyCourseExist(x){
+      let y = this.myCourses.find(one => {
+        return (one.course && one.course.id == x.id)
+      })
+      if (y !== undefined) return true;
+      else return false
+    },
       EnrollCourse(course){
           this.currCourseToEnrollPopup = true;
           this.enrollmentCourse.id = course.id
@@ -79,7 +90,7 @@ export default {
           this.$axios.post(`courses/${this.enrollmentCourse.id}/enrollment`, {
               code: this.enrollmentCourse.code
           }).then(res => {
-              this.getMyCourses()
+              this.$store.commit('ADD_TO_MY_COURSES', res.data)
               this.getSubjectCourse()
           }).catch((error) => {
             this.currCourseToEnrollPopup = false;
@@ -88,45 +99,34 @@ export default {
       },
       getSubjectCourse(){
           this.$axios.get(`/subjects/${this.$route.params.id}/courses`).then(res => {
-      console.log(res)
-      this.studCourses = res.data.docs
-      this.page = res.data.page
-      this.totalPage = res.data.totalPages
+          console.log(res)
+          this.studCourses = res.data.docs
+          this.page = res.data.page
+          this.totalPage = res.data.totalPages
 
-      this.studCourses.map(studCourse => {
-            this.myCourses.map(myCourse => {
-                if(myCourse.course && studCourse.id === myCourse.course.id){
-                    studCourse.isChecked = true
-                }
-            })
-        })
+          // res.data.docs.map(one => {
+          //   this.myCourses.map(two => {
+          //     if(one.id === two.id){
+          //       one.isChecked = true;
+          //     }else{
+          //       one.isChecked = false;
+
+          //     }
+          //   })
+          // })
+          console.log(this.myCourses)
+          console.log(this.myCourses.find(one => 5 === one.id))
     }).finally(() => this.isLoading = false)
       },
-      getMyCourses(){
-             this.$axios.get(`/student/courses?paginate=false`).then(res => {
-      console.log(res)
-      this.myCourses = res.data
-
-      this.studCourses.map(studCourse => {
-            this.myCourses.map(myCourse => {
-                if(myCourse.course && studCourse.id === myCourse.course.id){
-                    studCourse.isChecked = true
-                }
-            })
-        })
-
-    })
-      }
+     
 
   },
   created(){
 
 
-  let y = this.getMyCourses()
     // waiting my courses load first and then get subject courses to check my enrollment and not allaw to enroll it 
-    Promise.all([y]).then(res => {
            this.getSubjectCourse()
-    })
+  
 
   }
 }
