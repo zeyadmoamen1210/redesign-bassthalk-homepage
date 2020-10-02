@@ -27,8 +27,14 @@
                                     <h6 style="text-align:center">أقصي عدد <span> {{session.limit}} </span></h6>
                                     <h6 style="text-align:center"> <span> {{new Date(session.time).toLocaleString()}} </span></h6>
                                     <h6 style="text-align:center"> عدد المشتركين: <span> {{session.users.length}} </span> </h6>
+                                    <h6 style="text-align:center" class="isLiveNow" v-if="session.isLive "> مباشر الأن  </h6>
+                                    <h6 style="text-align:center" class="LiveSoon" v-if="!session.isLive"> غير متوفر  </h6>
+                                    <h6 style="text-align:center" v-if="session.live && session.isIn"> <span class="click-here"> <a target="_blank" :href="`https://${session.live}`"> إضغط هنا </a> </span> </h6>
+                                    <h6 style="text-align:center" v-else-if="!session.isIn"> <span class="unclickable"> <a> غير مشترك </a> </span> </h6>
+                                    <h6 style="text-align:center" v-else-if="session.isIn && session.live == false"> <span class="unclickable"> <a> سيتم توفير الرابط قريبا </a> </span> </h6>
+
                                     <div>
-                                        <vs-button style="text-align:center;width:100%;font-family: 'CustomFontRegular';" v-if="!session.isIn" color="success" @click="addReserve(session)"> التسجيل في السيشن </vs-button>
+                                        <vs-button style="text-align:center;width:100%;font-family: 'CustomFontRegular';" v-if="!session.isIn" color="#058ac6" @click="addReserve(session)"> التسجيل في السيشن </vs-button>
                                         <vs-button style="text-align:center;width:100%;font-family: 'CustomFontRegular';" v-else color="danger" @click="deleteReserve(session)"> خروج من السيشن </vs-button>
 
                                   </div>
@@ -177,7 +183,60 @@ export default {
             width:100px;
         }
     }
-
+    .LiveSoon{
+      text-align: center;
+      color: #ff4757;
+      position: relative;
+    &::after{
+          position: absolute;
+    content: "";
+    top: 50%;
+    left: 72%;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #ff4757;
+    transform: translate(-50%,-50%);
+    }
+    }
+    .unclickable{
+          background: #ff4757;
+        padding: 5px;
+        margin: 8px;
+        display: inline-block;
+        a{
+          font-family: "CustomFontBold";
+        border-radius: 3px;
+        color: #FFF;
+        }
+    }
+    .click-here{
+          background: #46c93a;
+        padding: 5px;
+        margin: 8px;
+        display: inline-block;
+        a{
+          font-family: "CustomFontBold";
+        border-radius: 3px;
+        color: #FFF;
+        }
+    }
+  .isLiveNow{
+    text-align: center;
+        color: #46c93a;
+    position: relative;
+    &::after{
+          position: absolute;
+    content: "";
+    top: 50%;
+    left: 72%;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #46c93a;
+    transform: translate(-50%,-50%);
+    }
+  }
     .course-content{
         cursor: pointer;
         box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
