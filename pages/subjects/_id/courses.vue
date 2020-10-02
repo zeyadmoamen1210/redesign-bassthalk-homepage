@@ -73,7 +73,7 @@ export default {
   },
   methods:{
     ifMyCourseExist(x){
-      let y = this.myCourses.find(one => {
+      let y = this.$store.state.myCoursesAsTeacher.find(one => {
         return (one.course && one.course.id == x.id)
       })
       if (y !== undefined) return true;
@@ -142,6 +142,7 @@ export default {
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
     padding: 19px;
     padding-bottom: 38px;
+      min-height: 250px;
 
     transition: all .5s ease;
     margin-bottom: 15px;
