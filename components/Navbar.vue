@@ -381,8 +381,12 @@
       <vs-sidebar-item to="/best-students"  index="4" >
         المتفوقين
       </vs-sidebar-item>
-      <vs-sidebar-item to="/live-teach" index="5" > 
+      <vs-sidebar-item to="/courses" index="16" > 
               الكورسات
+      </vs-sidebar-item>
+
+      <vs-sidebar-item to="/live-teach" index="5" > 
+              كورساتي
       </vs-sidebar-item>
 
           <vs-sidebar-item to="/camps"  index="6" >

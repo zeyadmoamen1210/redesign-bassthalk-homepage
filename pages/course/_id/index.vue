@@ -13,6 +13,7 @@
             <span></span>
             <span></span>
           </div>
+          <vs-button @click="$router.push(`/courseStats/${$route.params.id}`)"> إحصائيات الكورس </vs-button>
                       <div class="course-content" v-if="$route.query.nextLive">
                       <div style="padding: 28px 13px;background: #f7f7f7;border-bottom: 3px solid #eaeaea;">
                         <h5 style="font-weight:100"><span style="font-weight:bold;color:#058ac6">المحاضرة القادمة : </span> {{nextLife.title}} </h5>

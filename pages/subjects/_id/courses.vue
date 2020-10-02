@@ -73,11 +73,14 @@ export default {
   },
   methods:{
     ifMyCourseExist(x){
-      let y = this.$store.state.myCoursesAsTeacher.find(one => {
+      if(this.myCourses){
+         let y = this.myCourses.find(one => {
         return (one.course && one.course.id == x.id)
       })
       if (y !== undefined) return true;
       else return false
+      }
+     
     },
       EnrollCourse(course){
           this.currCourseToEnrollPopup = true;
