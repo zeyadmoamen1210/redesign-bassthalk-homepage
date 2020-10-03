@@ -37,9 +37,12 @@ export default {
   created() {
 
      this.$axios.get(`/student/courses`).then(res => {
-      console.log(res)
+      
       this.studCourses = res.data.docs
       this.$store.commit("SET_MY_COURSES", res.data.docs)
+
+      console.log("my courses",res)
+      console.log(this.$store.state.myCoursesAsTeacher)
     }).finally(() => this.isLoading = false)
 
     let vm = this

@@ -73,11 +73,12 @@ export default {
   },
   methods:{
     ifMyCourseExist(x){
-      if(this.myCourses){s
-         let y = this.myCourses.find(one => {
+      
+      if(this.myCourses){
+         let y = this.$store.state.myCoursesAsTeacher.find(one => {
         return (one.course && one.course.id == x.id)
       })
-      if (y !== undefined) return true;
+      if (y) return true;
       else return false
       }
      
