@@ -25,7 +25,6 @@
       <div style="overflow: hidden; display: block; float: left; width: 40%;">
         <input
           type="radio"
-          :disabled="mark>=75"
           :name="id"
           class="absthalk-radio"
           id
@@ -38,7 +37,6 @@
       <div style="overflow: hidden; display: block; float: left; width: 40%;">
         <input
           type="radio"
-          :disabled="mark>=75"
           :name="id"
           class="absthalk-radio"
           id
@@ -68,12 +66,7 @@ export default {
     exam_id: {
       required: true,
     },
-    isSolving: {
-      required: false,
-    },
-    mark: {
-      required: false,
-    },
+
   },
   data() {
     return {
@@ -84,10 +77,6 @@ export default {
   },
   watch: {
     answerData: function (val) {
-      // ! patch exam answer
-      // alert(this.exam_id)
-      // !exams/70/solution
-      // if (this.isSolving) {
       this.$axios
         .patch(`exams/${this.exam}/solution`, {
           question: this.id,

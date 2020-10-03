@@ -73,7 +73,7 @@ export default {
   },
   methods:{
     ifMyCourseExist(x){
-      if(this.myCourses){
+      if(this.myCourses){s
          let y = this.myCourses.find(one => {
         return (one.course && one.course.id == x.id)
       })

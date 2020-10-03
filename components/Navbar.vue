@@ -388,6 +388,7 @@
       <vs-sidebar-item to="/live-teach" index="5" > 
               كورساتي
       </vs-sidebar-item>
+      <!-- comeent -->
 
           <vs-sidebar-item to="/camps"  index="6" >
             المعسكرات 
