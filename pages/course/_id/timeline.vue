@@ -29,7 +29,7 @@
                             </div>
                             <div class="user-info">
                                 <h6> {{post.user.username}} </h6>
-                                <span> {{ $moment(post.user.createdAt).fromNow() }} </span>
+                                <span>  {{new Date(post.user.createdAt).toLocaleString() }}  </span>
                                 <p> {{post.content}} </p>
                             </div>
                           </div>
