@@ -21,7 +21,7 @@
             
           </div>
 
-          <div v-if="!isLoading && !selectedExam && !exam">
+          <div v-if="!isLoading && !selectedExam && !exam && !isCorrected">
             <h5> الإمتحان قيد التصحيح و سيتم إرسال النتيجة لك فور الإنتهاء </h5>
           </div>
         

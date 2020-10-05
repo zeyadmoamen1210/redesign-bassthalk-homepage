@@ -7,7 +7,13 @@
       <div class="row" v-else>
         <div class="col-md-4" v-for="course in studCourses" :key="course.id">
           <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
-              <div class="status" v-if="ifMyCourseExist(course)"> من ضمن الكورسات </div>
+              <div class="status" v-if="ifMyCourseExist(course)"></div>
+            
+              <div  class="status" v-if="course.status">
+                <div v-if="course.status == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}${course.lecture ? '?nextLive=' + course.lecture : ''}`)" > دخول </vs-button> </div>
+                <div v-if="course.status == 'pending'"> <vs-button color="primary"> قيد الإنتظار </vs-button> </div>
+                <div v-if="course.status == 'refused'"> <vs-button @click="EnrollCourse(course)" color="warning"> اشتراك </vs-button> </div>
+              </div>
             <h5> {{course.nameAr}} </h5>
             <span> {{course.descriptionAr}} </span>
 
@@ -23,9 +29,9 @@
 
               
             </div>
-            <div style="text-align: left" >
-                <vs-button v-if="!ifMyCourseExist(course)" @click="EnrollCourse(course)" style="width: 100%;margin-top: 6px;padding: 6px;text-align: center;" color="success" > حجز الكورس </vs-button>
-            </div>
+            <!-- <div style="text-align: left" >
+                <vs-button v-if="!ifMyCourseExist(course)"  style="width: 100%;margin-top: 6px;padding: 6px;text-align: center;" color="success" > حجز الكورس </vs-button>
+            </div> -->
           </div>
         </div>
       </div>
@@ -78,7 +84,12 @@ export default {
          let y = this.$store.state.myCoursesAsTeacher.find(one => {
         return (one.course && one.course.id == x.id)
       })
-      if (y) return true;
+      if (y) {
+        if(y.course){
+          x.status = y.status
+        }
+        return true
+      }
       else return false
       }
      
@@ -96,6 +107,8 @@ export default {
           }).then(res => {
               this.$store.commit('ADD_TO_MY_COURSES', res.data)
               this.getSubjectCourse()
+            this.$snotify.error("تم إرسال طلبك ")
+
           }).catch((error) => {
             this.currCourseToEnrollPopup = false;
             this.$snotify.error("الكود الذي أدخلته غير صحيح")
@@ -105,6 +118,7 @@ export default {
           this.$axios.get(`/subjects/${this.$route.params.id}/courses`).then(res => {
           console.log(res)
           this.studCourses = res.data.docs
+          console.log("stud courses ",this.studCourses)
           this.page = res.data.page
           this.totalPage = res.data.totalPages
 
@@ -118,8 +132,8 @@ export default {
           //     }
           //   })
           // })
-          console.log(this.myCourses)
-          console.log(this.myCourses.find(one => 5 === one.id))
+          // console.log(this.myCourses)
+          // console.log(this.myCourses.find(one => 5 === one.id))
     }).finally(() => this.isLoading = false)
       },
      
@@ -160,7 +174,7 @@ export default {
     padding: 3px;
     color: #FFF;
     font-family: "CustomFontBold";
-    background: #0989c3;
+    // background: #0989c3;
     }
     .accepted{
       background: #27ae60;
