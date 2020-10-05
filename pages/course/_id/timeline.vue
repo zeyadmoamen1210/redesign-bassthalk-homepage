@@ -29,7 +29,7 @@
                             </div>
                             <div class="user-info">
                                 <h6> {{post.user.username}} </h6>
-                                <span>  {{new Date(post.user.createdAt).toLocaleString() }}  </span>
+                                <span> {{ $moment(post.createdAt).fromNow() }} </span>
                                 <p> {{post.content}} </p>
                             </div>
                           </div>
@@ -96,7 +96,7 @@
                                                 </div>
                                                 <div class="user-info">
                                                     <h6> {{comment.user.username}} </h6>
-                                                    <span> {{ $moment(comment.user.createdAt).fromNow() }} </span>
+                                                    <span> {{ $moment(comment.createdAt).fromNow() }} </span>
                                                     <p> {{comment.content}} </p>
                                                 </div>
 
@@ -158,7 +158,7 @@
                                                             </div>
                                                             <div class="user-info">
                                                                 <h6> {{reply.user.username}} </h6>
-                                                                <span> {{ $moment(reply.user.createdAt).fromNow() }} </span>
+                                                                <span> {{ $moment(reply.createdAt).fromNow() }} </span>
                                                                 <p> {{reply.content}} </p>
                                                             </div>
                                                             
