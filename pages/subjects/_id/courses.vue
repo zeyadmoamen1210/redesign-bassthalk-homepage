@@ -12,7 +12,7 @@
               <div  class="status" v-if="course.status">
                 <div v-if="course.status == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}${course.lecture ? '?nextLive=' + course.lecture : ''}`)" > دخول </vs-button> </div>
                 <div v-if="course.status == 'pending'"> <vs-button color="primary"> قيد الإنتظار </vs-button> </div>
-                <div v-if="course.status == 'refused'"> <vs-button @click="EnrollCourse(course)" color="warning"> اشتراك </vs-button> </div>
+                <div v-else> <vs-button @click="EnrollCourse(course)" color="warning"> اشتراك </vs-button> </div>
               </div>
             <h5> {{course.nameAr}} </h5>
             <span> {{course.descriptionAr}} </span>
