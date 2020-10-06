@@ -1,258 +1,225 @@
 <template>
-  <div>
-    <div class="container">
-        <Loading v-if="isLoading" />
-      <div v-else class="tests-level folder-choose">
-
-                       <div style="width:335px;margin-bottom: 40px;" class="head-who">
-            <span></span>
-            <span></span>
-            <span></span>
-            <h3>محتويات الكورس </h3>
-            <span></span>
-            <span></span>
-            <span></span>
+  <div class="new-course-page">
+      <div class="container">
+          <Loading v-if="isLoading" />
+          <div v-else>
+              <div class="course-head">
+              <div class="course-head-title">
+                  <span>
+                      <img src="@/assets/imgs/live-blue.png" alt="">
+                  </span>
+                  <h4> المحاضرة القادمة </h4>
+              </div>
+              <div class="course-head-buttons">
+                  <vs-button @click="$router.push(`/courseStats/${$route.params.id}`)" color="#DDD"> <img src="@/assets/imgs/live-dark.png" alt=""> تفاصيل البث </vs-button>
+                  <vs-button @click="$router.push(`/course/${$route.params.id}/timeline`)" color="#DDD"> <img src="@/assets/imgs/noun_timeline_3037155.png" alt=""> التايم لاين </vs-button>
+              </div>
           </div>
-          <vs-button @click="$router.push(`/courseStats/${$route.params.id}`)"> إحصائيات الكورس </vs-button>
-                      <div class="course-content" v-if="$route.query.nextLive">
-                      <div style="padding: 28px 13px;background: #f7f7f7;border-bottom: 3px solid #eaeaea;">
-                        <h5 style="font-weight:100"><span style="font-weight:bold;color:#058ac6">المحاضرة القادمة : </span> {{nextLife.title}} </h5>
-                      <h5 style="font-weight:100"> <span style="font-weight:bold;color:#058ac6">تاريخ الإنشاء : </span> {{ new Date(nextLife.createdAt).toLocaleString() }} </h5>
-                      </div>
 
-                      <div class="sessions" v-if="nextLife.sessions && nextLife.sessions.length > 0">
-                          <h5 style="margin-top:25px"> السيشن : </h5>
-                          <div class="row">
-                              <div class="col-md-3" v-for="session in nextLife.sessions" :key="session.id">
-                                  <div class="course-content"> 
-                                    <h6 style="text-align:center">أقصي عدد <span> {{session.limit}} </span></h6>
-                                    <h6 style="text-align:center"> <span> {{new Date(session.time).toLocaleString()}} </span></h6>
-                                    <h6 style="text-align:center"> عدد المشتركين: <span> {{session.users.length}} </span> </h6>
-                                    <h6 style="text-align:center" class="isLiveNow" v-if="session.isLive "> مباشر الأن  </h6>
-                                    <h6 style="text-align:center" class="LiveSoon" v-if="!session.isLive"> غير متوفر  </h6>
-                                    <h6 style="text-align:center" v-if="session.live && session.isIn"> <span class="click-here"> <a target="_blank" :href="`https://${session.live}`"> إضغط هنا </a> </span> </h6>
-                                    <h6 style="text-align:center" v-else-if="!session.isIn"> <span class="unclickable"> <a> غير مشترك </a> </span> </h6>
-                                    <h6 style="text-align:center" v-else-if="session.isIn && session.live == false"> <span class="unclickable"> <a> سيتم توفير الرابط قريبا </a> </span> </h6>
+          <div v-if="nextLife" class="course-lecture-body">
+              <div class="course-lecture-head">
+                  <h5> <span>أستاذ /</span>   {{course.teacher.username}} </h5>
+                  <h5> <span> عنوان المحاضرة / </span> {{nextLife.title}} </h5>
+                  <h5> <span> تاريخ المحاضرة / </span> {{ new Date(nextLife.createdAt).toLocaleDateString() }} </h5>
+              </div>
+          </div>
 
-                                    <div>
-                                        <vs-button style="text-align:center;width:100%;font-family: 'CustomFontRegular';" v-if="!session.isIn" color="#058ac6" @click="addReserve(session)"> التسجيل في السيشن </vs-button>
-                                        <vs-button style="text-align:center;width:100%;font-family: 'CustomFontRegular';" v-else color="danger" @click="deleteReserve(session)"> خروج من السيشن </vs-button>
 
-                                  </div>
-                                  </div>
-                                  
-                              </div>
-                          </div>
-                      </div>
-         
+
+          <div  class="time-content">
+            <div class="row">
+              <div v-if="nextLife.sessions" class="col-md-6" v-for="session in nextLife.sessions" :key="session.id">
+                <div class="time-course"  @click="$router.push(`/course/${$route.params.id}/session/${session.id}?nextLive=${$route.query.nextLive}`)">
+                  
+                    <div style="flex-basis: 24%;margin: 0;">
+                       <div class="teacher" style="margin:auto">
+                          <img :src="course.teacher.photo" alt="">
+                          <img src="@/assets/imgs/live-red.png" alt="">
+                        </div>
+                  </div>
+
+                  <div v-if="nextLife" style="flex-basis: 57%;">
+                    <h6 class="oneline" style="margin-bottom:5px;"> {{nextLife.title}} </h6>
+                    <h6 class="oneline" style="color: #6c6c6c;">  {{course.teacher.username}} </h6>
+                  </div>
+                    
+
+
+                  <div style="text-align:center">
+                    <img style="margin-top: 8px;" src="@/assets/imgs/noun_Time_2405843.png" alt="">
+                    <h6 style="text-align:center;color: #838383;margin-top:8px"> {{new Date(session.time).toLocaleTimeString()}} </h6>
+                  </div>
+                </div>
               </div>
 
-
-
-          <div @click="$router.push(`/course/${$route.params.id}/timeline`)" class="course-timeline">
-              <h3> <img src="@/assets/imgs/noun_timeline_3037155.png" alt=""> التايم لاين </h3>
-          </div>
-
-
-        <div class="title">
-          <h3>
-            <img src="@/assets/imgs/noun_exam_-1.png" alt="">
-            مجلدات الإمتحانات</h3>
-        </div>
-
-      <div class="levels">
-        <div class="row">
-          <div class="col-md-4" v-for="folder in folders" :key="folder.id">
-            <nuxt-link :to="`/folders/${folder.id}/exams`">
-              <div class="level-item box-shadow-class">
-                <img src="@/assets/imgs/folder-icon.png" alt="">
-                <h6> {{folder.name}} </h6>
             </div>
-            </nuxt-link>
           </div>
-
+          </div>
           
-        </div>
       </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-
 import Loading from '@/components/Loading'
 export default {
     components:{
         Loading
     },
     data(){
-        return {
+        return{
             isLoading: true,
             folders: [],
-            nextLife: {}
+            nextLife: {},
+            course:{}
         }
     },
-    created(){
+     created(){
         this.getCourseFolders();
         this.getNextLec()
-    },
-    methods:{
-        deleteReserve(session){
-            this.$snotify.confirm("هل تريد الخروج  من السيشن  المُحدد ", " هل أنت متأكد", {
-        showProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        buttons: [
-          {
-            text: "موافق",
-            action: toast => {
-              this.$snotify.remove(toast.id);
-              this.isLoading = true;
-
-               this.$axios.delete(`/sessions/${session.id}/reserve`)
-                .then(res => {
-                    this.getNextLec()
-                    this.$snotify.success("تم الخروج بنجاح")
-                
-            }).finally(() => this.isLoading = false)
-            }
-          },
-          {
-            text: "إلغاء",
-            action: toast => {
-              this.$snotify.remove(toast.id);
-              this.isLoading = false;
-            }
-          }
-        ]
-      });
-        },
-        addReserve(session){
-            this.isLoading =true;
-            if(session.users.length < session.limit){
-                this.$axios.post(`/sessions/${session.id}/reserve`).then(res => {
-                this.getNextLec()
-                this.$snotify.success(`تم التسجيل في السيشن بنجاح`)
-            }).catch(error => {
-                this.$snotify.error(`غير مسموح بالتسجيل في اكثر من سيشن`)
-            })
-            .finally(() => this.isLoading = false)
-            }
-        },  
-        getNextLec(){
+        this.$store.state.myCoursesAsTeacher.forEach(obj => {
+                   if( obj.course && obj.course.id == this.$route.params.id){
+                       this.course = obj.course;
+                       console.log("course", obj)
+                   }
+               })
+     },
+     methods:{
+         getNextLec(){
            this.$axios.get(`lectures/${this.$route.query.nextLive}`).then(res => {
               console.log("last one => ", res.data)
                   this.nextLife = res.data
-              
+               
           }).finally(() => this.isLoading = false)
-      },
+         },
         getCourseFolders(){
             this.$axios.get(`courses/${this.$route.params.id}/folders`).then(res => {
                 console.log(res)
                 this.folders = res.data
             }).finally(() => this.isLoading = false)
         }
-        
-    }
+     }
 }
 </script>
 
-<style lang="scss">
-@import '../../../assets/sass/general-exam-level.scss';
-.folder-choose{
-    .course-timeline{
-        box-shadow: 0px 1px 9px 0px #DDD;
-        padding: 15px;
-        margin-bottom: 30px;
-        cursor: pointer;
-        margin-top: 50px;
-        
-    }
-    .title{
-        
-        h3{
-            margin-bottom: 20px;
-            color: #46a8d5;
-    }
-    }
-    .level-item{
-        min-height: 154px !important;
-        padding: 25px 0;
-
-        >img{
-            width:100px;
-        }
-    }
-    .LiveSoon{
-      text-align: center;
-      color: #ff4757;
-      position: relative;
-    &::after{
-          position: absolute;
-    content: "";
-    top: 50%;
-    left: 72%;
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background: #ff4757;
-    transform: translate(-50%,-50%);
-    }
-    }
-    .unclickable{
-          background: #ff4757;
-        padding: 5px;
-        margin: 8px;
-        display: inline-block;
-        a{
-          font-family: "CustomFontBold";
-        border-radius: 3px;
-        color: #FFF;
-        }
-    }
-    .click-here{
-          background: #46c93a;
-        padding: 5px;
-        margin: 8px;
-        display: inline-block;
-        a{
-          font-family: "CustomFontBold";
-        border-radius: 3px;
-        color: #FFF;
-        }
-    }
-  .isLiveNow{
-    text-align: center;
-        color: #46c93a;
-    position: relative;
-    &::after{
-          position: absolute;
-    content: "";
-    top: 50%;
-    left: 72%;
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background: #46c93a;
-    transform: translate(-50%,-50%);
-    }
-  }
-    .course-content{
-        cursor: pointer;
-        box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
-        padding: 26px;
-        transition: all .5s ease;
-        margin-top: 25px;
-        transition: all .5s ease;
-        &:hover{
-            transform: translateY(-15px);
-        }
-        
-        h5{
-            font-weight: bold;
-        }
-    }
+<style scoped lang="scss">
+.oneline{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+.new-course-page{
+    margin-top: 70px;
+    .course-head{
+        display: flex;
+        .course-head-title{
+            flex-basis: 50%;
+            display: flex;
+            h4{
+                color:rgba(5,138,198,0.74118);
+                font-family: "CustomFontBold";
+                margin-right: 5px;
+            }
+        }
+        .course-head-buttons{
+            flex-basis: 50%;
+            text-align: left;
+            button{
+                font-family: "CustomFontBold";
+                color: #333;
+            }
+        }
+    }
+    .course-lecture-body{
+        
+        background: linear-gradient(to left, #0989c3, #246787);
+        color: #FFF;
+        text-align: center;
+        padding: 17px 10px;
+        margin: 40px 0 15px;
+        border-radius: 13px;
+        .course-lecture-head{
+           h5{
+                  margin-bottom: 10px;
+    font-family: "CustomFontBold";
+    padding-right: 17px;
+           }
+           span{
+               font-size: 20px;
+               font-family: "CustomFontRegular";
+           }
+        }
+    }
 
+
+    .time-content{
+        margin-top: 35px;
+        .time-course{
+            &:hover{
+                transform: scale(1.05);
+            }
+            cursor: pointer;
+            transition: all .5s ease;
+            //    overflow: hidden;
+            display: flex;
+      box-shadow: 1px 0px 10px 2px #DDD;
+      padding: 18px 0;
+      border-radius: 4px;
+      margin-top: 20px;
+      margin: auto;
+      margin-bottom: 25px;
+      
+          .teacher{
+          height: 70px;
+      width: 77px;
+      border-radius: 50%;
+      border: 3px solid rgba(5, 138, 198, 0.74118);
+      padding: 4px;
+      background: #ebebeb;
+      position: relative;
+        img{
+          &:first-of-type{
+                width: 100%;
+      border-radius: 50%;
+      height: 100%;
+      position: absolute;
+      top: 1px;
+      left: 0;
+          }
+          &:last-of-type{
+                 position: absolute;
+      top: -8px;
+      z-index: 3;
+      left: -18px;
+      width: 52px;
+          }
+        }
+      }
+  
+      >div{
+       flex-basis: 33.33%;
+       &:first-of-type{
+         margin-top: 20px;
+         text-align: center;
+  
+         img{
+           display: inline-block;
+         }
+         h6{
+              text-align: center;
+      display: inline-block;
+      padding: 10px 0;
+      color: #6a6a6a;
+         }
+       }
+       &:nth-of-type(2){
+         margin-top: 12px;
+       }
+       &:last-of-type{
+         width: 26%;
+       }
+      }
+        }
+      }
+}
 </style>

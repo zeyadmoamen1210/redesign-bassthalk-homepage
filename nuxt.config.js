@@ -48,6 +48,7 @@ export default {
         './plugins/moment.js',
         './plugins/snotify.js',
         './plugins/vuesax.js',
+        './plugins/countdown.js',
     ],
     /*
      ** Nuxt.js dev-modules
