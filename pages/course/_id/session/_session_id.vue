@@ -127,7 +127,7 @@
 
                 <div style="display:flex">
                   <h6 style="flex-basis:50%;font-size:17px"> أقصي عدد : <span style="color:#0989c3">{{session.limit}}</span> </h6>
-                  <h6 style="flex-basis:50%;text-align:left;font-size:17px"> عدد المشتركين : <span style="color:#0989c3">{{session.users.length}}</span> </h6>
+                  <h6 v-if="session.users" style="flex-basis:50%;text-align:left;font-size:17px"> عدد المشتركين : <span style="color:#0989c3">{{session.users.length}}</span> </h6>
                 </div>
 
               </div>
@@ -135,8 +135,8 @@
 
         </div>
          <h5> {{nextLife.title}} </h5>
-                  <h5> أ / {{course.teacher.username}} </h5>
-                  <h5> {{course.teacher.description}} </h5>
+                  <h5 v-if="course.teacher"> أ / {{course.teacher.username}} </h5>
+                  <h5 v-if="course.teacher"> {{course.teacher.description}} </h5>
       </div>
     </div>
   </div>

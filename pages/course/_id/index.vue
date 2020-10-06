@@ -18,7 +18,7 @@
 
           <div v-if="nextLife" class="course-lecture-body">
               <div class="course-lecture-head">
-                  <h5> <span>أستاذ /</span>   {{course.teacher.username}} </h5>
+                  <h5 v-if="course.teacher"> <span>أستاذ /</span>   {{course.teacher.username}} </h5>
                   <h5> <span> عنوان المحاضرة / </span> {{nextLife.title}} </h5>
                   <h5> <span> تاريخ المحاضرة / </span> {{ new Date(nextLife.createdAt).toLocaleDateString() }} </h5>
               </div>
@@ -40,7 +40,7 @@
 
                   <div v-if="nextLife" style="flex-basis: 57%;">
                     <h6 class="oneline" style="margin-bottom:5px;"> {{nextLife.title}} </h6>
-                    <h6 class="oneline" style="color: #6c6c6c;">  {{course.teacher.username}} </h6>
+                    <h6 v-if="course.teacher" class="oneline" style="color: #6c6c6c;">  {{course.teacher.username}} </h6>
                   </div>
                     
 
