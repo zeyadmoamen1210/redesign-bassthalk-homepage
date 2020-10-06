@@ -7,12 +7,13 @@
       <div class="row" v-else>
         <div class="col-md-4" v-for="course in studCourses" :key="course.id">
           <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
-              <div class="status" v-if="ifMyCourseExist(course)"></div>
             
-              <div  class="status" v-if="course.status">
-                <div v-if="course.status == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}${course.lecture ? '?nextLive=' + course.lecture : ''}`)" > دخول </vs-button> </div>
-                <div v-if="course.status == 'pending'"> <vs-button color="primary"> قيد الإنتظار </vs-button> </div>
-                <div v-else> <vs-button @click="EnrollCourse(course)" color="warning"> اشتراك </vs-button> </div>
+              <div  class="status">
+                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}${course.lecture ? '?nextLive=' + course.lecture : ''}`)" > دخول </vs-button> </div>
+                <div v-if="course.enrollment == 'pending'"> <vs-button color="primary"> قيد الإنتظار </vs-button> </div>
+                <div v-else-if="course.enrollment == 'refused'"> <vs-button color="danger"> مرفوض </vs-button> </div>
+                <div v-else-if="!course.enrollment"> <vs-button @click="EnrollCourse(course)" color="warning"> اشتراك </vs-button> </div>
+                
               </div>
             <h5> {{course.nameAr}} </h5>
             <span> {{course.descriptionAr}} </span>
@@ -78,22 +79,9 @@ export default {
     }
   },
   methods:{
-    ifMyCourseExist(x){
-      
-      if(this.myCourses){
-         let y = this.$store.state.myCoursesAsTeacher.find(one => {
-        return (one.course && one.course.id == x.id)
-      })
-      if (y) {
-        if(y.course){
-          x.status = y.status
-        }
-        return true
-      }
-      else return false
-      }
+    
      
-    },
+  
       EnrollCourse(course){
           this.currCourseToEnrollPopup = true;
           this.enrollmentCourse.id = course.id
@@ -107,9 +95,10 @@ export default {
           }).then(res => {
               this.$store.commit('ADD_TO_MY_COURSES', res.data)
               this.getSubjectCourse()
-            this.$snotify.error("تم إرسال طلبك ")
+              this.$snotify.success("تم إرسال طلبك ")
+            
 
-          }).catch((error) => {
+          }).catch(error => {
             this.currCourseToEnrollPopup = false;
             this.$snotify.error("الكود الذي أدخلته غير صحيح")
           }).finally(() => this.isLoading = false)
