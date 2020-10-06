@@ -10,13 +10,15 @@
             
               <div  class="status">
                 <div v-if="course.enrollment == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}${course.lecture ? '?nextLive=' + course.lecture : ''}`)" > دخول </vs-button> </div>
-                <div v-if="course.enrollment == 'pending'"> <vs-button color="primary"> قيد الإنتظار </vs-button> </div>
-                <div v-else-if="course.enrollment == 'refused'"> <vs-button color="danger"> مرفوض </vs-button> </div>
-                <div v-else-if="!course.enrollment"> <vs-button @click="EnrollCourse(course)" color="warning"> اشتراك </vs-button> </div>
+                <div v-if="course.enrollment == 'pending'"> <vs-button style="cursor:auto" color="warning"> قيد الإنتظار </vs-button> </div>
+                <div v-else-if="course.enrollment == 'refused'"> <vs-button style="cursor:auto" color="danger"> مرفوض </vs-button> </div>
+                <div v-else-if="!course.enrollment"> <vs-button @click="EnrollCourse(course)" color="primary"> اشتراك </vs-button> </div>
                 
               </div>
-            <h5> {{course.nameAr}} </h5>
-            <span> {{course.descriptionAr}} </span>
+            <div style="text-align: center;font-family:'CustomFontRegular';background: #0989c3;color: #FFF;padding: 10px;"> 
+              <h5 style="text-align:center;font-family:'CustomFontRegular';margin-bottom:0"> {{course.nameAr}} </h5>
+            <!-- <span> {{course.descriptionAr}} </span> -->
+            </div>
 
             <div class="teacher" v-if="course.teacher">
               <div>
@@ -24,8 +26,8 @@
                 <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
               </div>
               <div>
-                <h6 v-if="course.teacher"> {{course.teacher.username}} </h6>
-                <p v-if="course.teacher"> {{course.teacher.description}} </p>
+                <h6 style="    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" v-if="course.teacher"> {{course.teacher.username}} </h6>
+                <p style="    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" v-if="course.teacher"> {{course.teacher.description}} </p>
               </div>
 
               
@@ -144,13 +146,12 @@ export default {
 .subject-course-page{
   padding-top:80px;
   .course{
-    position:relative;
-    margin-top:15px;
-    box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+    position: relative;
+    margin-top: 15px;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
     padding: 19px;
     padding-bottom: 38px;
-      min-height: 250px;
-
+    min-height: 216px;
     transition: all .5s ease;
     margin-bottom: 15px;
         &:hover{
@@ -159,11 +160,16 @@ export default {
     .status{
       position: absolute;
     bottom: 0;
+    width: 100%;
     left: 0;
     padding: 3px;
     color: #FFF;
     font-family: "CustomFontBold";
     // background: #0989c3;
+    button{
+      text-align: center;
+      width: 100%;
+    }
     }
     .accepted{
       background: #27ae60;
@@ -187,8 +193,8 @@ export default {
     .teacher{
       display: flex;
     margin-top: 19px;
-    background: #f7f7f7;
-    border-top: 1px solid #EEE;
+    // background: #f7f7f7;
+    // border-top: 1px solid #EEE;
     h6{
       margin-top: 15px;
       margin-bottom: 0;
