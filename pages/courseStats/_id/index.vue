@@ -5,18 +5,25 @@
           <Loading v-if="isLoading" />
           <div v-else class="course-state">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3" v-if="stats.numberOfExams">
                   <div class="count-students" style="background-color:#009432">
                     <h5>عدد الإمتحانات</h5>
                     <i class="fas fa-question"></i>
                     <span>{{stats.numberOfExams}}</span>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div v-if="stats.numberOfLectures" class="col-md-3">
                   <div class="count-teachers" >
                     <h5>عدد المحاضرات</h5>
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>{{stats.numberOfLectures}}</span>
+                  </div>
+                </div>
+                <div v-if="stats.numberOfPosts" class="col-md-3">
+                  <div style="background:#a71287" class="count-teachers" >
+                    <h5>عدد المنشورات</h5>
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>{{stats.numberOfPosts}}</span>
                   </div>
                 </div>
                 
