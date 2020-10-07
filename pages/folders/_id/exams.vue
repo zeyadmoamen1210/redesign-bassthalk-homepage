@@ -7,6 +7,7 @@
             <div class="row" v-else>
                 <div class="col-md-3" v-for="exam in exams" :key="exam.id">
                     <div class="exam-section" @click="$router.push(`/courseExam/${exam.id}`)">
+                    
                         <h5> {{exam.title}} </h5>
                         <div class="exam-difficultyLevel">
                             <img src="@/assets/imgs/school-sport-day-008-512.png" style="width:100px;height:100px" />
@@ -15,7 +16,7 @@
                             <img v-else-if="exam.difficultyLevel == 'easy'" src="@/assets/imgs/easy-level-1.png" alt=""> -->
 
                             <!-- <span> {{exam.difficultyLevel}} </span>  -->
-                           
+                           <h6 v-if="exam.mark" style="display: inline-block;background: #0989c3;text-align: center;margin-top: 15px;color: #FFF;padding: 9px;border-radius: 8px;">النسبة المئوية/ %{{exam.mark}}  </h6>
                         </div>
                     </div>
                 </div>
@@ -67,6 +68,7 @@ export default {
         box-shadow: 0px 1px 9px 0px #DDD;
         transition: all .5s ease;
         cursor: pointer;
+        min-height: 223px;
         &:hover{
             transform: translateY(-10px);
         }

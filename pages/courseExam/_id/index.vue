@@ -163,6 +163,7 @@
 
                 <!-- <div v-if="questions.length>0"> -->
                 <input
+                v-if="!isCorrected"
                   class="mt-5 basth-btn-primary"
                   type="button"
                   @click="$bvModal.show('confirm')"
