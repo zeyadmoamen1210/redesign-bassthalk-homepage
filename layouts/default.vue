@@ -36,10 +36,10 @@ export default {
   },
   created() {
 
-     this.$axios.get(`/student/courses`).then(res => {
+     this.$axios.get(`/student/courses?paginate=${false}`).then(res => {
       
-      this.studCourses = res.data.docs
-      this.$store.commit("SET_MY_COURSES", res.data.docs)
+      this.studCourses = res.data
+      this.$store.commit("SET_MY_COURSES", res.data)
 
       console.log("my courses",res)
       console.log(this.$store.state.myCoursesAsTeacher)

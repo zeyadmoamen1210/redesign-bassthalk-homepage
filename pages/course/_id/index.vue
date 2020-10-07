@@ -33,7 +33,7 @@
                   
                     <div style="flex-basis: 24%;margin: 0;">
                        <div class="teacher" style="margin:auto">
-                          <img :src="course.teacher.photo" alt="">
+                          <img v-if="course.teacher" :src="course.teacher.photo" alt="">
                           <img src="@/assets/imgs/live-red.png" alt="">
                         </div>
                   </div>
@@ -77,12 +77,12 @@ export default {
      created(){
         this.getCourseFolders();
         this.getNextLec()
-        this.$store.state.myCoursesAsTeacher.forEach(obj => {
-                   if( obj.course && obj.course.id == this.$route.params.id){
-                       this.course = obj.course;
-                       console.log("course", obj)
-                   }
-               })
+        console.log("store",this.$store.state.myCoursesAsTeacher)
+       this.$store.state.myCoursesAsTeacher.forEach(obj =>{
+         if(obj.course && obj.course.id == this.$route.params.id){
+           this.course = obj.course
+         }
+       })
      },
      methods:{
          getNextLec(){

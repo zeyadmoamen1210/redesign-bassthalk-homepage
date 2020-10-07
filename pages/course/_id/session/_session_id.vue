@@ -163,13 +163,11 @@ export default {
     },
     created(){
         this.getNextLec()
-        console.log("session id => ",this.$route.params.session_id)
-        this.$store.state.myCoursesAsTeacher.forEach(obj => {
-                   if( obj.course && obj.course.id == this.$route.params.id){
-                       this.course = obj.course;
-                       console.log("course", obj)
-                   }
-               })
+        this.$store.state.myCoursesAsTeacher.forEach(obj =>{
+         if(obj.course && obj.course.id == this.$route.params.id){
+           this.course = obj.course
+         }
+       })
     },
     methods:{
       addReserve(session){
