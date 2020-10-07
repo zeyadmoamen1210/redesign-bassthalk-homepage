@@ -109,13 +109,19 @@ export default {
       margin-bottom: 15px;
       margin-top: 15px;
       .camp-card-head {
+            height: 381px;
+    overflow: hidden;
         img {
           width: 100%;
-          height: 130px;
+          height: 100%;
         }
       }
     }
     .camp-card-content {
+          padding: 10px 15px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
       span {
         margin-bottom: 10px;
         display: inline-block;

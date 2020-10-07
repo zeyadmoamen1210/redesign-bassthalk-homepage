@@ -8,7 +8,7 @@
                   <span>
                       <img src="@/assets/imgs/live-blue.png" alt="">
                   </span>
-                  <h4> المحاضرة القادمة </h4>
+                  <h4> تفاصيل الكورس </h4>
               </div>
               <div class="course-head-buttons">
                   <vs-button @click="$router.push(`/courseStats/${$route.params.id}`)" color="#DDD"> <img src="@/assets/imgs/live-dark.png" alt=""> تفاصيل البث </vs-button>
@@ -16,13 +16,21 @@
               </div>
           </div>
 
-          <div v-if="nextLife" class="course-lecture-body">
+          <div v-if="Object.keys(nextLife).length !== 0" class="course-lecture-body">
               <div class="course-lecture-head">
                   <h5 v-if="course.teacher"> <span>أستاذ /</span>   {{course.teacher.username}} </h5>
                   <h5> <span> عنوان المحاضرة / </span> {{nextLife.title}} </h5>
                   <h5> <span> تاريخ المحاضرة / </span> {{ new Date(nextLife.createdAt).toLocaleDateString() }} </h5>
               </div>
           </div>
+          <NoData v-else msg=" سيتم توفير المحاضرة القادمة قريبا"/>
+
+
+
+
+                <vs-button style="color:#FFF;font-family:'CustomFontRegular'" color="#f20333" @click="$router.push(`/course/${$route.params.id}/folders`)">
+                    الإمتحانات
+                </vs-button>
 
 
 
@@ -62,9 +70,11 @@
 
 <script>
 import Loading from '@/components/Loading'
+import NoData from '@/components/NoData'
 export default {
     components:{
-        Loading
+        Loading,
+        NoData
     },
     data(){
         return{
@@ -76,7 +86,9 @@ export default {
     },
      created(){
         this.getCourseFolders();
-        this.getNextLec()
+        if(this.$route.query.nextLive){
+          this.getNextLec()
+        }
         console.log("store",this.$store.state.myCoursesAsTeacher)
        this.$store.state.myCoursesAsTeacher.forEach(obj =>{
          if(obj.course && obj.course.id == this.$route.params.id){
@@ -89,6 +101,7 @@ export default {
            this.$axios.get(`lectures/${this.$route.query.nextLive}`).then(res => {
               console.log("last one => ", res.data)
                   this.nextLife = res.data
+                  
                
           }).finally(() => this.isLoading = false)
          },
