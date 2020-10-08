@@ -101,7 +101,7 @@
                   <img src="@/assets/imgs/link.svg" alt="">
                   إنضام الي السيشن</button>
                 <button v-if="session.live && session.isIn">
-                  <a target="_blank" :href="`https://${session.live}`">
+                  <a target="_blank" :href="`${session.live}`">
                     <img src="@/assets/imgs/live-stream.svg" alt="">
                   أضغط هنا (لينك السيشن)  
 
