@@ -29,6 +29,7 @@
                     placeholder="البريد الالكتروني"
                   />
                 </div>
+                
                 <div v-if="showVerify">
                   <div class="form-groub" style="margin-bottom: 40px; margin-top: 40px;">
                     <client-only placeholder="...تحميل ">

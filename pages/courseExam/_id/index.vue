@@ -129,33 +129,33 @@
                       :answer="item.answer"
                       v-if="item.question.type == 'truefalse'"
                       :question="item.question"
-                      :exam_id="selectedExam.id"
+                      :exam_id="this.$route.params.id"
                     />
                     <choose
                       :answer="item.answer"
                       v-if="item.question.type == 'choose'"
                       :question="item.question"
-                      :exam_id="selectedExam.id"
+                      :exam_id="this.$route.params.id"
               
                     />
                     <complete
                       :answer="item.answer"
                       v-if="item.question.type == 'complete'"
                       :question="item.question"
-                      :exam_id="selectedExam.id"
+                      :exam_id="this.$route.params.id"
                     />
                     <paragraph
                       :answer="item.answer"
                       :answerImage="item.answerImage"
                       v-if="item.question.type == 'paragraph'"
                       :question="item.question"
-                      :exam_id="selectedExam.id"
+                      :exam_id="this.$route.params.id"
                     />
                     <group
                       v-if="item.question.type == 'group'"
                       :childrenQuestions="item.childrenQuestions"
                       :question="item.question"
-                      :exam_id="selectedExam.id"
+                      :exam_id="this.$route.params.id"
            
                     />
                   </div>
