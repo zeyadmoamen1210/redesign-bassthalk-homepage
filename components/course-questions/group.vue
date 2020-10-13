@@ -37,6 +37,7 @@
             v-if="item.child.type == 'choose'"
             :question="item.child"
             :mark="mark"
+            :exam_id="exam_id"
           />
           <complete
             :answer="item.answer"
@@ -44,6 +45,7 @@
             :question="item.child"
             :exam_id="exam_id"
             :mark="mark"
+            
           />
           <paragraph
             :answer="item.answer"

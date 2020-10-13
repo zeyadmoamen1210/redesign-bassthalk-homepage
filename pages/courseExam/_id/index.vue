@@ -129,34 +129,33 @@
                       :answer="item.answer"
                       v-if="item.question.type == 'truefalse'"
                       :question="item.question"
-                      :exam_id="this.$route.params.id"
+                      :exam_id="$route.params.id"
                     />
                     <choose
                       :answer="item.answer"
                       v-if="item.question.type == 'choose'"
                       :question="item.question"
-                      :exam_id="this.$route.params.id"
+                      :exam_id="$route.params.id"
               
                     />
                     <complete
                       :answer="item.answer"
                       v-if="item.question.type == 'complete'"
                       :question="item.question"
-                      :exam_id="this.$route.params.id"
+                      :exam_id="$route.params.id"
                     />
                     <paragraph
                       :answer="item.answer"
                       :answerImage="item.answerImage"
                       v-if="item.question.type == 'paragraph'"
                       :question="item.question"
-                      :exam_id="this.$route.params.id"
+                      :exam_id="$route.params.id"
                     />
                     <group
                       v-if="item.question.type == 'group'"
                       :childrenQuestions="item.childrenQuestions"
                       :question="item.question"
-                      :exam_id="this.$route.params.id"
-           
+                      :exam_id="$route.params.id"
                     />
                   </div>
                 </div>
@@ -289,13 +288,12 @@ export default {
         this.selectedExam = res.data
 
         this.allPoints = res.data.points
-        this.questions.forEach(obj => {
-           if(obj.mark){
-              
-              this.allMarks += obj.mark
-              this.isCorrected = true
-           }
-        })
+        if(res.data.totalMarks){
+          this.allMarks = res.data.totalMarks
+          this.isCorrected = true
+        }
+
+      
         console.log(this.allPoints)
         console.log(this.allMarks)
         })
