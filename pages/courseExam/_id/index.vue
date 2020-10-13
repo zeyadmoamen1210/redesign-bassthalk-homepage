@@ -309,9 +309,32 @@ export default {
         .post(`exams/${this.exam.id}/done`)
         .then((res) => {
 
-          this.$snotify.success("تم تسليم الإمتحان بنجاح انتظر حتي يتم تصحيحه")
-  
 
+          this.$snotify.success("تم تسليم الإمتحان بنجاح انتظر حتي يتم تصحيحه")
+
+
+          this.selectedExam=  null,
+      this.selectedIndex= null,
+      this.inCorrectCase= false,
+
+      this.isLoading=true,
+      this.exams= [],
+      this.questions= null,
+      this.allMarks=0,
+      this.allPoints=0,
+      this.lessonDetails= null,
+
+      this.examQuestions= [],
+      this.isCorrected=false,
+
+      this.selectedExamQuestions= [],
+      this.allQuestions= [],
+      this.tabIndex= 0,
+      this.innerTabIndex= 1,
+      this.totalpages= 0,
+
+
+        this.startExam()
           // this.selectedExam.mark = res.data.mark
           // if (res.data.mark >= 75) {
           //   this.$bvModal.show('path')
