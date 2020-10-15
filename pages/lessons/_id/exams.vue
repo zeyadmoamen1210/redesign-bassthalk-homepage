@@ -311,6 +311,8 @@ export default {
       if (index == 0) {
         this.selectedExam = this.exams[index]
 
+
+                    
         if (this.exams[index].mark < 75) {
           this.startExam(this.exams[index])
         } else {
@@ -327,22 +329,11 @@ export default {
         this.$snotify.warning(
           ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
         )
-      }
-      // if (this.exams[this.selectedIndex].mark == null) {
-      //   this.startExam(this.exams[this.selectedIndex])
-      // } else if (this.exams[this.selectedIndex].mark < 75) {
-      //   this.startExam(this.exams[this.selectedIndex])
-      // } else {
-      //   this.selectedExam = this.exams[this.selectedIndex]
+      
+      
+        }
 
-      //   this.getExamQuestions()
-      // }
-
-      // } else {
-      //   this.$snotify.warning(
-      //     ` عفواً هذا المستوي غير متاح لك يرجي إجتياز المستوي السابق أولا`
-      //   )
-      // }
+      
     },
     getLessonExams() {
       this.$axios
