@@ -21,6 +21,9 @@
                            <h6 style="display:inline-block;    font-size: 14px;" v-if="exam.mark" >
                                النسبة المئوية/ %{{exam.mark}}  </h6>
                         </div>
+                        <div v-else-if="exam.status && !exam.mark" style="display: inline-block;background: #1cb700;    font-family: 'CustomFontBold';text-align: center;margin-top: 15px;color: #FFF;padding: 9px;border-radius: 8px;">
+                            في مرحلة التصحيح من قبل المعلم
+                        </div>
                         </div>
                     </div>
                 </div>

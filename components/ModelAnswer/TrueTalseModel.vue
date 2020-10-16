@@ -1,27 +1,24 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 100%;">
-    <h6>{{ question.head }}</h6>
+    <i class="fas fa-pencil-alt"></i>
+    <h6> {{ question.question.head }}</h6>
     
-    <a :href="question.image" target="_blank">
-    <selectedImg v-if="question.image" style="float: right;" :imgUrl="question.image"></selectedImg>
+    <a :href="question.question.image" target="_blank">
+    <selectedImg v-if="question.question.image" style="float: right;" :imgUrl="question.question.image"></selectedImg>
     </a>
     <div
       style="
-        margin-top: 46px;
         overflow: hidden;
-        display: inline-block;
-        width: 70%;
-        margin-right: 50px;
       "
     >
       <div style="overflow: hidden; display: block; float: left; width: 20%;" v-if="!isSolving">
         <Button>
           الاجابة
-          <i class="text-success fa fa-check" v-if="question.modelAnswer==answerData"></i>
+          <i class="text-success fa fa-check" v-if="question.question.modelAnswer==answerData"></i>
           <i class="text-danger fa fa-times" v-else></i>
         </Button>
       </div>
-      <div style="overflow: hidden; display: block; float: left; width: 40%;">
+      <div style="overflow: hidden; display: block;">
         <input
           type="radio"
           :disabled="!isSolving"
@@ -34,7 +31,7 @@
         <span>خطأ</span>
       </div>
 
-      <div style="overflow: hidden; display: block; float: left; width: 40%;">
+      <div style="overflow: hidden; display:">
         <input
           type="radio"
           :disabled="!isSolving"
@@ -47,6 +44,7 @@
         <span>صح</span>
       </div>
     </div>
+                <div class="quesMark"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
   </div>
 </template>
 
@@ -73,7 +71,7 @@ export default {
   },
   data() {
     return {
-      id: this.question.id,
+      id: this.question.question.id,
       answerData: this.answer,
       exam: this.exam_id,
     }

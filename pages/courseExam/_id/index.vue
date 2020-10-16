@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="container">
-      <div class="tests-level">
+      <Loading v-if="isLoading" />
+      <div v-else class="tests-level">
         <div class="title">
           <h3>
             <!-- <img src="../assets/imgs/noun_exam_-1.png" alt /> -->
@@ -21,9 +22,7 @@
             
           </div>
 
-          <div v-if="!isLoading && !selectedExam && !exam && !isCorrected">
-            <h5> الإمتحان قيد التصحيح و سيتم إرسال النتيجة لك فور الإنتهاء </h5>
-          </div>
+          
         
 
         <div class="container" v-if="selectedExam">
@@ -111,10 +110,9 @@
             <Loading v-if="isLoading" />
 
             <div class="general-exam-content" v-else-if="questions">
-              <div class="row">
-                <div class="col-md-12" style="min-height: 320px;">
+             
                   <div v-for="(item, index) in questions" :key="index">
-                    <div class="exam-cont-item">
+                    <!-- <div class="exam-cont-item">
                       <div>
                         <h6>{{ index + 1 }}</h6>
                       </div>
@@ -122,54 +120,61 @@
                       <div>
                         <h6>.</h6>
                       </div>
-                    </div>
+                    </div> -->
 
-                    <!-- {{selectedExam.exam.id}} -->
+                    <div class="exam-question-bar">
+                        <!-- {{selectedExam.exam.id}} -->
+                        <h6> سؤال </h6>
                     <truefalse
                       :answer="item.answer"
                       v-if="item.question.type == 'truefalse'"
-                      :question="item.question"
+                      :question="item"
                       :exam_id="$route.params.id"
+                      :isSolving='exam.totalMarks ? false : true'
                     />
                     <choose
                       :answer="item.answer"
-                      v-if="item.question.type == 'choose'"
-                      :question="item.question"
+                      v-else-if="item.question.type == 'choose'"
+                      :question="item"
                       :exam_id="$route.params.id"
-              
+                      :isSolving='exam.totalMarks ? false : true'
                     />
                     <complete
                       :answer="item.answer"
-                      v-if="item.question.type == 'complete'"
-                      :question="item.question"
+                      v-else-if="item.question.type == 'complete'"
+                      :question="item"
                       :exam_id="$route.params.id"
+                      :isSolving='exam.totalMarks ? false : true'
                     />
                     <paragraph
                       :answer="item.answer"
                       :answerImage="item.answerImage"
-                      v-if="item.question.type == 'paragraph'"
-                      :question="item.question"
+                      v-else-if="item.question.type == 'paragraph'"
+                      :question="item"
                       :exam_id="$route.params.id"
+                      :isSolving='exam.totalMarks ? false : true'
                     />
                     <group
-                      v-if="item.question.type == 'group'"
+                      v-else-if="item.question.type == 'group'"
                       :childrenQuestions="item.childrenQuestions"
-                      :question="item.question"
+                      :question="item"
                       :exam_id="$route.params.id"
+                      :isSolving='exam.totalMarks ? false : true'
                     />
-                  </div>
+                  
                 </div>
 
                 <!-- <div v-if="questions.length>0"> -->
-                <input
+                
+                <!-- </div> -->
+              </div>
+              <input
                 v-if="!isCorrected"
                   class="mt-5 basth-btn-primary"
                   type="button"
                   @click="$bvModal.show('confirm')"
                   value="تسليم"
                 />
-                <!-- </div> -->
-              </div>
             </div>
           </div>
         </div>
@@ -179,12 +184,12 @@
 </template>
 
 <script>
-import truefalse from '../../../components/course-questions/truefalse'
-import group from '../../../components/course-questions/group'
-import choose from '../../../components/course-questions/choose'
-import complete from '../../../components/course-questions/complete'
-import paragraph from '../../../components/course-questions/paragraph'
-import Loading from '../../../components/Loading'
+import truefalse from '@/components/ModelAnswer/TrueTalseModel'
+import group from '@/components/ModelAnswer/GroupModel'
+import choose from '@/components/ModelAnswer/ChooseModel'
+import complete from '@/components/ModelAnswer/CompleteModel'
+import paragraph from '@/components/ModelAnswer/ParagraphModel'
+import Loading from '@/components/Loading'
 
 export default {
   middleware: 'auth-student',
@@ -209,7 +214,7 @@ export default {
       allMarks:0,
       allPoints:0,
       lessonDetails: null,
-
+      teacherWillCorrect:false,
       examQuestions: [],
       isCorrected:false,
 
@@ -254,10 +259,12 @@ export default {
     
 
     getExam(){
+      this.isLoading = true
       this.$axios.get(`exams/${this.$route.params.id}`).then(res => {
         this.exam = res.data
+        console.log(this.exam)
         this.selectedExam = res.data
-      })
+      }).finally(() => this.isLoading = false)
     },
   
     startExam() {
@@ -271,7 +278,9 @@ export default {
           this.getExamQuestions()
         }).catch(error => {
           this.getExamQuestions()
-          
+          if(error.response.status === 403){
+
+          }
         }).finally(() => this.isLoading = false)
         
         
@@ -309,14 +318,13 @@ export default {
         .post(`exams/${this.exam.id}/done`)
         .then((res) => {
 
-
           this.$snotify.success("تم تسليم الإمتحان بنجاح انتظر حتي يتم تصحيحه")
 
-
+          console.log(res.data)
           this.selectedExam=  null,
       this.selectedIndex= null,
       this.inCorrectCase= false,
-
+      this.$router.go(-1)
       this.isLoading=true,
       this.exams= [],
       this.questions= null,
@@ -411,8 +419,41 @@ export default {
       }
     }
   }
+
+  .exam-question-bar{
+            padding-bottom: 78px;
+       background: #fff;
+       position: relative;
+    border: 1px dashed #CCC;
+    /* border-radius: 15px; */
+    overflow: hidden;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    >h6{
+          padding: 20px 10px;
+    background: #008bc7;
+    color: #fff;
+    font-size: 20px;
+    }
+    h5{
+      margin-bottom: 0;
+    }
+    div.quesMark{
+          position: absolute;
+    bottom: 9px;
+    left: 0;
+    background: #f2f2f2;
+    padding: 10px 20px;
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: #CCC;
+    font-family: 'CustomFontBold';
+    color: #00000080;
+    }
+  }
  
   .check-box-ques {
+  
     button {
       padding: 4px 15px;
       border: 1px solid #ccc;
@@ -435,11 +476,25 @@ export default {
       box-shadow: 0px 1px 10px -1px #ddd;
       border-radius: 17px;
     }
+    >i{
+      margin-right: 21px;
+    }
     h6 {
       margin-bottom: 15px;
       color: 20px;
+          
       margin-top: 22px;
-      color: #898989;
+      color: #333 !important;
+          display: inline-block;
+    font-size: 22px;
+    }
+    >div{
+      padding:15px;
+      >div{
+            background: #f7f7f7;
+    padding: 13px;
+    margin-bottom: 10px;
+      }
     }
     .ques-answer-btns {
       button {

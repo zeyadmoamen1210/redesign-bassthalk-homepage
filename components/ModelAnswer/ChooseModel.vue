@@ -1,33 +1,44 @@
 <template>
   <div class="check-box-ques">
-    <h6>{{ question.head }}</h6>
-      <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
+    <i class="fas fa-pencil-alt"></i>
+    <h6 v-if="question.question.head" style="    display: inline-block;" v-html="question.question.head"></h6>
+      <selectedImg v-if="question.question.image" :imgUrl="question.question.image"></selectedImg>
 
     <div class="ques-answer-btns">
       <div class="row" v-if="isSolving">
-        <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
+        <div class="col-md-3" v-for="(item, index) in question.question.choices" :key="index">
           <button
             @click="answerData = index"
             :class="{ selected: answerData == index }"
-          >{{ question.choices[index] }}</button>
+          >{{ question.question.choices[index] }}</button>
         </div>
       </div>
-      <div class="row" v-else>
-        <div class="col-md-3" v-for="(item, index) in question.choices" :key="index">
-          <button
-            v-if="answerData == index && answerData != question.modelAnswer"
-            class="danger"
-          >{{ question.choices[index] }}</button>
-          <button
-            v-else-if="answerData == index && answerData ==question.modelAnswer"
+      
+      <div v-else>
+        <div class="row">
+          <div class="col-md-3" v-for="(item, index) in question.question.choices" :key="index">
+          <vs-button
+            v-if="answerData == index && answerData != question.question.modelAnswer"
+            color="danger"
+            v-html="question.question.choices[index]"
+          ></vs-button>
+          <vs-button
+          color="success"
+            v-else-if="answerData == index && answerData ==question.question.modelAnswer"
             class="selected"
-          >{{ question.choices[index] }}</button>
-          <button
-            v-else-if="question.modelAnswer == index"
+            v-html="question.question.choices[index]"
+          ></vs-button>
+          <vs-button
+            v-else-if="question.question.modelAnswer == index"
             class="selected"
-          >{{ question.choices[index] }}</button>
-          <button v-else>{{ question.choices[index] }}</button>
+            color="success"
+            v-html="question.question.choices[index]"
+          ></vs-button>
+          <vs-button color="#FFF" v-else v-html="question.question.choices[index]"></vs-button>
         </div>
+        </div>
+                <div class="quesMark"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+
       </div>
     </div>
   </div>
@@ -56,9 +67,8 @@ export default {
   },
   data() {
     return {
-      id: this.question.id,
+      id: this.question.question.id,
       answerData: this.answer,
-
       exam: this.exam_id,
     }
   },

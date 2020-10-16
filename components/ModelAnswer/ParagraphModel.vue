@@ -1,16 +1,18 @@
 <template>
   <div class="check-box-ques">
-    <h6>{{ question.head }}</h6>
-     <a :href="question.image" target="_blank">
-    <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
+    <i class="fas fa-pencil-alt"></i>
+    <h6 style="    display: inline-block;" v-html="question.question.head"></h6>
+     <a v-if="question.question.image" :href="question.question.image" target="_blank">
+    <selectedImg  :imgUrl="question.question.image"></selectedImg>
      </a>
-     <a :href="question.image" target="_blank"> اضغط </a>
 
     <!-- <img src="../../assets/imgs/chemical-equation-color.jpg" alt=""> -->
 
-    <div class="form-groub">
+   <div v-if="!question.question.modelAnswer">
+
+      <div class="form-groub">
       <input
-        style="width: 100%; padding: 18px;"
+        style="width: 100%; padding: 18px;   "
         @blur="setAnswer"
         v-model="answerData"
         type="text"
@@ -18,7 +20,7 @@
       />
     </div>
 
-    <div class="file-choose">
+    <div class="file-choose" style="z-index:6">
       <input
         @change="imguploadQuestion"
         type="file"
@@ -32,6 +34,21 @@
         بالحل
       </span>
     </div>
+
+
+   </div>
+   <div v-else>
+     <div>
+        <h5> إجابتك </h5>
+        <selectedImg v-if="answerImage" :imgUrl="answerImage"></selectedImg>
+        <p v-html="answer"> </p>
+     </div>
+     <div>
+       <h5>الإجابة النموذجية</h5>
+      <p v-html="question.question.modelAnswer"> </p>
+     </div>
+   </div>
+                <div class="quesMark"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
   </div>
 </template>
 
@@ -52,10 +69,16 @@ export default {
     answerImage: {
       required: true,
     },
+    exam_id: {
+      required: true,
+    },
+    isSolving: {
+      required: false,
+    },
   },
   data() {
     return {
-      id: this.question.id,
+      id: this.question.question.id,
       answerData: this.answer,
       url: null,
       photo: null,

@@ -1,10 +1,12 @@
 <template>
   <div class="check-box-ques">
-    <h6>{{ question.head }}</h6>
-    <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
+    <i class="fas fa-pencil-alt"></i>
+    <h6 style="    display: inline-block;" v-html="question.question.head"></h6>
+    <selectedImg v-if="question.question.image" :imgUrl="question.question.image"></selectedImg>
 
     <span class="fill-the-ques" style="width: 100%;"></span>
-    <div class="row">
+    <div v-if="isSolving">
+      <div class="row">
       <div class="col-md-3" v-for="(item, index) in completeData" :key="index">
         <div class="form-groub" style="display: inline-block; width: 100%;">
           <input
@@ -18,6 +20,18 @@
       </div>
       <!-- {{ completeData }} -->
     </div>
+    </div>
+    <div v-else>
+      <div>
+        <h5>إجابتك</h5>
+        <span v-for="(one,index) in answer" :key="index"> {{one}} </span>
+      </div>
+       <div>
+        <h5>الإجابة النموذجية</h5>
+        <span v-for="(one,index) in question.question.modelAnswer" :key="index"> {{one}} </span>
+      </div>
+    </div>
+                <div class="quesMark"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
   </div>
 </template>
 
@@ -35,11 +49,17 @@ export default {
     answer: {
       required: true,
     },
+    exam_id: {
+      required: true,
+    },
+    isSolving: {
+      required: false,
+    },
   },
   data() {
     return {
-      id: this.question.id,
-      completeData: Array(this.question.numberOfInputs).fill(''),
+      id: this.question.question.id,
+      completeData: Array(this.question.question.numberOfInputs).fill(''),
     }
   },
   watch: {},

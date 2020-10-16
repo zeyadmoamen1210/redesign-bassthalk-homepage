@@ -1,7 +1,8 @@
 <template>
   <div class="check-box-ques">
-    <h6>{{ question.head }}</h6>
-    <selectedImg v-if="question.image" :imgUrl="question.image"></selectedImg>
+    <i class="fas fa-pencil-alt"></i>
+    <h6 style="    display: inline-block;" v-html="question.question.head "></h6>
+    <selectedImg v-if="question.question.image" :imgUrl="question.question.image"></selectedImg>
 
     <!-- loop to display sub questions -->
     <!-- childrenQuestions -->
@@ -21,29 +22,31 @@
           <truefalse
             :answer="item.answer"
             v-if="item.child.type == 'truefalse'"
-            :question="item.child"
+            :question="item"
             :exam_id="exam_id"
             :isSolving="isSolving"
           />
-          <choose
+          <!-- <choose
             :answer="item.answer"
             :isSolving="isSolving"
             v-if="item.child.type == 'choose'"
-            :question="item.child"
-          />
+            :question="item"
+            :exam_id="exam_id"
+          /> -->
           <complete
             :answer="item.answer"
             v-if="item.child.type == 'complete'"
-            :question="item.child"
+            :question="item"
             :exam_id="exam_id"
           />
           <paragraph
             :answer="item.answer"
             :answerImage="item.answerImage"
             v-if="item.child.type == 'paragraph'"
-            :question="item.child"
+            :question="item"
             :exam_id="exam_id"
           />
+          
         </div>
       </div>
     </div>
@@ -52,10 +55,10 @@
 
 <script>
 import selectedImg from '../selectedImg'
-import complete from './complete'
-import truefalse from './truefalse'
-import choose from './choose'
-import paragraph from './paragraph'
+import complete from './CompleteModel'
+import truefalse from './TrueTalseModel'
+import choose from './ChooseModel'
+import paragraph from './ParagraphModel'
 export default {
   components: {
     selectedImg,

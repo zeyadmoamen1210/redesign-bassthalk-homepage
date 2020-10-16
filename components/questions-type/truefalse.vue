@@ -1,5 +1,5 @@
 <template>
-  <div class="check-box-ques" style="float: left; width: 100%;">
+  <div class="check-box-ques">
     <!-- <span v-html="question.head"></span> -->
     <div class="question-name">
       <div>
