@@ -1,20 +1,21 @@
 <template>
-  <div class="check-box-ques" style="float: left; width: 100%;">
+  <div class="check-box-ques" style="float: left; width: 100%; border-bottom:1px solid #ddd;padding: 15px 0;">
     <i class="fas fa-pencil-alt"></i>
-    <h6> {{ question.question.head }}</h6>
+    <h6> {{ question.child.head }}</h6>
     
-    <a :href="question.question.image" target="_blank">
-    <selectedImg v-if="question.question.image" style="float: right;" :imgUrl="question.question.image"></selectedImg>
+    <a :href="question.child.image" target="_blank">
+    <selectedImg v-if="question.child.image" style="float: right;" :imgUrl="question.child.image"></selectedImg>
     </a>
     <div
       style="
         overflow: hidden;
+         background: #FFF;
       "
     >
-      <div style="overflow: hidden; display: block; " v-if="!isSolving">
+      <div style="overflow: hidden; display: block" v-if="!isSolving">
         <Button>
           الاجابة
-          <i class="text-success fa fa-check" v-if="question.question.modelAnswer==answerData"></i>
+          <i class="text-success fa fa-check" v-if="question.child.modelAnswer==answerData"></i>
           <i class="text-danger fa fa-times" v-else></i>
         </Button>
       </div>
@@ -44,12 +45,12 @@
         <span>صح</span>
       </div>
     </div>
-                <div class="quesMark"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
   </div>
 </template>
 
 <script>
-import selectedImg from '../selectedImg'
+import selectedImg from '../../selectedImg'
 export default {
   components: {
     selectedImg,
@@ -71,7 +72,7 @@ export default {
   },
   data() {
     return {
-      id: this.question.question.id,
+      id: this.question.child.id,
       answerData: this.answer,
       exam: this.exam_id,
     }

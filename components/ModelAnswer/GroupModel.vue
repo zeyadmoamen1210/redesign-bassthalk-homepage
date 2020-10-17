@@ -1,5 +1,5 @@
 <template>
-  <div class="check-box-ques">
+  <div class="check-box-ques group-question">
     <i class="fas fa-pencil-alt"></i>
     <h6 style="    display: inline-block;" v-html="question.question.head "></h6>
     <selectedImg v-if="question.question.image" :imgUrl="question.question.image"></selectedImg>
@@ -19,27 +19,28 @@
             </div>
           </div>-->
 
-          <truefalse
+          <truefalseGroup
             :answer="item.answer"
             v-if="item.child.type == 'truefalse'"
             :question="item"
             :exam_id="exam_id"
             :isSolving="isSolving"
           />
-          <!-- <choose
+          <chooseGroup
             :answer="item.answer"
             :isSolving="isSolving"
             v-if="item.child.type == 'choose'"
             :question="item"
             :exam_id="exam_id"
-          /> -->
-          <complete
+          />
+          <completeGroup
             :answer="item.answer"
             v-if="item.child.type == 'complete'"
             :question="item"
+            :isSolving="isSolving"
             :exam_id="exam_id"
           />
-          <paragraph
+          <paragraphGroup
             :answer="item.answer"
             :answerImage="item.answerImage"
             v-if="item.child.type == 'paragraph'"
@@ -48,6 +49,8 @@
           />
           
         </div>
+      <div class="quesMark" v-if="question"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{totalMArksForGroup != null? totalMArksForGroup : ''}} </div>
+
       </div>
     </div>
   </div>
@@ -55,17 +58,35 @@
 
 <script>
 import selectedImg from '../selectedImg'
-import complete from './CompleteModel'
-import truefalse from './TrueTalseModel'
-import choose from './ChooseModel'
-import paragraph from './ParagraphModel'
+import completeGroup from './Group/completeGroup'
+import truefalseGroup from './Group/truefalseGroup'
+import chooseGroup from './Group/chooseGroup'
+import paragraphGroup from './Group/paragraphGroup'
 export default {
   components: {
     selectedImg,
-    truefalse,
-    choose,
-    complete,
-    paragraph,
+    truefalseGroup,
+    chooseGroup,
+    completeGroup,
+    paragraphGroup,
+  },
+  computed:{
+    totalMArksForGroup(){
+      this.groupMark = 0;
+      this.childrenQuestions.forEach(item => {
+        if(item.mark){
+          this.groupMark += item.mark
+        }else{
+          this.groupMark = null
+        }
+      })
+      return this.groupMark
+    }
+  },
+  data(){
+    return{
+      groupMark: null
+    }
   },
   props: {
     question: {
@@ -88,6 +109,14 @@ export default {
 </script>
 
 <style lang="scss">
+.group-question{
+  >h6{
+    p{
+          text-align: center;
+    padding: 15px;
+    }
+  }
+}
 .exam-cont-item {
   overflow: hidden;
   > div {

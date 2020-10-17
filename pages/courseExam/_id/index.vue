@@ -489,11 +489,15 @@ export default {
     font-size: 22px;
     }
     >div{
+          background: #FFF;
       padding:15px;
+          box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+    margin-bottom: 10px;
       >div{
-            background: #f7f7f7;
+            background: #fcfcfc;
     padding: 13px;
     margin-bottom: 10px;
+   
       }
     }
     .ques-answer-btns {
