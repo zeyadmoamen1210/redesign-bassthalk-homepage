@@ -22,6 +22,49 @@
             
           </div>
 
+           <div class="live-time live-exam" v-if="index == 1 && selectedExam && selectedExam.remainingTime && selectedExam.remainingTime > 0"  v-for="(x,index) in 5" :key="index">
+  <no-ssr>
+                                  <vac @finish="endExam" :end-time="new Date().getTime() + (selectedExam.remainingTime*1000)">
+                                    <template
+                                      v-slot:process="{ timeObj }">
+                                      <!-- <span></span> -->
+                                      <div class="time-div">
+                      <img src="@/assets/imgs/live-timer.png" alt="">
+                      <h6>ثانية</h6>
+                      <span>{{ ` ${timeObj.s}` }}</span>
+                    </div>
+                                      
+                                      <div class="time-div">
+                      <img src="@/assets/imgs/live-timer.png" alt="">
+                      <h6>دقيقة</h6>
+                      <span>{{ ` ${timeObj.m}` }}</span>
+
+                    </div>
+                                      
+                                       <div class="time-div">
+                      <img src="@/assets/imgs/live-timer.png" alt="">
+                      <h6>ساعة</h6>
+                      <span>{{ ` ${timeObj.h}` }}</span>
+
+                    </div>
+                    <div class="time-div">
+                      <img src="@/assets/imgs/live-timer.png" alt="">
+                      <h6>يوم</h6>
+                      <span>{{ ` ${timeObj.d}` }}</span>
+
+                    </div>
+
+                                      
+                                    </template>
+                                    <span slot="finish" style="font-family:'CustomFontRegular'"> تم إنتهاء الوقت  </span>
+                                  </vac>
+                                </no-ssr>
+
+
+                                    
+
+                </div>
+
           
         
 
@@ -130,21 +173,21 @@
                       v-if="item.question.type == 'truefalse'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='exam.totalMarks ? false : true'
+                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
                     />
                     <choose
                       :answer="item.answer"
                       v-else-if="item.question.type == 'choose'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='exam.totalMarks ? false : true'
+                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
                     />
                     <complete
                       :answer="item.answer"
                       v-else-if="item.question.type == 'complete'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='exam.totalMarks ? false : true'
+                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
                     />
                     <paragraph
                       :answer="item.answer"
@@ -152,14 +195,14 @@
                       v-else-if="item.question.type == 'paragraph'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='exam.totalMarks ? false : true'
+                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
                     />
                     <group
                       v-else-if="item.question.type == 'group'"
                       :childrenQuestions="item.childrenQuestions"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='exam.totalMarks ? false : true'
+                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
                     />
                   
                 </div>
@@ -204,6 +247,7 @@ export default {
   },
   data() {
     return {
+      remainingTime: 0,
       selectedExam: null,
       selectedIndex: null,
       inCorrectCase: false,
@@ -266,7 +310,49 @@ export default {
         this.selectedExam = res.data
       }).finally(() => this.isLoading = false)
     },
-  
+    endExam(){
+      this.isLoading = true
+      this.$axios
+        .post(`exams/${this.exam.id}/done`)
+        .then((res) => {
+
+          this.$snotify.warning("حسنا لقد انتهي الوقت .. تم تسليم الامتحان")
+
+          console.log(res.data)
+          this.selectedExam=  null,
+      this.selectedIndex= null,
+      this.inCorrectCase= false,
+      this.$router.go(-1)
+      this.isLoading=true,
+      this.exams= [],
+      this.questions= null,
+      this.allMarks=0,
+      this.allPoints=0,
+      this.lessonDetails= null,
+
+      this.examQuestions= [],
+      this.isCorrected=false,
+
+      this.selectedExamQuestions= [],
+      this.allQuestions= [],
+      this.tabIndex= 0,
+      this.innerTabIndex= 1,
+      this.totalpages= 0,
+
+
+        this.startExam()
+          // this.selectedExam.mark = res.data.mark
+          // if (res.data.mark >= 75) {
+          //   this.$bvModal.show('path')
+          // } else {
+          //   this.$bvModal.show('not-path')
+          // }
+        })
+        .catch((err) => {
+        })
+        .finally(() => (this.isLoading = false))
+   
+    },
     startExam() {
       // exams/70/start
       this.isLoading = true
@@ -295,6 +381,7 @@ export default {
           this.questions = res.data.questions
           this.exam = res.data
         this.selectedExam = res.data
+        this.remainingTime = res.data.remainingTime
 
         this.allPoints = res.data.points
         if(res.data.totalMarks){
@@ -364,6 +451,30 @@ export default {
 <style lang="scss">
 @import '../../../assets/sass/general-exam-level.scss';
 @import '../../../assets/sass/general-exam-test.scss';
+
+.live-time.live-exam{
+      display: flex;
+    margin-top: 10px;
+      >span{
+        display: flex;
+        margin: auto;
+      }
+      .time-div{
+        position: relative;
+        margin: 0 5px;
+        
+        span{
+          position: absolute;
+              top: 22%;
+    left: 38%;
+    color: #FFF;
+    font-weight: bold;
+        }
+        h6{
+          text-align: center;
+        }
+      }
+}
 .tests-level{
    .resultExam{
     position: relative;
@@ -492,7 +603,7 @@ export default {
           background: #FFF;
       padding:15px;
           box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
-    margin-bottom: 10px;
+    margin-bottom: 38px;
       >div{
             background: #fcfcfc;
     padding: 13px;

@@ -16,7 +16,7 @@
                             <img v-else-if="exam.difficultyLevel == 'easy'" src="@/assets/imgs/easy-level-1.png" alt=""> -->
 
                             <!-- <span> {{exam.difficultyLevel}} </span>  -->
-                        <div v-if="exam.mark && exam.points" style="display: inline-block;background: #0989c3;text-align: center;margin-top: 15px;color: #FFF;padding: 9px;border-radius: 8px;">
+                        <div v-if="exam.mark > -1 && exam.points" style="display: inline-block;background: #0989c3;text-align: center;margin-top: 15px;color: #FFF;padding: 9px;border-radius: 8px;">
                             <span> الدرجة: {{exam.points}} / {{ Math.ceil((exam.mark / 100) * exam.points) }}  </span>
                            <h6 style="display:inline-block;    font-size: 14px;" v-if="exam.mark" >
                                النسبة المئوية/ %{{exam.mark}}  </h6>
