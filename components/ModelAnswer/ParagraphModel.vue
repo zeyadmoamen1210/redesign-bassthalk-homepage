@@ -118,7 +118,7 @@ export default {
     setAnswer() {
       // !exams/70/solution
       var questionForm = new FormData()
-      if (this.photo != null) {
+      // if (this.photo != null) {
         questionForm.append('answerImage', this.photo)
         questionForm.append('question', this.id)
         if (this.answerData != '') {
@@ -132,7 +132,7 @@ export default {
           .catch((err) => {
             console.log(err)
           })
-      }
+      
     },
   },
 }
