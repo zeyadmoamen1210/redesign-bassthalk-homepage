@@ -31,7 +31,7 @@
         <span v-for="(one,index) in question.child.modelAnswer" :key="index"> {{one}} </span>
       </div>
     </div>
-                <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                <!-- <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div> -->
   </div>
 </template>
 

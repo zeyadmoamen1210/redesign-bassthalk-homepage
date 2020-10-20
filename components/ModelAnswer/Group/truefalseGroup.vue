@@ -45,7 +45,7 @@
         <span>صح</span>
       </div>
     </div>
-                <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                <!-- <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div> -->
   </div>
 </template>
 

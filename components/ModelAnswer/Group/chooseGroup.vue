@@ -20,7 +20,7 @@
           <vs-button
             v-if="answerData == index && answerData != question.child.modelAnswer"
             color="danger"
-            v-html="question.choices[index]"
+            v-html="question.child.choices[index]"
           ></vs-button>
           <vs-button
           color="success"
@@ -39,7 +39,7 @@
         </div>
 
       </div>
-                      <div class="quesMark" style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                      <!-- <div class="quesMark" style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div> -->
 
     </div>
   </div>

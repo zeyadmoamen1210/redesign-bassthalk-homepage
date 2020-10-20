@@ -33,6 +33,8 @@
             :question="item"
             :exam_id="exam_id"
           />
+
+          
           <completeGroup
             :answer="item.answer"
             v-if="item.child.type == 'complete'"
@@ -49,7 +51,7 @@
           />
           
         </div>
-      <div class="quesMark" v-if="question"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{totalMArksForGroup != null? totalMArksForGroup : ''}} </div>
+      <div class="quesMark" v-if="question"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{totalMArksForGroup}} </div>
 
       </div>
     </div>
@@ -76,8 +78,6 @@ export default {
       this.childrenQuestions.forEach(item => {
         if(item.mark){
           this.groupMark += item.mark
-        }else{
-          this.groupMark = null
         }
       })
       return this.groupMark
