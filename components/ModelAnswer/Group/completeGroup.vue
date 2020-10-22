@@ -1,7 +1,7 @@
 <template>
-  <div class="check-box-ques" style="margin-bottom:55px;border-bottom:1px solid #ddd;padding: 15px 0;">
+  <div class="check-box-ques" style="position:relative;margin-bottom:55px;border-bottom:1px solid #ddd;padding: 15px 0;">
     <i class="fas fa-pencil-alt"></i>
-    <h6 style="    display: inline-block;" v-html="question.child.head"></h6>
+    <h6 style=" background: #008bc71c;width: 94%; padding: 15px;" v-html="question.child.head"></h6>
     <selectedImg v-if="question.child.image" :imgUrl="question.child.image"></selectedImg>
 
     <span class="fill-the-ques" style="width: 100%;"></span>
@@ -31,7 +31,7 @@
         <span v-for="(one,index) in question.child.modelAnswer" :key="index"> {{one}} </span>
       </div>
     </div>
-                <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                <div class="quesMark"  style="position:absolute"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
   </div>
 </template>
 

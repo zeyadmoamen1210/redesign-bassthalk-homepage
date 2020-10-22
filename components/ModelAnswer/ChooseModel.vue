@@ -1,7 +1,7 @@
 <template>
   <div class="check-box-ques">
     <i class="fas fa-pencil-alt"></i>
-    <h6 v-if="question.question.head" style="    display: inline-block;" v-html="question.question.head"></h6>
+    <h6 v-if="question.question.head" style=" background: #008bc71c;width: 94%; padding: 15px;" v-html="question.question.head"></h6>
       <selectedImg v-if="question.question.image" :imgUrl="question.question.image"></selectedImg>
 
     <div class="ques-answer-btns">

@@ -1,10 +1,10 @@
 <template>
-  <div class="check-box-ques" style="border-bottom:1px solid #ddd;padding: 15px 0;">
+  <div class="check-box-ques" style="position:relative;border-bottom:1px solid #ddd;padding: 15px 0;">
     <i class="fas fa-pencil-alt"></i>
-    <h6 style="    display: inline-block;" v-html="question.child.head"></h6>
+    <h6 style=" background: #008bc71c;width: 94%; padding: 15px;" v-html="question.child.head"></h6>
      <a v-if="question.child.image" :href="question.child.image" target="_blank">
     <selectedImg  :imgUrl="question.child.image"></selectedImg>
-     </a>
+     </a>s
 
     <!-- <img src="../../assets/imgs/chemical-equation-color.jpg" alt=""> -->
 
@@ -39,16 +39,22 @@
    </div>
    <div v-else>
      <div>
-        <h5> إجابتك </h5>
+        <h5 style="    margin-bottom: 7px;
+    border-bottom: 1px dashed #b1b1b1;
+    display: inline-block;
+    padding: 0 0 8px 13px;"> إجابتك </h5>
         <selectedImg v-if="answerImage" :imgUrl="answerImage"></selectedImg>
         <p v-html="answer"> </p>
      </div>
      <div>
-       <h5>الإجابة النموذجية</h5>
+       <h5 style="    margin-bottom: 7px;
+    border-bottom: 1px dashed #b1b1b1;
+    display: inline-block;
+    padding: 0 0 8px 13px;">الإجابة النموذجية</h5>
       <p v-html="question.child.modelAnswer"> </p>
      </div>
    </div>
-                <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                <div class="quesMark"  style="position:absolute"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
   </div>
 </template>
 

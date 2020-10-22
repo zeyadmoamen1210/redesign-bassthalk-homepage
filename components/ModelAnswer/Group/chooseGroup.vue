@@ -1,7 +1,7 @@
 <template>
-  <div class="check-box-ques" style="padding-bottom:50px;border-bottom:1px solid #ddd;padding: 15px 0;">
+  <div class="check-box-ques" style="position:relative;padding-bottom:50px;border-bottom:1px solid #ddd;padding: 15px 0;">
     <i class="fas fa-pencil-alt"></i>
-    <h6 v-if="question.child.head" style="    display: inline-block;" v-html="question.child.head"></h6>
+    <h6 v-if="question.child.head" style=" background: #008bc71c;width: 94%; padding: 15px;" v-html="question.child.head"></h6>
       <selectedImg v-if="question.child.image" :imgUrl="question.child.image"></selectedImg>
 
     <div class="ques-answer-btns">
@@ -39,7 +39,7 @@
         </div>
 
       </div>
-                      <div class="quesMark" style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                      <div class="quesMark" style="position:absolute"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
 
     </div>
   </div>

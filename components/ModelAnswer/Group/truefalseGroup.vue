@@ -1,7 +1,7 @@
 <template>
-  <div class="check-box-ques" style="float: left; width: 100%; border-bottom:1px solid #ddd;padding: 15px 0;">
+  <div class="check-box-ques" style="position:relative;float: left; width: 100%; border-bottom:1px solid #ddd;padding: 15px 0;">
     <i class="fas fa-pencil-alt"></i>
-    <h6> {{ question.child.head }}</h6>
+    <h6 style=" background: #008bc71c;width: 94%; padding: 15px;"> {{ question.child.head }}</h6>
     
     <a :href="question.child.image" target="_blank">
     <selectedImg v-if="question.child.image" style="float: right;" :imgUrl="question.child.image"></selectedImg>
@@ -19,7 +19,9 @@
           <i class="text-danger fa fa-times" v-else></i>
         </Button>
       </div>
-      <div style="overflow: hidden; display: block;">
+      <div style="display:flex;flex-wrap:wrap">
+
+        <div style="overflow: hidden; display: block;flex-grow:1">
         <input
           type="radio"
           :disabled="!isSolving"
@@ -32,7 +34,7 @@
         <span>خطأ</span>
       </div>
 
-      <div style="overflow: hidden; display:">
+      <div style="overflow: hidden; flex-grow:1">
         <input
           type="radio"
           :disabled="!isSolving"
@@ -44,8 +46,11 @@
         />
         <span>صح</span>
       </div>
+
+
+      </div>
     </div>
-                <div class="quesMark"  style="position:static"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
+                <div class="quesMark"  style="position:absolute"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>
   </div>
 </template>
 

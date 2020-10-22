@@ -1,7 +1,7 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 100%;">
     <i class="fas fa-pencil-alt"></i>
-    <h6> {{ question.question.head }}</h6>
+    <h6 style=" background: #008bc71c;width: 94%; padding: 15px;"> {{ question.question.head }}</h6>
     
     <a :href="question.question.image" target="_blank">
     <selectedImg v-if="question.question.image" style="float: right;" :imgUrl="question.question.image"></selectedImg>
@@ -18,7 +18,9 @@
           <i class="text-danger fa fa-times" v-else></i>
         </Button>
       </div>
-      <div style="overflow: hidden; display: block;">
+      <div style="display:flex;flex-wrap:wrap">
+
+        <div style="overflow: hidden; display: block;flex-grow:1">
         <input
           type="radio"
           :disabled="!isSolving"
@@ -31,7 +33,7 @@
         <span>خطأ</span>
       </div>
 
-      <div style="overflow: hidden; display:">
+      <div style="overflow: hidden; flex-grow:1">
         <input
           type="radio"
           :disabled="!isSolving"
@@ -42,6 +44,8 @@
           v-model="answerData"
         />
         <span>صح</span>
+      </div>
+
       </div>
     </div>
                 <div class="quesMark"> <b style="color:#333">الدرجة:</b> {{question.point}} / {{question.mark}} </div>

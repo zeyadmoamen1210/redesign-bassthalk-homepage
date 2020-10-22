@@ -1,8 +1,8 @@
 <template>
   <div class="check-box-ques">
     <i class="fas fa-pencil-alt"></i>
-    <h6 style="    display: inline-block;" v-html="question.question.head"></h6>
-     <a v-if="question.question.image" :href="question.question.image" target="_blank">
+    <h6 style=" background: #008bc71c;width: 94%; padding: 15px;"  v-html="question.question.head"></h6>
+     <a  :href="question.question.image" target="_blank">
     <selectedImg  :imgUrl="question.question.image"></selectedImg>
      </a>
 
@@ -39,12 +39,18 @@
    </div>
    <div v-else>
      <div>
-        <h5> إجابتك </h5>
+        <h5 style="    margin-bottom: 7px;
+    border-bottom: 1px dashed #b1b1b1;
+    display: inline-block;
+    padding: 0 0 8px 13px;"> إجابتك </h5>
         <selectedImg v-if="answerImage" :imgUrl="answerImage"></selectedImg>
         <p v-html="answer"> </p>
      </div>
      <div>
-       <h5>الإجابة النموذجية</h5>
+       <h5 style="    margin-bottom: 7px;
+    border-bottom: 1px dashed #b1b1b1;
+    display: inline-block;
+    padding: 0 0 8px 13px;">الإجابة النموذجية</h5>
       <p v-html="question.question.modelAnswer"> </p>
      </div>
    </div>
