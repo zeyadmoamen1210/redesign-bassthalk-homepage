@@ -3,9 +3,9 @@
      
       <div class="container" >
                         <h3 style="margin-bottom:10px">المحاضرات السابقة</h3>
-     <Loading v-if="isLoading"/>
-     <NoData v-else-if="lectures.length == 0 && !isLoading" />
-          <div v-else>
+     <Loading v-if="isLoading == true" />
+     <NoData v-else-if="lectures.length == 0" />
+          <div>
               <div class="row">
                   <div class="col-md-4" v-for="lec in lectures" :key="lec.id">
                       <div class="last-lecture">
@@ -22,7 +22,7 @@
 
 <script>
 import Loading from '@/components/Loading';
-import NoData from '@/components/Loading';
+import NoData from '@/components/NoData';
 export default {
     components:{
         Loading,
@@ -35,11 +35,11 @@ export default {
         }
     },
     created(){
-        this.isLoading =true;
         this.$axios.get(`/courses/${this.$route.params.id}/lectures`).then(res=>{
             console.log(res.data)
             this.lectures = res.data
-        }).finally(() => this.isLoading = false)
+             this.isLoading = false
+        }).catch(err => this.isLoading = false).finally(() => this.isLoading = false)
     }
 }
 </script>

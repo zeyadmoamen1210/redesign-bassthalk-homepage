@@ -21,6 +21,7 @@
             </div>
             
           </div>
+          <div v-else-if="!isCorrected && timeFinished">تم انتهاء الوقت</div>
 
            <div class="live-time live-exam" v-if="index == 1 && selectedExam && selectedExam.remainingTime && selectedExam.remainingTime > 0"  v-for="(x,index) in 5" :key="index">
   <no-ssr>
@@ -247,6 +248,7 @@ export default {
   },
   data() {
     return {
+      timeFinished:false,
       remainingTime: 0,
       selectedExam: null,
       selectedIndex: null,
@@ -313,7 +315,7 @@ export default {
     endExam(){
       this.isLoading = true
       this.$axios
-        .post(`exams/${this.exam.id}/done`)
+        .post(`exams/${this.$route.params.id}/done`)
         .then((res) => {
 
           this.$snotify.warning("حسنا لقد انتهي الوقت .. تم تسليم الامتحان")
@@ -387,6 +389,11 @@ export default {
         if(res.data.totalMarks){
           this.allMarks = res.data.totalMarks
           this.isCorrected = true
+        }
+
+        if(this.remainingTime < 0){
+          this.timeFinished = true
+          this.endExam()
         }
 
       
