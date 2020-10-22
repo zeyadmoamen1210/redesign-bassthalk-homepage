@@ -33,6 +33,11 @@
                 </vs-button>
 
 
+                <vs-button style="color:#FFF;font-family:'CustomFontRegular'" color="primary" @click="$router.push(`/course/${$route.params.id}/lectures`)">
+                    المحاضرات السابقة
+                </vs-button>
+
+
 
           <div  class="time-content">
             <div class="row">
