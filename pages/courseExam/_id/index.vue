@@ -121,7 +121,7 @@
                 <button
                   @click="getExamQuestions"
                   class="light-btn"
-                  style="width: 100%;"
+                  style="width: 100J%;"
                 >عرض إجاباتي + الاجابة النموذجية</button>
               </div>
             </div>
@@ -181,21 +181,21 @@
                       v-if="item.question.type == 'truefalse'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
+                      :isSolving='(selectedExam.totalMarks > -1) ? false : true'
                     />
                     <choose
                       :answer="item.answer"
                       v-else-if="item.question.type == 'choose'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
+                      :isSolving='(selectedExam.totalMarks > -1) ? false : true'
                     />
                     <complete
                       :answer="item.answer"
                       v-else-if="item.question.type == 'complete'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
+                      :isSolving='(selectedExam.totalMarks > -1) ? false : true'
                     />
                     <paragraph
                       :answer="item.answer"
@@ -203,14 +203,14 @@
                       v-else-if="item.question.type == 'paragraph'"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
+                      :isSolving='(selectedExam.totalMarks > -1) ? false : true'
                     />
                     <group
                       v-else-if="item.question.type == 'group'"
                       :childrenQuestions="item.childrenQuestions"
                       :question="item"
                       :exam_id="$route.params.id"
-                      :isSolving='(selectedExam.totalMarks && selectedExam.totalMarks > -1) ? false : true'
+                      :isSolving='(selectedExam.totalMarks > -1) ? false : true'
                     />
                   
                 </div>
@@ -393,7 +393,7 @@ export default {
         this.remainingTime = res.data.remainingTime
 
         this.allPoints = res.data.points
-        if(res.data.totalMarks){
+        if(res.data.totalMarks > -1){
           this.allMarks = res.data.totalMarks
           this.isCorrected = true
         }
