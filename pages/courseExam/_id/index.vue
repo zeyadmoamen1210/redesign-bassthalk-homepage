@@ -331,7 +331,7 @@ export default {
           this.selectedExam=  null,
       this.selectedIndex= null,
       this.inCorrectCase= false,
-      this.$router.go(-1)
+      // this.$router.go(-1)
       this.isLoading=true,
       this.exams= [],
       this.questions= null,
@@ -561,7 +561,7 @@ export default {
     }
     div.quesMark{
           position: absolute;
-    bottom: 9px;
+    bottom: -36px;
     left: 0;
     background: #f2f2f2;
     padding: 10px 20px;

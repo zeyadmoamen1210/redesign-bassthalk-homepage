@@ -19,7 +19,7 @@
           <i class="text-danger fa fa-times" v-else></i>
         </Button>
       </div>
-      <div style="display:flex;flex-wrap:wrap">
+      <div style="display:flex;flex-wrap:wrap;    position: relative;z-index: 9999999999999999999999;">
 
         <div style="overflow: hidden; display: block;flex-grow:1">
         <input
