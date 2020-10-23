@@ -4,7 +4,7 @@
     <h6 style=" background: #008bc71c;width: 94%; padding: 15px;" v-html="question.child.head"></h6>
      <a v-if="question.child.image" :href="question.child.image" target="_blank">
     <selectedImg  :imgUrl="question.child.image"></selectedImg>
-     </a>s
+     </a>
 
     <!-- <img src="../../assets/imgs/chemical-equation-color.jpg" alt=""> -->
 

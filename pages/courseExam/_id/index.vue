@@ -14,10 +14,17 @@
           <div class="resultExam" v-if="isCorrected == true">
             <img src="@/assets/imgs/white-shape.png" alt="">
             
-            <div>
-              <h5 style="color: #FFF;font-size: 28px;padding: 10px;margin-bottom:0"> تم تصحيح الإمتحان </h5>
-              <h5 style="color:#FFF;padding: 0 15px 0;"> {{allPoints}} / <span> {{allMarks}} </span> </h5>
+            <div style="display:flex;flex-wrap:wrap">
+              <div style="flex-grow:1">
+                              <h5 style="color: #FFF;font-size: 28px;padding: 10px;margin-bottom:0"> تم تصحيح الإمتحان </h5>
+
+              </div>
+              <div style="flex-grow:1">
+                <h5 style="color:#FFF;padding: 0 15px 0;"> الدرجة :
+              <sub>{{allPoints}} </sub>&frasl;<sup>{{allMarks}}</sup>
+               </h5>
               <h5 style="color:#FFF;padding: 0 15px 0;"> النسبة المئوية / {{ ((allMarks / allPoints) * 100).toFixed(1)  }} % </h5>
+              </div>
             </div>
             
           </div>
@@ -484,18 +491,14 @@ export default {
 }
 .tests-level{
    .resultExam{
-    position: relative;
+        position: relative;
     background: #058ac6;
     padding: 15px;
-    height: 147px;
-    div{
-      position: absolute;
-      width: 100%;
-      z-index: 30;
-    }
+    height: 88px;
+    
     img{
-      position: absolute;
-    width: 100px;
+     position: absolute;
+    width: 101px;
     height: 100%;
     left: 0;
     top: 0;
@@ -614,7 +617,7 @@ export default {
       >div{
             background: #fcfcfc;
     padding: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 27px;
    
       }
     }
