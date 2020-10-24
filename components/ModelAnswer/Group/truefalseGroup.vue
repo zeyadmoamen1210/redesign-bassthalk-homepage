@@ -1,7 +1,7 @@
 <template>
   <div class="check-box-ques" style="position:relative;float: left; width: 100%; border-bottom:1px solid #ddd;padding: 15px 0;">
-    <i class="fas fa-pencil-alt"></i>
-    <h6 style=" background: #008bc71c;width: 94%; padding: 15px;"> {{ question.child.head }}</h6>
+    <i class="fas fa-question-circle"></i>
+    <h6 style=" background: #008bc71c;width: 94%;padding:5px"> {{ question.child.head }}</h6>
     
     <a :href="question.child.image" target="_blank">
     <selectedImg v-if="question.child.image" style="float: right;" :imgUrl="question.child.image"></selectedImg>
@@ -19,7 +19,7 @@
           <i class="text-danger fa fa-times" v-else></i>
         </Button>
       </div>
-      <div style="display:flex;flex-wrap:wrap;    position: relative;z-index: 9999999999999999999999;">
+      <div style="display:flex;flex-wrap:wrap;    position: relative;z-index: 9999;">
         <div style="overflow: hidden; flex-grow:1">
         <input
           type="radio"

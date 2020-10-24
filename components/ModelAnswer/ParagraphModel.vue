@@ -1,7 +1,7 @@
 <template>
   <div class="check-box-ques">
-    <i class="fas fa-pencil-alt"></i>
-    <h6 style=" background: #008bc71c;width: 94%; padding: 15px;"  v-html="question.question.head"></h6>
+    <i class="fas fa-question-circle"></i>
+    <h6 style=" background: #008bc71c;width: 94%;padding:5px"  v-html="question.question.head"></h6>
      <a  :href="question.question.image" target="_blank">
     <selectedImg  :imgUrl="question.question.image"></selectedImg>
      </a>

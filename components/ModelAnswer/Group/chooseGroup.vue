@@ -1,7 +1,7 @@
 <template>
   <div class="check-box-ques" style="position:relative;padding-bottom:50px;border-bottom:1px solid #ddd;padding: 15px 0;">
-    <i class="fas fa-pencil-alt"></i>
-    <h6 v-if="question.child.head" style=" background: #008bc71c;width: 94%; padding: 15px;" v-html="question.child.head"></h6>
+    <i class="fas fa-question-circle"></i>
+    <h6 v-if="question.child.head" style=" background: #008bc71c;width: 94%;padding:5px" v-html="question.child.head"></h6>
       <selectedImg v-if="question.child.image" :imgUrl="question.child.image"></selectedImg>
 
     <div class="ques-answer-btns">
@@ -99,5 +99,8 @@ export default {
 .danger {
   background: red !important;
   color: #fff !important;
+}
+p{
+  margin-bottom: 0;
 }
 </style>

@@ -4,7 +4,7 @@
       <Loading v-if="isLoading" />
       <div v-else class="tests-level">
         <div class="title">
-          <h3>
+          <h3 style="margin-bottom:10px">
             <!-- <img src="../assets/imgs/noun_exam_-1.png" alt /> -->
             امتحانات الدرس
           </h3>
@@ -61,12 +61,7 @@
                       <span>{{ ` ${timeObj.h}` }}</span>
 
                     </div>
-                    <div class="time-div">
-                      <img src="@/assets/imgs/live-timer.png" alt="">
-                      <h6>يوم</h6>
-                      <span>{{ ` ${timeObj.d}` }}</span>
-
-                    </div>
+                
 
                                       
                                     </template>
@@ -354,6 +349,7 @@ export default {
     willCorrectByTeacher(){
       let z = require('@/assets/sounds/success.mp3')
       let y = new Audio(z)
+      y.play()
       this.teacherWillCorrectIt = true;
       this.$vs.dialog({title:"تم إنتهاء الوقت",
             text:"تم تسليم الإمتحان و سيتم إرسال النتيجة فور تصحيحها من قبل المعلم",
@@ -526,16 +522,16 @@ export default {
 @import '../../../assets/sass/general-exam-test.scss';
 
 .live-time.live-exam{
-          display: flex;
-    margin-top: 10px;
+         display: flex;
+    margin-top: 0;
     position: fixed;
-    top: 0;
-    z-index: 99;
+    top: 106px;
+    z-index: 999999;
     background: #fdfdfd;
-    right: 0;
-    padding: 13px 11px;
+    left: 0;
+    padding: 13px 5px 0px;
     border: 1px solid #CCC;
-    box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
       >span{
         display: flex;
         margin: auto;
@@ -609,14 +605,14 @@ export default {
   }
 
   .exam-question-bar{
-            padding-bottom: 78px;
+            padding-bottom: 11px;
        background: #fff;
        position: relative;
     border: 1px dashed #CCC;
     /* border-radius: 15px; */
     overflow: hidden;
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     >h6{
           padding: 20px 10px;
     background: #008bc7;
@@ -660,7 +656,7 @@ export default {
     > img {
       width: 100%;
       height: 207px;
-      margin-bottom: 34px;
+      // margin-bottom: 34px;
       box-shadow: 0px 1px 10px -1px #ddd;
       border-radius: 17px;
     }
@@ -671,20 +667,20 @@ export default {
       margin-bottom: 15px;
       color: 20px;
           
-      margin-top: 22px;
+      // margin-top: 22px;
       color: #333 !important;
           display: inline-block;
     font-size: 22px;
     }
     >div{
           background: #FFF;
-      padding:15px;
-          box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+      // padding:15px;
+          // box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
     margin-bottom: 38px;
       >div{
             background: #fcfcfc;
-    padding: 13px;
     margin-bottom: 27px;
+        padding: 0 29px;
    
       }
     }
@@ -761,5 +757,17 @@ export default {
       background-size: cover;
     }
   }
+}
+
+
+.vuesax-app-is-ltr .con-vs-dialog .vs-dialog footer button {
+    margin: 6px;
+}
+.con-vs-dialog .vs-dialog .vs-dialog-text {
+    padding: 24px 10px;
+    font-size: 18px;
+    font-family: 'CUSTOMFONTREGULAR';
+    -webkit-transition: all .23s ease .1s;
+    transition: all .23s ease .1s;
 }
 </style>

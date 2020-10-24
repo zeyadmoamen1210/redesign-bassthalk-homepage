@@ -1,6 +1,6 @@
 <template>
   <div class="check-box-ques group-question">
-    <i class="fas fa-pencil-alt"></i>
+    <i class="fas fa-question-circle"></i>
     <h6 style="    display: inline-block;" v-html="question.question.head "></h6>
     <selectedImg v-if="question.question.image" :imgUrl="question.question.image"></selectedImg>
 
@@ -113,7 +113,6 @@ export default {
   >h6{
     p{
           text-align: center;
-    padding: 15px;
     }
   }
 }
