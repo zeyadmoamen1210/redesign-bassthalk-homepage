@@ -20,7 +20,19 @@
         </Button>
       </div>
       <div style="display:flex;flex-wrap:wrap;    position: relative;z-index: 9999999999999999999999;">
-
+        <div style="overflow: hidden; flex-grow:1">
+        <input
+          type="radio"
+          :disabled="!isSolving"
+          :name="id"
+          class="absthalk-radio"
+          id
+          value="true"
+          v-model="answerData"
+        />
+        <span>صح</span>
+      </div>
+      
         <div style="overflow: hidden; display: block;flex-grow:1">
         <input
           type="radio"
@@ -34,18 +46,7 @@
         <span>خطأ</span>
       </div>
 
-      <div style="overflow: hidden; flex-grow:1">
-        <input
-          type="radio"
-          :disabled="!isSolving"
-          :name="id"
-          class="absthalk-radio"
-          id
-          value="true"
-          v-model="answerData"
-        />
-        <span>صح</span>
-      </div>
+      
 
 
       </div>

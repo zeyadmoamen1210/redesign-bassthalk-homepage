@@ -28,6 +28,12 @@
             </div>
             
           </div>
+
+
+          <div style="    width: 300px;margin: auto;" v-if="teacherWillCorrectIt == true">
+            <img style="width:100%;" src="@/assets/imgs/teacher-correcting-exam.svg" alt="">
+            <h4 style="    text-align: center;margin-top: 12px;">امتحانك قيد التصحيح من المعلم</h4>
+          </div>
           <div v-else-if="!isCorrected && timeFinished">تم انتهاء الوقت</div>
 
            <div class="live-time live-exam" v-if="index == 1 && selectedExam && selectedExam.remainingTime && selectedExam.remainingTime > 0"  v-for="(x,index) in 5" :key="index">
@@ -255,11 +261,13 @@ export default {
   },
   data() {
     return {
+      endExamData: {},
       timeFinished:false,
       remainingTime: 0,
       selectedExam: null,
       selectedIndex: null,
       inCorrectCase: false,
+      teacherWillCorrectIt: false,
 
       isLoading: true,
       exams: [],
@@ -276,6 +284,7 @@ export default {
       tabIndex: 0,
       innerTabIndex: 1,
       totalpages: 0,
+
       currentQuestionPage: 1,
       filterType: { name: 'صح و خطأ', value: 'truefalse' },
       filterType2: { name: 'أختياري', value: 'choose' },
@@ -319,13 +328,57 @@ export default {
         this.selectedExam = res.data
       }).finally(() => this.isLoading = false)
     },
-    endExam(){
-      this.isLoading = true
+    endExam(str = null){
+      
+      
+         
+        this.acceptEndExam();
+
+ 
+   
+    },
+    directResult(){
+      let z = require('@/assets/sounds/success.mp3')
+      let y = new Audio(z)
+      y.play()
+      this.$vs.dialog({title:"تم إنتهاء الوقت",
+            text:"تم تسليم الإمتحان",
+            type:"confirm",
+            color:"danger",
+            background:"rgba(0,0,0,.7)",
+            acceptText:"عرض الإجابات",cancelText:"الرجوع للإمتحانات",
+            
+            cancel: this.cancelEndExam
+      })
+    },
+    willCorrectByTeacher(){
+      let z = require('@/assets/sounds/success.mp3')
+      let y = new Audio(z)
+      this.teacherWillCorrectIt = true;
+      this.$vs.dialog({title:"تم إنتهاء الوقت",
+            text:"تم تسليم الإمتحان و سيتم إرسال النتيجة فور تصحيحها من قبل المعلم",
+            color:"danger",
+            acceptText:"الرجوع إالي قائمة الإمتحانات",
+            accept: this.cancelEndExam,
+      })
+
+
+      
+      
+    },
+    cancelEndExam(){
+      this.$router.go(-1)
+    },
+    acceptEndExam(){
+     
+      // this.isLoading = true
       this.$axios
         .post(`exams/${this.$route.params.id}/done`)
         .then((res) => {
 
-          this.$snotify.warning("حسنا لقد انتهي الوقت .. تم تسليم الامتحان")
+          // this.$snotify.warning("حسنا لقد انتهي الوقت .. تم تسليم الامتحان")
+
+          
 
           console.log(res.data)
           this.selectedExam=  null,
@@ -346,21 +399,20 @@ export default {
       this.allQuestions= [],
       this.tabIndex= 0,
       this.innerTabIndex= 1,
-      this.totalpages= 0,
-
+      this.totalpages= 0;
+    
+       if(res.data.mark > -1){
+         this.directResult()
+       }else{
+         this.willCorrectByTeacher()
+       }
 
         this.startExam()
-          // this.selectedExam.mark = res.data.mark
-          // if (res.data.mark >= 75) {
-          //   this.$bvModal.show('path')
-          // } else {
-          //   this.$bvModal.show('not-path')
-          // }
+      
         })
         .catch((err) => {
         })
         .finally(() => (this.isLoading = false))
-   
     },
     startExam() {
       // exams/70/start
@@ -373,9 +425,7 @@ export default {
           this.getExamQuestions()
         }).catch(error => {
           this.getExamQuestions()
-          if(error.response.status === 403){
 
-          }
         }).finally(() => this.isLoading = false)
         
         
@@ -400,24 +450,34 @@ export default {
 
         if(this.remainingTime < 0){
           this.timeFinished = true
-          this.endExam()
+          this.endExam("smaller than 0")
         }
 
       
         console.log(this.allPoints)
         console.log(this.allMarks)
         })
-        .catch((e) => {
-         
+        .catch((error) => {
+         if(error.response.status === 403){
+            this.teacherWillCorrectIt = true
+          }else{
+            this.teacherWillCorrectIt = false
+          }
         })
         .finally(() => (this.isLoading = false))
     },
     setExamTODone() {
       this.$bvModal.hide('confirm')
-      this.isLoading = true
+      this.isLoading = true;
+       let z = require("@/assets/sounds/success.mp3")
+      let mySuccessSound = new Audio(z);
+          mySuccessSound.play()
       this.$axios
         .post(`exams/${this.exam.id}/done`)
         .then((res) => {
+        
+
+          
 
           this.$snotify.success("تم تسليم الإمتحان بنجاح انتظر حتي يتم تصحيحه")
 
@@ -425,7 +485,6 @@ export default {
           this.selectedExam=  null,
       this.selectedIndex= null,
       this.inCorrectCase= false,
-      this.$router.go(-1)
       this.isLoading=true,
       this.exams= [],
       this.questions= null,
@@ -467,8 +526,16 @@ export default {
 @import '../../../assets/sass/general-exam-test.scss';
 
 .live-time.live-exam{
-      display: flex;
+          display: flex;
     margin-top: 10px;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    background: #fdfdfd;
+    right: 0;
+    padding: 13px 11px;
+    border: 1px solid #CCC;
+    box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
       >span{
         display: flex;
         margin: auto;
