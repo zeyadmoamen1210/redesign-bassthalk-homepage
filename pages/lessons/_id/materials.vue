@@ -154,6 +154,7 @@
                     v-model="commentContent"
                     style="width: 100%; margin-bottom: 13px; padding: 15px;"
                     type="text"
+                    v-if="me.canComment"
                     placeholder="أدخل تعليقك"
                     @keydown.enter="addComment"
                   />
@@ -260,10 +261,11 @@
                       </template>
                     </div>
                     <div class="double-comment mb-2" style="width:85%;margin:auto">
-                      <div class="form-groub nested-comment-reply">
+                      <div class="form-groub nested-comment-reply" v-if="me.canComment">
                         <input
                           v-model="comment.replyContent"
                           type="text"
+                          
                           @keydown.enter="addCommentReply(comment.id, index)"
                           placeholder="اكتب رد علي التعليق"
                         />
@@ -489,6 +491,7 @@ export default {
       isLoading: false,
       modelRate: false,
       videos: [],
+      me:{},
       modelPopupEdit: false,
       value: 0,
       currentComment: {
@@ -537,7 +540,10 @@ export default {
   created() {
     this.getVideos()
     this.getPdfs()
-   
+   this.$axios.get(`/me`).then(res=>{
+     this.me = res.data;
+     console.log(res.data)
+   })
   },
   watch: {
     // selectedVideo: function (val) {
