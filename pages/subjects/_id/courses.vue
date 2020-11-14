@@ -93,25 +93,21 @@ export default {
         this.currCourseToEnrollPopup = false;
           this.isLoading = true;
           this.$axios.post(`courses/${this.enrollmentCourse.id}/enrollment`, {
-              code: this.enrollmentCourse.code
+              code: this.enrollmentCourse.code,
           }).then(res => {
-              this.$store.commit('ADD_TO_MY_COURSES', res.data)
-              this.getSubjectCourse()
-              this.$snotify.success("تم إرسال طلبك ")
-            
-
-          }).catch(error => {
-            this.currCourseToEnrollPopup = false;
-            this.$snotify.error("الكود الذي أدخلته غير صحيح")
+              this.$snotify.success("تم إرسال طلبك ");
+              this.getSubjectCourse();            
+          }).catch(err => {
+            this.$snotify.error("الكود الذي أدخلته غير صحيح");
           }).finally(() => this.isLoading = false)
       },
       getSubjectCourse(){
           this.$axios.get(`/subjects/${this.$route.params.id}/courses`).then(res => {
           console.log(res)
-          this.studCourses = res.data.docs
-          console.log("stud courses ",this.studCourses)
-          this.page = res.data.page
-          this.totalPage = res.data.totalPages
+          this.studCourses = res.data.docs;
+          console.log("stud courses ",this.studCourses);
+          this.page = res.data.page;
+          this.totalPage = res.data.totalPages;
 
           // res.data.docs.map(one => {
           //   this.myCourses.map(two => {
