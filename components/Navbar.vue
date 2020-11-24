@@ -503,6 +503,9 @@ export default {
 
 .notification-content{
         padding-bottom: 10px;
+            left: 439px;
+    top: 85px;
+    max-width: 338px !important;
 
     ul{
       box-shadow: 1px solid rgba(0,0,0,.1) !important;

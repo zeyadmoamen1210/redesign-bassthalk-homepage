@@ -2,7 +2,7 @@
   <div class="check-box-ques" style="position:relative;margin-bottom:55px;border-bottom:1px solid #ddd;padding: 15px 0;">
     <i class="fas fa-question-circle"></i>
     <h6 style=" background: #008bc71c;width: 94%;padding:5px" v-html="question.child.head"></h6>
-    <selectedImg v-if="question.child.image" :imgUrl="question.child.image"></selectedImg>
+         <img style="width: 100%;height: 100%;border:2px dashed #9a9a" v-if="question.child.image" :src="question.child.image" />
 
     <span class="fill-the-ques" style="width: 100%;"></span>
     <div v-if="isSolving">

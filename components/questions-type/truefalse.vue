@@ -8,7 +8,8 @@
       </div>
     </div>
 
-      <selectedImg v-if="question.image" style="float: right;" :imgUrl="question.image"></selectedImg>
+        <img style="width: 100%;height: 100%;border:2px dashed #9a9a" v-if="question.image" :src="question.image" />
+
     <div
       style="
         margin-top: 46px;

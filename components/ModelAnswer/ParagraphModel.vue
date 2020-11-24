@@ -1,9 +1,9 @@
 <template>
   <div class="check-box-ques">
-    <i class="fas fa-question-circle"></i>
+<span style="color: #333;font-size: 24px;margin-right: 11px;"> {{myindex}} </span>
     <h6 style=" background: #008bc71c;width: 94%;padding:5px"  v-html="question.question.head"></h6>
      <a  :href="question.question.image" target="_blank">
-    <selectedImg  :imgUrl="question.question.image"></selectedImg>
+         <img style="width: 100%;height: 100%;border:2px dashed #9a9a" v-if="question.question.image" :src="question.question.image" />
      </a>
 
     <!-- <img src="../../assets/imgs/chemical-equation-color.jpg" alt=""> -->
@@ -74,6 +74,9 @@ export default {
     },
     answerImage: {
       required: true,
+    },
+     myindex:{
+      required: false
     },
     exam_id: {
       required: true,

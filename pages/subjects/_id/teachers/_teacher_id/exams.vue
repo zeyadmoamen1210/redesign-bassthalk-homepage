@@ -127,7 +127,7 @@ export default {
     openExam(exam) {
       if (exam.status == 'checking') {
         this.$snotify.warning(
-          `عفواً لم يتم تصحيح الإمتحان بعد إنتظر التصحيح من قبل المدرس`
+          `عفواً لم يتم تصحيح الامتحان بعد إنتظر التصحيح من قبل المدرس`
         )
       } else {
         this.$router.push({ path: `/exams/${exam.id}` })

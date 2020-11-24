@@ -100,10 +100,10 @@
             <div class="col-md-7 order-md-5">
               <div class="container">
                 <div class="desc-cont">
-                  <h3>الاخبارات</h3>
+                  <h3>الاختبارات</h3>
                   <p class="wierd-paragraph">
                     العديد من الاختبارات سواء كانت على الدروس أو اختبارات عامة
-                    او اخبارات بنك المعلومات .
+                    او اختبارات بنك المعلومات .
                   </p>
                 </div>
               </div>

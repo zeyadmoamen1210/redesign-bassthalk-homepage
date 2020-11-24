@@ -16,7 +16,7 @@
             
             <div style="display:flex;flex-wrap:wrap">
               <div style="flex-grow:1">
-                              <h5 style="color: #FFF;font-size: 28px;padding: 10px;margin-bottom:0"> تم تصحيح الإمتحان </h5>
+                              <h5 style="color: #FFF;font-size: 28px;padding: 10px;margin-bottom:0"> تم تصحيح الامتحان </h5>
 
               </div>
               <div style="flex-grow:1">
@@ -177,12 +177,14 @@
                     <div class="exam-question-bar">
                         <!-- {{selectedExam.exam.id}} -->
                         <h6> سؤال </h6>
+                        
                     <truefalse
                       :answer="item.answer"
                       v-if="item.question.type == 'truefalse'"
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
+                      :myindex="index+1"
                     />
                     <choose
                       :answer="item.answer"
@@ -190,6 +192,7 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
+                      :myindex="index+1"
                     />
                     <complete
                       :answer="item.answer"
@@ -197,6 +200,7 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
+                      :myindex="index+1"
                     />
                     <paragraph
                       :answer="item.answer"
@@ -205,6 +209,7 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
+                      :myindex="index+1"
                     />
                     <group
                       v-else-if="item.question.type == 'group'"
@@ -212,6 +217,7 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
+                      :myindex="index+1"
                     />
                   
                 </div>
@@ -526,7 +532,7 @@ export default {
     margin-top: 0;
     position: fixed;
     top: 106px;
-    z-index: 999999;
+    z-index: 999;
     background: #fdfdfd;
     left: 0;
     padding: 13px 5px 0px;

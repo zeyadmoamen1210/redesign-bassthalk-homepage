@@ -1,8 +1,8 @@
 <template>
   <div class="check-box-ques">
-    <i class="fas fa-question-circle"></i>
+<span style="color: #333;font-size: 24px;margin-right: 11px;"> {{myindex}} </span>
     <h6 v-if="question.question.head" style=" background: #008bc71c;width: 94%;padding:5px" v-html="question.question.head"></h6>
-      <selectedImg v-if="question.question.image" :imgUrl="question.question.image"></selectedImg>
+         <img style="width: 100%;height: 100%;border:2px dashed #9a9a" v-if="question.question.image" :src="question.question.image" />
 
     <div class="ques-answer-btns">
       <div class="row" v-if="isSolving">
@@ -65,6 +65,9 @@ export default {
     isSolving: {
       required: false,
     },
+    myindex:{
+      required: false
+    }
   },
   data() {
     return {
