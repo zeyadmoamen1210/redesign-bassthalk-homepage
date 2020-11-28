@@ -97,7 +97,7 @@
                           </div>
                         </div>
                           </vs-dropdown-item>
-                          
+                         
                         </vs-dropdown-menu>
                       </vs-dropdown>
 
@@ -240,6 +240,9 @@
                             <nuxt-link to="/questions">
                 <i class="fas fa-question"></i> الأسئلة
               </nuxt-link>
+                          </vs-dropdown-item>
+                           <vs-dropdown-item style="font-size: 13px;" >
+                  <nuxt-link exact-active-class="active" to="/collections">الامتحانات</nuxt-link>
                           </vs-dropdown-item>
 
 

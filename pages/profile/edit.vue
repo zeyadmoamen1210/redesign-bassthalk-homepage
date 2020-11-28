@@ -68,13 +68,31 @@
               </div>
             </div>
 
-            <div style="display: block;width: 50%;margin: auto;">
+            <div style="display: block;width: 49%;margin: auto;">
               <button @click="editProfile">حفظ التعديلات</button>
+            </div>
+            <div style="display: block;width: 49%;margin: auto;">
+              <button style="background-color:#6f42c1" @click="changePasswordPopup = true">تغيير كلمة المرور</button>
             </div>
           </div>
         </form>
       </div>
     </div>
+
+
+     <vs-popup class="holamundo"  title="تغيير كلمة المرور" :active.sync="changePasswordPopup">
+      <div>
+        <div class="form-group">
+        <input type="text" v-model="oldPass" placeholder="كلمة المرور القديمة" class="form-control" />
+        </div>
+        <div class="form-group">
+          <input  v-model="newPass" type="text" placeholder="كلمة المرور الجديدة" class="form-control" />
+        </div>
+
+        <button :disabled="newPass == '' || oldPass == ''" class="btn btn-primary" @click="changePass">تغير كلمة المرور</button>
+      </div>
+    </vs-popup>
+
   </div>
 </template>
 
@@ -93,9 +111,26 @@ export default {
       userPhoto: this.$auth.user.photo,
       photo: null,
       isLoading: false,
+      changePasswordPopup: false,
+      oldPass:"",
+      newPass:""
     }
   },
   methods: {
+    changePass(){
+      this.changePasswordPopup = false
+      this.isLoading = true;
+      this.$axios.put(`/change-password`, {
+        "oldpassword": this.oldPass,
+        "newpassword": this.newPass
+      }).then(res => {
+        this.$snotify.success("تم تحديث كلمة المرور بنجاح");
+        this.$router.push(`/`);
+      }).catch(err => {
+        this.$snotify.error("كلمة المرور غير صحيحة");
+
+      }).finally(() => this.isLoading = false)
+    },
     changeUserPhoto(e) {
       if (e.target.files.length > 0) {
         this.photo = e.target.files[0]
