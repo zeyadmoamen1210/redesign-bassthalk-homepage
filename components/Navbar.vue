@@ -48,7 +48,7 @@
                 </li>
 
                 <li>
-                  <nuxt-link exact-active-class="active" to="/camps">المعسكرات</nuxt-link>
+                  <nuxt-link exact-active-class="active" to="/collections">الامتحانات</nuxt-link>
                 </li>
                 <!-- <li>
                   <nuxt-link exact-active-class="active" to="/teachers">المدرسين</nuxt-link>
