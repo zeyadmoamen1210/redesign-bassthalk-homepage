@@ -31,12 +31,12 @@
               </h5>
               <h5
                 @click="confirm(collection.id)"
-                v-if="isNotSubscribed(collection.id)"
+                v-if="isNotsubscriped(collection.id)"
               >
                 كود الإشتراك
               </h5>
               <a href="https://www.easykash.net/JLW4822" target="_blank">
-                <h5 v-if="isNotSubscribed(collection.id)">دفع الإستراك</h5>
+                <h5 v-if="isNotsubscriped(collection.id)">دفع الإستراك</h5>
               </a>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default {
         })
         .finally(() => (this.isLoading = false))
     },
-    isNotSubscribed(collectionId) {
+    isNotsubscriped(collectionId) {
       if (this.myCollection.length > 0) {
         let index = this.myCollection.findIndex(
           (collection) => collection.collectionId.id == collectionId
