@@ -8,11 +8,13 @@
           </div>
       </div>
       <Loading v-if="isLoading" />
-      <NoData v-else-if="!isLoading && privateExams.length == 0 && Object.keys(publicExam).length != 0" />
+      <!-- <NoData v-else-if="!isLoading && privateExams.length == 0 && Object.keys(publicExam).length != 0" /> -->
+      <NoData v-else-if="!isLoading && publicExam==null " />
           <div class="exams" v-else>
               <div class="row">
-                  <div class="col-md-3" v-if="Object.keys(publicExam).length != 0" @click="$router.push(`/privateExams/${publicExam.id}`)">
+                  <div class="col-md-3" v-if="publicExam" @click="$router.push(`/privateExams/${publicExam.id}`)">
                       <div class="exam-card">
+                          <!-- {{publicExam}} -->
                             <h6> {{publicExam.title}} </h6>
                             <div class="cates">
                                 <span style="background:#5f27cd"> {{publicExam.collectionId.name}} </span>
@@ -66,7 +68,7 @@ export default {
             privateExams:[],
             isLoading: true,
             addPrivateExamPopup: false,
-            publicExam:{},
+            publicExam:null,
             addNewPrivateExam:{},
             addNewPublicExam:{},
             addPublicExamPopup:false,

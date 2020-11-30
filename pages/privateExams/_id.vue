@@ -229,9 +229,9 @@
 </template>
 
 <script>
-import truefalse from '@/components/ModelAnswerPrivate/TrueTalseModel'
-import group from '@/components/ModelAnswerPrivate/GroupModel'
-import choose from '@/components/ModelAnswerPrivate/ChooseModel'
+import truefalse from '@/components/modelAnswerPrivate/TrueTalseModel'
+import group from '@/components/modelAnswerPrivate/GroupModel'
+import choose from '@/components/modelAnswerPrivate/ChooseModel'
 import Loading from '@/components/Loading'
 
 export default {

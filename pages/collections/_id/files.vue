@@ -36,6 +36,8 @@
 import Loading from '@/components/Loading';
 import NoData from '@/components/NoData';
 export default {
+  middleware: 'auth-student',
+
   components:{
     Loading,
     NoData
