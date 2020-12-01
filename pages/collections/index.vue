@@ -36,7 +36,7 @@
                 كود الإشتراك
               </h5>
               <a href="https://www.easykash.net/JLW4822" target="_blank">
-                <h5 v-if="isNotsubscriped(collection.id)">دفع الإستراك</h5>
+                <h5 v-if="isNotsubscriped(collection.id)">دفع الإشتراك</h5>
               </a>
             </div>
           </div>
