@@ -35,9 +35,9 @@
               >
                 كود الإشتراك
               </h5>
-              <a href="https://www.easykash.net/JLW4822" target="_blank">
-                <h5 v-if="isNotsubscriped(collection.id)">دفع الإشتراك</h5>
-              </a>
+             
+                <h5 @click="showConfirmtionPaymentModal=true" v-if="isNotsubscriped(collection.id)">دفع الإشتراك</h5>
+           
             </div>
           </div>
         </div>
@@ -59,6 +59,18 @@
           تفعيل اﻹشتراك
         </button>
       </div>
+    </vs-popup> 
+     <vs-popup
+      class="holamundo"
+      title="  دفع الإشتراك"
+      :active.sync="showConfirmtionPaymentModal"
+    >
+      <div>
+      <h5>بعد الدفع أرسل فاتورة الدفع إلى الواتس 01015152796 ، وسيعطونك كود الدخول</h5>
+        <button class="btn btn-primary" @click="confirmPayment">
+          دفع اﻹشتراك
+        </button>
+      </div>
     </vs-popup>
   </div>
 </template>
@@ -76,6 +88,7 @@ export default {
   data() {
     return {
       showConfirmtionModal: false,
+      showConfirmtionPaymentModal: false,
       collections: [],
       myCollection: [],
       page: 0,
@@ -118,6 +131,11 @@ export default {
       this.selectedCollectionId=collectionId;
 
     },
+   
+    confirmPayment(){
+      this.showConfirmtionPaymentModal=false;
+       window.open('https://www.easykash.net/JLW4822','_blank');
+    },
     confirmSubscrubtion() {
       this.isLoading = true
 
@@ -139,10 +157,20 @@ export default {
     },
     isNotsubscriped(collectionId) {
       if (this.myCollection.length > 0) {
-        let index = this.myCollection.findIndex(
-          (collection) => collection.collectionId.id == collectionId
-        )
-        if (index > -1) {
+        
+         let item = this.myCollection.filter(function (
+          collection,
+          index
+        ) {
+          if (collection.collectionId != null){
+            if(collection.collectionId.id == collectionId){
+
+              } return collection;
+            }
+        });
+
+        if (item.length > 0) {
+       
           return false
         } else {
           return true
