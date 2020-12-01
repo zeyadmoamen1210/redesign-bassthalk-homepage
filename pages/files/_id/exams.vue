@@ -12,7 +12,7 @@
       <NoData v-else-if="!isLoading && publicExam==null " />
           <div class="exams" v-else>
               <div class="row">
-                  <div class="col-md-3" v-if="publicExam" @click="$router.push(`/privateExams/${publicExam.id}`)">
+                  <div class="col-md-3 pointer"  v-if="publicExam" @click="$router.push(`/privateExams/${publicExam.id}`)">
                       <div class="exam-card">
                           <!-- {{publicExam}} -->
                             <h6> {{publicExam.title}} </h6>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                   </div>
-                  <div class="col-md-3" v-for="exam in privateExams" :key="exam.id" @click="$router.push(`/privateExams/${exam.id}`)">
+                  <div class="col-md-3 pointer" v-for="exam in privateExams" disabled :key="exam.id" @click="openExam(exam.id)">
                         <div class="exam-card">
                             <h6> {{exam.title}} </h6>
                             <div class="cates">
@@ -84,6 +84,15 @@ export default {
         }
     },
     methods:{
+        openExam(exam_id){
+            if(1==1){
+
+                this.$router.push(`/privateExams/${exam_id}`)
+            }else{
+               this.$vs.notify({position: "top-center",title:"Failed", title:"عفوا أنت غير مشترك",color:"danger"});
+
+            }
+        },
        
         getPuplicExam(){
             this.isLoading = true;

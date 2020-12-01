@@ -62,6 +62,9 @@ export default {
 .cont {
   min-height: 64vh;
 }
+.pointer{
+  cursor: pointer;
+}
 .snotify{
   z-index:999999999999 !important;
 }
