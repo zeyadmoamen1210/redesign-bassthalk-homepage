@@ -30,13 +30,14 @@
                 {{ collection.name }}
               </h5>
               <h5
+              class="bg-success"
                 @click="confirm(collection.id)"
                 v-if="isNotsubscriped(collection.id)"
               >
                 كود الإشتراك
               </h5>
              
-                <h5 @click="showConfirmtionPaymentModal=true" v-if="isNotsubscriped(collection.id)">دفع الإشتراك</h5>
+                <h5 class="bg-danger" @click="showConfirmtionPaymentModal=true" v-if="isNotsubscriped(collection.id)">دفع الإشتراك</h5>
            
             </div>
           </div>
