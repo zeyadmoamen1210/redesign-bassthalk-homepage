@@ -391,6 +391,10 @@
       <vs-sidebar-item to="/live-teach" index="5" > 
               كورساتي
       </vs-sidebar-item>
+
+       <vs-sidebar-item to="/collections" index="10" > 
+              اﻹمتحانات
+      </vs-sidebar-item>
       <!-- comeent -->
 
           <vs-sidebar-item to="/camps"  index="6" >
