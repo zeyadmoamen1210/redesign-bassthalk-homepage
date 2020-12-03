@@ -59,14 +59,14 @@ export default {
 }
 </script>
 <style lang="scss">
-body{
-  -webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
-}
+// body{
+//   -webkit-user-select: none;
+// -khtml-user-select: none;
+// -moz-user-select: none;
+// -ms-user-select: none;
+// -o-user-select: none;
+// user-select: none;
+// }
 .cont {
   min-height: 64vh;
 }
