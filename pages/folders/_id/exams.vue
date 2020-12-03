@@ -53,7 +53,7 @@ export default {
         getExamsToFolder(){
             this.$axios.get(`folders/${this.$route.params.id}/exams`).then(res => {
                 console.log(res)
-                this.exams = res.data
+                this.exams = res.data.docs
             }).finally(() => this.isLoading = false)
         }
     }
