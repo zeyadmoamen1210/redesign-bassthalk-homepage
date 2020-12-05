@@ -9,10 +9,10 @@
       </div>
       <Loading v-if="isLoading" />
       <!-- <NoData v-else-if="!isLoading && privateExams.length == 0 && Object.keys(publicExam).length != 0" /> -->
-      <NoData v-else-if="!isLoading && publicExam==null " />
+      <NoData v-else-if="!isLoading && publicExams.length==0 " />
           <div class="exams" v-else>
               <div class="row">
-                  <div class="col-md-3 pointer"  v-if="publicExam" @click="$router.push(`/privateExams/${publicExam.id}`)">
+                  <div class="col-md-3 pointer"  v-for="publicExam in publicExams"  :key="publicExam.id" @click="$router.push(`/privateExams/${publicExam.id}`)">
                       <div class="exam-card">
                           <!-- {{publicExam}} -->
                             <h6> {{publicExam.title}} </h6>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                   </div>
-                  <div class="col-md-3 pointer" v-for="exam in privateExams" disabled :key="exam.id" @click="openExam(exam.id)">
+                  <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="openExam(exam.id)">
                         <div class="exam-card">
                             <h6> {{exam.title}} </h6>
                             <div class="cates">
@@ -66,6 +66,7 @@ export default {
     data(){
         return{
             privateExams:[],
+            publicExams:[],
             isLoading: true,
             addPrivateExamPopup: false,
             publicExam:null,
@@ -97,7 +98,7 @@ export default {
         getPuplicExam(){
             this.isLoading = true;
             this.$axios.get(`/files/${this.$route.params.id}/puplic-exam`).then(res => {
-                this.publicExam = res.data;
+                this.publicExams = res.data;
             }).finally(() => this.isLoading = false)
         },
         getPrivateExams(){
