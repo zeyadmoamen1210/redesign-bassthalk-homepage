@@ -14,11 +14,12 @@
               <div class="row">
                   <div class="col-md-3 pointer"  v-for="publicExam in publicExams"  :key="publicExam.id" @click="$router.push(`/privateExams/${publicExam.id}`)">
                       <div class="exam-card">
+                          
                           <!-- {{publicExam}} -->
                             <h6> {{publicExam.title}} </h6>
                             <div class="cates">
-                                <span style="background:#5f27cd"> {{publicExam.collectionId.name}} </span>
-                                <span style="background:#007afd;"> {{publicExam.file.name}} </span>
+                                 <vs-button style="font-size: 13px;font-family: 'CustomFontRegular';margin-bottom: 5px;    padding: 3px 7px;" color="success" type="border">{{publicExam.collectionId.name}}</vs-button>
+                                <vs-button style="font-size: 13px;font-family: 'CustomFontRegular';margin-bottom: 5px;    padding: 3px 7px;" color="primary" type="border">{{publicExam.file.name}}</vs-button>
                             </div>
                             <h6 class="status status-paid" v-if="publicExam.type == 'private'"> مدفوع </h6>
                             <h6 class="status status-free" v-else-if="publicExam.type == 'puplic'"> مجاني </h6>
@@ -26,14 +27,22 @@
                                 <i class="fas fa-clock"></i>
                                 <span> {{publicExam.duration}} </span>
                             </div>
+                            <button class="btn btn-primary" style="width:100%">بدء الامتحان</button>
                         </div>
                   </div>
-                  <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="openExam(exam.id)">
+                  <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="exam.canAccess ? openExam(exam.id) : ''">
                         <div class="exam-card">
+                            <div class="exam-card-overlay" @click="showConfirmtionPaymentModal = true" v-if="!exam.canAccess">
+                              <div>
+                                  <img src="@/assets/imgs/lock.png" />
+                              </div>
+                          </div>
                             <h6> {{exam.title}} </h6>
                             <div class="cates">
-                                <span style="background:#5f27cd"> {{exam.collectionId.name}} </span>
-                                <span style="background:#007afd;"> {{exam.file.name}} </span>
+                                
+                                <vs-button style="font-size: 13px;font-family: 'CustomFontRegular';margin-bottom: 5px;    padding: 3px 7px;" color="success" type="border">{{exam.collectionId.name}}</vs-button>
+                                <vs-button style="font-size: 13px;font-family: 'CustomFontRegular';margin-bottom: 5px;    padding: 3px 7px;" color="primary" type="border">{{exam.file.name}}</vs-button>
+
                             </div>
                             <h6 class="status status-paid" v-if="exam.type == 'private'"> مدفوع </h6>
                             <h6 class="status status-free" v-else-if="exam.type == 'public'"> مجاني </h6>
@@ -41,6 +50,7 @@
                                 <i class="fas fa-clock"></i>
                                 <span> {{exam.duration}} </span>
                             </div>
+                             <button class="btn btn-primary" style="width:100%">بدء الامتحان</button>
                         </div>
                     </div>
               </div>
@@ -48,7 +58,18 @@
       </div>
 
 
-      
+       <vs-popup
+      class="holamundo"
+      title="  دفع الإشتراك"
+      :active.sync="showConfirmtionPaymentModal"
+    >
+      <div>
+      <h5>بعد الدفع أرسل فاتورة الدفع إلى الواتس 01015152796 ، وسيعطونك كود الدخول</h5>
+        <button class="btn btn-primary" @click="confirmPayment">
+          دفع اﻹشتراك
+        </button>
+      </div>
+    </vs-popup>
 
 
 
@@ -82,9 +103,14 @@ export default {
                 {name:"متوسط",value:"middle"},
                 {name:"صعب",value:"difficult"},
             ],
+            showConfirmtionPaymentModal: false,
         }
     },
     methods:{
+        confirmPayment(){
+      this.showConfirmtionPaymentModal=false;
+       window.open('https://www.easykash.net/JLW4822','_blank');
+    },
         openExam(exam_id){
             if(1==1){
 
@@ -128,6 +154,25 @@ export default {
         }
     .exam-card{
         transition: all ease .5s;
+        position: relative;
+        .exam-card-overlay{
+            position: absolute;
+            top:0;
+            right:0;
+            background: rgba(255, 255, 255, 0.7);
+            width:100%;
+            height:100%;
+            z-index: 99;
+           div{
+               position: absolute;
+               top:50%;
+               left:50%;
+               transform: translate(-50%,-50%);
+               img{
+                   width:100px;
+               }
+           }
+        }
         &:hover{
             transform: translateY(-10px);
         }
@@ -156,24 +201,20 @@ export default {
     font-size: 19px;
         }
         .cates{
-            span{
-                    color: rgb(255, 255, 255);
-    margin: 0px;
-    padding: 2px 5px;
-    border-radius: 5px;
-    text-align: center;
-    font-family: "CustomFontRegular";
-    display: inline-block;
-            }
+            
         }
         h6{
             text-align: center;
             &:first-of-type{
                     padding: 8px;
-                    background: #007afd;
                     border-radius: 5px;
-                    color: #FFF;
+                    color: #007afd;
                     font-weight: bold;
+                        font-size: 20px;
+    white-space: nowrap;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
             }
         }
     }
@@ -181,6 +222,18 @@ export default {
 .addExam{
     .vs--searchable .vs__dropdown-toggle{
         padding:5px !important;
+    }
+}
+
+
+.btn.btn-primary{
+    background-color: #007afd;
+    border-color: #007afd;
+    font-family: "CustomFontRegular";
+    margin-top:5px;
+    &:hover{
+        background-color: #0063ce;
+    border-color: #0063ce;
     }
 }
 </style>

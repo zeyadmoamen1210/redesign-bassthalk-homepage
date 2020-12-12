@@ -1,6 +1,6 @@
 <template>
   <div class="check-box-ques group-question">
-<span style="color: #333;font-size: 24px;margin-right: 11px;"> {{myindex}} </span>
+<!-- <span style="color: #333;font-size: 24px;margin-right: 11px;"> {{myindex}} </span> -->
     <h6 style="    display: inline-block;" v-html="question.question.head "></h6>
          <img style="width: 100%;height: 100%;border:2px dashed #9a9a" v-if="question.question.image" :src="question.question.image" />
 
@@ -9,6 +9,8 @@
     <div class="row">
       <div class="col-md-12" style="min-height: 320px;">
         <div v-for="(item, index) in childrenQuestions" :key="index">
+            <span style="padding: 14px;background: #0989c3;display: inline-block;color: #FFF;font-weight: bold;"> {{myindex - childrenQuestions.length  + index+1}} </span>
+
           <!-- <div class="exam-cont-item">
             <div>
               <h6>{{ index + 1 }}</h6>

@@ -184,7 +184,7 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
-                      :myindex="index+1"
+                      :myindex="getIndexNormalQuestions()"
                       :privateExam="true"
                     />
                     <choose
@@ -193,7 +193,7 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
-                      :myindex="index+1"
+                      :myindex="getIndexNormalQuestions()"
                       :privateExam="true"
                     />
                    
@@ -203,7 +203,7 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
-                      :myindex="index+1"
+                      :myindex="getIndexGroupQuestions(item.childrenQuestions.length)"
                       :privateExam="true"
                     />
                   
@@ -262,6 +262,7 @@ export default {
       teacherWillCorrect:false,
       examQuestions: [],
       isCorrected:false,
+      theIndex:0,
 
       selectedExamQuestions: [],
       allQuestions: [],
@@ -281,6 +282,14 @@ export default {
   },
   watch: {},
   methods: {
+    getIndexNormalQuestions(){
+      this.theIndex = this.theIndex + 1;
+      return this.theIndex;
+    },
+    getIndexGroupQuestions(nums){
+      this.theIndex = this.theIndex + nums;
+      return this.theIndex;
+    },
     restExam() {
       this.$bvModal.hide('path')
 

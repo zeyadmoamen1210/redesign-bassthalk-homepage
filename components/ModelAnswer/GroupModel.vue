@@ -9,6 +9,7 @@
     <div class="row">
       <div class="col-md-12" style="min-height: 320px;">
         <div v-for="(item, index) in childrenQuestions" :key="index">
+          <!-- {{(childrenQuestions.length - myindex) + index}} -->
           <!-- <div class="exam-cont-item">
             <div>
               <h6>{{ index + 1 }}</h6>
