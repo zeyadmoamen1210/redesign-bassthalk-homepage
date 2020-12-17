@@ -32,7 +32,7 @@
                   </div>
                   <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="exam.canAccess ? openExam(exam.id) : ''">
                         <div class="exam-card">
-                            <div class="exam-card-overlay" @click="showConfirmtionPaymentModal = true" v-if="!exam.canAccess">
+                            <div class="exam-card-overlay" @click="showConfirmtionPaymentModal = true" v-if="!privateExamsCanAccess">
                               <div>
                                   <img src="@/assets/imgs/lock.png" />
                               </div>
@@ -129,8 +129,9 @@ export default {
         },
         getPrivateExams(){
             this.isLoading = true;
-            this.$axios.get(`/files/${this.$route.params.id}/private-exams?paginate=false`).then(res => {
-                this.privateExams = res.data;
+            this.$axios.get(`/files/${this.$route.params.id}/private-exams`).then(res => {
+                this.privateExams = res.data.docs;
+                this.privateExamsCanAccess = res.data.canAccess;
             }).finally(() => this.isLoading = false)
         }
     },
