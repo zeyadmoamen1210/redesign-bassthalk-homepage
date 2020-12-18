@@ -30,7 +30,7 @@
                             <button class="btn btn-primary" style="width:100%">بدء الامتحان</button>
                         </div>
                   </div>
-                  <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="exam.canAccess ? openExam(exam.id) : ''">
+                  <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="privateExamsCanAccess ? openExam(exam.id) : ''">
                         <div class="exam-card">
                             <div class="exam-card-overlay" @click="showConfirmtionPaymentModal = true" v-if="!privateExamsCanAccess">
                               <div>
