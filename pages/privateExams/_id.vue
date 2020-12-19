@@ -184,18 +184,20 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
-                      :myindex="getIndexNormalQuestions()"
                       :privateExam="true"
+
                     />
+                      <!-- :myindex="getIndexNormalQuestions()" -->
+
                     <choose
                       :answer="item.answer"
                       v-else-if="item.question.type == 'choose'"
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
-                      :myindex="getIndexNormalQuestions()"
                       :privateExam="true"
                     />
+                      <!-- :myindex="getIndexNormalQuestions()" -->
                    
                     <group
                       v-else-if="item.question.type == 'group'"
@@ -203,9 +205,9 @@
                       :question="item"
                       :exam_id="$route.params.id"
                       :isSolving='(selectedExam.totalMarks > -1) ? false : true'
-                      :myindex="getIndexGroupQuestions(item.childrenQuestions.length)"
                       :privateExam="true"
                     />
+                      <!-- :myindex="getIndexGroupQuestions(item.childrenQuestions.length)" -->
                   
                 </div>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="check-box-ques" style="float: left; width: 100%;">
-  <span style="color: #333;font-size: 24px;margin-right: 11px;padding: 11px;background: #0989c3;display: inline-block;color: #FFF;font-weight: bold;    font-size: 13px;"> {{myindex}} </span>
+  <!-- <span style="color: #333;font-size: 24px;margin-right: 11px;padding: 11px;background: #0989c3;display: inline-block;color: #FFF;font-weight: bold;    font-size: 13px;"> {{myindex}} </span> -->
     <h6 style=" background: #008bc71c;width: 94%;padding:5px"> {{ question.question.head }}</h6>
     
     <a :href="question.question.image" target="_blank">

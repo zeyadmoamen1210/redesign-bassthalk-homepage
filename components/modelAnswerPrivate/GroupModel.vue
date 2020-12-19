@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md-12" style="min-height: 320px;">
         <div v-for="(item, index) in childrenQuestions" :key="index">
-            <span style="padding: 14px;background: #0989c3;display: inline-block;color: #FFF;font-weight: bold;"> {{myindex - childrenQuestions.length  + index+1}} </span>
+            <!-- <span style="padding: 14px;background: #0989c3;display: inline-block;color: #FFF;font-weight: bold;"> {{myindex - childrenQuestions.length  + index+1}} </span> -->
 
           <!-- <div class="exam-cont-item">
             <div>
