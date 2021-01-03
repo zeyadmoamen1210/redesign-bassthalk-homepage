@@ -3,16 +3,18 @@
      
       <div class="container">
            <div>
-          <div style="display:flex" class="exams-head">
+          <!-- <div style="display:flex" class="exams-head">
               <h4 style="flex:1;    padding-top: 5px;">الامتحانات</h4>
-          </div>
+          </div> -->
       </div>
       <Loading v-if="isLoading" />
       <!-- <NoData v-else-if="!isLoading && privateExams.length == 0 && Object.keys(publicExam).length != 0" /> -->
       <NoData v-else-if="!isLoading && publicExams.length==0 " />
           <div class="exams" v-else>
-              <div class="row">
-                  <div class="col-md-3 pointer"  v-for="publicExam in publicExams"  :key="publicExam.id" @click="$router.push(`/privateExams/${publicExam.id}`)">
+                  <div class="public-ex"> 
+                      <h3>الامتحانات المجانية</h3>
+                      <div class="row">
+                          <div class="col-md-3 pointer"  v-for="publicExam in publicExams"  :key="publicExam.id" @click="$router.push(`/privateExams/${publicExam.id}`)">
                       <div class="exam-card">
                           
                           <!-- {{publicExam}} -->
@@ -30,7 +32,12 @@
                             <button class="btn btn-primary" style="width:100%">بدء الامتحان</button>
                         </div>
                   </div>
-                  <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="privateExamsCanAccess ? openExam(exam.id) : ''">
+                      </div>
+                  </div>
+                 <div class="private-ex" style="    border-top: 2px solid #007afd;padding-top: 15px;margin-top:15px">
+                     <h3>الامتحانات المدفوعة</h3>
+                     <div class="row">
+                          <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="privateExamsCanAccess ? openExam(exam.id) : ''">
                         <div class="exam-card">
                             <div class="exam-card-overlay" @click="showConfirmtionPaymentModal = true" v-if="!privateExamsCanAccess">
                               <div>
@@ -53,7 +60,14 @@
                              <button class="btn btn-primary" style="width:100%">بدء الامتحان</button>
                         </div>
                     </div>
-              </div>
+                     </div>
+                 </div>
+
+
+               <div style="display:block;    width: 100%;">
+                    <vs-pagination :total="privateExamsTotalPages" v-model="privateExamsPage"></vs-pagination>
+                </div>
+
           </div>
       </div>
 
@@ -104,9 +118,23 @@ export default {
                 {name:"صعب",value:"difficult"},
             ],
             showConfirmtionPaymentModal: false,
+            privateExamsTotalPages: 1,
+            privateExamsPage: 1
+        }
+    },
+    watch:{
+        privateExamsPage(val){
+            this.isLoading = true;
+            this.$axios.get(`/files/${this.$route.params.id}/private-exams?page=${val}`).then(res => {
+                this.privateExams = res.data.docs;
+                this.privateExamsPage= res.data.page;
+                this.privateExamsTotalPages= res.data.totalPages;
+                this.privateExamsCanAccess = res.data.canAccess;
+            }).finally(() => this.isLoading = false)
         }
     },
     methods:{
+        
         confirmPayment(){
       this.showConfirmtionPaymentModal=false;
        window.open('https://www.easykash.net/JLW4822','_blank');
@@ -131,6 +159,8 @@ export default {
             this.isLoading = true;
             this.$axios.get(`/files/${this.$route.params.id}/private-exams`).then(res => {
                 this.privateExams = res.data.docs;
+                this.privateExamsPage= res.data.page;
+                this.privateExamsTotalPages= res.data.totalPages;
                 this.privateExamsCanAccess = res.data.canAccess;
             }).finally(() => this.isLoading = false)
         }
@@ -145,6 +175,14 @@ export default {
 <style lang="scss">
 .examiner-exams{
     padding-top:50px;
+
+    .con-vs-pagination{
+        margin: auto;
+        margin-top: 22px;
+    }
+    .vs-pagination--ul{
+        margin-bottom: 0;
+    }
     .exams{
             margin-top:5px;
         }
@@ -156,6 +194,7 @@ export default {
     .exam-card{
         transition: all ease .5s;
         position: relative;
+        margin-bottom: 10px;
         .exam-card-overlay{
             position: absolute;
             top:0;
