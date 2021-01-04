@@ -25,7 +25,7 @@
                 <vs-avatar size="60px" v-if="course.teacher && course.teacher.photo" :src="course.teacher.photo"></vs-avatar>
                 <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
               </div>
-              <div>
+              <div style="overflow:hidden">
                 <h6 style="    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" v-if="course.teacher"> {{course.teacher.username}} </h6>
                 <p style="    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" v-if="course.teacher"> {{course.teacher.description}} </p>
               </div>
@@ -81,7 +81,25 @@ export default {
     }
   },
   methods:{
-    
+    EnrollCourseMain() {
+      this.isLoading = true
+    this.currCourseToEnrollPopup = false;
+      this.$axios
+        .post(`/courses/${this.enrollmentCourse.id}/enrollment-auto`, {
+          code: this.enrollmentCourse.code,
+        })
+        .then((res) => {
+          this.getSubjectCourse()
+          this.$snotify.success('تم تفعيل الإشتراك بنجاح ')
+
+          
+          this.code = ''
+        })
+        .catch((e) => {
+          this.$snotify.error('الكود الذي أدخلته غير صحيح')
+        })
+        .finally(() => (this.isLoading = false))
+    },
      
   
       EnrollCourse(course){
@@ -89,18 +107,18 @@ export default {
           this.enrollmentCourse.id = course.id
           this.enrollmentCourse.code = course.code
       },
-      EnrollCourseMain(){
-        this.currCourseToEnrollPopup = false;
-          this.isLoading = true;
-          this.$axios.post(`courses/${this.enrollmentCourse.id}/enrollment`, {
-              code: this.enrollmentCourse.code,
-          }).then(res => {
-              this.$snotify.success("تم إرسال طلبك ");
-              this.getSubjectCourse();            
-          }).catch(err => {
-            this.$snotify.error("الكود الذي أدخلته غير صحيح");
-          }).finally(() => this.isLoading = false)
-      },
+      // EnrollCourseMain(){
+      //   this.currCourseToEnrollPopup = false;
+      //     this.isLoading = true;
+      //     this.$axios.post(`courses/${this.enrollmentCourse.id}/enrollment`, {
+      //         code: this.enrollmentCourse.code,
+      //     }).then(res => {
+      //         this.$snotify.success("تم إرسال طلبك ");
+      //         this.getSubjectCourse();            
+      //     }).catch(err => {
+      //       this.$snotify.error("الكود الذي أدخلته غير صحيح");
+      //     }).finally(() => this.isLoading = false)
+      // },
       getSubjectCourse(){
           this.$axios.get(`/subjects/${this.$route.params.id}/courses`).then(res => {
           console.log(res)
