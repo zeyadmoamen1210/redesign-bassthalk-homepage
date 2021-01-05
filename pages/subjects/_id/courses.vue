@@ -27,7 +27,7 @@
               </div>
               <div style="overflow:hidden">
                 <h6 style="    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" v-if="course.teacher"> {{course.teacher.username}} </h6>
-                <p style="    white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" v-if="course.teacher"> {{course.teacher.description}} </p>
+                <p style="text-overflow: ellipsis;line-height: 1.5em;height: 3em;overflow: hidden;font-size: 14px;" v-if="course.teacher"> {{course.teacher.description}} </p>
               </div>
 
               
@@ -44,7 +44,7 @@
 
      <vs-popup class="holamundo"  title="حجز الكورس" :active.sync="currCourseToEnrollPopup">
       <div class="form-group">
-          <label> ادخل الكود السري للكورس </label>
+          <label> ادخل كود التفعيل للكورس </label>
           <input type="text" v-model="enrollmentCourse.code" class="form-control">
       </div>
       <vs-button  @click="EnrollCourseMain"> حجز الكورس </vs-button>

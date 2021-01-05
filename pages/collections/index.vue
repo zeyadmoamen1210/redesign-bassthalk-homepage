@@ -29,14 +29,15 @@
               </h5>
               <button
               class="btn btn-success"
+              style="width: 48%;"
                 @click="confirm(collection.id)"
                 v-if="!collection.canAccess"
               >
                 كود الإشتراك
               </button>
              
-                <button class="btn btn-danger" @click="showConfirmtionPaymentModal=true" v-if="!collection.canAccess">دفع الإشتراك</button>
-                <button class="btn btn-primary" style="width:100%" @click="$router.push(`/collections/${collection.id}/files`)" v-if="collection.canAccess">عرض التفاصيل</button>
+                <button class="btn btn-danger" @click="showConfirmtionPaymentModal=true" v-if="!collection.canAccess" style="width: 48%;">دفع الإشتراك</button>
+                <button class="btn btn-primary" @click="$router.push(`/collections/${collection.id}/files`)" style="width: 100%;" v-if="collection.canAccess">عرض التفاصيل</button>
            
             </div>
           </div>
@@ -67,7 +68,7 @@
     >
       <div>
       <h5>بعد الدفع أرسل فاتورة الدفع إلى الواتس 01015152796 ، وسيعطونك كود الدخول</h5>
-        <button class="btn btn-primary" @click="confirmPayment">
+        <button  class="btn btn-primary" @click="confirmPayment">
           دفع اﻹشتراك
         </button>
       </div>
@@ -194,7 +195,7 @@ export default {
     transition: all 0.5s ease;
     cursor: pointer;
     border-bottom: 10px;
-    
+    overflow:hidden;
 
     .collection-photo{
       position: relative;
@@ -235,7 +236,7 @@ export default {
       transform: translateY(-10px);
     }
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    // padding: 15px;
     div {
       text-align: center;
     }
