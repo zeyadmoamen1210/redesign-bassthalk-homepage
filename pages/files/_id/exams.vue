@@ -11,8 +11,10 @@
       <!-- <NoData v-else-if="!isLoading && privateExams.length == 0 && Object.keys(publicExam).length != 0" /> -->
       <NoData v-else-if="!isLoading && publicExams.length==0 " />
           <div class="exams" v-else>
-                  <div class="public-ex"> 
-                      <h3>الامتحانات المجانية</h3>
+            <vs-tabs>
+            <vs-tab label="الامتحانات المجانية">
+
+                 <div class="public-ex"> 
                       <div class="row">
                           <div class="col-md-3 pointer"  v-for="publicExam in publicExams"  :key="publicExam.id" @click="$router.push(`/privateExams/${publicExam.id}`)">
                       <div class="exam-card">
@@ -34,8 +36,11 @@
                   </div>
                       </div>
                   </div>
-                 <div class="private-ex" style="    border-top: 2px solid #007afd;padding-top: 15px;margin-top:15px">
-                     <h3>الامتحانات المدفوعة</h3>
+
+            </vs-tab>
+
+            <vs-tab label="الامتحانات المدفوعة">
+                <div class="private-ex" style="    border-top: 2px solid #007afd;padding-top: 15px;margin-top:15px">
                      <div class="row">
                           <div class="col-md-3 pointer" v-for="exam in privateExams"  :key="exam.id" @click="privateExamsCanAccess ? openExam(exam.id) : ''">
                         <div class="exam-card">
@@ -67,6 +72,10 @@
                <div style="display:block;    width: 100%;">
                     <vs-pagination :total="privateExamsTotalPages" v-model="privateExamsPage"></vs-pagination>
                 </div>
+            </vs-tab>
+            </vs-tabs>
+                 
+                 
 
           </div>
       </div>
