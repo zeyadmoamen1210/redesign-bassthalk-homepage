@@ -271,7 +271,8 @@ export default {
   },
   methods: {
     async register() {
-      this.isLoading = true
+     if(this.phone.match(/\d/g) && this.phone.match(/\d/g).length===11){
+        this.isLoading = true
 
       let signUpForm = new FormData()
       signUpForm.append('username', this.name)
@@ -303,10 +304,13 @@ export default {
           // this.showVerify = true
         })
         .catch((error) => {
-          this.$snotify.error(`عفوا من فضلك تحديد البيانات بشكل صحيح`)
+          this.$snotify.error(`الهاتف او البريد الالكتروني مسجل من قبل `)
 
           this.isLoading = false
         })
+     }else{
+       this.$vs.notify({title:"رقم الهاتف يجب ان لا يقل عن 11 رقم",color:'danger', position:'top-center'});
+     }
     },
     resendCode() {
       this.isLoading = true
