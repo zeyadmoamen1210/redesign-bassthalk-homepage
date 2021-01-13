@@ -10,7 +10,7 @@
                   <div class="col-md-4" v-for="lec in lectures" :key="lec.id">
                       <div class="last-lecture">
                           <h5> {{lec.title}} </h5>
-                          <h6> <a style="    display: inline-block;background: #28a745;color: #FFF;margin-bottom: 6px;padding: 6px;border-radius: 5px;" :href="lec.videoUrl">إضغط هنا</a> </h6>
+                          <h6 class="clickable" @click="openVideo(lec)">إضغط هنا </h6>
                           <h6> أخر تعديل {{$moment(lec.updatedAt).fromNow()}}  </h6>
                       </div>
                   </div>
@@ -22,6 +22,11 @@
 
           </div>
       </div>
+
+
+       <vs-popup class="holamundo"  title="محاضرة مسجلة" :active.sync="lecVideoPopup">
+        <iframe width="560" height="315" :src="currVideo" frameborder="0"></iframe>
+        </vs-popup>
   </div>
 </template>
 
@@ -36,9 +41,17 @@ export default {
     data(){
         return{
             lectures:[],
+            lecVideoPopup: false,
             isLoading: true,
             page:1,
-            totalPages:1
+            totalPages:1,
+            currVideo: '',
+        }
+    },
+    methods:{
+        openVideo(lec){
+            this.currVideo = lec.videoUrl;
+            this.lecVideoPopup = true;
         }
     },
     watch:{
@@ -47,6 +60,10 @@ export default {
             this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures?page=${val}`).then(res=>{
                 console.log(res.data)
                 this.lectures = res.data.docs;
+                this.lectures.map(ele => {
+                    ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
+                })
+
                 this.page = res.data.page;
                 this.totalPages = res.data.totalPages;
                 this.isLoading = false
@@ -57,6 +74,9 @@ export default {
         this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures`).then(res=>{
             console.log(res.data)
             this.lectures = res.data.docs;
+            this.lectures.map(ele => {
+                    ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
+            })
             this.page = res.data.page;
             this.totalPages = res.data.totalPages;
              this.isLoading = false
@@ -77,6 +97,16 @@ export default {
     h5,h6{
         text-align: center;
     }
+}
+.clickable{
+        display: inline-block;
+    background: var(--success);
+    padding: 6px;
+    margin-bottom: 6px;
+    color: #FFF;
+    border-radius: 6px;
+    padding-top: 8px;
+    cursor: pointer;
 }
 }
 
