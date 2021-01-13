@@ -3,9 +3,14 @@
      
       <div class="container" >
                         <h3 style="margin-bottom:10px">المحاضرات السابقة</h3>
+
+
      <Loading v-if="isLoading == true" />
      <NoData v-else-if="lectures.length == 0" />
           <div v-else>
+              <div style="margin-bottom:15px" v-if="currVideo">
+                <iframe style="width:100%;height:600px" :src="currVideo" frameborder="0"></iframe>
+              </div>
               <div class="row">
                   <div class="col-md-4" v-for="lec in lectures" :key="lec.id">
                       <div class="last-lecture">
@@ -24,9 +29,7 @@
       </div>
 
 
-       <vs-popup class="holamundo"  title="محاضرة مسجلة" :active.sync="lecVideoPopup">
-        <iframe width="560" height="315" :src="currVideo" frameborder="0"></iframe>
-        </vs-popup>
+     
   </div>
 </template>
 
