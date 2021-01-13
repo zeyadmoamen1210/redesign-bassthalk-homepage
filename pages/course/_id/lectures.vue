@@ -5,7 +5,7 @@
                         <h3 style="margin-bottom:10px">المحاضرات السابقة</h3>
      <Loading v-if="isLoading == true" />
      <NoData v-else-if="lectures.length == 0" />
-          <div>
+          <div v-else>
               <div class="row">
                   <div class="col-md-4" v-for="lec in lectures" :key="lec.id">
                       <div class="last-lecture">
@@ -15,6 +15,11 @@
                       </div>
                   </div>
               </div>
+
+               <div>
+                    <vs-pagination :total="totalPages" v-model="page"></vs-pagination>
+                </div>
+
           </div>
       </div>
   </div>
@@ -31,13 +36,29 @@ export default {
     data(){
         return{
             lectures:[],
-            isLoading: true
+            isLoading: true,
+            page:1,
+            totalPages:1
+        }
+    },
+    watch:{
+        page(val){
+            this.isLoading = true;
+            this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures?page=${val}`).then(res=>{
+                console.log(res.data)
+                this.lectures = res.data.docs;
+                this.page = res.data.page;
+                this.totalPages = res.data.totalPages;
+                this.isLoading = false
+            }).catch(err => this.isLoading = false).finally(() => this.isLoading = false)
         }
     },
     created(){
-        this.$axios.get(`/courses/${this.$route.params.id}/lectures`).then(res=>{
+        this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures`).then(res=>{
             console.log(res.data)
-            this.lectures = res.data
+            this.lectures = res.data.docs;
+            this.page = res.data.page;
+            this.totalPages = res.data.totalPages;
              this.isLoading = false
         }).catch(err => this.isLoading = false).finally(() => this.isLoading = false)
     }
@@ -57,6 +78,13 @@ export default {
         text-align: center;
     }
 }
+}
+
+.con-vs-pagination{
+    margin:auto;
+}
+.vs-pagination--ul{
+    margin-bottom: 0;
 }
 
 </style>

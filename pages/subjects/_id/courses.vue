@@ -9,7 +9,7 @@
           <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
             
               <div  class="status">
-                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}${course.lecture ? '?nextLive=' + course.lecture : ''}`)" > دخول </vs-button> </div>
+                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
                 <div v-if="course.enrollment == 'pending'"> <vs-button style="cursor:auto" color="warning"> قيد الإنتظار </vs-button> </div>
                 <div v-else-if="course.enrollment == 'refused'"> <vs-button style="cursor:auto" color="danger"> مرفوض </vs-button> </div>
                 <div v-else-if="!course.enrollment"> <vs-button @click="EnrollCourse(course)" color="primary"> اشتراك </vs-button> </div>

@@ -9,10 +9,10 @@
                 مجلدات الإمتحانات</h3>
             </div>
           <div class="row">
-              <div class="col-md-3" v-for="folder in folders" :key="folder.id">
+              <div style="margin-bottom:15px" class="col-md-3" v-for="folder in folders" :key="folder.id">
                     <nuxt-link :to="`/folders/${folder.id}/exams`">
                     <div class="level-item box-shadow-class">
-                        <img src="@/assets/imgs/folder-icon.png" alt="">
+                        <img src="@/assets/imgs/folder.svg" alt="">
                         <h6> {{folder.name}} </h6>
                     </div>
                     </nuxt-link>
@@ -67,7 +67,11 @@ export default {
                 text-align: center;
     margin-bottom: 0;
     margin-top: 11px;
-    font-size: 23px;
+    font-size: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
         }
         >img{
             width:100px;

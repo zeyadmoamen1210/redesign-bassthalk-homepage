@@ -114,7 +114,8 @@ export default {
   methods:{
     startInCourse(course){
       if(course.status == 'accepted'){
-        this.$router.push(`course/${course.course.id}${course.course.lecture ? '?nextLive=' +  course.course.lecture : ''}`)
+        this.$router.push(`course/${course.course.id}/main${course.course.lecture ? '?nextLive=' +  course.course.lecture : ''}`)
+        // this.$router.push(`course/${course.course.id}${course.course.lecture ? '?nextLive=' +  course.course.lecture : ''}`)
       }
     }
   },
