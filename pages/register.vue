@@ -78,7 +78,7 @@
 
                 <div class="col-md-4">
                   <div class="form-groub">
-                    <ValidationProvider name="E-mail" rules="required|confirmed:confirmation" v-slot="{ errors }">
+                    <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
                       <input
                         v-model="password"
                         type="password"
@@ -92,7 +92,7 @@
 
                 <div class="col-md-4">
                   <div class="form-groub">
-                    <ValidationProvider vid="confirmation" name="E-mail" rules="required" v-slot="{ errors }">
+                    <ValidationProvider  name="E-mail" rules="required" v-slot="{ errors }">
                       <input
                         v-model="confirmPassword"
                         type="password"
