@@ -48,7 +48,7 @@ export default {
     let vm = this
     setTimeout(function () {
       vm.initLoading = false
-    }, 1000)
+    }, 300)
     // console.log(this.$auth.user.role)
   },
   mounted() {

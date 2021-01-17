@@ -111,8 +111,15 @@ export default {
       // this.isLoading = true
       await this.$auth
         .loginWith('google')
-        .then((res) => {})
+        .then((res) => {
+          window.scrollTo({top:0, behavior: 'smooth'});
+
+        location.reload();
+        })
         .catch((e) => {
+          window.scrollTo({top:0, behavior: 'smooth'});
+
+       location.reload();
         })
     },
     async login() {
@@ -123,21 +130,32 @@ export default {
         })
         this.isLoading = false
         // Cookies.set('account', JSON.stringify(response.data), { expires: 365 })
-        localStorage.removeItem('account');
-        localStorage.setItem('account', JSON.stringify(response.data));
+        // localStorage.removeItem('account');
+        // localStorage.setItem('account', JSON.stringify(response.data));
         this.$auth.setUser(response.data.user);
+
         if (this.$auth?.user?.class?.id) {
           this.$router.push({ path: '/subjects' })
         } else {
           this.$router.push({ path: '/path' })
         }
 
-        this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`)
+        
+
+        this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`);
+
+        window.scrollTo({top:0, behavior: 'smooth'});
+
+       location.reload();
+
       } catch (err) {
         this.isLoading = false
 
-        this.$snotify.error(`عفوا من فضلك تاكد من اسم المستخدم وكلمة المرور`)
+        this.$snotify.error(`عفوا من فضلك تاكد من اسم المستخدم وكلمة المرور`);
+        window.scrollTo({top:0, behavior: 'smooth'});
+
       }
+      
     },
   },
 }

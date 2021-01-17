@@ -304,11 +304,13 @@ export default {
           // this.showVerify = true
         })
         .catch((error) => {
+          window.scrollTo({top:0, behavior: 'smooth'});
           this.$snotify.error(`الهاتف او البريد الالكتروني مسجل من قبل `)
 
           this.isLoading = false
         })
      }else{
+       window.scrollTo({top:0, behavior: 'smooth'});
        this.$snotify.error(`رقم الهاتف يجب ان لا يقل عن 11 رقم `)
      }
     },
@@ -320,6 +322,7 @@ export default {
           email: this.email,
         })
         .then((res) => {
+          window.scrollTo({top:0, behavior: 'smooth'});
           this.$snotify.success(`تم إرسال الكود بنجاح  `)
 
           this.isLoading = false
@@ -341,6 +344,7 @@ export default {
           this.login()
         })
         .catch((error) => {
+          window.scrollTo({top:0, behavior: 'smooth'});
           this.$snotify.error(`عفواً من فضلك تأكد من الكود  `)
 
           this.isLoading = false
@@ -361,8 +365,8 @@ export default {
 
          
         // Cookies.set('account', JSON.stringify(response.data), { expires: 365 })
-        localStorage.removeItem('account');
-        localStorage.setItem('account', JSON.stringify(response.data));
+        // localStorage.removeItem('account');
+        // localStorage.setItem('account', JSON.stringify(response.data));
 
         this.$auth.setUser(response.data.user);
         if (this.$auth?.user?.class?.id) {
@@ -371,12 +375,17 @@ export default {
           this.$router.push({ path: '/path' })
         }
 
-        this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`)
+        this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`);
+
+        window.scrollTo({top:0, behavior: 'smooth'});
+
+       location.reload();
 
 
         })
         .catch((error) => {
-          this.isLoading = false
+          this.isLoading = false;
+          window.scrollTo({top:0, behavior: 'smooth'});
 
         })
     },
