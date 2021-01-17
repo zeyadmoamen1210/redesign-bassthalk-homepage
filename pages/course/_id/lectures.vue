@@ -9,7 +9,7 @@
      <NoData v-else-if="lectures.length == 0" />
           <div v-else>
               <div style="margin-bottom:15px" v-if="currVideo">
-                <iframe style="width:100%;height:600px" :src="currVideo" frameborder="0"></iframe>
+                <iframe style="width:100%;height:600px" :src="currVideo" frameborder="0" allowfullscreen></iframe>
               </div>
               <div class="row">
                   <div class="col-md-4" v-for="lec in lectures" :key="lec.id">
@@ -64,7 +64,17 @@ export default {
                 console.log(res.data)
                 this.lectures = res.data.docs;
                 this.lectures.map(ele => {
-                    ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
+                   if(ele.videoUrl.includes('youtube.com')){
+                        ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
+                        if (ele.videoUrl.includes('&')){
+                            let index = ele.videoUrl.indexOf('&')
+                            ele.videoUrl = ele.videoUrl.substring(0, index)
+                        }
+                    }else if (ele.videoUrl.includes('vimeo.com') && !ele.videoUrl.includes("player")){
+                        ele.videoUrl = ele.videoUrl.replace("vimeo.com/", "player.vimeo.com/video/")
+                    }
+
+               
                 })
 
                 this.page = res.data.page;
