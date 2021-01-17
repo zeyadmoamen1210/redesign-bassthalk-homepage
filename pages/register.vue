@@ -32,7 +32,7 @@
                     <ValidationProvider name="E-mail" rules="required|email" v-slot="{ errors }">
                       <input
                         v-model="email"
-                        type="text"
+                        type="email"
                         class="form-control"
                         placeholder="البريد الالكتروني"
                       />
