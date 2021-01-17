@@ -52,6 +52,10 @@ export default {
     // console.log(this.$auth.user.role)
   },
   mounted() {
+
+    this.$auth.fetchUser();
+
+    
     // console.log(this.$moment.locale())
     this.$moment.locale('ar')
     // console.log(this.$moment.locale())

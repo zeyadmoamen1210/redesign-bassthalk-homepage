@@ -112,9 +112,10 @@ export default {
     }
   },
   created() {
+    
     if (this.$auth?.user?.class?.id) {
       // this.$router.push({ path: '/subjects' })
-      this.getSubjects()
+      this.getSubjects();
     } else {
       this.$router.push({ path: '/path' })
     }

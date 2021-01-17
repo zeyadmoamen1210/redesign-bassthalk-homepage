@@ -29,6 +29,7 @@
         <div class="form-groub">
           <!-- <ValidationProvider rules="required|email" v-slot="email"> -->
           <input
+          @keyup.enter="login"
             v-model="form.password"
             type="password"
             class="form-control"
@@ -45,7 +46,7 @@
           <nuxt-link to="/reset-password">هل نسيت كلمة مرورك ؟</nuxt-link>
         </div>
         <!-- :disabled="invalid" -->
-        <input type="button" @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
+        <input type="button"  @click="login" value="تسجيل الدخول" class="basth-btn-primary" />
         <div class="two-way">
           <h6>او عن طريق</h6>
           <!-- <img @click="loginWithGoogle" class="pointer" src="../assets/imgs/facebook.png" alt /> -->
@@ -114,12 +115,12 @@ export default {
         .then((res) => {
           window.scrollTo({top:0, behavior: 'smooth'});
 
-        location.reload();
+        // location.reload();
         })
         .catch((e) => {
           window.scrollTo({top:0, behavior: 'smooth'});
 
-       location.reload();
+      //  location.reload();
         })
     },
     async login() {
@@ -140,13 +141,13 @@ export default {
           this.$router.push({ path: '/path' })
         }
 
+          // location.reload();
         
 
         this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`);
 
         window.scrollTo({top:0, behavior: 'smooth'});
 
-       location.reload();
 
       } catch (err) {
         this.isLoading = false

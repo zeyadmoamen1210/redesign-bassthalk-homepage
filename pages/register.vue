@@ -54,7 +54,7 @@
 
                 <div class="col-md-2">
                   <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
-                    <v-select v-model="gender" label="name" placeholder="النوع" :options="options"></v-select>
+                    <v-select :clearable="false" v-model="gender" label="name" placeholder="النوع" :options="options"></v-select>
                     <span style="color:red">{{errors[0]}}</span>
                   </ValidationProvider>
                 </div>
@@ -64,6 +64,7 @@
                     <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
                       <v-select
                         v-model="country"
+                        :clearable="false"
                         label="name"
                         placeholder="الدولة"
                         :options="countyOptions"
@@ -379,7 +380,7 @@ export default {
 
         window.scrollTo({top:0, behavior: 'smooth'});
 
-       location.reload();
+      //  location.reload();
 
 
         })
