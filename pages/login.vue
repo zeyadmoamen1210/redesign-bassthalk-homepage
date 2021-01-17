@@ -123,6 +123,9 @@ export default {
         })
         this.isLoading = false
         Cookies.set('account', JSON.stringify(response.data), { expires: 365 })
+        localStorage.removeItem('account');
+        localStorage.setItem('account', JSON.stringify(response.data));
+        this.$auth.setUser(response.data.user);
         if (this.$auth?.user?.class?.id) {
           this.$router.push({ path: '/subjects' })
         } else {

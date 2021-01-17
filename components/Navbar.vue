@@ -438,6 +438,8 @@
 <script>
 import Loading from '../components/Loading'
 import NoData from '@/components/NoData'
+import * as Cookies from 'js-cookie'
+
 export default {
   components:{
     Loading,
@@ -485,7 +487,9 @@ export default {
       console.log("count", this.count)
     },
     async logout() {
-      await this.$auth.logout()
+      await this.$auth.logout();
+      Cookies.remove('account');
+
     },
     showDropdown: function () {
       document.querySelector('.dropdown').classList.toggle('drop')
