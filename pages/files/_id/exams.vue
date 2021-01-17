@@ -153,7 +153,7 @@ export default {
 
                 this.$router.push(`/privateExams/${exam_id}`)
             }else{
-               this.$vs.notify({position: "top-center",title:"Failed", title:"عفوا أنت غير مشترك",color:"danger"});
+                       this.$snotify.error(`عفوا أنت غير مشترك`);
 
             }
         },

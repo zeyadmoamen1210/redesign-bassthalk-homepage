@@ -309,7 +309,7 @@ export default {
           this.isLoading = false
         })
      }else{
-       this.$vs.notify({title:"رقم الهاتف يجب ان لا يقل عن 11 رقم",color:'danger', position:'top-center'});
+       this.$snotify.error(`رقم الهاتف يجب ان لا يقل عن 11 رقم `)
      }
     },
     resendCode() {
@@ -359,14 +359,21 @@ export default {
         .then((res) => {
           this.isLoading = false
 
-          Cookies.set('account', JSON.stringify(res.data), { expires: 365 })
-          // localStorage.setItem('account', JSON.stringify(res.data))
-          Cookies.remove('user')
-          if (this.$auth?.user?.class?.id) {
-            this.$router.push({ path: '/subjects' })
-          } else {
-            this.$router.push({ path: '/path' })
-          }
+         
+        // Cookies.set('account', JSON.stringify(response.data), { expires: 365 })
+        localStorage.removeItem('account');
+        localStorage.setItem('account', JSON.stringify(response.data));
+
+        this.$auth.setUser(response.data.user);
+        if (this.$auth?.user?.class?.id) {
+          this.$router.push({ path: '/subjects' })
+        } else {
+          this.$router.push({ path: '/path' })
+        }
+
+        this.$snotify.success(`مرحبا بك يا ${response.data.user.username}`)
+
+
         })
         .catch((error) => {
           this.isLoading = false

@@ -492,7 +492,7 @@ export default {
     },
     async logout() {
       await this.$auth.logout();
-      Cookies.remove('account');
+      // Cookies.remove('account');
 
     },
     showDropdown: function () {
