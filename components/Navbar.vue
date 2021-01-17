@@ -418,14 +418,18 @@
             تعديل المسار 
           </vs-sidebar-item>
 
-      <div class="footer-sidebar"  slot="footer">
-        <vs-button icon="reply" v-if="$auth.loggedIn" @click="logout" color="danger" type="flat" icon-pack="fas fa-sign-out-alt">
-          تسجيل الخروج
-        </vs-button>
-            <vs-button icon="reply" v-else @click="$router.push('/login')" color="success" type="flat" icon-pack="fas fa-sign-in-alt">
-          تسجيل الدخول
-        </vs-button>
-      </div>
+           <vs-sidebar-item v-if="$auth.loggedIn" index="10" >
+            <vs-button color="danger" @click="logout">تسجيل الخروج</vs-button>
+            
+          </vs-sidebar-item>
+
+          <vs-sidebar-item v-if="!$auth.loggedIn" to="/login" index="11" >
+            <vs-button color="success">تسجيل الدخول</vs-button>
+            
+          </vs-sidebar-item>
+
+
+
 
     </vs-sidebar>
 
