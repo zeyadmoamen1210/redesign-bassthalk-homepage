@@ -490,9 +490,11 @@ export default {
       this.count = 0
       console.log("count", this.count)
     },
-    async logout() {
-      await this.$auth.logout();
-      // Cookies.remove('account');
+    logout() {
+      this.$axios.get(`/logout`).then(res => {
+          this.$auth.logout();
+          this.$router.push("/login");
+       })
 
     },
     showDropdown: function () {

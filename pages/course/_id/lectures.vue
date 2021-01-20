@@ -2,29 +2,42 @@
   <div class="course-last-lectures">
      
       <div class="container" >
-                        <h3 style="margin-bottom:10px">المحاضرات السابقة</h3>
+        
+          <div >
+               <div style="display:flex:flex-wrap:nowrap">
+                           <div style="flex:1">
+                                <h3 style="margin-bottom:10px">المحاضرات السابقة</h3>
+                           </div>
+                           <div v-if="numberOfAllowedViews">
+                                <h6> عدد المرات المسموحة للمشاهدة : <span style="color:#0989c3">{{ numberOfAllowedViews }}</span> </h6>
+                           </div>
+                       </div>
 
 
      <Loading v-if="isLoading == true" />
      <NoData v-else-if="lectures.length == 0" />
           <div v-else>
-              <div style="margin-bottom:15px" v-if="currVideo">
-                <iframe style="width:100%;height:600px" :src="currVideo" frameborder="0" allowfullscreen></iframe>
+              <div style="margin-bottom:15px" v-if="type">
+                <iframe v-if="type == 'video'" style="width:100%;height:600px" :src="currVideo" frameborder="0" allowfullscreen></iframe>
+                <audio style="    width: 100%;" controls :src="currVoice" v-else-if="type == 'voice'"></audio>
+                <button class="btn btn-success" v-else-if="type == 'pdf'"> <a target="_blank" style="color:#FFF;" :href="currPDF"> فتح الملف </a> </button>
               </div>
               <div class="row">
                   <div class="col-md-4" v-for="lec in lectures" :key="lec.id">
                       <div class="last-lecture">
                           <h5> {{lec.title}} </h5>
                           <h6 class="clickable" @click="openVideo(lec)">إضغط هنا </h6>
+                          <h6 v-if="lec.hasExam" @click="$router.push(`/courseExam/${lec.exam}?exam=course`)" class="clickable" style="background:var(--warning)"> الأمتحان </h6>
                           <h6> أخر تعديل {{$moment(lec.updatedAt).fromNow()}}  </h6>
                       </div>
                   </div>
               </div>
 
-               <div>
+               <div v-if="totalPages > 1">
                     <vs-pagination :total="totalPages" v-model="page"></vs-pagination>
                 </div>
 
+          </div>
           </div>
       </div>
 
@@ -49,12 +62,42 @@ export default {
             page:1,
             totalPages:1,
             currVideo: '',
+            numberOfAllowedViews: "",
+            currVoice:"",
+            currPDF:"",
+            type:''
         }
     },
     methods:{
         openVideo(lec){
-            this.currVideo = lec.videoUrl;
-            this.lecVideoPopup = true;
+            this.$axios.get(`/lectures-check/${lec.id}`).then(res => {
+                if(lec.type == 'video'){
+                    this.currVideo = lec.videoUrl;
+                    this.type = 'video';
+                }else if (lec.type == 'voice'){
+                    this.currVoice = lec.videoUrl;
+                    this.type = 'voice';
+
+                }else{
+                    this.currPDF = !lec.videoUrl.includes('https://') ? 'https://' + lec.videoUrl : lec.videoUrl;
+                    this.type = 'pdf';
+
+                }
+                
+                this.lecVideoPopup = true;
+            }).catch(err => {
+                if(err.response.status === 403){
+                    console.log(err.response.data)
+                    
+                    if(err.response.data.message.reason == 'exam'){
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: `يجب تجاوز امتحان المحاضرة ${err.response.data.message.info}` })
+                    }else{
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: ` لقد تجاوزت عدد مرات المشاهدة المحدد لهذه المحاضرة المحدد من قبل المٌعلم`})
+                    }
+                    
+                }
+            })
+            
         }
     },
     watch:{
@@ -63,6 +106,10 @@ export default {
             this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures?page=${val}`).then(res=>{
                 console.log(res.data)
                 this.lectures = res.data.docs;
+                if (res.data.isLimitedNumberOfAllowedViews){
+                    this.numberOfAllowedViews = res.data.numberOfAllowedViews;
+                }
+
                 this.lectures.map(ele => {
                    if(ele.videoUrl.includes('youtube.com')){
                         ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
@@ -87,9 +134,22 @@ export default {
         this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures`).then(res=>{
             console.log(res.data)
             this.lectures = res.data.docs;
+            if (res.data.isLimitedNumberOfAllowedViews){
+                this.numberOfAllowedViews = res.data.numberOfAllowedViews;
+            }
             this.lectures.map(ele => {
-                    ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
-            })
+                   if(ele.videoUrl.includes('youtube.com')){
+                        ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
+                        if (ele.videoUrl.includes('&')){
+                            let index = ele.videoUrl.indexOf('&')
+                            ele.videoUrl = ele.videoUrl.substring(0, index)
+                        }
+                    }else if (ele.videoUrl.includes('vimeo.com') && !ele.videoUrl.includes("player")){
+                        ele.videoUrl = ele.videoUrl.replace("vimeo.com/", "player.vimeo.com/video/")
+                    }
+
+               
+                })
             this.page = res.data.page;
             this.totalPages = res.data.totalPages;
              this.isLoading = false
@@ -100,6 +160,10 @@ export default {
 
 <style lang="scss">
 .course-last-lectures{
+    a:hover {
+    text-decoration: none !important;
+    color:#FFF !important;
+}
     padding-top: 70px;
     .last-lecture{
         margin-bottom: 15px;

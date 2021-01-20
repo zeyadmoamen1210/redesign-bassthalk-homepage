@@ -10,6 +10,10 @@
           </h3>
         </div>
         <Loading v-if="isLoading" />
+
+         <div v-if="selectedExam">
+          <h6> نسبة النجاح في الامتحان المحددة من قبل المعلم :  {{selectedExam.passing_percentage}} % </h6>
+        </div>
         
           <div class="resultExam" v-if="isCorrected == true">
             <img src="@/assets/imgs/white-shape.png" alt="">
@@ -65,7 +69,7 @@
 
                                       
                                     </template>
-                                    <span slot="finish" style="font-family:'CustomFontRegular'"> تم إنتهاء الوقت  </span>
+                                    <span v-if="$route.query.exam" slot="finish" style="font-family:'CustomFontRegular'"> تم إنتهاء الوقت  </span>
                                   </vac>
                                 </no-ssr>
 
@@ -342,7 +346,8 @@ export default {
       let z = require('@/assets/sounds/success.mp3')
       let y = new Audio(z)
       y.play()
-      this.$vs.dialog({title:"تم إنتهاء الوقت",
+     if(!this.$route.query.exam){
+        this.$vs.dialog({title:"تم إنتهاء الوقت",
             text:"تم تسليم الإمتحان",
             type:"confirm",
             color:"danger",
@@ -351,18 +356,22 @@ export default {
             
             cancel: this.cancelEndExam
       })
+     }
     },
     willCorrectByTeacher(){
       let z = require('@/assets/sounds/success.mp3')
       let y = new Audio(z)
       y.play()
       this.teacherWillCorrectIt = true;
-      this.$vs.dialog({title:"تم إنتهاء الوقت",
+      if(!this.$route.query.exam == 'course'){
+         this.$vs.dialog({title:"تم إنتهاء الوقت",
             text:"تم تسليم الإمتحان و سيتم إرسال النتيجة فور تصحيحها من قبل المعلم",
             color:"danger",
             acceptText:"الرجوع إالي قائمة الإمتحانات",
             accept: this.cancelEndExam,
       })
+      }
+     
 
 
       
@@ -378,9 +387,9 @@ export default {
         .post(`exams/${this.$route.params.id}/done`)
         .then((res) => {
 
+        
           // this.$snotify.warning("حسنا لقد انتهي الوقت .. تم تسليم الامتحان")
-
-          
+         
 
           console.log(res.data)
           this.selectedExam=  null,
@@ -408,6 +417,8 @@ export default {
        }else{
          this.willCorrectByTeacher()
        }
+
+      
 
         this.startExam()
       
@@ -480,10 +491,29 @@ export default {
         
 
           
+          if(!this.$route.query.exam){
+            this.$snotify.success("تم تسليم الإمتحان بنجاح انتظر حتي يتم تصحيحه")
+          }
 
-          this.$snotify.success("تم تسليم الإمتحان بنجاح انتظر حتي يتم تصحيحه")
 
           console.log(res.data)
+
+             console.log(this.$route.query.exam);
+         console.log("he;llllllllllllllllllo")
+           if(this.$route.query.exam){
+         console.log("he;llllllllllllllllllo")
+
+         if(res.data.mark < this.selectedExam.passing_percentage){
+           this.$vs.dialog({title:"لم تتجاوز النسبة المحددة من قبل المعلم",
+            text:"حاول مرة اخري",
+            color:"danger",
+            acceptText:"حسنا",
+        })
+         }
+       }
+
+
+
           this.selectedExam=  null,
       this.selectedIndex= null,
       this.inCorrectCase= false,

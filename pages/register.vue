@@ -306,7 +306,7 @@ export default {
         })
         .catch((error) => {
           window.scrollTo({top:0, behavior: 'smooth'});
-          this.$snotify.error(`الهاتف او البريد الالكتروني مسجل من قبل `)
+          this.$snotify.error(error.response.data.message)
 
           this.isLoading = false
         })

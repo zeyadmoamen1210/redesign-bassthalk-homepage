@@ -42,7 +42,7 @@ export default {
         getCourseFolders(){
             this.$axios.get(`courses/${this.$route.params.id}/folders`).then(res => {
                 console.log(res)
-                this.folders = res.data
+                this.folders = res.data.docs;
             }).finally(() => this.isLoading = false)
         }
     }
