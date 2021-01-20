@@ -27,7 +27,7 @@
                       <div class="last-lecture">
                           <h5> {{lec.title}} </h5>
                           <h6 class="clickable" @click="openVideo(lec)">إضغط هنا </h6>
-                          <h6 v-if="lec.hasExam" @click="$router.push(`/courseExam/${lec.exam}?exam=course`)" class="clickable" style="background:var(--warning)"> الأمتحان </h6>
+                          <h6 v-if="lec.hasExam" @click="openExam(lec)" class="clickable" style="background:var(--warning)"> الأمتحان </h6>
                           <h6> أخر تعديل {{$moment(lec.updatedAt).fromNow()}}  </h6>
                       </div>
                   </div>
@@ -69,7 +69,30 @@ export default {
         }
     },
     methods:{
+        openExam(lec){
+            this.isLoading = true;
+            this.$axios.get(`/lectures-check/${lec.id}`).then(res => {
+                this.$router.push(`/courseExam/${lec.exam}?exam=course`);
+            }).catch(err => {
+                if(err.response.status === 403){
+                    console.log(err.response.data)
+
+                    // this.currVideo = '';
+                    // this.currVoice = '';
+                    // this.currPDF = '';
+                    
+                    if(err.response.data.message.reason == 'exam'){
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: `يجب تجاوز امتحان المحاضرة ${err.response.data.message.info}` })
+                    }else{
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: ` لقد تجاوزت عدد مرات المشاهدة المحدد لهذه المحاضرة المحدد من قبل المٌعلم`})
+                    }
+                    
+                }
+            }).finally(() => this.isLoading = false);
+            
+        },
         openVideo(lec){
+            this.isLoading = true;
             this.$axios.get(`/lectures-check/${lec.id}`).then(res => {
                 if(lec.type == 'video'){
                     this.currVideo = lec.videoUrl;
@@ -100,7 +123,7 @@ export default {
                     }
                     
                 }
-            })
+            }).finally(() => this.isLoading = false);
             
         }
     },

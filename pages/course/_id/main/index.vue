@@ -39,7 +39,7 @@
           </div>
 
           <div class="col-md-3">
-            <nuxt-link :to="`/course/${$route.params.id}?nextLive=${$route.query.nextLive}`">
+            <nuxt-link :to="`/course/${$route.params.id}${$route.query.nextLive ? '?nextLive='+$route.query.nextLive : '' }`">
               <div class="level-item box-shadow-class">
                 <img style="margin-top:40px;width:100px;" src="@/assets/imgs/video-conference.svg" alt="">
                 <h6>اونلاين</h6>

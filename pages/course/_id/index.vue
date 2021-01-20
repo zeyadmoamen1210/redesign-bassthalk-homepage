@@ -95,11 +95,14 @@ export default {
           this.getNextLec()
         }
         console.log("store",this.$store.state.myCoursesAsTeacher)
-       this.$store.state.myCoursesAsTeacher.forEach(obj =>{
+        if(this.$store.state.myCoursesAsTeacher){
+           this.$store.state.myCoursesAsTeacher.forEach(obj =>{
          if(obj.course && obj.course.id == this.$route.params.id){
            this.course = obj.course
          }
        })
+        }
+      
      },
      methods:{
          getNextLec(){
