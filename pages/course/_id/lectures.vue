@@ -23,12 +23,12 @@
                 <button class="btn btn-success" v-else-if="type == 'pdf'"> <a target="_blank" style="color:#FFF;" :href="currPDF"> فتح الملف </a> </button>
               </div>
               <div class="row">
-                  <div class="col-md-4" v-for="lec in lectures" :key="lec.id">
+                  <div class="col-md-3" v-for="lec in lectures" :key="lec.id">
                       <div class="last-lecture">
                           <h5> {{lec.title}} </h5>
-                          <h6 class="clickable" @click="openVideo(lec)">إضغط هنا </h6>
-                          <h6 v-if="lec.hasExam" @click="openExam(lec)" class="clickable" style="background:var(--warning)"> الأمتحان </h6>
-                          <h6> أخر تعديل {{$moment(lec.updatedAt).fromNow()}}  </h6>
+                          <h6 style="font-weight: bold;font-size: 12px;color: #636363;margin-bottom:10px"> {{$moment(lec.updatedAt).fromNow()}}  </h6>
+                          <button class="btn btn-success" @click="openVideo(lec)">إضغط هنا </button>
+                          <button class="btn btn-warning" v-if="lec.hasExam" @click="openExam(lec)" style="background:var(--warning)"> الأمتحان </button>
                       </div>
                   </div>
               </div>
@@ -197,9 +197,15 @@ export default {
     background: #FFF;
     text-align: center;
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
-    padding:15px;
+    // padding:15px;
     h5,h6{
         text-align: center;
+        padding:10px 5px 0  0;
+        margin-bottom: 0;
+    }
+    button{
+            width: 49%;
+    margin: 0 -2px;
     }
 }
 .clickable{
