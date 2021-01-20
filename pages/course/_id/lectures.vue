@@ -88,6 +88,10 @@ export default {
             }).catch(err => {
                 if(err.response.status === 403){
                     console.log(err.response.data)
+
+                    this.currVideo = '';
+                    this.currVoice = '';
+                    this.currPDF = '';
                     
                     if(err.response.data.message.reason == 'exam'){
                         this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: `يجب تجاوز امتحان المحاضرة ${err.response.data.message.info}` })
