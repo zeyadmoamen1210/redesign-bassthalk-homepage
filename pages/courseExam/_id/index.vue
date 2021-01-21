@@ -498,10 +498,11 @@ export default {
 
           console.log(res.data)
 
-             console.log(this.$route.query.exam);
-         console.log("he;llllllllllllllllllo")
+          window.scrollTo({top:0, behavior:'smooth'});
+
            if(this.$route.query.exam){
-         console.log("he;llllllllllllllllllo")
+
+         
 
          if(res.data.mark < this.selectedExam.passing_percentage){
            this.$vs.dialog({title:"لم تتجاوز النسبة المحددة من قبل المعلم",
