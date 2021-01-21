@@ -26,8 +26,8 @@
                   <div class="col-md-3" v-for="lec in lectures" :key="lec.id">
                       <div class="last-lecture">
                           <h5> {{lec.title}} </h5>
-                          <h6 style="font-weight: bold;font-size: 12px;color: #636363;margin-bottom:10px"> {{$moment(lec.updatedAt).fromNow()}}  </h6>
-                          <button class="btn btn-success" @click="openVideo(lec)">إضغط هنا </button>
+                          <h6 style="font-weight: bold;font-size: 12px;color: #636363;margin-bottom:50px"> {{$moment(lec.updatedAt).fromNow()}}  </h6>
+                          <button  class="btn btn-success" @click="openVideo(lec)">إضغط هنا </button>
                           <button class="btn btn-warning" v-if="lec.hasExam" @click="openExam(lec)" style="background:var(--warning)"> الأمتحان </button>
                       </div>
                   </div>
@@ -193,19 +193,25 @@ export default {
 }
     padding-top: 70px;
     .last-lecture{
-        margin-bottom: 15px;
+          margin-bottom: 15px;
     background: #FFF;
     text-align: center;
-    box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
-    // padding:15px;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    h5{
+        padding-top:21px !important;
+    }
     h5,h6{
         text-align: center;
         padding:10px 5px 0  0;
         margin-bottom: 0;
     }
     button{
-            width: 49%;
+            width: 50%;
     margin: 0 -2px;
+    border-radius: 0;
+    border: none;
     }
 }
 .clickable{
