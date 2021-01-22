@@ -70,7 +70,21 @@ export default {
     },
     methods:{
         openExam(lec){
+            this.$axios.get(`/lecture-exam-check/${lec.id}`).then(res => {
             this.$router.push(`/courseExam/${lec.exam}?exam=course`);
+
+            }).catch(err => {
+                if(err.response.status === 403){
+                    console.log(err.response.data)
+                    
+                    if(err.response.data.message.reason == 'exam'){
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: `يجب تجاوز امتحان المحاضرة ${err.response.data.message.info}` })
+                    }else{
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: ` لقد تجاوزت عدد مرات المشاهدة المحدد لهذه المحاضرة المحدد من قبل المٌعلم`})
+                    }
+                    
+                }
+            })
         },
         openVideo(lec){
             this.isLoading = true;
