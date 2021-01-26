@@ -2,16 +2,18 @@
   <div class="course-last-lectures">
      
       <div class="container" >
+
+          <div style="    display: flex;flex-wrap: nowrap;padding: 10px 7px 0;background: #f9f9f9;margin-bottom: 15px;border-bottom: 2px solid #0989c3;">
+              <div style="flex:1">
+                        <h3 style="margin-bottom:10px">محتوي الكورس</h3>
+                    </div>
+                    <div v-if="numberOfAllowedViews">
+                        <h6 style="color:var(--danger)"> عدد المرات المسموحة للمشاهدة : <span style="position:static;position: static;padding: 6px 11px 4px;display: inline-block;" class="lec-order" > {{numberOfAllowedViews}} </span> </h6>
+                    </div>
+          </div>
         
-          <div >
-               <div style="display:flex:flex-wrap:nowrap">
-                           <div style="flex:1">
-                                <h3 style="margin-bottom:10px">المحاضرات السابقة</h3>
-                           </div>
-                           <div v-if="numberOfAllowedViews">
-                                <h6> عدد المرات المسموحة للمشاهدة : <span style="color:#0989c3">{{ numberOfAllowedViews }}</span> </h6>
-                           </div>
-                       </div>
+          <div>
+                    
 
 
      <Loading v-if="isLoading == true" />
@@ -24,11 +26,19 @@
               </div>
               <div class="row">
                   <div class="col-md-3" v-for="lec in lectures" :key="lec.id">
-                      <div class="last-lecture">
-                          <h5> {{lec.title}} </h5>
-                          <h6 style="font-weight: bold;font-size: 12px;color: #a9a9a9;margin-bottom:50px;"> {{$moment(lec.updatedAt).fromNow()}}  </h6>
-                          <button  class="btn btn-success" @click="openVideo(lec)"> <i class="fas fa-chalkboard-teacher"></i> مشاهدة </button>
-                          <button class="btn btn-warning" v-if="lec.hasExam" @click="openExam(lec)" style="background:var(--warning)"><i class="fas fa-tasks"></i> الامتحان </button>
+                      <div class="last-lecture" style="position:relative">
+
+                          <i v-if="lec.type == 'voice'" class="fas fa-microphone Alec"></i>
+                          <i v-else-if="lec.type == 'video'" class="fas fa-video Alec"></i>
+                          <i v-else-if="lec.type == 'pdf'" class="fas fa-file-pdf Alec"></i>
+                          <i v-else-if="lec.type == 'exam'" class="fas fa-file-alt Alec"></i>
+
+                          <span class="lec-order" v-if="lec.order"> #{{lec.order}} </span>
+                          
+                          <h5 style="text-overflow: ellipsis;overflow: hidden;line-height: 1.5em;height: 4em;overflow: hidden;"> {{lec.title}} </h5>
+                          <h6 style="font-weight: bold;font-size: 12px;color: #a9a9a9;margin-bottom:10px;"> {{$moment(lec.updatedAt).fromNow()}}  </h6>
+                          <vs-button v-if="lec.type!='exam'" color="primary" @click="openVideo(lec)"> <i class="fas fa-chalkboard-teacher"></i> مشاهدة </vs-button>
+                          <vs-button color="primary" v-if="lec.hasExam" @click="openExam(lec)" style="background:var(--warning)"><i class="fas fa-tasks"></i> الامتحان </vs-button>
                       </div>
                   </div>
               </div>
@@ -70,21 +80,33 @@ export default {
     },
     methods:{
         openExam(lec){
-            this.$axios.get(`/lecture-exam-check/${lec.id}`).then(res => {
-            this.$router.push(`/courseExam/${lec.exam}?exam=course`);
 
+
+
+            this.isLoading = true;
+            this.$axios.get(`/lectures-check/${lec.id}`).then(res => {
+               this.$router.push(`/courseExam/${lec.exam}?exam=course`);
             }).catch(err => {
                 if(err.response.status === 403){
                     console.log(err.response.data)
+
+                    this.currVideo = '';
+                    this.currVoice = '';
+                    this.currPDF = '';
                     
                     if(err.response.data.message.reason == 'exam'){
                         this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: `يجب تجاوز امتحان المحاضرة ${err.response.data.message.info}` })
-                    }else{
+                    }else if(err.response.data.message.reason == 'views'){
                         this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: ` لقد تجاوزت عدد مرات المشاهدة المحدد لهذه المحاضرة المحدد من قبل المٌعلم`})
+                    }else if (err.response.data.message.reason == 'lecture'){
+                        this.$vs.notify({ title:"أتبع الترتيب الصحيح للمحاضرات", position:"top-center",color:"danger",  text: ` يجب تجاوز مشاهدة المحاضرة ${err.response.data.message.info} أولاً` })
                     }
                     
                 }
-            })
+            }).finally(() => this.isLoading = false);
+
+
+            
         },
         openVideo(lec){
             this.isLoading = true;
@@ -113,8 +135,10 @@ export default {
                     
                     if(err.response.data.message.reason == 'exam'){
                         this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: `يجب تجاوز امتحان المحاضرة ${err.response.data.message.info}` })
-                    }else{
+                    }else if(err.response.data.message.reason == 'views'){
                         this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: ` لقد تجاوزت عدد مرات المشاهدة المحدد لهذه المحاضرة المحدد من قبل المٌعلم`})
+                    }else if (err.response.data.message.reason == 'lecture'){
+                        this.$vs.notify({ title:"أتبع الترتيب الصحيح للمحاضرات", position:"top-center",color:"danger",  text: ` يجب تجاوز مشاهدة المحاضرة ${err.response.data.message.info} أولاً` })
                     }
                     
                 }
@@ -125,7 +149,7 @@ export default {
     watch:{
         page(val){
             this.isLoading = true;
-            this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures?page=${val}`).then(res=>{
+            this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures?page=${val}&limit=12`).then(res=>{
                 console.log(res.data)
                 this.lectures = res.data.docs;
                 if (res.data.isLimitedNumberOfAllowedViews){
@@ -133,15 +157,17 @@ export default {
                 }
 
                 this.lectures.map(ele => {
-                   if(ele.videoUrl.includes('youtube.com')){
+                   if(ele.type == 'video' && ele.videoUrl.includes('www.youtube.com')){
                         ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
                         if (ele.videoUrl.includes('&')){
                             let index = ele.videoUrl.indexOf('&')
                             ele.videoUrl = ele.videoUrl.substring(0, index)
                         }
-                    }else if (ele.videoUrl.includes('vimeo.com') && !ele.videoUrl.includes("player")){
+                    }else if (ele.type == 'video' && ele.videoUrl.includes('vimeo.com') && !ele.videoUrl.includes("player")){
                         ele.videoUrl = ele.videoUrl.replace("vimeo.com/", "player.vimeo.com/video/")
                     }
+
+                    console.log(ele.videoUrl)
 
                
                 })
@@ -153,20 +179,20 @@ export default {
         }
     },
     created(){
-        this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures`).then(res=>{
+        this.$axios.get(`/courses/${this.$route.params.id}/archived-lectures?limit=12`).then(res=>{
             console.log(res.data)
             this.lectures = res.data.docs;
             if (res.data.isLimitedNumberOfAllowedViews){
                 this.numberOfAllowedViews = res.data.numberOfAllowedViews;
             }
             this.lectures.map(ele => {
-                   if(ele.videoUrl.includes('youtube.com')){
+                   if(ele.type == 'video' && ele.videoUrl.includes('www.youtube.com')){
                         ele.videoUrl = ele.videoUrl.replace("watch?v=", "embed/");
                         if (ele.videoUrl.includes('&')){
                             let index = ele.videoUrl.indexOf('&')
                             ele.videoUrl = ele.videoUrl.substring(0, index)
                         }
-                    }else if (ele.videoUrl.includes('vimeo.com') && !ele.videoUrl.includes("player")){
+                    }else if (ele.type == 'video' && ele.videoUrl.includes('vimeo.com') && !ele.videoUrl.includes("player")){
                         ele.videoUrl = ele.videoUrl.replace("vimeo.com/", "player.vimeo.com/video/")
                     }
 
@@ -182,6 +208,24 @@ export default {
 
 <style lang="scss">
 .course-last-lectures{
+    .Alec{
+            font-size: 51px;
+    margin-bottom: 0;
+    margin-top: 15px;
+    color: #e2e2e2;
+    }
+    .lec-order{
+            display: inline-block;
+    background: #f7f7f7;
+    padding: 7px 10px;
+    border: 1px solid #0989c3;
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    font-weight: bold;
+    top: 5px;
+    color: #0989c3;
+    }
     a:hover {
     text-decoration: none !important;
     color:#FFF !important;
@@ -199,14 +243,15 @@ export default {
     }
     h5,h6{
         text-align: center;
-        padding:10px 5px 0  0;
         margin-bottom: 0;
     }
     button{
-            width: 50%;
+            width: 100%;
     margin: 0 -2px;
     border-radius: 0;
     border: none;
+    text-align: center;
+    font-family: 'CustomFontMedium';
     }
 }
 .clickable{

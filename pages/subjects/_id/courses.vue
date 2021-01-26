@@ -5,22 +5,32 @@
     <NoData v-else-if="!isLoading && studCourses.length == 0" />
 
       <div class="row" v-else>
-        <div class="col-md-4" v-for="course in studCourses" :key="course.id">
+        <div class="col-md-3" v-for="course in studCourses" :key="course.id">
           <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
-            
+            <div class="lec-card" style="text-align: center;height:150px">
+                <img class="lec-card-img" v-if="course.image" style="width:100%;height:100%" :src="course.image" alt="">
+                <img v-else style="width:100%;height:100%" class="lec-card-img"  src="https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png" alt="">
+            </div>
+
               <div  class="status">
-                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
-                <div v-if="course.enrollment == 'pending'"> <vs-button style="cursor:auto" color="warning"> قيد الإنتظار </vs-button> </div>
-                <div v-else-if="course.enrollment == 'refused'"> <vs-button style="cursor:auto" color="danger"> مرفوض </vs-button> </div>
-                <div v-else-if="!course.enrollment"> <vs-button @click="EnrollCourse(course)" color="primary"> اشتراك </vs-button> </div>
-                
+                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
+                <!-- <div v-if="course.enrollment == 'pending'"> <vs-button style="cursor:auto" color="warning"> قيد الإنتظار </vs-button> </div> -->
+                <!-- <div v-else> <vs-button @click="EnrollCourse(course)" color="primary"> عرض التفاصيل </vs-button> </div> -->
+                <div v-else> <vs-button @click="$router.push(`/course-details/${course.id}`)" color="primary"> عرض التفاصيل </vs-button> </div>
+
+                <!-- <div class="more-details">
+                  <vs-button @click="$router.push(`/course-details/${course.id}`)" color="#f6f6f6" style="color:#333;border:1px solid #ccc"><i class="fas fa-info"></i></vs-button>
+                </div>
+                 -->
               </div>
-            <div style="text-align: center;font-family:'CustomFontRegular';background: #0989c3;color: #FFF;padding: 10px;"> 
-              <h5 style="text-align:center;font-family:'CustomFontRegular';margin-bottom:0"> {{course.nameAr}} </h5>
+
+            <div style="font-family:'CustomFontRegular';padding-top:10px;    margin-bottom: 25px;"> 
+              <h5 style="font-family:'CustomFontRegular'"> {{course.nameAr}} </h5>
+              <p style="font-size: 13px;color: #808080;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{course.descriptionAr}} </p>
             <!-- <span> {{course.descriptionAr}} </span> -->
             </div>
 
-            <div class="teacher" v-if="course.teacher">
+            <!-- <div class="teacher" v-if="course.teacher">
               <div>
                 <vs-avatar size="60px" v-if="course.teacher && course.teacher.photo" :src="course.teacher.photo"></vs-avatar>
                 <vs-avatar size="60px" v-else src="https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg"></vs-avatar>
@@ -31,7 +41,7 @@
               </div>
 
               
-            </div>
+            </div> -->
             <!-- <div style="text-align: left" >
                 <vs-button v-if="!ifMyCourseExist(course)"  style="width: 100%;margin-top: 6px;padding: 6px;text-align: center;" color="success" > حجز الكورس </vs-button>
             </div> -->
@@ -39,6 +49,12 @@
         </div>
       </div>
     </div>
+
+     <div v-if="totalPage > 1">
+          <vs-pagination :total="totalPage" v-model="page"></vs-pagination>
+      </div>
+
+
 
 
 
@@ -64,15 +80,30 @@ export default {
   },
   data(){
     return{
-      page: 0,
+      page: 1,
       isLoading: true,
-      totalPage:0,
+      totalPage:1,
       studCourses: [],
       currCourseToEnrollPopup: false,
       enrollmentCourse:{
           id:"",
           code: ""
       }
+    }
+  },
+  watch:{
+    page(val){
+      this.$vs.loading();
+      this.$axios.get(`/subjects/${this.$route.params.id}/courses?page=${val}&limit=12`).then(res => {
+          console.log(res)
+          this.studCourses = res.data.docs;
+          console.log("stud courses ",this.studCourses);
+          this.page = res.data.page;
+          this.totalPage = res.data.totalPages;
+
+          window.scrollTo({top:0, behavior:'smooth'});
+
+    }).finally(() => this.$vs.loading.close());
     }
   },
   computed:{
@@ -120,25 +151,13 @@ export default {
       //     }).finally(() => this.isLoading = false)
       // },
       getSubjectCourse(){
-          this.$axios.get(`/subjects/${this.$route.params.id}/courses`).then(res => {
+          this.$axios.get(`/subjects/${this.$route.params.id}/courses?limit=12`).then(res => {
           console.log(res)
           this.studCourses = res.data.docs;
           console.log("stud courses ",this.studCourses);
           this.page = res.data.page;
           this.totalPage = res.data.totalPages;
 
-          // res.data.docs.map(one => {
-          //   this.myCourses.map(two => {
-          //     if(one.id === two.id){
-          //       one.isChecked = true;
-          //     }else{
-          //       one.isChecked = false;
-
-          //     }
-          //   })
-          // })
-          // console.log(this.myCourses)
-          // console.log(this.myCourses.find(one => 5 === one.id))
     }).finally(() => this.isLoading = false)
       },
      
@@ -156,6 +175,17 @@ export default {
 </script>
 
 <style lang="scss">
+.vs-button-primary.vs-button-filled {
+    background: #0989c3 !important;
+}
+
+
+.con-vs-pagination{
+  margin:auto;
+}
+.vs-pagination--ul{
+  margin-bottom:0;
+}
 
 .subject-course-page{
   padding-top:80px;
@@ -163,7 +193,7 @@ export default {
     position: relative;
     margin-top: 15px;
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
-    padding: 19px;
+    padding: 10px;
     padding-bottom: 38px;
     min-height: 216px;
     transition: all .5s ease;
@@ -176,14 +206,23 @@ export default {
     bottom: 0;
     width: 100%;
     left: 0;
-    padding: 3px;
+    padding: 10px;
     color: #FFF;
     font-family: "CustomFontBold";
+    display: flex;
+    >div{
+      width:100%;
+    }
     // background: #0989c3;
     button{
-      text-align: center;
       width: 100%;
+      text-align: center;
     }
+    // .more-details{
+    //   text-align: center;
+    //   flex:1;
+    //   margin-right: 2px;
+    // }
     }
     .accepted{
       background: #27ae60;

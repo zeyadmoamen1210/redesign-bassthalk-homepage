@@ -49,6 +49,7 @@ export default {
         './plugins/snotify.js',
         './plugins/vuesax.js',
         './plugins/countdown.js',
+        './plugins/vue-awesome-swiper.js'
     ],
     /*
      ** Nuxt.js dev-modules
@@ -109,7 +110,7 @@ export default {
     axios: {
         // baseURL: 'https://basthalk-be.herokuapp.com/api/v1/',
         // baseURL: 'https://bsthalk.herokuapp.com/api/v1',
-        baseURL: 'https://bsthalk.herokuapp.com/api/v1',
+        baseURL: 'https://bsthalk-dev.herokuapp.com/api/v1',
         common: {
             Accept: 'application/json',
             Authorization: '',
