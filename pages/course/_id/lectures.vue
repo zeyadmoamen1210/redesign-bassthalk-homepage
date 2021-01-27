@@ -23,7 +23,10 @@
                 <!-- <iframe sandbox="allow-forms allow-scripts allow-same-origin"  style="width:100%;height:600px" :src="currVideo" frameborder="0" ></iframe> -->
                 <iframe v-if="type == 'video'" style="border:none; height: 600px; width: 100%;" :src="currVideo" allowfullscreen></iframe>
                 <audio style="    width: 100%;" controls :src="currVoice" v-else-if="type == 'voice'"></audio>
+                <!-- <button class="btn btn-success" v-else-if="type == 'pdf'"> <a target="_blank" style="color:#FFF;" :href="currPDF"> فتح الملف </a> </button> -->
                 <button class="btn btn-success" v-else-if="type == 'pdf'"> <a target="_blank" style="color:#FFF;" :href="currPDF"> فتح الملف </a> </button>
+
+                
               </div>
               <div class="row">
                   <div class="col-md-3" v-for="lec in lectures" :key="lec.id">
@@ -38,7 +41,8 @@
                           
                           <h5 style="text-overflow: ellipsis;overflow: hidden;line-height: 1.5em;height: 4em;overflow: hidden;"> {{lec.title}} </h5>
                           <h6 style="font-weight: bold;font-size: 12px;color: #a9a9a9;margin-bottom:10px;"> {{$moment(lec.updatedAt).fromNow()}}  </h6>
-                          <vs-button v-if="lec.type!='exam'" color="primary" @click="openVideo(lec)"> <i class="fas fa-chalkboard-teacher"></i> مشاهدة </vs-button>
+                          <vs-button v-if="lec.type!='exam' && lec.type != 'pdf'" color="primary" @click="openVideo(lec)"> <i class="fas fa-chalkboard-teacher"></i> مشاهدة </vs-button>
+                          <vs-button v-else-if="lec.type=='pdf'" color="primary" @click="openPDF(lec)"> <i class="fas fa-chalkboard-teacher"></i>  v مشاهدة </vs-button>
                           <vs-button v-else color="primary"  @click="openExam(lec)" style="background:var(--warning)"><i class="fas fa-tasks"></i> الامتحان </vs-button>
                       </div>
                   </div>
@@ -81,9 +85,6 @@ export default {
     },
     methods:{
         openExam(lec){
-
-
-
             this.isLoading = true;
             this.$axios.get(`/lectures-check/${lec.id}`).then(res => {
                this.$router.push(`/courseExam/${lec.exam}?exam=course`);
@@ -109,6 +110,37 @@ export default {
 
             
         },
+
+
+        openPDF(lec){
+            this.isLoading = true;
+            this.$axios.get(`/lectures-check/${lec.id}`).then(res => {
+                this.temp = !lec.videoUrl.includes('https://') ? 'https://' + lec.videoUrl : lec.videoUrl;
+        
+              window.open(this.temp , '_blank');
+            }).catch(err => {
+                if(err.response.status === 403){
+                    console.log(err.response.data)
+
+                    this.currVideo = '';
+                    this.currVoice = '';
+                    this.currPDF = '';
+                    
+                    if(err.response.data.message.reason == 'exam'){
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: `يجب تجاوز امتحان المحاضرة ${err.response.data.message.info}` })
+                    }else if(err.response.data.message.reason == 'views'){
+                        this.$vs.notify({ title:"خطأ", position:"top-center",color:"danger", text: ` لقد تجاوزت عدد مرات المشاهدة المحدد لهذه المحاضرة المحدد من قبل المٌعلم`})
+                    }else if (err.response.data.message.reason == 'lecture'){
+                        this.$vs.notify({ title:"أتبع الترتيب الصحيح للمحاضرات", position:"top-center",color:"danger",  text: ` يجب تجاوز مشاهدة المحاضرة ${err.response.data.message.info} أولاً` })
+                    }
+                    
+                }
+            }).finally(() => this.isLoading = false);
+
+
+            
+        },
+        
         openVideo(lec){
             this.isLoading = true;
             this.$axios.get(`/lectures-check/${lec.id}`).then(res => {

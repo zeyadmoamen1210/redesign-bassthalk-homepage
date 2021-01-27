@@ -70,15 +70,12 @@
                               </div>
 
 
-                               <h6 v-if="course.numberOfSubscriptions" style="margin: 10px 15px;">
-                                  <span style="color:#0989c3">  عدد المشتركين : </span>
-                                  {{course.numberOfSubscriptions}}
-                              </h6>
+                             
 
 
                               <div class="col-md-12">
-                                            <div v-if="course.enrollment == 'accepted'"> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';" color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
-                                            <div v-else> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';" color="primary" @click="EnrollCourse(course)" > اشتراك </vs-button> </div>
+                                            <div v-if="course.enrollment == 'accepted'"> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';margin:15px 0;" color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
+                                            <div v-else> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';margin:15px 0;" color="primary" @click="EnrollCourse(course)" > اشتراك </vs-button> </div>
                                         </div>
                               
 
@@ -134,6 +131,10 @@
                       </div>
                   </div>
                   <div class="col-md-3">
+                        <h6 v-if="course.numberOfSubscriptions" style="margin: 10px 15px;">
+                                  <span style="color:#0989c3">  عدد المشتركين : </span>
+                                  {{course.numberOfSubscriptions}}
+                              </h6>
                       <div v-for="Rcourse in relatedCourses" :key="Rcourse.id">
                           <Rcourse :course='Rcourse' />
                       </div>
@@ -190,20 +191,16 @@ export default {
           code: this.enrollmentCourse.code,
         })
         .then((res) => {
-          this.getSubjectCourse()
-          this.$snotify.success('تم تفعيل الإشتراك بنجاح ')
-
-          
-          this.code = ''
+            this.enrollmentCourse.code = '';
+          this.$snotify.success('تم تفعيل الإشتراك بنجاح ');
+          this.getCourse();
         })
         .catch((e) => {
           this.$snotify.error('الكود الذي أدخلته غير صحيح')
         })
         .finally(() => (this.isLoading = false))
     },
-    },
-    created(){
-        this.isLoading = true;
+    getCourse(){
         this.$axios.get(`/courses/${this.$route.params.id}`).then(res => {
             console.log(res.data);
             this.course = res.data;
@@ -211,6 +208,11 @@ export default {
                 this.course.content = JSON.parse(this.course.content);
             }
         }).finally(() => this.isLoading = false);
+    }
+    },
+    created(){
+        this.isLoading = true;
+        this.getCourse();
 
         this.$axios.get(`/related-courses/${this.$route.params.id}`).then(res => {
             this.relatedCourses = res.data;

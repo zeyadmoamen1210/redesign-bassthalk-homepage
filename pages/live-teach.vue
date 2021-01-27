@@ -36,7 +36,7 @@
 
 
              <div  class="status">
-                <div> <vs-button  color="primary" @click="$router.push(`/course/${course.course.id}/main${course.course.lecture ? '?nextLive=' +  course.course.lecture : ''}`)" > دخول </vs-button> </div>
+                <div> <vs-button  color="primary" @click="$router.push(`/course-details/${course.course.id}`)" > تفاصيل الكورس </vs-button> </div>
                
               </div>
 

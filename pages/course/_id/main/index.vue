@@ -14,7 +14,7 @@
             <nuxt-link :to="`/course/${$route.params.id}/lectures`">
               <div class="level-item box-shadow-class">
                 <img style="margin-top:22px;width:100px;" src="@/assets/imgs/lecture.svg" alt="">
-                <h6>المحاضرات المسجلة</h6>
+                <h6>محتوي الكورس</h6>
                  
             </div>
             </nuxt-link>
@@ -51,7 +51,7 @@
       </div>
 
 
-      <div class="related-courses" v-if="1==0">
+      <div class="related-courses" >
 
         <div class="title">
           <h3 style="margin-bottom:0;font-size: 30px;">
@@ -61,7 +61,7 @@
             <Loading v-if="isLoading" />
             <NoData v-else-if="relatedCourses.length == 0 && isLoading == false" />
 
-            <swiper style="padding:0 15px 0" v-else class="swiper" :options="swiperOptionBestSeller">
+            <swiper v-else style="padding:0 15px 0" class="swiper" :options="swiperOptionBestSeller">
               <swiper-slide v-for="course in relatedCourses" :key="course.id">
                   <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
             <div class="lec-card" style="text-align: center;height:150px">
@@ -225,7 +225,7 @@ export default {
     },
 
     created(){
-      // this.getRelatedCourses();
+      this.getRelatedCourses();
     }
 
 }

@@ -27,6 +27,7 @@
         "vue-awesome-countdown": "^1.1.2",
         "vue-awesome-swiper": "^4.1.1",
         "vue-moment": "^4.1.0",
+        "vue-pdf": "^4.2.0",
         "vue-script2": "^2.1.0",
         "vue-select": "^3.10.5",
         "vue-snotify": "^3.2.1",
