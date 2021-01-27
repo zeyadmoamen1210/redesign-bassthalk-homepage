@@ -34,8 +34,11 @@
                                       </div>
 
 
-                                       <p style="line-height: 1.5em;height: 3em;overflow: hidden;margin-bottom: 0;text-overflow: ellipsis;">
-                                              {{course.invitationMsgAr}}
+                                      
+
+
+                                       <p v-html="course.invitationMsgAr" style="line-height: 1.5em;height: 3em;overflow: hidden;margin-bottom: 0;text-overflow: ellipsis;">
+                                            
                                           </p>
 
 
@@ -56,13 +59,36 @@
                                   </div>
                               </div>
 
+
+                              <div class="col-md-12" v-if="course.content">
+                                  <div class="step-content">
+                                        <div class="single-step" v-for="(courseContent,index) in course.content" :key="index">
+                                            <span style="position: absolute;right: -6px;z-index: 9;color: #FFF;"> {{index+1}} </span>
+                                            {{ courseContent.key + ' - ' + courseContent.value }}
+                                        </div>
+                                  </div>
+                              </div>
+
+
+                               <h6 v-if="course.numberOfSubscriptions" style="margin: 10px 15px;">
+                                  <span style="color:#0989c3">  عدد المشتركين : </span>
+                                  {{course.numberOfSubscriptions}}
+                              </h6>
+
+
+                              <div class="col-md-12">
+                                            <div v-if="course.enrollment == 'accepted'"> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';" color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
+                                            <div v-else> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';" color="primary" @click="EnrollCourse(course)" > اشتراك </vs-button> </div>
+                                        </div>
+                              
+
                               <div class="col-md-12">
                                   <div class="invitingMsg">
                                          <h3> الرسالة الترحيبية </h3>
 
                                           <div class="blockquote-wrapper">
                                                 <div class="blockquote">
-                                                    <h1>
+                                                    <h1 class="the-required-h1">
                                                         {{course.invitationMsgAr}}
                                                     </h1>
                                                 </div>
@@ -77,8 +103,8 @@
 
                                           <div class="blockquote-wrapper">
                                                 <div class="blockquote">
-                                                    <h1>
-                                                        {{course.descriptionAr}}
+                                                    <h1 class="the-required-h1" v-html="course.descriptionAr">
+                                                        
                                                     </h1>
                                                 </div>
                                             </div>
@@ -93,9 +119,10 @@
 
                                           <div class="blockquote-wrapper">
                                                 <div class="blockquote">
-                                                    <h1>
-                                                        {{course.teacher.description}}
+                                                    <h1 v-html="course.teacher.description" class="the-required-h1">
+                                                        
                                                     </h1>
+                                                  
                                                 </div>
                                             </div>
 
@@ -118,6 +145,17 @@
           </div>
          </div>
       </div>
+
+
+    <vs-popup class="holamundo"  title="حجز الكورس" :active.sync="currCourseToEnrollPopup">
+       <div class="form-group">
+          <label> ادخل كود التفعيل للكورس </label>
+          <input type="text" v-model="enrollmentCourse.code" class="form-control">
+      </div>
+      <vs-button  @click="EnrollCourseMain"> حجز الكورس </vs-button>
+    </vs-popup>
+
+
   </div>
 </template>
 
@@ -131,16 +169,47 @@ export default {
     },
     data(){
         return{
+            enrollmentCourse: {},
             isLoading : true,
             course:{},
-            relatedCourses:[]
+            relatedCourses:[],
+            currCourseToEnrollPopup: false,
         }
+    },
+    methods:{
+        EnrollCourse(course){
+          this.currCourseToEnrollPopup = true;
+          this.enrollmentCourse.id = course.id
+          this.enrollmentCourse.code = course.code
+      },
+         EnrollCourseMain() {
+      this.isLoading = true
+    this.currCourseToEnrollPopup = false;
+      this.$axios
+        .post(`/courses/${this.enrollmentCourse.id}/enrollment-auto`, {
+          code: this.enrollmentCourse.code,
+        })
+        .then((res) => {
+          this.getSubjectCourse()
+          this.$snotify.success('تم تفعيل الإشتراك بنجاح ')
+
+          
+          this.code = ''
+        })
+        .catch((e) => {
+          this.$snotify.error('الكود الذي أدخلته غير صحيح')
+        })
+        .finally(() => (this.isLoading = false))
+    },
     },
     created(){
         this.isLoading = true;
         this.$axios.get(`/courses/${this.$route.params.id}`).then(res => {
             console.log(res.data);
             this.course = res.data;
+            if(this.course.content){
+                this.course.content = JSON.parse(this.course.content);
+            }
         }).finally(() => this.isLoading = false);
 
         this.$axios.get(`/related-courses/${this.$route.params.id}`).then(res => {
@@ -153,6 +222,29 @@ export default {
 <style lang="scss">
 .course-description-page{
     padding-top: 70px;
+
+    .step-content{
+        padding: 0 20px;
+        .single-step{
+            font-family: 'CustomFontRegular';
+            position: relative;
+    padding: 7px;
+    border-right: 1px solid #ccc;
+    padding-right: 15px;
+    margin-right: -14px;
+            &::after{
+                    position: absolute;
+    top: 9px;
+    right: -11px;
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+    background: #0989c3;
+    content: ' ';
+    border-radius: 50%;
+            }
+        }
+    }
     .course-header{
         .course-image{
            
@@ -236,7 +328,7 @@ export default {
             }
 
             /* Blockquote header */
-            .blockquote h1 {
+            .blockquote .the-required-h1 {
                     position: relative;
     color: #0b81a7;
     font-weight: normal;

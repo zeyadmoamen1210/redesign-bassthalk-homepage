@@ -21,10 +21,14 @@
             </div>
 
               <div  class="status">
-                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
+                <!-- <div v-if="course.enrollment == 'accepted'">
+
+                   <vs-button  color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> 
+
+                </div> -->
                 <!-- <div v-if="course.enrollment == 'pending'"> <vs-button style="cursor:auto" color="warning"> قيد الإنتظار </vs-button> </div> -->
                 <!-- <div v-else> <vs-button @click="EnrollCourse(course)" color="primary"> عرض التفاصيل </vs-button> </div> -->
-                <div v-else> <vs-button @click="$router.push(`/course-details/${course.id}`)" color="primary"> عرض التفاصيل </vs-button> </div>
+                <div style="margin: 15px 0;"> <vs-button @click="$router.push(`/course-details/${course.id}`)" color="primary"> عرض التفاصيل </vs-button> </div>
 
                 <!-- <div class="more-details">
                   <vs-button @click="$router.push(`/course-details/${course.id}`)" color="#f6f6f6" style="color:#333;border:1px solid #ccc"><i class="fas fa-info"></i></vs-button>
