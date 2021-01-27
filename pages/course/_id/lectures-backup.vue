@@ -3,7 +3,7 @@
      
       <div class="container" >
 
-          <div style="    display: flex;flex-wrap: wrap;padding: 10px 7px 0;background: #f9f9f9;margin-bottom: 15px;border-bottom: 2px solid #0989c3;">
+          <div style="    display: flex;flex-wrap: nowrap;padding: 10px 7px 0;background: #f9f9f9;margin-bottom: 15px;border-bottom: 2px solid #0989c3;">
               <div style="flex:1">
                         <h3 style="margin-bottom:10px">محتوي الكورس</h3>
                     </div>
@@ -21,7 +21,7 @@
           <div v-else>
               <div style="margin-bottom:15px" v-if="type">
                 <!-- <iframe sandbox="allow-forms allow-scripts allow-same-origin"  style="width:100%;height:600px" :src="currVideo" frameborder="0" ></iframe> -->
-                <iframe v-if="type == 'video'" style="border:none; height: 600px; width: 100%;" :src="currVideo" allowfullscreen></iframe>
+                <iframe v-if="type == 'video' && !currVideo.includes('zoom.us')" style="border:none; height: 600px; width: 100%;" :src="currVideo" allowfullscreen></iframe>
                 <audio style="    width: 100%;" controls :src="currVoice" v-else-if="type == 'voice'"></audio>
                 <button class="btn btn-success" v-else-if="type == 'pdf'"> <a target="_blank" style="color:#FFF;" :href="currPDF"> فتح الملف </a> </button>
               </div>
@@ -115,6 +115,9 @@ export default {
                 if(lec.type == 'video'){
                     this.currVideo = lec.videoUrl;
                     this.type = 'video';
+                    if (this.type == 'video' && this.currVideo.includes('zoom.us')){
+                        window.open(this.currVideo, "_blank");
+                    }
                 }else if (lec.type == 'voice'){
                     this.currVoice = lec.videoUrl;
                     this.type = 'voice';

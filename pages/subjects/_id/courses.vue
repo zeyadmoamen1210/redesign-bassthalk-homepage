@@ -1,14 +1,22 @@
 <template>
   <div class="subject-course-page">
     <div class="container">
+
+      <h3 style="    color: #0989c3;">كورسات مادة  {{subjectName}}  </h3>
+      
+
         <Loading v-if="isLoading" />
     <NoData v-else-if="!isLoading && studCourses.length == 0" />
+
+    
 
       <div class="row" v-else>
         <div class="col-md-3" v-for="course in studCourses" :key="course.id">
           <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
-            <div class="lec-card" style="text-align: center;height:150px">
+            <div class="lec-card" style="text-align: center;height:170px">
                 <img class="lec-card-img" v-if="course.image" style="width:100%;height:100%" :src="course.image" alt="">
+                <img class="lec-card-img" v-else-if="!course.image && course.teacher && course.teacher.photo != 'https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg' && course.teacher.photo" style="width:100%;height:100%" :src="course.teacher.photo" alt="">
+
                 <img v-else style="width:100%;height:100%" class="lec-card-img"  src="https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png" alt="">
             </div>
 
@@ -24,9 +32,9 @@
                  -->
               </div>
 
-            <div style="font-family:'CustomFontRegular';padding-top:10px;    margin-bottom: 25px;"> 
-              <h5 style="font-family:'CustomFontRegular'"> {{course.nameAr}} </h5>
-              <p style="font-size: 13px;color: #808080;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{course.descriptionAr}} </p>
+            <div style="font-family:'CustomFontRegular';padding-top:10px;    margin-bottom: 10px;"> 
+              <h5 style="font-family: CustomFontRegular;text-overflow: ellipsis;overflow: hidden;line-height: 1.5em;height: 4em;font-size: 16px;"> {{course.nameAr}} </h5>
+              <!-- <p style="font-size: 13px;color: #808080;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{course.descriptionAr}} </p> -->
             <!-- <span> {{course.descriptionAr}} </span> -->
             </div>
 
@@ -84,6 +92,7 @@ export default {
       isLoading: true,
       totalPage:1,
       studCourses: [],
+      subjectName: "",
       currCourseToEnrollPopup: false,
       enrollmentCourse:{
           id:"",
@@ -100,6 +109,8 @@ export default {
           console.log("stud courses ",this.studCourses);
           this.page = res.data.page;
           this.totalPage = res.data.totalPages;
+
+          this.subjectName = res.data.docs[0].subject.nameAr ;
 
           window.scrollTo({top:0, behavior:'smooth'});
 
@@ -157,6 +168,8 @@ export default {
           console.log("stud courses ",this.studCourses);
           this.page = res.data.page;
           this.totalPage = res.data.totalPages;
+
+            this.subjectName = res.data.docs[0].subject.nameAr ;
 
     }).finally(() => this.isLoading = false)
       },

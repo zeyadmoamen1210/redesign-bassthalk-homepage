@@ -5,9 +5,9 @@
         <div class="logo">
           <img src="../assets/imgs/logo.png" alt="" />
         </div>
-        <div class="spinner">
-          <div class="cube1"></div>
-          <div class="cube2"></div>
+        <div style="text-align:center;margin-top:15px">
+               <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
         </div>
       </div>
     </div>
@@ -40,68 +40,89 @@ export default {};
     margin-top: 10px;
   }
 }
-.spinner {
-  margin: 100px auto;
-  width: 40px;
-  height: 40px;
+.lds-roller {
+  display: inline-block;
   position: relative;
+  width: 80px;
+  height: 80px;
 }
-
-.cube1,
-.cube2 {
-  background-color: #0570a0;
-  width: 15px;
-  height: 15px;
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
   position: absolute;
-  top: 0;
-  left: 0;
-
-  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
-  animation: sk-cubemove 1.8s infinite ease-in-out;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0989c3;
+  margin: -4px 0 0 -4px;
 }
-
-.cube2 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
 }
-
-@-webkit-keyframes sk-cubemove {
-  25% {
-    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
-  }
-  50% {
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
-  }
-  75% {
-    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg)
-      scale(0.5);
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 }
 
-@keyframes sk-cubemove {
-  25% {
-    transform: translateX(42px) rotate(-90deg) scale(0.5);
-    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
-  }
-  50% {
-    transform: translateX(42px) translateY(42px) rotate(-179deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
-  }
-  50.1% {
-    transform: translateX(42px) translateY(42px) rotate(-180deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
-  }
-  75% {
-    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg)
-      scale(0.5);
-  }
-  100% {
-    transform: rotate(-360deg);
-    -webkit-transform: rotate(-360deg);
-  }
-}
 </style>

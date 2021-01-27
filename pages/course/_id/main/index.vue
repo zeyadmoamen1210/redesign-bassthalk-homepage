@@ -3,8 +3,8 @@
     <div class="container">
       <div class="tests-level">
         <div class="title">
-          <h3 style="    margin-bottom: 11px;">
-            <img src="@/assets/imgs/noun_exam_-1.png" alt="">
+          <h3 style="    margin-bottom: 11px;    font-size: 30px;">
+            <!-- <img src="@/assets/imgs/noun_exam_-1.png" alt=""> -->
              محتويات الكورس</h3>
         </div>
 
@@ -54,8 +54,7 @@
       <div class="related-courses">
 
         <div class="title">
-          <h3 style="margin-bottom:0">
-            <img src="@/assets/imgs/noun_exam_-1.png" alt="">
+          <h3 style="margin-bottom:0;font-size: 30px;">
              الكورسات المقترحة</h3>
         </div>
 
@@ -67,11 +66,14 @@
                   <div class="course" :style="{'paddingBottom': course.isChecked === false ? '10px' : '50px'}">
             <div class="lec-card" style="text-align: center;height:150px">
                 <img class="lec-card-img" v-if="course.image" style="width:100%;height:100%" :src="course.image" alt="">
+                <img class="lec-card-img" v-else-if="!course.image && course.teacher && course.teacher.photo != 'https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg' && course.teacher.photo" style="width:100%;height:100%" :src="course.teacher.photo" alt="">
+
+                
                 <img v-else style="width:100%;height:100%" class="lec-card-img"  src="https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png" alt="">
             </div>
 
               <div  class="status">
-                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="success" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
+                <div v-if="course.enrollment == 'accepted'"> <vs-button  color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
                 <!-- <div v-if="course.enrollment == 'pending'"> <vs-button style="cursor:auto" color="warning"> قيد الإنتظار </vs-button> </div> -->
                 <!-- <div v-else-if="course.enrollment == 'refused'"> <vs-button style="cursor:auto" color="danger"> مرفوض </vs-button> </div> -->
                 <!-- <div v-else> <vs-button @click="EnrollCourse(course)" color="primary"> عرض التفاصيل </vs-button> </div> -->
@@ -85,8 +87,8 @@
               </div>
 
             <div style="font-family:'CustomFontRegular';padding-top:10px;    margin-bottom: 15px;"> 
-              <h5 style="font-family:'CustomFontRegular'"> {{course.nameAr}} </h5>
-              <p style="font-size: 13px;color: #808080;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{course.descriptionAr}} </p>
+              <h5 style="font-family: CustomFontRegular;text-overflow: ellipsis;overflow: hidden;line-height: 1.5em;height: 4em;font-size: 16px;"> {{course.nameAr}} </h5>
+              <!-- <p style="font-size: 13px;color: #808080;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{course.descriptionAr}} </p> -->
             <!-- <span> {{course.descriptionAr}} </span> -->
             </div>
 
@@ -216,9 +218,8 @@ export default {
       getRelatedCourses(){
         this.isLoading = true;
         this.$axios.get(`/related-courses/${this.$route.params.id}`).then(res => {
-          this.relatedCourses = res.data.docs;
-          this.page = res.data.page;
-          this.totalPages = res.data.totalPages;
+          this.relatedCourses = res.data;
+          
         }).finally(() => this.isLoading = false);
       }
     },
@@ -233,6 +234,11 @@ export default {
 <style lang="scss">
 .tests-level{
     margin-top:37px;
+
+
+    .swiper-button-prev{
+      transform: rotate(180deg);
+    }
 
     .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
     content: 'prev';
