@@ -51,7 +51,7 @@
       </div>
 
 
-      <div class="related-courses">
+      <div class="related-courses" v-if="1==0">
 
         <div class="title">
           <h3 style="margin-bottom:0;font-size: 30px;">
@@ -225,7 +225,7 @@ export default {
     },
 
     created(){
-      this.getRelatedCourses();
+      // this.getRelatedCourses();
     }
 
 }
