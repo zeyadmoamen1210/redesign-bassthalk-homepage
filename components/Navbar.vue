@@ -810,7 +810,7 @@ export default {
 @media (max-width: 575.98px) {
   .navbar-before-small {
     position: fixed;
-    z-index: 99999;
+    z-index: 999;
     background: #ffffff;
     width: 100%;
     top: 0;
