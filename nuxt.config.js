@@ -28,6 +28,9 @@ export default {
                 href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css',
             },
         ],
+        script: [
+            { src: '/js/fb-sdk.js' }
+        ]
     },
     /*
      ** Customize the progress-bar color
@@ -69,7 +72,7 @@ export default {
         // Options
         strategies: {
             facebook: {
-                client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
+                client_id: '709818006573529',
                 userinfo_endpoint: false,
                 scope: ['public_profile', 'email'],
                 redirect_uri: 'https://bassthalk.com/callback',

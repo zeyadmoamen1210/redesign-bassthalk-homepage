@@ -56,6 +56,16 @@
             src="../assets/imgs/brands-and-logotypes.png"
             alt
           />
+
+          <img
+            @click="loginWithFacebook"
+            class="pointer"
+            src="../assets/imgs/facebook.png"
+            alt
+          />
+
+
+          
         </div>
 
         <div class="dont-have-acc">
@@ -112,6 +122,21 @@ export default {
       // this.isLoading = true
       await this.$auth
         .loginWith('google')
+        .then((res) => {
+          window.scrollTo({top:0, behavior: 'smooth'});
+
+        // location.reload();
+        })
+        .catch((e) => {
+          window.scrollTo({top:0, behavior: 'smooth'});
+
+      //  location.reload();
+        })
+    },
+    async loginWithFacebook() {
+      // this.isLoading = true
+      await this.$auth
+        .loginWith('facebook')
         .then((res) => {
           window.scrollTo({top:0, behavior: 'smooth'});
 

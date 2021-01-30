@@ -21,6 +21,9 @@ import Loading from '@/components/Loading'
 import '../assets/css/global.css'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+
+
+
 export default {
   name: 'MainLayout',
 
@@ -29,12 +32,43 @@ export default {
     Footer,
     Loading,
   },
+  mounted(){
+    window.fbAsyncInit = function () {
+    FB.init({
+      appId: '709818006573529',
+      autoLogAppEvents: true,
+      xfbml: true,
+      version: 'v2.10'
+    })
+    FB.AppEvents.logPageView()
+  };
+  
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0]
+    if (d.getElementById(id)) { return }
+    js = d.createElement(s); js.id = id
+    js.src = 'https://connect.facebook.net/en_US/sdk.js'
+    fjs.parentNode.insertBefore(js, fjs)
+  }(document, 'script', 'facebook-jssdk'))
+
+
+   FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+      console.log("Faceboccccccccccccccccccccccccccccccok",response)
+    });
+
+  },
   data() {
     return {
       initLoading: true,
     }
   },
+
+
   created() {
+
+
+   
 
      this.$axios.get(`/student/courses?paginate=${false}`).then(res => {
       

@@ -196,7 +196,7 @@
                     <!-- Prev & Next Buttons -->
                     <div style="display: flex;margin-bottom: 0;font-family: CustomFontRegular;background: #f7f7f7;" v-if="currVideo || currPDF || currVoice">
                         <div style="flex:1">
-                            <button v-if="currentLecture.order > 1" class="btn btn-success" @click="prevLec()"><i class="fas fa-arrow-right"></i> السابق </button>
+                            <button v-if="currentLecture.order > 1 " class="btn btn-success" @click="prevLec()"><i class="fas fa-arrow-right"></i> السابق </button>
                         </div>
                         <div style="flex:1;text-align:left">
                             <button class="btn btn-success" v-if="lectures.find(ele => ele.order > currentLecture.order)" @click="nextLec()"> التالي <i class="fas fa-arrow-left"></i></button>
