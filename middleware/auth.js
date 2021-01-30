@@ -18,11 +18,14 @@ export default async function({
                 const url = `login-${authStrategy}`;
 
                 try {
+                    let myUrl = {};
+                    if(url == 'login-google'){
+                        myUrl.access_token = token;
+                    }else if(url == 'login-facebook'){
+                        myUrl.accessToken = token;
+                    }
                     app.$axios.setHeader('Authorization', null)
-                    await app.$axios.$post(url, {
-                        "access_token": token,
-
-                    }).then((res) => {
+                    await app.$axios.$post(url, myUrl).then((res) => {
                         console.log("After login", res)
                         auth.setToken('local', "Bearer " + res.token);
                         setTimeout(async() => {
