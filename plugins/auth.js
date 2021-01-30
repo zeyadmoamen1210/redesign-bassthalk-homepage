@@ -16,11 +16,17 @@ export default async function({
         const url = `login-${authStrategy}`;
 
         try {
-            app.$axios.setHeader('Authorization', null)
-            await app.$axios.$post(url, {
-                "access_token": token,
+            let myUrl = {};
+            if(authStrategy == 'google'){
+                myUrl = {};
+                myUrl.access_token = token;
+            }else if(authStrategy == 'facebook'){
+                myUrl = {};
+                myUrl.accessToken = token;
+            }
 
-            }).then((res) => {
+            app.$axios.setHeader('Authorization', null)
+            await app.$axios.$post(url, myUrl).then((res) => {
                 console.log("After login", res)
                 auth.setToken('local', "Bearer " + res.token);
                 setTimeout(async() => {

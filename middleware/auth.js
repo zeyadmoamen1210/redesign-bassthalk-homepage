@@ -19,9 +19,11 @@ export default async function({
 
                 try {
                     let myUrl = {};
-                    if(url == 'login-google'){
+                    if(authStrategy == 'google'){
+                        myUrl = {};
                         myUrl.access_token = token;
-                    }else if(url == 'login-facebook'){
+                    }else if(authStrategy == 'facebook'){
+                        myUrl = {};
                         myUrl.accessToken = token;
                     }
                     app.$axios.setHeader('Authorization', null)
@@ -35,7 +37,7 @@ export default async function({
                             })
                         });
                     });
-                    // console.log(data)
+                    console.log(data)
 
                 } catch (e) {
                     console.log(e);

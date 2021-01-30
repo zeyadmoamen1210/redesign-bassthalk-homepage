@@ -81,7 +81,6 @@ export default {
                 client_id: '1017089558534-sg5lphbqs179g9fm3b5qcrigl6l2br20.apps.googleusercontent.com',
                 user: false,
                 redirect_uri: 'https://bassthalk.com/callback',
-                // http://localhost:62988/
             },
             local: {
                 endpoints: {

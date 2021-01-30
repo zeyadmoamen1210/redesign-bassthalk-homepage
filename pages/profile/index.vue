@@ -247,12 +247,7 @@ export default {
   middleware: 'auth-student',
 
   created() {
-    // this.$axios
-    //   .get(`mypoints`)
-    //   .then((res) => {
-    //     this.points = res.data.docs
-    //   })
-    //   .finally(() => (this.isLoading = false))
+   
 
     this.$axios
       .get(`mystatistics?type=exam`)
