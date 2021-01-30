@@ -491,10 +491,8 @@ export default {
       console.log("count", this.count)
     },
     logout() {
-      this.$axios.get(`/logout`).then(res => {
-          this.$auth.logout();
+      this.$auth.logout();
           this.$router.push("/login");
-       })
 
     },
     showDropdown: function () {
