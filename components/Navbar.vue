@@ -216,7 +216,7 @@
                         v-if="$auth.loggedIn">
 
                         <a class="a-icon" href="#">
-                         <h6 style="margin-bottom:0;display:inline-block">{{$auth.user.username}}</h6>
+                         <h6 style="margin-bottom:0;display:inline-block">{{ $auth.user.username.includes(' ') ? $auth.user.username.substr(0,$auth.user.username.indexOf(' ')) : $auth.user.username }}</h6>
               <span class="list-down">
                 <i style="color:#FFF" class="fas fa-sort-down"></i>
               </span>
