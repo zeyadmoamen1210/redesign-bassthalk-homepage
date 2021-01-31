@@ -129,6 +129,9 @@ export default {
               }
             }
         },
+        transpile: [
+            "vee-validate/dist/rules"
+          ],
         extend(config, ctx) {
             config.module.rules.push({
                 test: /\.(ogg|mp3|wav|mpe?g)$/i,

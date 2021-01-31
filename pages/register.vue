@@ -10,7 +10,8 @@
               انشاء حساب جديد
             </h4>
           </div>
-          <ValidationObserver ref="form" v-slot="{ invalid }">
+          <ValidationObserver ref="form" v-slot="{ handleSubmit }">
+            <form @submit.prevent="handleSubmit(register)" >
             <div class="form-grid">
               <div class="row">
                 <div class="col-md-4">
@@ -53,7 +54,7 @@
                 </div>
 
                 <div class="col-md-2">
-                  <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
+                  <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
                     <v-select :clearable="false" v-model="gender" label="name" placeholder="النوع" :options="options"></v-select>
                     <span style="color:red">{{errors[0]}}</span>
                   </ValidationProvider>
@@ -61,7 +62,7 @@
 
                 <div class="col-md-2">
                   <div class="form-groub">
-                    <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
+                    <ValidationProvider name="country" rules="required" v-slot="{ errors }">
                       <v-select
                         v-model="country"
                         :clearable="false"
@@ -78,7 +79,7 @@
 
                 <div class="col-md-4">
                   <div class="form-groub">
-                    <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
+                    <ValidationProvider vid="confirmation" rules="required" name="password"  v-slot="{ errors }">
                       <input
                         v-model="password"
                         type="password"
@@ -92,7 +93,7 @@
 
                 <div class="col-md-4">
                   <div class="form-groub">
-                    <ValidationProvider  name="E-mail" rules="required" v-slot="{ errors }">
+                    <ValidationProvider rules="required|confirmed:confirmation" name="confirm-pass"   v-slot="{ errors }">
                       <input
                         v-model="confirmPassword"
                         type="password"
@@ -105,12 +106,9 @@
                 </div>
               </div>
             </div>
-
             <div class="form-bottom">
               <input
-                type="button"
-                @click="register"
-                :disabled="invalid"
+                type="submit"
                 value="انشاء حساب جديد"
                 class="basth-btn-primary"
               />
@@ -120,7 +118,12 @@
             <img src="../assets/imgs/brands-and-logotypes.png" alt />
               </div>-->
 
-              <div class="dont-have-acc">
+              
+            </div>
+          </form>
+          </ValidationObserver>
+
+            <div class="dont-have-acc" style="    text-align: center;">
                 <div>
                   <h6>ليس لديك حساب ؟</h6>
                 </div>
@@ -128,8 +131,7 @@
                   <button @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
                 </div>
               </div>
-            </div>
-          </ValidationObserver>
+            
         </div>
         <div class="varifiy" v-else>
           <div class="row">
@@ -191,7 +193,7 @@ import Loading from '@/components/Loading'
 
 import Vue from 'vue'
 import { ValidationProvider, extend, ValidationObserver } from 'vee-validate'
-import { required, email, min } from 'vee-validate/dist/rules'
+import { confirmed, required, email, min } from 'vee-validate/dist/rules'
 
 // Add a rule.
 extend('secret', {
@@ -203,6 +205,11 @@ extend('required', {
   ...required,
   message: 'هذا الحقل مطلوب',
 })
+extend('confirmed', {
+   ...confirmed,
+  message: 'كلمة المرور غير متطابقة',
+});
+
 extend('min', {
   ...min,
   message: 'يجب ان لا يقل عن 6 ',
@@ -306,7 +313,7 @@ export default {
         })
         .catch((error) => {
           window.scrollTo({top:0, behavior: 'smooth'});
-          this.$snotify.error(error.response.data.message)
+          this.$snotify.error(error.response.data.message.msgAr)
 
           this.isLoading = false
         })
