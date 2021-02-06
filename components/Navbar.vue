@@ -26,7 +26,7 @@
 
                 <li>
                   <nuxt-link to>رؤيتنا</nuxt-link>
-                  
+
                 </li>-->
                 <li>
                   <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
@@ -57,9 +57,9 @@
                   <div >
 
 
-                      <vs-dropdown 
-                        :color="colorx"  
-                        :vs-trigger-click="true"	
+                      <vs-dropdown
+                        :color="colorx"
+                        :vs-trigger-click="true"
                         @click.native="dropdownClick"
                         class="notification"
                         v-if="$auth.loggedIn">
@@ -97,19 +97,19 @@
                           </div>
                         </div>
                           </vs-dropdown-item>
-                         
+
                         </vs-dropdown-menu>
                       </vs-dropdown>
 
 
-<!-- 
+<!--
                     <b-dropdown
-                      
+
                       size="lg"
                       variant="link"
                       toggle-class="text-decoration-none"
                       no-caret
-                     
+
                     >
                       <template v-slot:button-content>
                         <div style="position:absolute" @click="count = 0">
@@ -143,13 +143,13 @@
 
                     <!-- <b-dropdown :html="`<div style='position:absolute'><i class='fas fa-bell'></i><div style='position: absolute;top: -7px;background: #058ac6;padding: 0 4px;border-radius: 50%;right: -7px;font-size: 11px;'  class='noti-content'>
                         ${count}</div></div>`" style="position:relative" id="dropdown-1" text="Dropdown Button"  class="m-md-2 notification">
-    
-   
-    
+
+
+
                     </b-dropdown>-->
                   </div>
                   <!-- <div  @click="notification = !notification">
-                     
+
 
 
 
@@ -171,7 +171,7 @@
                       </div>
 
 
-                      
+
                   </div>-->
                 </li>
 
@@ -208,10 +208,10 @@
 
 
     <div class="loggedDropdown" style="width:16%;position: relative;">
-              <vs-dropdown 
+              <vs-dropdown
                         :color="colorx"
                         style="text-align: left;position: absolute;left: 0;margin-top: 50px;padding: 0 30px;height: 36px;background: #0989c3;color: #FFF;"
-                        :vs-trigger-click="true"	
+                        :vs-trigger-click="true"
                         @click.native="dropdownClick"
                         v-if="$auth.loggedIn">
 
@@ -290,7 +290,7 @@
               </a>
                           </vs-dropdown-item>
 
-                          
+
                         </vs-dropdown-menu>
                       </vs-dropdown>
     </div>
@@ -298,41 +298,41 @@
 
 
 
-<!-- 
+<!--
           <b-dropdown
             class="auth"
-            
+
             size="lg"
             variant="link"
             toggle-class="text-decoration-none"
             no-caret
           >
             <template v-slot:button-content>
-             
+
             </template>
             <b-dropdown-item href="#">
-             
+
             </b-dropdown-item>
 
 
             <b-dropdown-item href="#">
-             
+
             </b-dropdown-item>
 
-                                
 
 
+
             <b-dropdown-item href="#">
-             
+
             </b-dropdown-item>
             <b-dropdown-item href="#">
-             
+
             </b-dropdown-item>
             <b-dropdown-item href="#">
-             
+
             </b-dropdown-item>
             <b-dropdown-item href="#">
-            
+
             </b-dropdown-item>
           </b-dropdown> -->
         </div>
@@ -369,8 +369,8 @@
       </div>
 
       <vs-sidebar-item to="/" index="1">
- 
-                
+
+
               الرئيسية
       </vs-sidebar-item>
 
@@ -384,30 +384,30 @@
       <vs-sidebar-item to="/best-students"  index="4" >
         المتفوقين
       </vs-sidebar-item>
-      <vs-sidebar-item to="/courses" index="16" > 
+      <vs-sidebar-item to="/courses" index="16" >
               الكورسات
       </vs-sidebar-item>
 
-      <vs-sidebar-item to="/live-teach" index="5" > 
+      <vs-sidebar-item to="/live-teach" index="5" >
               كورساتي
       </vs-sidebar-item>
 
-       <vs-sidebar-item to="/collections" index="10" > 
+       <vs-sidebar-item to="/collections" index="10" >
               اﻹمتحانات
       </vs-sidebar-item>
       <!-- comeent -->
 
           <vs-sidebar-item to="/camps"  index="6" >
-            المعسكرات 
+            المعسكرات
           </vs-sidebar-item>
 
           <vs-sidebar-item to="/teachers"  index="15" >
-            المدرسين 
+            المدرسين
           </vs-sidebar-item>
-          
+
 
            <vs-sidebar-item v-if="$auth.loggedIn"  to="/statistics"  index="7" >
-           الإحصائيات 
+           الإحصائيات
           </vs-sidebar-item>
 
           <vs-sidebar-item v-if="$auth.loggedIn" to="/profile/edit" index="8" >
@@ -415,17 +415,17 @@
           </vs-sidebar-item>
 
           <vs-sidebar-item v-if="$auth.loggedIn" to="/edit-path" index="9" >
-            تعديل المسار 
+            تعديل المسار
           </vs-sidebar-item>
 
            <vs-sidebar-item v-if="$auth.loggedIn" index="10" >
             <vs-button color="danger" @click="logout">تسجيل الخروج</vs-button>
-            
+
           </vs-sidebar-item>
 
           <vs-sidebar-item v-if="!$auth.loggedIn" to="/login" index="11" >
             <vs-button color="success">تسجيل الدخول</vs-button>
-            
+
           </vs-sidebar-item>
 
 
@@ -433,7 +433,7 @@
 
     </vs-sidebar>
 
-     
+
       </div>
     </div>
   </div>
@@ -490,8 +490,9 @@ export default {
       this.count = 0
       console.log("count", this.count)
     },
-    logout() {
-      this.$auth.logout();
+      async logout() {
+       await this.$auth.logout();
+        this.$auth.strategies.local.options.endpoints.user.headers['Authorization'] = null
           this.$router.push("/login");
 
     },
@@ -533,17 +534,17 @@ export default {
 
 /* Track */
 &::-webkit-scrollbar-track {
-  background: #0000002e; 
+  background: #0000002e;
 }
- 
+
 /* Handle */
 &::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 &::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
     }
   }
@@ -626,7 +627,7 @@ export default {
 }
 
 .navbar-before {
- 
+
   .nav-logo {
     height: 100px;
     width: 96px;
@@ -657,9 +658,9 @@ export default {
     position: relative;
     padding: 9px 12px 6px;
     background: #f1f1f1;
-  
+
     border-radius: 9px;
-  
+
     // box-shadow: 0 4px 25px 0 rgb(33 37 41 / 13%);
     .noti-content {
       position: absolute;
@@ -981,7 +982,7 @@ export default {
 </style>
 
 
-<!-- 
+<!--
 
    <!-- <div class="dropdown" v-if="dropdown">
           <ul>
@@ -1000,7 +1001,7 @@ export default {
 
                 <li>
                   <nuxt-link to>رؤيتنا</nuxt-link>
-                  
+
             </li>
             <li @click="dropdown = false">
               <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
@@ -1031,7 +1032,7 @@ export default {
             </li>
 
            <template v-if="$auth.loggedIn">
-              
+
             <li @click="dropdown = false">
               <nuxt-link exact-active-class="active" to="/statistics">
                 <i class="fas fa-chart-bar"></i> الإحصائيات
@@ -1061,7 +1062,7 @@ export default {
               <button class="btn" style="background: #39b939;" @click="$router.push({ path: '/register' })">حساب جديد</button>
             </div>
            </div>
-            
+
 
           </ul>
         </div> -->
