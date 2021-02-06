@@ -493,6 +493,8 @@ export default {
        logout() {
           localStorage.removeItem('auth._token.local');
 Cookies.remove('auth._token.local')
+// redirect('/login')
+
 location.reload();
    
 
