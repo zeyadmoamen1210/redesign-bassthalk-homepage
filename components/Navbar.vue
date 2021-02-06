@@ -490,10 +490,11 @@ export default {
       this.count = 0
       console.log("count", this.count)
     },
-      async logout() {
-       await this.$auth.logout();
-        this.$auth.strategies.local.options.endpoints.user.headers['Authorization'] = null
-          this.$router.push("/login");
+       logout() {
+          localStorage.removeItem('auth._token.local');
+Cookies.remove('auth._token.local')
+location.reload();
+   
 
     },
     showDropdown: function () {
