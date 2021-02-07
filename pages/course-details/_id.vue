@@ -164,6 +164,8 @@
 import Rcourse from '@/components/Rcourse';
 import Loading from '@/components/Loading';
 export default {
+  middleware: 'auth-student',
+
     components:{
         Rcourse,
         Loading
