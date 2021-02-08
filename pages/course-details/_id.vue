@@ -72,7 +72,13 @@
 
                              
 
-
+                            <div v-if="course.enrollment != 'accepted'">
+                                <h5 class="text-danger" style="margin: 0;padding: 15px;padding-bottom: 0;font-size: 14px;">
+                                    للحصول على كود الاشتراك 
+                                    تواصل مع الدعم واتس على 
+                                    01067997469
+                                </h5>
+                            </div>
                               <div class="col-md-12">
                                             <div v-if="course.enrollment == 'accepted'"> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';margin:15px 0;" color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
                                             <div v-else> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';margin:15px 0;" color="primary" @click="EnrollCourse(course)" > اشتراك </vs-button> </div>
