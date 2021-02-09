@@ -47,6 +47,7 @@ export default {
      */
     plugins: [
         './plugins/swiper.js',
+        './plugins/social-media.js',
         './plugins/vselect.js',
         './plugins/moment.js',
         './plugins/snotify.js',

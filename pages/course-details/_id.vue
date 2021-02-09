@@ -72,12 +72,30 @@
 
                              
 
-                            <div v-if="course.enrollment != 'accepted'">
-                                <h5 class="text-danger" style="margin: 0;padding: 15px;padding-bottom: 0;font-size: 14px;">
-                                    للحصول على كود الاشتراك 
+                            <div v-if="course.enrollment != 'accepted' && about && course && course.subject && course.teacher " style="display: flex;flex-direction: row;width: 100%;">
+                                <h5 class="text-danger" style="    margin: 0px;padding: 21px 15px 0px;font-size: 13px;    flex: 1;">
+                                    <q>
+                                        للحصول على كود الاشتراك 
                                     تواصل مع الدعم واتس على 
                                     01067997469
+                                    </q>
                                 </h5>
+                                <div >
+                                    <ShareNetwork
+                                class="btn"
+                                style="background: rgb(37, 211, 102);color: rgb(255, 255, 255);margin: 10px 13px 0px 0px;padding: 0px 9px 0px 0px;width: 151px;position: relative;height: 37px;"
+                                    network="whatsapp"
+                                    title="السلام عليكم و رحمة اللٌه و بركاته"
+                                    :url="`https://bassthalk.com/course-details/${$route.params.id}`"
+                                    :description="`الاسم: ${$auth.user.username} و أريد الإشتراك في هذا الكورس للمُعلم ${course.teacher.username} لمادة ${course.subject.nameAr} `"
+                                >
+                                    <span style="display: inline-block;height: 23px;margin: 0;padding: 0;position: absolute;top: 39%;right: 8px;transform: translate(0 ,-32%);">
+                                        تواصل مع الدعم
+                                    </span>
+                                    <i style="    padding: 7px 8px 6px;background: rgb(30, 169, 82);margin: 0px 2px 0px 0px;font-size: 23px;left: 0;position: absolute;" class="fab fa-whatsapp"></i>
+
+                                </ShareNetwork>
+                                </div>
                             </div>
                               <div class="col-md-12">
                                             <div v-if="course.enrollment == 'accepted'"> <vs-button style="width: 100%;text-align: center;font-family: 'CustomFontRegular';margin:15px 0;" color="primary" @click="$router.push(`/course/${course.id}/main${course.lecture ? '?nextLive=' +  course.lecture : ''}`)" > دخول </vs-button> </div>
@@ -178,6 +196,7 @@ export default {
     },
     data(){
         return{
+            about: {},
             enrollmentCourse: {},
             isLoading : true,
             course:{},
@@ -208,6 +227,12 @@ export default {
         })
         .finally(() => (this.isLoading = false))
     },
+    getAbout(){
+        this.isLoading = true;
+        this.$axios.get(`/about`).then(res => {
+            this.about = res.data;
+        }).finally(() => this.isLoading = false);
+    },
     getCourse(){
         this.$axios.get(`/courses/${this.$route.params.id}`).then(res => {
             console.log(res.data);
@@ -221,6 +246,7 @@ export default {
     created(){
         this.isLoading = true;
         this.getCourse();
+        this.getAbout();
 
         this.$axios.get(`/related-courses/${this.$route.params.id}`).then(res => {
             this.relatedCourses = res.data;

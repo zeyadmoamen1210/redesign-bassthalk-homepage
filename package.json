@@ -1,7 +1,7 @@
 {
-    "name": "student",
+    "name": "bassthalk-educational-platform",
     "version": "1.0.0",
-    "description": "Remote learning system",
+    "description": "بسطتهالك: منصة تعليمية للمرحلة الثانوية والإعدادية تسعى أن توفر نظام تعليمي متكامل بطريق إبداعية وجذابة",
     "author": "Hamza",
     "private": true,
     "scripts": {
@@ -31,6 +31,7 @@
         "vue-script2": "^2.1.0",
         "vue-select": "^3.10.5",
         "vue-snotify": "^3.2.1",
+        "vue-social-sharing": "^3.0.4",
         "vue-verification-code-input": "^1.0.0",
         "vuesax": "^3.11.17",
         "vuex": "^3.5.1"
