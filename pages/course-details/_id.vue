@@ -85,10 +85,12 @@
                                 class="btn"
                                 style="background: rgb(37, 211, 102);color: rgb(255, 255, 255);margin: 10px 13px 0px 0px;padding: 0px 9px 0px 0px;width: 151px;position: relative;height: 37px;"
                                     network="whatsapp"
+                                    url=""
+                                    v-if="true"
+                                    @open="openPopup"
                                     title="السلام عليكم و رحمة اللٌه و بركاته"
-                                    :url="`https://bassthalk.com/course-details/${$route.params.id}`"
-                                    :description="`الاسم: ${$auth.user.username} و أريد الإشتراك في هذا الكورس للمُعلم ${course.teacher.username} لمادة ${course.subject.nameAr} `"
-                                >
+                                    :description="`أريد الإشتراك في هذا الكورس \n ** الاسم/  ${$auth.user.username} \n ** المُعلم/  ${course.teacher.username} \n ** المادة/  ${course.subject.nameAr} \n ** اسم الكورس/  ${course.nameAr} \n ** رابط الكورس/  \n  https://bassthalk.com/course-details/${$route.params.id}`"
+                                    >
                                     <span style="display: inline-block;height: 23px;margin: 0;padding: 0;position: absolute;top: 39%;right: 8px;transform: translate(0 ,-32%);">
                                         تواصل مع الدعم
                                     </span>
@@ -205,6 +207,10 @@ export default {
         }
     },
     methods:{
+        openPopup(){
+            console.log("open pop up");
+            location.reload();
+        },
         EnrollCourse(course){
           this.currCourseToEnrollPopup = true;
           this.enrollmentCourse.id = course.id
