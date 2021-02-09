@@ -492,7 +492,12 @@ export default {
     },
        logout() {
           localStorage.removeItem('auth._token.local');
-Cookies.remove('auth._token.local')
+Cookies.remove('auth._token.local');
+localStorage.removeItem('auth._token.facebook');
+Cookies.remove('auth._token.facebook') ;       
+
+localStorage.removeItem('auth._token.google');
+Cookies.remove('auth._token.google')  ;      
 // redirect('/login')
 
 location.reload();
