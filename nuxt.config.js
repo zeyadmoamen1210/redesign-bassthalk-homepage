@@ -113,7 +113,7 @@ export default {
     axios: {
         // baseURL: 'https://basthalk-be.herokuapp.com/api/v1/',
         // baseURL: 'https://bsthalk.herokuapp.com/api/v1',
-        baseURL: 'https://api-client.bassthalk.com/api/v1',
+        baseURL: 'https://api-dashboard.bassthalk.com/api/v1',
         common: {
             Accept: 'application/json',
             Authorization: '',
