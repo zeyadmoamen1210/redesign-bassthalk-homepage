@@ -190,7 +190,11 @@
                 <div v-if="type && currentLecture && (currVideo || currPDF || currVoice)" class="show-material" style="    border: 1px solid #ccc;">
                     <div style="margin-bottom:15px" >
                         <iframe v-if="type == 'video' && currVideo" style="border:none; height: 600px; width: 100%;" :src="currVideo" allowfullscreen></iframe>
-                        <embed v-else-if="type == 'pdf'"  :src="currPDF+'#toolbar=0'" style="height:800px;width:100%"/>
+                        <object  v-else-if="type == 'pdf'"   style="height:800px;width:100%" :data="currPDF+'#toolbar=0'" type="application/pdf" width="100%" height="100%">
+                          <p>Your web browser doesn't have a PDF plugin.
+                          Instead you can <a :href="currPDF">click here to
+                          download the PDF file.</a></p>
+                        </object>
                         <audio style="    width: 100%;" controls :src="currVoice" v-else-if="type == 'voice'"></audio>
                     </div>
                     <!-- Prev & Next Buttons -->

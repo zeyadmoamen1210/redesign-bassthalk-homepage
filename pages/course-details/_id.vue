@@ -14,7 +14,7 @@
             <span></span>
           </div>
               <div class="row">
-                  <div class="col-md-8">
+                  <div :class="{'col-md-8': $auth.loggedIn, 'col-md-12': !$auth.loggedIn}">
                       <div class="course-header">
                           <div class="row">
                               <div class="col-md-5">
@@ -56,6 +56,11 @@
                                               <h6  v-if="course && course.subject && course.subject.nameAr"> <span> المادة : </span> {{course.subject.nameAr}} </h6>
                                           </div>
                                       </div>
+
+                                       <h6 v-if="course.numberOfSubscriptions && !$auth.loggedIn" style="margin: 10px 15px;">
+                                            <span style="color:#0989c3">  عدد المشتركين : </span>
+                                            {{course.numberOfSubscriptions}}
+                                        </h6>
                                   </div>
                               </div>
 
@@ -86,10 +91,9 @@
                                 style="background: rgb(37, 211, 102);color: rgb(255, 255, 255);margin: 10px 13px 0px 0px;padding: 0px 9px 0px 0px;width: 151px;position: relative;height: 37px;"
                                     network="whatsapp"
                                     url=""
-                                    v-if="true"
                                     @open="openPopup"
                                     title="السلام عليكم و رحمة اللٌه و بركاته"
-                                    :description="`أريد الإشتراك في هذا الكورس \n ** الاسم/  ${$auth.user.username} \n ** المُعلم/  ${course.teacher.username} \n ** المادة/  ${course.subject.nameAr} \n ** اسم الكورس/  ${course.nameAr} \n ** رابط الكورس/  \n  https://bassthalk.com/course-details/${$route.params.id}`"
+                                    :description="`أريد الإشتراك في هذا الكورس \n ${ ($auth && $auth.user && $auth.user.username) ? `** الاسم/  ${$auth.user.username}`  : ''} \n ** المُعلم/  ${course.teacher.username} \n ** المادة/  ${course.subject.nameAr} \n ** اسم الكورس/  ${course.nameAr} \n ** رابط الكورس/  \n  https://bassthalk.com/course-details/${$route.params.id}`"
                                     >
                                     <span style="display: inline-block;height: 23px;margin: 0;padding: 0;position: absolute;top: 39%;right: 8px;transform: translate(0 ,-32%);">
                                         تواصل مع الدعم
@@ -156,7 +160,7 @@
                           </div>
                       </div>
                   </div>
-                  <div class="col-md-3">
+                  <div v-if="$auth.loggedIn" class="col-md-3">
                         <h6 v-if="course.numberOfSubscriptions" style="margin: 10px 15px;">
                                   <span style="color:#0989c3">  عدد المشتركين : </span>
                                   {{course.numberOfSubscriptions}}
@@ -190,7 +194,7 @@
 import Rcourse from '@/components/Rcourse';
 import Loading from '@/components/Loading';
 export default {
-  middleware: 'auth-student',
+//   middleware: 'auth-student',
 
     components:{
         Rcourse,
@@ -212,9 +216,13 @@ export default {
             location.reload();
         },
         EnrollCourse(course){
-          this.currCourseToEnrollPopup = true;
-          this.enrollmentCourse.id = course.id
-          this.enrollmentCourse.code = course.code
+          if(this.$auth.loggedIn){
+                this.currCourseToEnrollPopup = true;
+                this.enrollmentCourse.id = course.id
+                this.enrollmentCourse.code = course.code
+          }else{
+              this.$router.push(`/login`);
+          }
       },
          EnrollCourseMain() {
       this.isLoading = true
@@ -240,13 +248,24 @@ export default {
         }).finally(() => this.isLoading = false);
     },
     getCourse(){
-        this.$axios.get(`/courses/${this.$route.params.id}`).then(res => {
-            console.log(res.data);
-            this.course = res.data;
-            if(this.course.content){
-                this.course.content = JSON.parse(this.course.content);
-            }
-        }).finally(() => this.isLoading = false);
+        if(this.$auth.loggedIn){
+            this.$axios.get(`/courses/${this.$route.params.id}`).then(res => {
+                console.log(res.data);
+                this.course = res.data;
+                if(this.course.content){
+                    this.course.content = JSON.parse(this.course.content);
+                }
+            }).finally(() => this.isLoading = false);
+        }else{
+            this.$axios.get(`/course-details/${this.$route.params.id}`).then(res => {
+                console.log(res.data);
+                this.course = res.data;
+                if(this.course.content){
+                    this.course.content = JSON.parse(this.course.content);
+                }
+            }).finally(() => this.isLoading = false);
+        }
+
     }
     },
     created(){

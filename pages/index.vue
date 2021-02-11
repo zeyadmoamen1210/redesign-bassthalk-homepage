@@ -1,5 +1,55 @@
 <template>
   <div>
+
+        
+
+
+       <b-modal id="first-secondary-offer" hide-header hide-footer>
+         
+          <div class="d-block text-center">
+            <img style="width: 100%;" src="@/assets/imgs/first-secondary-offer.png" alt="">
+          </div>
+          <div>
+            <h5 style="text-align:center;color:#0989c3;padding: 15px 0;padding-bottom: 0;color: #FFFFFF;background: #FFFFFF;text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5, -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;font-size:25px">🔥🚀🔥 مراجعة أولى ثانوي كلها  🔥🚀🔥 </h5>
+            <p class="subjects-offer" style="text-align:center;margin-bottom:0;padding-bottom:0"> في ( العربي + الإنجلش + التاريخ + الجغرافيا + الفلسفة )  </p>
+            <h6 style="text-align:center"> 
+              <h6 style="font-size: 30px;text-align: center;color: #000000;background: #FFFFFF;text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;">١٥٠ جنيه</h6>
+              فقط لمدة ٣ أيام على موقع بسطتهالك 
+            </h6>
+
+             <h5 class="text-danger" style="    margin: 0px;font-size: 13px;flex: 1 1 0%;text-align: center;;">
+                  <q>
+                      للحصول على كود الاشتراك 
+                  تواصل مع الدعم واتس على 
+                  01067997469
+                  </q>
+              </h5>
+
+            
+                            <div  style="display: flex;flex-direction: row;width: 100%;">
+                               
+                                <div style="text-align:center;margin:auto">
+                                    <ShareNetwork
+                                class="btn"
+                                style="background: rgb(37, 211, 102);color: rgb(255, 255, 255);margin: 10px 13px 0px 0px;padding: 0px 9px 0px 0px;width: 151px;position: relative;height: 37px;"
+                                    network="whatsapp"
+                                    url=""
+                                    title="السلام عليكم و رحمة اللٌه و بركاته"
+                                    :description="`اريد الإشتراك في \n مراجعة أولى ثانوي كلها  \n في ( العربي + الإنجلش + التاريخ + الجغرافيا + الفلسفة ) \n ١٥٠ جنيه`"
+                                    >
+                                    <h6 style="    display: inline-block;height: 18px;margin: 0px;padding: 0px;position: absolute;top: 39%;right: 8px;transform: translate(0px, -32%);font-size: 15px;">
+                                        تواصل مع الدعم
+                                    </h6>
+                                    <i style="    padding: 7px 8px 6px;background: rgb(30, 169, 82);margin: 0px 2px 0px 0px;font-size: 23px;left: 0;position: absolute;" class="fab fa-whatsapp"></i>
+
+                                </ShareNetwork>
+                                </div>
+                            </div>
+
+          </div>
+        </b-modal>
+
+
     <div class="home-page">
       <div class="outer-slider">
         <div class="slider">
@@ -593,6 +643,9 @@ export default {
       partners: [],
     }
   },
+  mounted(){
+    this.$bvModal.show('first-secondary-offer');
+  },
   created() {
     this.$axios.get(`partners`).then((res) => {
       this.partners = res.data
@@ -665,6 +718,17 @@ export default {
 <style scoped lang="scss">
 @import '../assets/sass/index.scss';
 
+
+.subjects-offer{
+    color: transparent;
+    background: #4074b5;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    text-shadow: 0px 3px 3px #ffffff80;
+    font-size: 20px;
+    font-weight: bold;
+}
 .navbar-before .navbar-big {
   display: none;
 }
