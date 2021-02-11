@@ -195,6 +195,7 @@
                           Instead you can <a :href="currPDF">click here to
                           download the PDF file.</a></p>
                         </object>
+                        
                         <audio style="    width: 100%;" controls :src="currVoice" v-else-if="type == 'voice'"></audio>
                     </div>
                     <!-- Prev & Next Buttons -->
