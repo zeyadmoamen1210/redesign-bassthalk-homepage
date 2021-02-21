@@ -1,7 +1,7 @@
 <template>
   <div class="timeline-page">
       <div class="container">
-          <h5> غرفة الدردشة </h5>
+          <h5> مجموعة النقاش </h5>
             <div class="createPost">
                 <div class="form-group">
                     <input @keydown.enter="createPost" type="text" v-model="postCreate.content" class="form-control" placeholder="كتابة منشور">
