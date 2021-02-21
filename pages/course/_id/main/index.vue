@@ -33,7 +33,7 @@
             <nuxt-link :to="`/course/${$route.params.id}/timeline`">
               <div class="level-item box-shadow-class">
                 <img style="margin-top:22px;width:100px;" src="@/assets/imgs/timeline.svg" alt="">
-                <h6>غرفة الدردشة  </h6>
+                <h6>مجموعة النقاش </h6>
             </div>
             </nuxt-link>
           </div>
