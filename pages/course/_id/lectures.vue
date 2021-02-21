@@ -71,7 +71,7 @@
       </template>
     </b-modal>
 
-    <b-modal id="lec-views">
+    <b-modal id="lec-views" v-if="numberOfAllowedViews">
       <template #modal-header>
         <h5 style="margin-bottom: 0; padding-right: 5px"> <img style="width:50px" src="@/assets/imgs/dizziness.svg" alt=""> صحصح معانا  </h5>
       </template>

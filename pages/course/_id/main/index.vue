@@ -33,7 +33,7 @@
             <nuxt-link :to="`/course/${$route.params.id}/timeline`">
               <div class="level-item box-shadow-class">
                 <img style="margin-top:22px;width:100px;" src="@/assets/imgs/timeline.svg" alt="">
-                <h6>التايم لاين</h6>
+                <h6>غرفة الدردشة  </h6>
             </div>
             </nuxt-link>
           </div>
@@ -128,6 +128,7 @@ export default {
     },
       data(){
         return{
+          postsLength: '',
           currCourseToEnrollPopup: false,
       enrollmentCourse:{
           id:"",
@@ -215,6 +216,14 @@ export default {
       },
 
 
+      fetchAllPosts(){
+            this.$axios.get(`courses/${this.$route.params.id}/posts?paginate=false`).then(res => {
+                console.log(res)
+                this.postsLength = res.data.length;
+            }).finally(() => this.isLoading = false)
+        },
+
+
       getRelatedCourses(){
         this.isLoading = true;
         this.$axios.get(`/related-courses/${this.$route.params.id}`).then(res => {
@@ -226,6 +235,7 @@ export default {
 
     created(){
       this.getRelatedCourses();
+      // this.fetchAllPosts();
     }
 
 }

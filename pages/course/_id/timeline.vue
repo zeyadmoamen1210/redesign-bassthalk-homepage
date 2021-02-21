@@ -1,7 +1,7 @@
 <template>
   <div class="timeline-page">
       <div class="container">
-          <h5> التايم لاين </h5>
+          <h5> غرفة الدردشة </h5>
             <div class="createPost">
                 <div class="form-group">
                     <input @keydown.enter="createPost" type="text" v-model="postCreate.content" class="form-control" placeholder="كتابة منشور">
@@ -41,7 +41,7 @@
                               <img  src="@/assets/imgs/timeline-like.png" alt="">
                                 أعجبني
                               </div>
-                          <div v-b-toggle="`collapse-${post.id}`"><img src="@/assets/imgs/timeline-comment.png" alt="">  نعليق </div>
+                          <div v-if="post && post.comments" v-b-toggle="`collapse-${post.id}`"><img src="@/assets/imgs/timeline-comment.png" alt=""> ( {{post.comments.length }} )  نعليق </div>
                           
 
                           <vs-dropdown vs-trigger-click	class="button-operation" v-if="$auth.user.role == 'admin' || $auth.user.id == post.user.id">
@@ -51,7 +51,7 @@
 
                             <vs-dropdown-menu>
                                 <vs-dropdown-item @click="editPost(post)">
-                                تعديل
+                                تعديل 
                                 </vs-dropdown-item>
                                 <vs-dropdown-item @click="deletePost(post)">
                                 حذف
@@ -115,7 +115,7 @@
 
                             <vs-dropdown-menu>
                                 <vs-dropdown-item @click="editComment(comment)">
-                                تعديل
+                                تعديل  ({{comment.replies.length}})
                                 </vs-dropdown-item>
                                 <vs-dropdown-item @click="deleteComment(comment)">
                                 حذف
