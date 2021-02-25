@@ -279,7 +279,7 @@
                       <span
                         v-else-if="lec.type == 'exam'"
                         color="primary"
-                        @click="nextLec()"
+                        @click="openExam(lec)"
                       >
                         حل الامتحان
                       </span>
@@ -488,7 +488,7 @@ export default {
       if (this.currentLecture.order > 0) {
         let theNextorder = this.currentLecture.order + 1
         let theNextLec = this.lectures.find((ele) => ele.order == theNextorder)
-        console.log('the next order ', theNextLec)
+        console.log('the next order theNextLec ', theNextLec)
         if (theNextLec) {
           if (theNextLec.type == 'exam' && skipExam == false) {
             this.$bvModal.show('next-is-exam')
@@ -506,6 +506,7 @@ export default {
       this.$bvModal.hide('happy')
     },
     openExam(lec) {
+      console.log("open exam")
       this.currentLecture = lec
       this.isLoading = true
       this.$axios
@@ -614,6 +615,7 @@ export default {
     },
 
     openVideo(lec) {
+      console.log("Lec ", lec);
       this.isLoading = true
       this.currentLecture = lec
       this.$axios
