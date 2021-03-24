@@ -298,13 +298,7 @@
                             "
                           >
                             <h5
-                              style="
-                                font-family: CustomFontRegular;
-                                text-overflow: ellipsis;
-                                overflow: hidden;
-                                font-size: 16px;
-                                padding:0 7px
-                              "
+                              style="font-family: CustomFontRegular;text-overflow: ellipsis;overflow: hidden;font-size: 14px;padding: 0px 7px;white-space: nowrap;"
                             >
                               {{ course.nameAr }}
                             </h5>
@@ -1585,6 +1579,7 @@ span:nth-of-type(6) {
       color: #fff;
       font-family: 'CustomFontBold';
       display: flex;
+      flex-wrap: wrap
       >div {
       
       }
