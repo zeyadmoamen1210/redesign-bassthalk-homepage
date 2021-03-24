@@ -157,6 +157,34 @@
                               </div>
 
 
+                              <div class="col-md-12" v-if="all_rates.length > 0">
+                                  <div class="course-rates">
+                                  <div class="title">
+                                        <div class="head-who" style="width: 290px;margin: 0px 0px 13px;">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <h3 style=" font-size: 24px;padding-top: 7px; !important">
+                                        قالو عن الكورس</h3>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        </div>
+                                    </div>
+                                  <div style="display: flex;padding: 5px 0;border-bottom: 1px solid #dedede;margin-bottom: 5px;" class="rate" v-for="rate in all_rates" :key="rate.id">
+                                      <div v-if="rate && rate.user">
+                                          <vs-avatar size="70px" v-if="rate.user.photo" :src="rate.user.photo" />
+                                      </div>
+                                      <div v-if="rate.user">
+                                          <h6 style="margin-bottom: 0;padding-top: 12px;text-transform: capitalize;"> {{rate.user.username}} </h6>
+                                            <b-form-rating style="display: block !important;padding: 0;margin: 0px;border: 0px;text-align: right;height: 21px;" readonly v-model="rate.rating" variant="warning" ></b-form-rating>
+                                          <p style="font-family: 'CustomFontRegular';margin-bottom: 0;"> {{rate.feedback}} </p>
+                                      </div>
+                                  </div>
+                              </div>
+                              </div>
+
+
                           </div>
                       </div>
                   </div>
@@ -203,14 +231,25 @@ export default {
     data(){
         return{
             about: {},
+            all_rates:[],
             enrollmentCourse: {},
             isLoading : true,
             course:{},
             relatedCourses:[],
+            ratePage:1,
+            rateTotalPage: 1,
             currCourseToEnrollPopup: false,
         }
     },
     methods:{
+        getAllRates(){
+            this.isLoading = true;
+            this.$axios.get(`/courses/${this.$route.params.id}/rate`).then(res => {
+                this.all_rates = res.data.docs;
+                this.ratePage = res.data.page;
+                this.rateTotalPage = res.data.page;
+            }).finally(() => this.isLoading = false);
+        },
         openPopup(){
             console.log("open pop up");
             location.reload();
@@ -272,6 +311,7 @@ export default {
         this.isLoading = true;
         this.getCourse();
         this.getAbout();
+        this.getAllRates();
 
         this.$axios.get(`/related-courses/${this.$route.params.id}`).then(res => {
             this.relatedCourses = res.data;

@@ -144,24 +144,26 @@
 
           <div style="display: flex; flex-wrap: wrap; margin-bottom: 16px">
             <div style="flex: 1">
-              <vs-select
+              <!-- <vs-select
                 color="primary"
                 class="selectExample"
                 label="نظم التعليم"
-                v-model="eduSystemValue"
+                v-model=""
               >
                 <vs-select-item
-                  @click.native="getEduLevels(item)"
+                  
                   :key="index"
                   :value="item"
                   :text="item.nameAr"
-                  v-for="(item, index) in eduSystems"
+                  v-for="(item, index) in "
                 />
-              </vs-select>
+              </vs-select> -->
+              <label for="">نظم التعليم</label>
+              <v-select v-model="eduSystemValue" label="nameAr" @input="getEduLevels(eduSystemValue)"  :options="eduSystems"></v-select>
             </div>
 
             <div style="flex: 1">
-              <vs-select
+              <!-- <vs-select
                 color="primary"
                 class="selectExample"
                 label="المراحل التعليمية"
@@ -173,12 +175,15 @@
                   :value="item"
                   :text="item.nameAr"
                   v-for="(item, index) in levelsEdu"
-                />
-              </vs-select>
+                />s
+              </vs-select> -->
+              <label for="">المراحل التعليمية</label>
+              <v-select  v-model="levelsEduValue" label="nameAr" @input="getEduClasses(levelsEduValue)" :options="levelsEdu"></v-select>
+
             </div>
 
             <div style="flex: 1">
-              <vs-select
+              <!-- <vs-select
                 color="primary"
                 class="selectExample"
                 label="الصفوف"
@@ -191,7 +196,9 @@
                   :text="item.nameAr"
                   v-for="(item, index) in classesEdu"
                 />
-              </vs-select>
+              </vs-select> -->
+              <label for="">المراحل التعليمية</label>
+              <v-select v-model="classesEduValue" @input="getEduSubjects(classesEduValue)" label="nameAr"  :options="classesEdu"></v-select>
             </div>
           </div>
 
@@ -204,6 +211,7 @@
                 color="primary"
                 @click="changeSubject(item)"
                 type="border"
+                :class="{'activeSubject': currSubject.id == item.id}"
               >
                 {{ item.nameAr }}
               </vs-button>
@@ -310,7 +318,7 @@
 
                 <div class="status">
                      <div style="flex:1">
-                        <b-form-rating style="padding: 0;margin: 0;border: 0;" value="4" readonly variant="warning" ></b-form-rating>
+                        <b-form-rating style="padding: 0;margin: 0;border: 0;" :value="course.rating" readonly variant="warning" ></b-form-rating>
                      </div>
 
                             <div v-if="course.enrollment == 'accepted'">
@@ -1226,9 +1234,9 @@ export default {
       eduSystemValue: {},
       levelsEduValue: {},
       classesEduValue: {},
-      classesEdu: {},
+      classesEdu: [],
 
-      levelsEdu: '',
+      levelsEdu: [],
       ques1: false,
       about: [],
       ques2: false,
@@ -1380,6 +1388,7 @@ export default {
 @import '../assets/sass/index.scss';
 
 .popular-classes {
+  
   .input-select.vs-select--input {
     padding: 8px 28px !important;
   }
@@ -1563,6 +1572,7 @@ span:nth-of-type(6) {
   }
 
   .course {
+    border:1px solid #85c4f9;
        position: relative;
     margin-top: 15px;
     box-shadow: 0 4px 25px 0 #0000001a;
@@ -1719,7 +1729,14 @@ span:nth-of-type(6) {
     }
   }
 }
-
+.activeSubject{
+  background: #058ac6 !important;
+  color:#FFF !important;
+  &:hover{
+    background: #058ac6 !important;
+    color:#FFF !important;
+  }
+}
 .the-best .all-the-best-btn button {
   background: #058ac6;
   color: #fff;

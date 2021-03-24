@@ -332,6 +332,30 @@
         </div>
 
 
+
+        <div class="rate-the-course" v-if="$auth.loggedIn">
+          <div class="title">
+          
+              <div class="head-who" style="width: 290px;margin: 0px 0px 13px;">
+              <span></span>
+              <span></span>
+              <span></span>
+              <h3 style=" font-size: 24px;padding-top: 7px; !important">
+             قيم الكورس </h3>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+        </div>
+
+        <div class="course-rate" >
+            <b-form-rating style="padding: 0px;margin: 0px;border: 0px;text-align: right;width: 300px;" v-model="rateCourse.rating" variant="warning" ></b-form-rating>
+            <textarea v-model="rateCourse.feedback" placeholder="أكتب رأيك و تقيييمك لهذا الكورس" style="resize: none;height: 133px;box-shadow: 0px 1px 10px 1px #dddddd85;border: none;padding: 15px;margin-bottom: 15px;" class="form-control"></textarea>
+            <vs-button style="padding: 7px;font-family: 'CustomFontMedium';margin-bottom: 15px;" @click="sendCourseRate" color="warning"> إرسل تقييمك </vs-button>
+        </div>
+        </div>
+
+
         <div class="related-courses" >
 
         <div class="title">
@@ -384,6 +408,9 @@ export default {
   },
   data() {
     return {
+      rateCourse: {
+        rating:1
+      },
     isOrderRequired:'',
       lectures: [],
       relatedCourses: [],
@@ -447,6 +474,20 @@ export default {
     }
   },
   methods: {
+  
+    sendCourseRate(){
+      if(this.rateCourse.rating > 0 && this.rateCourse.feedback && this.rateCourse.feedback.trim() != ""){
+        this.$vs.loading();
+        this.$axios.post(`/courses/${this.$route.params.id}/rate`, this.rateCourse).then(res => {
+          window.scrollTo({top:0,behavior:"smooth"});
+          this.rateCourse = {rating: 1};
+          this.$vs.notify({title:"!تم بنجاح", text:"تم إرسال تقييمك للمُعلم بنجاح", color:"success",position:"top-center"});
+        }).finally(() => this.$vs.loading.close());
+      }else{
+          this.$vs.notify({title:"الحقل مطلوب",text:"أكتب رأيك و تقييمك عن هذا الكورس", color:"danger",position:"top-center"});
+
+      }
+    },
        getRelatedCourses(){
         this.isLoading = true;
         this.$axios.get(`/related-courses/${this.$route.params.id}`).then(res => {
@@ -808,7 +849,19 @@ export default {
 </script>
 
 <style lang="scss">
+
+.course-rate{
+   .b-rating .b-rating-star .b-rating-icon {
+    display: inline-flex;
+    transition: all 0.15s ease-in-out;
+    font-size: 25px;
+    margin-bottom:15px;
+   }
+}
 .course-last-lectures {
+
+ 
+
 
     .swiper-button-prev{
       transform: rotate(180deg);

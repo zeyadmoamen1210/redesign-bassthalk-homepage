@@ -41,6 +41,8 @@ export default {
       version: 'v2.10'
     })
     FB.AppEvents.logPageView()
+
+    
   };
   
   (function (d, s, id) {
@@ -97,6 +99,17 @@ export default {
 }
 </script>
 <style lang="scss">
+
+.popular-classes{
+  .vs--searchable .vs__dropdown-toggle{
+    cursor: text;
+    padding: 6px !important;
+    margin: 0 5px !important;
+}
+.vs__clear{
+  display:none;
+}
+}
 // body{
 //   -webkit-user-select: none;
 // -khtml-user-select: none;
