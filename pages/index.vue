@@ -1579,7 +1579,7 @@ span:nth-of-type(6) {
       color: #fff;
       font-family: 'CustomFontBold';
       display: flex;
-      flex-wrap: wrap
+      flex-wrap: wrap;
       >div {
       
       }
