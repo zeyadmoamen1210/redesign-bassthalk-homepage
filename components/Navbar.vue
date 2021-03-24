@@ -1,15 +1,15 @@
 <template>
   <div class="navbar-before" >
-    <div class="navbar-big">
+    <div class="navbar-big" id="bassthalk-navbar" style="    padding: 10px;background: #FFF;box-shadow: 0 4px 25px 0 #0000001a;">
       <div class="container">
         <div class="row">
           <div class="col-md-2 col-xs-5">
             <div class="nav-logo">
-              <img src="../assets/imgs/logo.png" alt="logo" />
+              <img id="logo-img" src="../assets/imgs/logo.png" alt="logo" />
             </div>
           </div>
 
-          <div class="col-md-8 col-xs-1">
+          <div :class="{'col-md-7': !$auth.loggedIn, 'col-md-8':$auth.loggedIn, 'col-xs-1':true}">
             <div class="navlinks">
               <ul>
                 <li>
@@ -195,9 +195,14 @@
             </div>
           </div>
 
-          <div class="col-md-2 col-sm-6" v-if="!$auth.loggedIn">
-            <div class="nav-login">
-              <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
+          <div class="col-md-3 col-sm-6" v-if="!$auth.loggedIn">
+            <div style="display: flex;padding-top: 4px;    justify-content: flex-end;">
+              <div class="nav-login">
+              <vs-button color="#058ac6"  @click="$router.push({ path: '/login' })">تسجيل الدخول</vs-button>
+              </div>
+              <div class="nav-login">
+                <vs-button color="success"  @click="$router.push({ path: '/register' })">إنشاء حساب</vs-button>
+              </div>
             </div>
           </div>
 
@@ -210,7 +215,7 @@
     <div class="loggedDropdown" style="width:16%;position: relative;">
               <vs-dropdown
                         :color="colorx"
-                        style="text-align: left;position: absolute;left: 0;margin-top: 50px;padding: 0 30px;height: 36px;background: #0989c3;color: #FFF;"
+                        style="text-align: left;position: absolute;left: 0;margin-top: 5px;padding: 0 30px;color: #FFF;"
                         :vs-trigger-click="true"
                         @click.native="dropdownClick"
                         v-if="$auth.loggedIn">
@@ -467,6 +472,22 @@ export default {
       }
     },
   },
+  mounted(){
+    window.onscroll = () => {
+      const navbar = document.querySelector("#bassthalk-navbar");
+      const logo = document.querySelector("#logo-img");
+      if(window.pageYOffset > navbar.offsetTop){
+        navbar.classList.add("sticky");
+        logo.src = "https://i.ibb.co/4dYVzLQ/logo-white.png"
+      } else {
+        navbar.classList.remove("sticky");
+        logo.src = "https://i.ibb.co/BCr9TFH/logo.png"
+
+
+        
+      }
+    };
+  },
   created() {
     this.isLoading = true
     this.$axios
@@ -495,7 +516,6 @@ export default {
 Cookies.remove('auth._token.local');
 localStorage.removeItem('auth._token.facebook');
 Cookies.remove('auth._token.facebook') ;       
-
 localStorage.removeItem('auth._token.google');
 Cookies.remove('auth._token.google')  ;      
 // redirect('/login')
@@ -524,6 +544,38 @@ location.reload();
 
 <style lang="scss">
 
+
+
+.navbar-big.sticky{
+  background:rgb(0 ,54, 99) !important;
+  color:#FFF;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index: 9999;
+  .loggedDropdown{
+    display: none;
+  }
+  .notification{
+    display: none;
+  }
+  ul{
+    li{
+      color:#FFF !important;
+      a{
+        color:#FFF !important;
+      }
+      .active{
+        &::before{
+
+        background:#FFF !important;
+        border-color:#FFF !important;
+        }
+      }
+    }
+  }
+}
 
 .notification-content{
         padding-bottom: 10px;
@@ -637,9 +689,7 @@ location.reload();
 .navbar-before {
 
   .nav-logo {
-    height: 100px;
-    width: 96px;
-    padding-top: 35px;
+    width: 51px;
     img {
       width: 100%;
       height: 100%;
@@ -647,11 +697,13 @@ location.reload();
   }
   .nav-login {
     text-align: left;
-    padding-top: 53px;
     button {
-      background: #058ac6;
-      color: #fff;
-      font-family: 'CustomFontMedium';
+          color: #fff;
+    font-family: 'CustomFontMedium';
+    padding: 6px 6px;
+    font-size: 13px;
+    border-radius: 7px;
+    margin: 0 3px;
     }
   }
   .dropdown-menu {
@@ -778,11 +830,12 @@ location.reload();
   }
 
   .navlinks {
-    padding-top: 53px;
     ul {
-      list-style: none;
-      text-align: right;
-      font-size: 14px;
+        list-style: none;
+        text-align: right;
+        font-size: 14px;
+        margin-bottom: 0;
+        padding-top: 5px;
       li {
         font-size: 14px;
         display: inline-block;
@@ -989,89 +1042,3 @@ location.reload();
 }
 </style>
 
-
-<!--
-
-   <!-- <div class="dropdown" v-if="dropdown">
-          <ul>
-            <li @click="dropdown = false">
-              <nuxt-link
-                to="/"
-                :class="{ active: isRouteActive }"
-                exact-active-class="active"
-                @click="dropdown = false"
-              >الرئيسية</nuxt-link>
-            </li>
-
-            <!-- <li>
-                  <nuxt-link to>من نحن</nuxt-link>
-                </li>
-
-                <li>
-                  <nuxt-link to>رؤيتنا</nuxt-link>
-
-            </li>
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
-            </li>
-
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
-            </li>
-
-            <li @click="dropdown = false">
-              <nuxt-link
-                exact-active-class="active"
-                to="/information-bank"
-                @click="dropdown = !dropdown"
-              >بنك المعلومات</nuxt-link>
-            </li>
-
-            <li @click="dropdown = false">
-              <nuxt-link
-                exact-active-class="active"
-                to="/live-teach"
-                @click="dropdown = false"
-              >الكورسات</nuxt-link>
-            </li>
-
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/camps" @click="dropdown = false">المعسكرات</nuxt-link>
-            </li>
-
-           <template v-if="$auth.loggedIn">
-
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/statistics">
-                <i class="fas fa-chart-bar"></i> الإحصائيات
-              </nuxt-link>
-            </li>
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/profile/edit">
-                <i class="fas fa-user-edit"></i>تعديل البيانات
-              </nuxt-link>
-            </li>
-            <li @click="dropdown = false">
-              <nuxt-link exact-active-class="active" to="/edit-path">
-                <i class="fas fa-book-reader"></i>تعديل المسار
-              </nuxt-link>
-            </li>
-            <li v-if="$auth.loggedIn" @click="dropdown = false">
-              <a @click="logout">
-                <i class="fas fa-sign-out-alt"></i>تسجيل الخروج
-              </a>
-            </li>
-           </template>
-           <div style="text-align:left" v-else>
-              <div @click="dropdown = false" style="display: inline-block;" class="nav-login" >
-              <button class="btn" @click="$router.push({ path: '/login' })">تسجيل الدخول</button>
-            </div>
-            <div style="padding: 0;display: inline-block;" @click="dropdown = false"  class="nav-login" >
-              <button class="btn" style="background: #39b939;" @click="$router.push({ path: '/register' })">حساب جديد</button>
-            </div>
-           </div>
-
-
-          </ul>
-        </div> -->
--->

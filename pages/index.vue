@@ -1,66 +1,118 @@
 <template>
   <div>
+    <b-modal id="first-secondary-offer" hide-header hide-footer>
+      <div class="d-block text-center">
+        <img
+          style="width: 100%"
+          src="@/assets/imgs/new-photo-basthalk-offer.jpg"
+          alt=""
+        />
+      </div>
+      <div>
+        <h5
+          style="
+            text-align: center;
+            color: #0989c3;
+            padding: 15px 0;
+            padding-bottom: 0;
+            color: rgb(0 ,108 ,165);
+            background: #ffffff;
+            text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5,
+              -2px 2px 0 #4074b5, -2px -2px 0 #4074b5, 2px 0px 0 #4074b5,
+              0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+            font-size: 25px;
+          "
+        >
+          🔥🚀 المراجعة النهائية لشهر مارس 🔥🚀
+        </h5>
+        <p
+          class="subjects-offer"
+          style="text-align: center; margin-bottom: 0; padding-bottom: 0"
+        >
+          في جميع المواد
+        </p>
+        <h6 style="text-align: center">
+          <h6
+            style="
+              font-size: 30px;
+              text-align: center;
+              color: #000000;
+              background: #ffffff;
+              text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;
+            "
+          >
+            ١٠٠ جنية
+          </h6>
+        </h6>
 
-        
+        <h5
+          class="text-danger"
+          style="
+            margin: 0px;
+            font-size: 13px;
+            flex: 1 1 0%;
+            text-align: center; ;
+          "
+        >
+          <q> للحصول على كود الاشتراك تواصل مع الدعم واتس على 010055818359 </q>
+        </h5>
 
-
-       <b-modal id="first-secondary-offer" hide-header hide-footer>
-         
-          <div class="d-block text-center">
-            <img style="width: 100%;" src="@/assets/imgs/first-secondary-offer.png" alt="">
+        <div style="display: flex; flex-direction: row; width: 100%">
+          <div style="text-align: center; margin: auto">
+            <ShareNetwork
+              class="btn"
+              style="
+                background: rgb(37, 211, 102);
+                color: rgb(255, 255, 255);
+                margin: 10px 13px 0px 0px;
+                padding: 0px 9px 0px 0px;
+                width: 151px;
+                position: relative;
+                height: 37px;
+              "
+              network="whatsapp"
+              url=""
+              title="السلام عليكم و رحمة اللٌه و بركاته"
+              :description="`اريد الإشتراك في \n مراجعة أولى ثانوي كلها  \n في ( العربي + الإنجلش + التاريخ + الجغرافيا + الفلسفة ) \n ١٥٠ جنيه`"
+            >
+              <h6
+                style="
+                  display: inline-block;
+                  height: 18px;
+                  margin: 0px;
+                  padding: 0px;
+                  position: absolute;
+                  top: 39%;
+                  right: 8px;
+                  transform: translate(0px, -32%);
+                  font-size: 15px;
+                "
+              >
+                تواصل مع الدعم
+              </h6>
+              <i
+                style="
+                  padding: 7px 8px 6px;
+                  background: rgb(30, 169, 82);
+                  margin: 0px 2px 0px 0px;
+                  font-size: 23px;
+                  left: 0;
+                  position: absolute;
+                "
+                class="fab fa-whatsapp"
+              ></i>
+            </ShareNetwork>
           </div>
-          <div>
-            <h5 style="text-align:center;color:#0989c3;padding: 15px 0;padding-bottom: 0;color: #FFFFFF;background: #FFFFFF;text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5, -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;font-size:25px">🔥🚀🔥 مراجعة أولى ثانوي كلها  🔥🚀🔥 </h5>
-            <p class="subjects-offer" style="text-align:center;margin-bottom:0;padding-bottom:0"> في ( العربي + الإنجلش + التاريخ + الجغرافيا + الفلسفة )  </p>
-            <h6 style="text-align:center"> 
-              <h6 style="font-size: 30px;text-align: center;color: #000000;background: #FFFFFF;text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;">١٥٠ جنيه</h6>
-              فقط لمدة ٣ أيام على موقع بسطتهالك 
-            </h6>
-
-             <h5 class="text-danger" style="    margin: 0px;font-size: 13px;flex: 1 1 0%;text-align: center;;">
-                  <q>
-                      للحصول على كود الاشتراك 
-                  تواصل مع الدعم واتس على 
-                  01067997469
-                  </q>
-              </h5>
-
-            
-                            <div  style="display: flex;flex-direction: row;width: 100%;">
-                               
-                                <div style="text-align:center;margin:auto">
-                                    <ShareNetwork
-                                class="btn"
-                                style="background: rgb(37, 211, 102);color: rgb(255, 255, 255);margin: 10px 13px 0px 0px;padding: 0px 9px 0px 0px;width: 151px;position: relative;height: 37px;"
-                                    network="whatsapp"
-                                    url=""
-                                    title="السلام عليكم و رحمة اللٌه و بركاته"
-                                    :description="`اريد الإشتراك في \n مراجعة أولى ثانوي كلها  \n في ( العربي + الإنجلش + التاريخ + الجغرافيا + الفلسفة ) \n ١٥٠ جنيه`"
-                                    >
-                                    <h6 style="    display: inline-block;height: 18px;margin: 0px;padding: 0px;position: absolute;top: 39%;right: 8px;transform: translate(0px, -32%);font-size: 15px;">
-                                        تواصل مع الدعم
-                                    </h6>
-                                    <i style="    padding: 7px 8px 6px;background: rgb(30, 169, 82);margin: 0px 2px 0px 0px;font-size: 23px;left: 0;position: absolute;" class="fab fa-whatsapp"></i>
-
-                                </ShareNetwork>
-                                </div>
-                            </div>
-
-          </div>
-        </b-modal>
-
+        </div>
+      </div>
+    </b-modal>
 
     <div class="home-page">
       <div class="outer-slider">
         <div class="slider">
-          <div class="container-fluid">
+          <!-- <div class="container-fluid">
             <div class="row">
-              <!-- ad-format="auto" -->
-              <!-- <adsense
-                ad-slot="8131047019"
-                ad-client="ca-pub-6232929088678094"
-                ad-style="display:block"
-              ></adsense> -->
+            
               <div class="col-md-6">
                 <div class="main-content">
                   <h1>دروسك في بيتك</h1>
@@ -68,22 +120,269 @@
                     الآن مع بسطتهالك كل دروسك من بيتك في كل المواد الدراسية
                     <br />بين أفضل المتفوقين
                   </p>
-                  <!-- <nuxt-link
-                  :to="'/links'"
-                  class="text-center"
-                  style="display: block; font-size: 20px;"
-                  >اللينكات</nuxt-link
-                  >-->
+                
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Start Pf Popular Courses -->
+
+      <div class="container">
+        <div class="popular-classes">
+          <div class="head-who">
+            <span></span>
+            <span></span>
+            <span></span>
+            <h3>دورات مميزه</h3>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; margin-bottom: 16px">
+            <div style="flex: 1">
+              <vs-select
+                color="primary"
+                class="selectExample"
+                label="نظم التعليم"
+                v-model="eduSystemValue"
+              >
+                <vs-select-item
+                  @click.native="getEduLevels(item)"
+                  :key="index"
+                  :value="item"
+                  :text="item.nameAr"
+                  v-for="(item, index) in eduSystems"
+                />
+              </vs-select>
+            </div>
+
+            <div style="flex: 1">
+              <vs-select
+                color="primary"
+                class="selectExample"
+                label="المراحل التعليمية"
+                v-model="levelsEduValue"
+              >
+                <vs-select-item
+                  @click.native="getEduClasses(item)"
+                  :key="index"
+                  :value="item"
+                  :text="item.nameAr"
+                  v-for="(item, index) in levelsEdu"
+                />
+              </vs-select>
+            </div>
+
+            <div style="flex: 1">
+              <vs-select
+                color="primary"
+                class="selectExample"
+                label="الصفوف"
+                v-model="classesEduValue"
+              >
+                <vs-select-item
+                  @click.native="getEduSubjects(item)"
+                  :key="index"
+                  :value="item"
+                  :text="item.nameAr"
+                  v-for="(item, index) in classesEdu"
+                />
+              </vs-select>
+            </div>
+          </div>
+
+          <div
+            class="subjects-tags container"
+            style="display: flex; flex-wrap: wrap; justify-content: center"
+          >
+            <div v-for="item in subjectsPopularClasses.subjects" :key="item.id">
+              <vs-button
+                color="primary"
+                @click="changeSubject(item)"
+                type="border"
+              >
+                {{ item.nameAr }}
+              </vs-button>
+            </div>
+
+            <div
+              style="
+                width: 100%;
+                padding: 16px;
+                overflow: hidden;
+                width: 100%;
+                border: 1px solid #eee;
+                background: #ffff;
+                margin: 15px 0;
+              "
+            >
+              <div class="row">
+                
+                <div
+                  class="col-md-12"
+                  style="margin-right: 0; padding-right: 0"
+                >
+                  <Loading v-if="subjectCoursesLoading" />
+                  <NoData
+                    v-else-if="
+                      subjectsPopularClasses &&
+                      subjectsPopularClasses.courses &&
+                      subjectsPopularClasses.courses.length == 0 &&
+                      subjectCoursesLoading == false
+                    "
+                  />
+
+                  <div v-else style="flex: 1">
+                    <swiper
+                      style="width: 100%"
+                      class="swiper"
+                      :options="swiperOptionBestSeller"
+                    >
+                      <swiper-slide
+                        v-for="course in subjectsPopularClasses.courses"
+                        :key="course.id"
+                      >
+                        <div
+                          class="course"
+                          
+                        >
+                          <div
+                            class="lec-card"
+                            style="text-align: center; height: 150px"
+                          >
+                            <img
+                              class="lec-card-img"
+                              v-if="course.image"
+                              style="width: 100%; height: 100%"
+                              :src="course.image"
+                              alt=""
+                            />
+                            <img
+                              class="lec-card-img"
+                              v-else-if="
+                                !course.image &&
+                                course.teacher &&
+                                course.teacher.photo !=
+                                  'https://res.cloudinary.com/derossy-backup/image/upload/v1555206304/deross-samples/placeholder-profile-male.jpg' &&
+                                course.teacher.photo
+                              "
+                              style="width: 100%; height: 100%"
+                              :src="course.teacher.photo"
+                              alt=""
+                            />
+
+                            <img
+                              v-else
+                              style="width: 100%; height: 100%"
+                              class="lec-card-img"
+                              src="https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png"
+                              alt=""
+                            />
+                          </div>
+
+                          
+
+                            <!-- <div class="more-details">
+                  <vs-button @click="$router.push(`/course-details/${course.id}`)" color="#f6f6f6" style="color:#333;border:1px solid #ccc"><i class="fas fa-info"></i></vs-button>
+                </div> -->
+
+                <div
+                            style="
+                              font-family: 'CustomFontRegular';
+                              padding-top: 10px;
+                              margin-bottom: 15px;
+                            "
+                          >
+                            <h5
+                              style="
+                                font-family: CustomFontRegular;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                font-size: 16px;
+                                padding:0 7px
+                              "
+                            >
+                              {{ course.nameAr }}
+                            </h5>
+                            <p style="padding:0 7px;font-size: 13px;color: #808080;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{course.invitationMsgAr }} </p>
+                            <!-- <span> {{course.descriptionAr}} </span> -->
+                            
+                          </div>
+
+
+                <div class="status">
+                     <div style="flex:1">
+                        <b-form-rating style="padding: 0;margin: 0;border: 0;" value="4" readonly variant="warning" ></b-form-rating>
+                     </div>
+
+                            <div v-if="course.enrollment == 'accepted'">
+                              <vs-button
+                                color="warning"
+                                @click="
+                                  $router.push(
+                                    `/course/${course.id}/main${
+                                      course.lecture
+                                        ? '?nextLive=' + course.lecture
+                                        : ''
+                                    }`
+                                  )
+                                "
+                              >
+                                دخول
+                              </vs-button>
+                            </div>
+                            
+                            <div v-else>
+                              <vs-button
+                                @click="
+                                  $router.push(`/course-details/${course.id}`)
+                                "
+                                color="warning"
+                              >
+                                عرض التفاصيل
+                              </vs-button>
+                            </div>
+                        </div>
+
+                          </div>
+
+                          
+                          
+                      </swiper-slide>
+
+                      <div
+                        class="swiper-pagination-best-seller"
+                        slot="pagination"
+                      ></div>
+                      <div class="swiper-button-prev" slot="button-prev"></div>
+                      <div class="swiper-button-next" slot="button-next"></div>
+
+                    </swiper>
+
+
+                    <div style="width:100%;text-align:center">
+                      <vs-button @click="$router.push(`/subjects/${currSubject.id}/courses`)">
+                      عرض جيع الكورسات
+                    </vs-button>
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- End Of Popular Courses -->
       </div>
 
-      <div class="who-we-are" id="who-we-are">
+      <!-- <div class="who-we-are" id="who-we-are">
         <div class="background-who-we-are">
-          <img src="../assets/imgs/logo.png" alt style="width: 100%" />
+          <img src="@/assets/imgs/logo.png" alt style="width: 100%" />
         </div>
         <div class="container" v-if="about">
           <div class="head-who">
@@ -97,15 +396,75 @@
           </div>
 
           <div class="logo-who-we-are">
-            <img :src="about.image" alt />
+            <img
+              style="width: 100%; height: auto !important"
+              :src="about.image"
+              alt
+            />
           </div>
           <div class="title-who-we-are">
             <p>{{ about.description }}</p>
           </div>
         </div>
+      </div> -->
+
+      <!-- Start Bassthalk apps (last design from bassthalk development whatsapp group) -->
+
+      <div id="bassthalk-apps">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="apps-text">
+                <div class="bassthalk-apps-title">
+                  <h5 style="text-align: center">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    تطبيق بسطتهالك
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </h5>
+                </div>
+
+                <p>
+                  احصل علي كورسات المواد التعليمية التي تحتاجها و تمتع بتجربة
+                  تعليمية ممتعة و فريدة من نوعها بخطواط بسيطة بإمكانك الوصول الي
+                  كافة المدرسين اونلاين
+                </p>
+
+                <br />
+
+                <p style="font-size: 23px">قم بتحميل تطبيق الجوال الاَن</p>
+
+                <div id="apps">
+                  <div style="text-align: center">
+                    <img
+                      style="width: 271px; margin: auto"
+                      src="@/assets/home/apps.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-7">
+              <div class="apps-img">
+                <img
+                  style="width: 400px"
+                  src="@/assets/home/NoPath.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="our-view" id="our-view">
+      <!-- End Bassthalk apps (last design from bassthalk development whatsapp group) -->
+
+      <!-- <div class="our-view" id="our-view">
         <div class="container">
           <div class="head-who" style="margin-bottom: 0">
             <span></span>
@@ -181,233 +540,422 @@
             </div>
           </div>
         </div>
+      </div> -->
+
+      <div id="the-best-students" style="overflow: hidden">
+        <div class="container">
+          <div class="best-student-title">
+            <h6
+              style="text-align: center; margin-bottom: 45px; font-size: 27px"
+            >
+              <i style="font-size: 12px" class="fas fa-star"></i>
+              <i style="font-size: 15px" class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              المتفوقين
+              <i class="fas fa-star"></i>
+              <i style="font-size: 15px" class="fas fa-star"></i>
+              <i style="font-size: 12px" class="fas fa-star"></i>
+            </h6>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div>
+                <div
+                  style="text-align: center; margin-top: 25px"
+                  class="student-info"
+                >
+                  <img
+                    style="width: 115px"
+                    src="@/assets/home/thired-one.png"
+                    alt=""
+                  />
+                </div>
+                <h5 v-if="$auth.loggedIn && students && students.length > 0">
+                  {{ students[2].user.username }}
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div>
+                <div style="text-align: center" class="student-info">
+                  <img
+                    style="width: 160px"
+                    src="@/assets/home/first-one.png"
+                    alt=""
+                  />
+                </div>
+                <h5 v-if="$auth.loggedIn && students && students.length > 0">
+                  {{ students[0].user.username }}
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div>
+                <div
+                  style="text-align: center; margin-top: 25px"
+                  class="student-info"
+                >
+                  <img
+                    style="width: 115px"
+                    src="@/assets/home/second-one.png"
+                    alt=""
+                  />
+                </div>
+                <h5 v-if="$auth.loggedIn && students && students.length > 0">
+                  {{ students[1].user.username }}
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="the-best" style="overflow: hidden" id="the-best">
+      <div class="latest-news-section" style="position: relative">
+        <img src="@/assets/home/leaderboard.png" alt="" />
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <div class="head-who">
-                <span></span>
-                <span></span>
-                <span></span>
-                <h3>المتفوقين</h3>
-                <span></span>
-                <span></span>
-                <span></span>
+              <div class="news-notification">
+                <div class="best-student-title">
+                  <h6
+                    style="
+                      text-align: center;
+                      margin-bottom: 45px;
+                      font-size: 27px;
+                      color: #058ac6;
+                    "
+                  >
+                    <i style="font-size: 12px" class="fas fa-star"></i>
+                    <i style="font-size: 15px" class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    أخر الأخبار
+                    <i class="fas fa-star"></i>
+                    <i style="font-size: 15px" class="fas fa-star"></i>
+                    <i style="font-size: 12px" class="fas fa-star"></i>
+                  </h6>
+                </div>
+
+                <div class="form-group">
+                  <label for="" style="font-family: 'CustomFontRegular'">
+                    قم بالاشتراك الاَن لمتابعة
+                    <h5
+                      style="
+                        color: #058ac6;
+                        font-family: 'CustomFontRegular';
+                        display: inline-block;
+                        font-size: 14px;
+                        margin-bottom:0
+                      "
+                    >
+                      أخر الأخبار
+                    </h5>
+                  </label>
+                  <input
+                    placeholder="أدخل البريد الإلكتروني الخاص بك هنا"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+                <vs-button style="font-family:'CustomFontRegular';padding:5px 10px">
+                  التسجيل
+                </vs-button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="about-bassthalk">
+        <div>
+          <div class="about-bassthalk-title">
+            <h6
+              style="
+                text-align: center;
+                margin-bottom: 45px;
+                font-size: 27px;
+                color: #058ac6;
+              "
+            >
+              <i style="font-size: 12px" class="fas fa-star"></i>
+              <i style="font-size: 15px" class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <h5 style="display: inline-block;font-size: 29px;color: #333;">
+                من نحن
+              </h5>
+              <i class="fas fa-star"></i>
+              <i style="font-size: 15px" class="fas fa-star"></i>
+              <i style="font-size: 12px" class="fas fa-star"></i>
+            </h6>
+          </div>
+
+
+            <div style="overflow: hidden;">
+              <div class="row">
+              <div class="col-md-6">
+              <div style="    padding-top: 66px;padding-right: 50px;">
+                <div class="container">
+                  <div>
+                    <h5 style="font-size:25px">خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
+                    <div>
+                      <h6>
+                        {{about.title}}
+                      </h6>
+                      <p style="    color: #949191;">
+                        {{about.description}}
+                      </p>
+                    </div>
+                    <div class="about-list">
+                      <div class="about-feature">
+                        <div> <img src="@/assets/home/num-one.png" alt=""> </div>
+                        <div>
+                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
+                        </div>
+                      </div>
+
+                      <div class="about-feature">
+                        <div> <img src="@/assets/home/num-two.png" alt=""> </div>
+                        <div>
+                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
+                        </div>
+                      </div>
+
+                      <div class="about-feature">
+                        <div> <img src="@/assets/home/num-three.png" alt=""> </div>
+                        <div>
+                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="col-md-6">
-              <div class="all-the-best-btn">
-                <nuxt-link to="/best-students" style="color: #fff">
-                  <button class="btn">عرض جميع المتفوقين</button>
-                </nuxt-link>
+              <div>
+                <img style="width: 100%;" src="@/assets/home/about-img.png" alt="">
               </div>
             </div>
-          </div>
-          <Loading v-if="isLoading" />
-          <div v-if="isvalid" class="best-sort" style="overflow: hidden">
-            <div class="row" v-if="students.length > 0">
-              <div class="col-md-4">
-                <div class="user-sort-item">
-                  <div class="profile-pic" v-if="$auth.loggedIn && students.length > 0">
-                    <span>
-                      <img src="../assets/imgs/thired2x.png" alt />
-                    </span>
-                    <img
-                      style="border-radius: 50%"
-                      v-if="students[2].user.photo"
-                      :src="students[2].user.photo"
-                      alt
-                    />
-                    <div class="profile-cont">
-                      <h3 v-if="students[2].user.username">{{ students[2].user.username }}</h3>
-                      <!-- <h3> {{students[1].user.level | getLevel}} </h3> -->
-                      <div class="profile-cont-point" style="overflow: hidden">
-                        <img src="../assets/imgs/point.png" alt />
-                        <h6 v-if="students[2].points">{{ students[1].points }}</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="user-sort-item first-student">
-                  <div class="profile-pic">
-                    <span>
-                      <img src="../assets/imgs/first3x.png" alt />
-                    </span>
-                    <img
-                      style="border-radius: 50%"
-                      v-if="students[0].user.photo"
-                      :src="students[0].user.photo"
-                      alt
-                    />
-                    <div class="profile-cont">
-                      <h3 v-if="students[0].user.username">{{ students[0].user.username }}</h3>
-                      <!-- <h3>{{students[2].user.level | getLevel}} </h3> -->
-                      <div class="profile-cont-point" style="overflow: hidden">
-                        <img src="../assets/imgs/point.png" alt />
-                        <h6 v-if="students[0].points">{{ students[0].points }}</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="user-sort-item">
-                  <div class="profile-pic">
-                    <span>
-                      <img src="../assets/imgs/second-2x.png" alt />
-                    </span>
-                    <img
-                      style="border-radius: 50%"
-                      v-if="students[1].user.photo"
-                      :src="students[1].user.photo"
-                      alt
-                    />
-                    <div class="profile-cont">
-                      <h3 v-if="students[1].user.username">{{ students[1].user.username }}</h3>
-                      <!-- <h3>{{students[0].user.level | getLevel}}</h3> -->
-                      <div class="profile-cont-point" style="overflow: hidden">
-                        <img src="../assets/imgs/point.png" alt />
-                        <h6 v-if="students[1].points">{{ students[1].points }}</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-
-          <div v-else class="best-sort mb-5" style="overflow: hidden">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="user-sort-item">
-                  <div class="profile-pic">
-                    <span>
-                      <img src="../assets/imgs/thired2x.png" alt />
-                    </span>
-                    <img src="../assets/imgs/user.png" alt />
-                    <div class="profile-cont">
-                      <!-- <h3>احمد محمود</h3> -->
-                      <!-- <h3>الصف الاول الثانوي</h3> -->
-                      <!-- <div class="profile-cont-point" style="overflow: hidden;">
-                        <img src="../assets/imgs/point.png" alt />
-                        <h6>140</h6>
-                      </div>-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="user-sort-item first-student">
-                  <div class="profile-pic">
-                    <span>
-                      <img src="../assets/imgs/first3x.png" alt />
-                    </span>
-                    <img src="../assets/imgs/user.png" alt />
-                    <div class="profile-cont">
-                      <!-- <h3>احمد محمود</h3> -->
-                      <!-- <h3>الصف الاول الثانوي</h3> -->
-                      <!-- <div class="profile-cont-point" style="overflow: hidden;">
-                        <img src="../assets/imgs/point.png" alt />
-                        <h6>150</h6>
-                      </div>-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="user-sort-item">
-                  <div class="profile-pic">
-                    <span>
-                      <img src="../assets/imgs/second-2x.png" alt />
-                    </span>
-                    <img src="../assets/imgs/user.png" alt />
-                    <div class="profile-cont">
-                      <!-- <h3>احمد محمود</h3> -->
-                      <!-- <h3>الصف الاول الثانوي</h3> -->
-                      <!-- <div class="profile-cont-point" style="overflow: hidden;">
-                        <img src="../assets/imgs/point.png" alt />
-                        <h6>145</h6>
-                      </div>-->
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
       </div>
 
-      <div class="download-app" id="download-app">
+
+      <div class="our-view-services">
         <div class="container">
-          <div class="download-app-cont" style="overflow: hidden">
-            <div class="row">
-              <div class="col-md-6">
-                <div>
-                  <div class="head-who">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <h3>حمل التطبيق</h3>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <h3>قم بتحميل تطبيق الجوال الآن</h3>
-                  <div class="android-ios" style="overflow: hidden">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="android" style="overflow: hidden">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div>حمله من جوجل بلاي</div>
-                            </div>
-                            <div class="col-md-6">
-                              <div>
-                                <img src="../assets/imgs/android.png" alt />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+          <div class="row">
+            <div class="col-md-7">
+              <div class="image">
+                <img style="width:100%" src="@/assets/home/view-services.png" alt="">
+                <div class="main-text">
+                  <h5>
+                    أكثر من 10 خدمات <br/>
+                    علي منصة واحدة
+                  </h5>
+                </div>
 
-                      <div class="col-md-6">
-                        <div class="ios">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div>حمله من أب استور</div>
-                            </div>
-                            <div class="col-md-6">
-                              <div>
-                                <img src="../assets/imgs/apple.png" alt />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="servies-one">
+                  <h5>الخدمة</h5>
+                </div>
+
+                <div class="servies-two">
+                  <h5>الخدمة</h5>
+                </div>
+
+                <div class="servies-three">
+                  <h5>الخدمة</h5>
+                </div>
+
+                <div class="servies-four">
+                  <h5>الخدمة</h5>
+                </div>
+
+
+                <div class="servies-five">
+                  <h5>الخدمة</h5>
+                </div>
+
+                <div class="servies-six">
+                  <h5>الخدمة</h5>
+                </div>
+
+                <div class="servies-seven">
+                  <h5>الخدمة</h5>
+                </div>
+
+                <div class="servies-eight">
+                  <h5>الخدمة</h5>
+                </div>
+
+                <div class="servies-nine">
+                  <h5>الخدمة</h5>
                 </div>
               </div>
+            </div>
+            <div class="col-md-5">
+              <div style="padding: 15px 25px 0 0;">
+                <h5>خدمات و رؤية  <h6 style="color:#058ac6;display:inline-block;font-size:20px">
+                  بسطتهالك
+                  <img src="@/assets/imgs/logo.png" style="width:32px;" alt="">
+                  </h6> 
+                </h5>
 
-              <div class="col-md-6">
+                <p style="font-family: 'CustomFontRegular';font-size: 14px;line-height: 1.7;">
+                  إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي 
+                </p>
+
                 <div>
-                  <img src="../assets/imgs/mobile.png" alt />
+                  <ul>
+                    <li style="display:flex">
+                      <div>
+                        <img src="@/assets/home/services-icon.png" alt="">
+                      </div>
+                      <div>
+                       <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                      </div>
+                    </li>
+
+                    <li style="display:flex">
+                      <div>
+                        <img src="@/assets/home/services-icon-2.png" alt="">
+                      </div>
+                      <div>
+                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                      </div>
+                    </li>
+
+                    <li style="display:flex">
+                      <div>
+                        <img src="@/assets/home/services-icon-3.png" alt="">
+                      </div>
+                      <div>
+                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                      </div>
+                    </li>
+
+                    <li style="display:flex">
+                      <div>
+                        <img src="@/assets/home/services-icon-4.png" alt="">
+                      </div>
+                      <div>
+                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                      </div>
+                    </li>
+
+                    <li style="display:flex">
+                      <div>
+                        <img src="@/assets/home/services-icon-5.png" alt="">
+                      </div>
+                      <div>
+                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="question-and-answer" id="question-and-answer">
+
+      <div class="contact-with-bassthalk">
+        <div class="contact-bassthalk-title">
+            <h6
+              style="
+                text-align: center;
+                margin-bottom: 45px;
+                font-size: 27px;
+                color: #058ac6;
+                padding-top:40px
+              "
+            >
+              <i style="font-size: 12px" class="fas fa-star"></i>
+              <i style="font-size: 15px" class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <h5 style="display: inline-block;font-size: 29px;color: #333;">
+                تواصل معنا
+              </h5>
+              <i class="fas fa-star"></i>
+              <i style="font-size: 15px" class="fas fa-star"></i>
+              <i style="font-size: 12px" class="fas fa-star"></i>
+            </h6>
+          </div>
+        <div class="row">
+          <div class="col-md-7">
+          <div class="form">
+            <div class="container">
+              <div>
+                <h5>قم بملأ البيانات التالية</h5>
+              </div>
+
+              <div class="form-group">
+                <input type="text" placeholder="الإسم" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="البريد الإلكتروني" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="رقم الهاتف" class="form-control">
+              </div>
+              <div class="form-group">
+                <textarea  style="resize:none;height:170px" type="text" placeholder="الرسالة" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="contact-with-us">
+            <h5 style="padding:15px;text-align:center;color:#FFF">تواصيل معنا علي </h5>
+            <div class="container">
+              <div>
+              <ul style="list-style:none;">
+                <li style="text-align: left;color:#FFF">
+                  <i class="fas fa-phone"></i>
+                  01033143665
+                </li>
+
+                <li style="text-align: left;color:#FFF">
+                  <i class="fas fa-envelope-open"></i>
+                  bassthalk.edu@gmail.com
+                </li>
+
+                <li style="text-align: left;color:#FFF">
+                  <i class="fas fa-map-marker-alt"></i>
+                  رقم 18 , الهرم , الجيزة
+                </li>
+
+                <li style="text-align: left;color:#FFF">
+                  <i class="fab fa-whatsapp"></i>
+                  01033143665
+                </li>
+              </ul>
+            </div>
+
+            <div class="social-network">
+              <h5>التواصل الإجتماعي</h5>
+
+              <ul >
+                <li><i class="fab fa-facebook-square"></i></li>
+                <li><i class="fab fa-youtube"></i></li>
+                <li><i class="fab fa-twitter-square"></i></li>
+                <li><i class="fab fa-instagram"></i></li>
+                <li><i class="fab fa-linkedin"></i></li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- <div class="question-and-answer" id="question-and-answer">
         <div class="container">
           <div class="head-who">
             <span></span>
@@ -539,7 +1087,9 @@
                         <img src="../assets/imgs/chat-avatar.png" alt />
                       </div>
                       <div class="col-md-9 col-9">
-                        <p style="margin-top: 23px">قم بأرسال استفسارك و سنجاوب عليك في اسرع وقت</p>
+                        <p style="margin-top: 23px">
+                          قم بأرسال استفسارك و سنجاوب عليك في اسرع وقت
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -560,7 +1110,9 @@
                       />
                     </div>
                     <div v-else>
-                      <p class="text-center">ولارسال سؤال من فضلك قم بتسجيل الدخول</p>
+                      <p class="text-center">
+                        ولارسال سؤال من فضلك قم بتسجيل الدخول
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -602,8 +1154,12 @@
                             margin-top: 20px;
                             color: #0989c3;
                           "
-                        >{{ part.name }}</h4>
-                        <p style="text-align: center; color: #676767">{{ part.description }}</p>
+                        >
+                          {{ part.name }}
+                        </h4>
+                        <p style="text-align: center; color: #676767">
+                          {{ part.description }}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -612,22 +1168,73 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 import Loading from '../components/Loading'
+import NoData from '../components/NoData'
 
 export default {
   components: {
     Loading,
+    NoData,
   },
   data() {
     return {
       isvalid: false,
       studentsQuestions: [],
+      subjectsPopularClasses: [],
+      subjectsPopularClassesValue: '',
+      swiperOptionBestSeller: {
+        slidesPerView: 4,
+        spaceBetween: 5,
+        slidesPerGroup: 4,
+        slidesPerGroup: 1,
+        loop: false,
+        loopFillGroupWithBlank: false,
+        loopFillGroupWithBlank: false,
+
+        breakpoints: {
+          1200: {
+            slidesPerView: 4,
+            spaceBetween: 5,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 5,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 5,
+          },
+          350: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+          },
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      },
+      currSubject: {},
+      eduSystemValue: {},
+      levelsEduValue: {},
+      classesEduValue: {},
+      classesEdu: {},
+
+      levelsEdu: '',
       ques1: false,
       about: [],
       ques2: false,
@@ -638,13 +1245,15 @@ export default {
       sent: [],
       question: '',
       isLoading: false,
+      subjectCoursesLoading: true,
       students: [],
       studentsQuestions: [],
       partners: [],
+      eduSystems: [],
     }
   },
   mounted(){
-    this.$bvModal.show('first-secondary-offer');
+    this.$bvModal.show("first-secondary-offer");
   },
   created() {
     this.$axios.get(`partners`).then((res) => {
@@ -653,13 +1262,71 @@ export default {
     this.$axios.get(`about`).then((res) => {
       this.about = res.data
     })
+    this.$axios.get(`/systems`).then((res) => {
+      this.eduSystems = res.data
+      this.eduSystemValue = res.data[0]
+      this.getEduLevels(this.eduSystems[0].levels[0], true)
+    })
     this.getBestStudents()
     this.getStudentsQuestions()
   },
   methods: {
+    changeSubject(subject, isPopular = null) {
+      this.subjectCoursesLoading = true
+      this.currSubject = subject
+      this.$axios
+        .get(
+          `/subjects/${subject.id}/courses-public${
+            isPopular == true || isPopular == false
+              ? '?isPopular=' + isPopular
+              : ''
+          }`
+        )
+        .then((res) => {
+          console.log(res)
+          this.subjectsPopularClasses.courses = res.data.docs
+        })
+        .finally(() => (this.subjectCoursesLoading = false))
+    },
+    getEduSubjects(item) {
+      this.subjectCoursesLoading = true
+      this.$axios
+        .get(`/classes/${item.id}/subjects-popular-courses`)
+        .then((res) => {
+          this.subjectsPopularClasses = res.data
+          this.currSubject = this.subjectsPopularClasses.subjects[0]
+        })
+        .finally(() => (this.subjectCoursesLoading = false))
+    },
     toggleQuestion(index) {
       let quest = 'ques' + index
       this.quest = !this.quest
+    },
+    getEduLevels(item, inCreated = false) {
+      this.subjectCoursesLoading = true
+      this.$axios
+        .get(`/systems/${item.id}/levels`)
+        .then((res) => {
+          this.levelsEdu = res.data
+          this.levelsEduValue = res.data[0]
+          if (inCreated) {
+            this.getEduClasses(this.levelsEdu[0], true)
+          }
+        })
+        .finally(() => (this.subjectCoursesLoading = false))
+    },
+    getEduClasses(item, inCreated = false) {
+      this.subjectCoursesLoading = true
+      this.$axios
+        .get(`/levels/${item.id}/classes`)
+        .then((res) => {
+          this.classesEdu = res.data
+          this.classesEduValue = res.data[0]
+          if (inCreated) {
+            this.getEduSubjects(this.classesEduValue)
+          }
+        })
+        .finally(() => (this.subjectCoursesLoading = false))
     },
     getStudentsQuestions() {
       // /questions-admin
@@ -718,16 +1385,24 @@ export default {
 <style scoped lang="scss">
 @import '../assets/sass/index.scss';
 
+.popular-classes {
+  .input-select.vs-select--input {
+    padding: 8px 28px !important;
+  }
+  .con-select {
+    margin: auto;
+  }
+}
 
-.subjects-offer{
-    color: transparent;
-    background: #4074b5;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    text-shadow: 0px 3px 3px #ffffff80;
-    font-size: 20px;
-    font-weight: bold;
+.subjects-offer {
+  color: transparent;
+  background: #4074b5;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  text-shadow: 0px 3px 3px #ffffff80;
+  font-size: 20px;
+  font-weight: bold;
 }
 .navbar-before .navbar-big {
   display: none;
@@ -760,15 +1435,6 @@ span:nth-of-type(2) {
   left: 4px;
 }
 
-span {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  content: '';
-  background: #058ac6;
-  border: 1px solid #058ac6;
-  border-radius: 50%;
-}
 span:nth-of-type(3) {
   top: 13px;
   left: 20px;
@@ -792,9 +1458,9 @@ span:nth-of-type(6) {
 
 .slider {
   min-height: 762px;
-  background: url('../assets/imgs/header.png');
+  background: url('../assets/home/header-bg.png');
   background-size: cover;
-  background-position: left;
+  background-position: center;
   background-repeat: no-repeat;
 }
   .title-who-we-are p {
@@ -876,6 +1542,94 @@ span:nth-of-type(6) {
   font-size: 27px;
   width: 67%;
 }
+
+
+
+.subjects-tags {
+  .swiper-button-prev {
+    transform: rotate(180deg);
+  }
+
+  .swiper-container{
+    
+    padding: 15px 0;
+
+  }
+
+  .swiper-button-prev:after,
+  .swiper-container-rtl .swiper-button-next:after {
+    content: 'prev';
+    font-size: 22px;
+    background: #f6f6f6;
+    padding: 8px 10px;
+    font-weight: bold;
+    color: #1f74ff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .course {
+       position: relative;
+    margin-top: 15px;
+    box-shadow: 0 4px 25px 0 #0000001a;
+    transition: all 0.5s ease;
+    margin: 5px;
+    margin-bottom: 15px;
+    padding: 0 !important;
+    min-height: auto !important;
+    &:hover {
+      transform: translateY(-10px);
+    }
+    .status {
+      
+      color: #fff;
+      font-family: 'CustomFontBold';
+      display: flex;
+      >div {
+      
+      }
+      // background: #0989c3;
+      button {
+        text-align: center;
+      }
+      // .more-details{
+      //   text-align: center;
+      //   flex:1;
+      //   margin-right: 2px;
+      // }
+    }
+    .accepted {
+      background: #27ae60;
+    }
+    .refused {
+      background: #c0392b;
+    }
+    .pending {
+      background: #0989c3;
+    }
+    > span {
+      display: block;
+      text-align: center;
+      color: #c5c5c5;
+      font-family: 'CustomFontRegular';
+    }
+    > h5 {
+      margin-bottom: 0;
+      text-align: center;
+    }
+    .teacher {
+      display: flex;
+      margin-top: 19px;
+      // background: #f7f7f7;
+      // border-top: 1px solid #EEE;
+      h6 {
+        margin-top: 15px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
 .view-cont.second {
   overflow: hidden;
   position: relative;
@@ -960,6 +1714,17 @@ span:nth-of-type(6) {
   margin: 51px 0;
   text-align: left;
 }
+
+.subjects-tags {
+  > div {
+    button {
+      padding: 5px;
+      margin: 5px;
+      font-family: 'CustomFontRegular';
+    }
+  }
+}
+
 .the-best .all-the-best-btn button {
   background: #058ac6;
   color: #fff;
@@ -1143,6 +1908,33 @@ span:nth-of-type(6) {
   border-radius: 14px;
 }
 @media (max-width: 575px) {
+  .contact-with-bassthalk .form{
+        padding-right:0px !important;
+    }
+  .image{
+    >div:not(:first-of-type){
+      h5{
+        font-size: 13px !important;
+      }
+    }
+    .main-text{
+      h5{
+        font-size: 11px !important;
+      }
+    }
+  }
+  .news-notification{
+    padding: 0 !important;
+  }
+  .latest-news-section{
+    min-height: 425px !important;
+  }
+  .apps-img {
+    text-align: center !important;
+    img {
+      width: 329px !important;
+    }
+  }
   .head-who {
     width: auto !important;
   }
@@ -1190,8 +1982,12 @@ span:nth-of-type(6) {
     width: 100% !important;
   }
   .slider {
-    background-size: 671px 100%;
+         background-size: 732px 629px;
     background-repeat: no-repeat;
+    width: 100%;
+    background-position: top;
+    margin-top: -20px;
+    min-height: 636px;
   }
 
   .home-page .our-view .desc-cont h3 {
@@ -1280,6 +2076,25 @@ span:nth-of-type(6) {
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .contact-with-bassthalk .form{
+        padding-right:0px !important;
+    }
+  .image{
+    .main-text{
+      h5{
+        font-size: 15px !important;
+      }
+    }
+  }
+  .news-notification{
+    padding: 0 !important;
+  }
+  .apps-img {
+    text-align: center !important;
+    img {
+      width: 329px !important;
+    }
+  }
   .navbar-before-small .nav-small .logo  {
     width: 68px;
     float: right;
@@ -1358,6 +2173,14 @@ span:nth-of-type(6) {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .image{
+    
+    .main-text{
+      h5{
+        font-size: 15px !important;
+      }
+    }
+  }
   .question-and-answer .questions-sec .ques .ques-item h4 {
     font-size: 11px;
   }
@@ -1420,8 +2243,253 @@ span:nth-of-type(6) {
 
   .outer-slider {
     position: relative;
-    top: -118px;
+    top: -91px;
     z-index: -1;
   }
+}
+
+/* Bassthalk-apps section design */
+#bassthalk-apps {
+  background-image: url('../assets/home/bassthalk-apps.png');
+  background-size: cover;
+
+  .apps-text {
+    padding: 74px 0;
+  }
+  .bassthalk-apps-title {
+    text-align: center;
+    margin: 2px 0 25px;
+    color: #fff;
+    i {
+      &:first-of-type {
+        font-size: 12px;
+      }
+      &:nth-of-type(2) {
+        font-size: 15px;
+      }
+
+      &:nth-of-type(5) {
+        font-size: 15px;
+      }
+      &:last-of-type {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .apps-img {
+    overflow: hidden;
+    text-align: left;
+  }
+
+  p {
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 26px;
+    font-family: 'CustomFontRegular';
+  }
+}
+
+#the-best-students {
+  padding: 39px 0;
+  .best-student-title {
+    i {
+      color: #058ac6;
+    }
+  }
+  h5 {
+    text-align: center;
+    padding: 9px 0;
+    color: #0989c3;
+  }
+}
+
+.latest-news-section {
+  position: relative;
+  min-height: 500px;
+  > img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+    max-height: 500px;
+  }
+  .news-notification {
+    padding-top: 222px;
+  }
+}
+
+#about-bassthalk{
+    padding: 36px 0;
+
+  .about-bassthalk-title{
+
+  }
+  .about-list{
+    .about-feature{
+      display: flex;
+      margin-bottom: 30px;
+      >div{
+        img{
+          width: 70px;
+          margin-left:15px;
+          margin-bottom:20px;
+        }
+        h5{
+            margin-top: 13px;
+        }
+      }
+    }
+   
+  }
+}
+
+
+.our-view-services{
+   .image{
+      position:relative;
+
+      .main-text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-90%,-50%);
+        h5{
+          font-size: 25px;
+        }
+      }
+      >div{
+        position:absolute;
+        &:not(:first-of-type){
+          color: #585858;
+          h5{
+          font-family: 'CustomFontRegular';
+
+          }
+        }
+      }
+      .servies-one{
+        top: 3%;
+    right: 19%;
+      }
+      .servies-two{
+        top: 34%;
+    right: 4%;
+      }
+
+      .servies-three{
+            bottom: 22%;
+    right: 3%;
+      }
+
+      .servies-four{
+          bottom: 2%;
+    right: 18%;
+      }
+
+      .servies-five{
+              bottom: 2%;
+    left: 7%;
+      }
+
+       .servies-six{
+           bottom: 26%;
+    left: -4%;
+      }
+
+      .servies-seven{
+               top: 30%;
+    left: -4%;
+      }
+
+      .servies-eight{
+         top: 5%;
+    left: 4%;
+      }
+
+      .servies-nine{
+            top: -6%;
+    left: 50%;
+      }
+
+      >img{
+        width: 100%;
+      }
+      
+    }
+    ul{
+      li{
+        margin-bottom:20px;
+        h6{
+          color:#058ac6;
+               padding-top: 11px; 
+    padding-right: 12px;
+        }
+        img{
+          width:42px
+        }
+      }
+    }
+}
+
+.contact-with-bassthalk{
+  overflow: hidden;
+ 
+  .contact-with-us{
+    background-image:url('../assets/home/form.png');background-size:cover;height:100%;
+    ul{
+      padding:0 22px;
+      li{
+        line-height: 2.5;
+         font-family: 'CustomFontRegular';
+         direction: ltr;
+      }
+    }
+     h5{
+        padding: 45px 0 43px !important;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: 'CustomFontRegular';
+
+  }
+  }
+  .form{
+    padding-right:50px;
+    h5{
+      font-family: 'CustomFontLight';
+    }
+    textarea{
+          box-shadow: 0px 1px 10px 1px #ddd;
+    border: none;
+    }
+  }
+
+  .social-network{
+    text-align: center;
+    color: #FFF;
+    h5{
+      padding: 0 !important;
+    }
+    ul{
+      list-style:none;
+    text-align: center;
+
+      li{
+        display:inline-block;
+        padding:0 5px;
+        i{
+          font-size:24px
+        }
+      }
+    }
+  }
+}
+
+.subjects-tags .course .status > div{
+  text-align:end !important;
+}
+.modal-body{
+  z-index: 99999;
 }
 </style>

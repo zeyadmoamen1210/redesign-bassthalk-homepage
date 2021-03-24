@@ -132,6 +132,32 @@ export default {
   font-family: 'CustomFontMedium';
   font-size: 18px;
 }
+
+
+.vs-select--options{
+    text-align: right !important;
+
+  .vs-select--options ul li{
+    text-align: right !important;
+
+  }
+  .vs-select--item{
+    text-align: right !important;
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+      padding: 7px 7px;
+      font-family: "CustomFontRegular";
+  }
+}
+.input-select-con{
+  .input-select.vs-select--input{
+    padding: 8px 32px;
+  }
+}
+
+
 .light-btn {
   padding: 7px 13px;
   background: #fff;

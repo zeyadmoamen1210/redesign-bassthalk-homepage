@@ -517,8 +517,12 @@ span:nth-of-type(6) {
         width: 100% !important;
     }
     .slider {
-        background-size: 671px 100%;
+        background-size: 732px 629px;
         background-repeat: no-repeat;
+        width: 100%;
+        background-position: top;
+        margin-top: -20px;
+        min-height: 636px;
     }
     .home-page .our-view .desc-cont h3 {
         text-align: center;

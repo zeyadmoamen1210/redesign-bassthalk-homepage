@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="loading">
       <div class="load">
         <div class="logo">
