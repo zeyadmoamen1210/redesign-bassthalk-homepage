@@ -203,7 +203,7 @@ export default {
           Cookies.set('account', JSON.stringify(res.data), { expires: 365 })
           // localStorage.setItem('account', JSON.stringify(res.data))
           Cookies.remove('user')
-          if (this.$auth?.user?.class?.id) {
+          if (this.$auth.loggedIn && this.$auth.user && this.$auth.user.class && this.$auth.user.class.id) {
             this.$router.push({ path: '/subjects' })
           } else {
             this.$router.push({ path: '/path' })

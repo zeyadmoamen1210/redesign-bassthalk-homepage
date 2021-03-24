@@ -54,7 +54,7 @@ export default {
     }
   },
   created() {
-    if (this.$auth?.user?.class?.id) {
+    if (this.$auth.loggedIn && this.$auth.user && this.$auth.user.class && this.$auth.user.class.id) {
       // this.$router.push({ path: '/subjects' })
       this.getSubjects()
     } else {

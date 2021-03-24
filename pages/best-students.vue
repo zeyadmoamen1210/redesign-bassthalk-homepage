@@ -139,7 +139,7 @@ export default {
     }
   },
   created() {
-    if (this.$auth?.user?.role == 'student') {
+    if (this.$auth.loggedIn && this.$auth.user && this.$auth.user.role == 'student') {
     } else {
       this.$router.push({ path: '/' })
     }
@@ -148,7 +148,7 @@ export default {
   methods: {
     getBestStudents() {
       // /classes/5/rank
-      if (this.$auth?.user?.class?.id) {
+      if (this.$auth.loggedIn && this.$auth.user && this.$auth.user.class && this.$auth.user.class.id) {
         this.isLoading = true
         this.$axios
           .get(`classes/${this.$auth.user.class.id}/rank`)

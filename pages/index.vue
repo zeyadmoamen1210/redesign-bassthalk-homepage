@@ -1350,7 +1350,7 @@ export default {
     },
     getBestStudents() {
       // /classes/5/rank
-      if (this.$auth.loggedIn && this.$auth?.user?.class?.id) {
+      if (this.$auth.loggedIn && this.$auth.user && this.$auth.user.class && this.$auth.user.class.id) {
         this.isvalid = true
         this.isLoading = true
         this.$axios

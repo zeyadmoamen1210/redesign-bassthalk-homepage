@@ -160,7 +160,7 @@ export default {
         // localStorage.setItem('account', JSON.stringify(response.data));
         this.$auth.setUser(response.data.user);
 
-        if (this.$auth?.user?.class?.id) {
+        if (this.$auth && this.$auth.user && this.$auth.user.class && this.$auth.user.class.id) {
           this.$router.push({ path: '/subjects' })
         } else {
           this.$router.push({ path: '/path' })
