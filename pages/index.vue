@@ -143,7 +143,7 @@
           </div>
 
           <div style="display: flex; flex-wrap: wrap; margin-bottom: 16px">
-            <div style="flex: 1">
+            <div style="flex: 1;display:none">
               <!-- <vs-select
                 color="primary"
                 class="selectExample"
@@ -162,7 +162,7 @@
               <v-select v-model="eduSystemValue" label="nameAr" @input="getEduLevels(eduSystemValue)"  :options="eduSystems"></v-select>
             </div>
 
-            <div style="flex: 1">
+            <div style="flex: 1;display:none">
               <!-- <vs-select
                 color="primary"
                 class="selectExample"
@@ -182,7 +182,7 @@
 
             </div>
 
-            <div style="flex: 1">
+            <div >
               <!-- <vs-select
                 color="primary"
                 class="selectExample"
@@ -671,292 +671,7 @@
       </div>
 
 
-      <div id="about-bassthalk">
-        <div>
-          <div class="about-bassthalk-title">
-            <h6
-              style="
-                text-align: center;
-                margin-bottom: 45px;
-                font-size: 27px;
-                color: #058ac6;
-              "
-            >
-              <i style="font-size: 12px" class="fas fa-star"></i>
-              <i style="font-size: 15px" class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <h5 style="display: inline-block;font-size: 29px;color: #333;">
-                من نحن
-              </h5>
-              <i class="fas fa-star"></i>
-              <i style="font-size: 15px" class="fas fa-star"></i>
-              <i style="font-size: 12px" class="fas fa-star"></i>
-            </h6>
-          </div>
-
-
-            <div style="overflow: hidden;">
-              <div class="row">
-              <div class="col-md-6">
-              <div style="    padding-top: 66px;padding-right: 50px;">
-                <div class="container">
-                  <div>
-                    <h5 style="font-size:25px">خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
-                    <div>
-                      <h6>
-                        {{about.title}}
-                      </h6>
-                      <p style="    color: #949191;">
-                        {{about.description}}
-                      </p>
-                    </div>
-                    <div class="about-list">
-                      <div class="about-feature">
-                        <div> <img src="@/assets/home/num-one.png" alt=""> </div>
-                        <div>
-                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
-                        </div>
-                      </div>
-
-                      <div class="about-feature">
-                        <div> <img src="@/assets/home/num-two.png" alt=""> </div>
-                        <div>
-                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
-                        </div>
-                      </div>
-
-                      <div class="about-feature">
-                        <div> <img src="@/assets/home/num-three.png" alt=""> </div>
-                        <div>
-                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div>
-                <img style="width: 100%;" src="@/assets/home/about-img.png" alt="">
-              </div>
-            </div>
-            </div>
-            </div>
-        </div>
-      </div>
-
-
-      <div class="our-view-services">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-7">
-              <div class="image">
-                <img style="width:100%" src="@/assets/home/view-services.png" alt="">
-                <div class="main-text">
-                  <h5>
-                    أكثر من 10 خدمات <br/>
-                    علي منصة واحدة
-                  </h5>
-                </div>
-
-                <div class="servies-one">
-                  <h5>الخدمة</h5>
-                </div>
-
-                <div class="servies-two">
-                  <h5>الخدمة</h5>
-                </div>
-
-                <div class="servies-three">
-                  <h5>الخدمة</h5>
-                </div>
-
-                <div class="servies-four">
-                  <h5>الخدمة</h5>
-                </div>
-
-
-                <div class="servies-five">
-                  <h5>الخدمة</h5>
-                </div>
-
-                <div class="servies-six">
-                  <h5>الخدمة</h5>
-                </div>
-
-                <div class="servies-seven">
-                  <h5>الخدمة</h5>
-                </div>
-
-                <div class="servies-eight">
-                  <h5>الخدمة</h5>
-                </div>
-
-                <div class="servies-nine">
-                  <h5>الخدمة</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div style="padding: 15px 25px 0 0;">
-                <h5>خدمات و رؤية  <h6 style="color:#058ac6;display:inline-block;font-size:20px">
-                  بسطتهالك
-                  <img src="@/assets/imgs/logo.png" style="width:32px;" alt="">
-                  </h6> 
-                </h5>
-
-                <p style="font-family: 'CustomFontRegular';font-size: 14px;line-height: 1.7;">
-                  إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي 
-                </p>
-
-                <div>
-                  <ul>
-                    <li style="display:flex">
-                      <div>
-                        <img src="@/assets/home/services-icon.png" alt="">
-                      </div>
-                      <div>
-                       <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
-                      </div>
-                    </li>
-
-                    <li style="display:flex">
-                      <div>
-                        <img src="@/assets/home/services-icon-2.png" alt="">
-                      </div>
-                      <div>
-                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
-                      </div>
-                    </li>
-
-                    <li style="display:flex">
-                      <div>
-                        <img src="@/assets/home/services-icon-3.png" alt="">
-                      </div>
-                      <div>
-                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
-                      </div>
-                    </li>
-
-                    <li style="display:flex">
-                      <div>
-                        <img src="@/assets/home/services-icon-4.png" alt="">
-                      </div>
-                      <div>
-                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
-                      </div>
-                    </li>
-
-                    <li style="display:flex">
-                      <div>
-                        <img src="@/assets/home/services-icon-5.png" alt="">
-                      </div>
-                      <div>
-                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="contact-with-bassthalk">
-        <div class="contact-bassthalk-title">
-            <h6
-              style="
-                text-align: center;
-                margin-bottom: 45px;
-                font-size: 27px;
-                color: #058ac6;
-                padding-top:40px
-              "
-            >
-              <i style="font-size: 12px" class="fas fa-star"></i>
-              <i style="font-size: 15px" class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <h5 style="display: inline-block;font-size: 29px;color: #333;">
-                تواصل معنا
-              </h5>
-              <i class="fas fa-star"></i>
-              <i style="font-size: 15px" class="fas fa-star"></i>
-              <i style="font-size: 12px" class="fas fa-star"></i>
-            </h6>
-          </div>
-        <div class="row">
-          <div class="col-md-7">
-          <div class="form">
-            <div class="container">
-              <div>
-                <h5>قم بملأ البيانات التالية</h5>
-              </div>
-
-              <div class="form-group">
-                <input type="text" placeholder="الإسم" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="text" placeholder="البريد الإلكتروني" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="text" placeholder="رقم الهاتف" class="form-control">
-              </div>
-              <div class="form-group">
-                <textarea  style="resize:none;height:170px" type="text" placeholder="الرسالة" class="form-control"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-5">
-          <div class="contact-with-us">
-            <h5 style="padding:15px;text-align:center;color:#FFF">تواصيل معنا علي </h5>
-            <div class="container">
-              <div>
-              <ul style="list-style:none;">
-                <li style="text-align: left;color:#FFF">
-                  <i class="fas fa-phone"></i>
-                  01033143665
-                </li>
-
-                <li style="text-align: left;color:#FFF">
-                  <i class="fas fa-envelope-open"></i>
-                  bassthalk.edu@gmail.com
-                </li>
-
-                <li style="text-align: left;color:#FFF">
-                  <i class="fas fa-map-marker-alt"></i>
-                  رقم 18 , الهرم , الجيزة
-                </li>
-
-                <li style="text-align: left;color:#FFF">
-                  <i class="fab fa-whatsapp"></i>
-                  01033143665
-                </li>
-              </ul>
-            </div>
-
-            <div class="social-network">
-              <h5>التواصل الإجتماعي</h5>
-
-              <ul >
-                <li><i class="fab fa-facebook-square"></i></li>
-                <li><i class="fab fa-youtube"></i></li>
-                <li><i class="fab fa-twitter-square"></i></li>
-                <li><i class="fab fa-instagram"></i></li>
-                <li><i class="fab fa-linkedin"></i></li>
-              </ul>
-            </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
+     
       <!-- <div class="question-and-answer" id="question-and-answer">
         <div class="container">
           <div class="head-who">
@@ -1297,6 +1012,7 @@ export default {
         .then((res) => {
           this.subjectsPopularClasses = res.data
           this.currSubject = this.subjectsPopularClasses.subjects[0]
+          this.changeSubject(this.subjectsPopularClasses.subjects[0]);
         })
         .finally(() => (this.subjectCoursesLoading = false))
     },
@@ -1388,7 +1104,7 @@ export default {
 @import '../assets/sass/index.scss';
 
 .popular-classes {
-  
+  margin-top: -74px;
   .input-select.vs-select--input {
     padding: 8px 28px !important;
   }
@@ -1461,9 +1177,14 @@ span:nth-of-type(6) {
 
 .slider {
   min-height: 762px;
+  min-height: 571px;
+  
   background: url('../assets/home/header-bg.png');
-  background-size: cover;
-  background-position: center;
+  // background-size: cover;
+  background-size: 1253px;
+  
+  // background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
 }
   .title-who-we-are p {
@@ -1920,6 +1641,9 @@ span:nth-of-type(6) {
   border-radius: 14px;
 }
 @media (max-width: 575px) {
+  .popular-classes{
+    margin-top:0;
+  }
   .contact-with-bassthalk .form{
         padding-right:0px !important;
     }
@@ -2185,6 +1909,16 @@ span:nth-of-type(6) {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .slider{
+      min-height: 762px;
+      min-height: 525px;
+      background-size: 870px;
+      background-position: top;
+      background-repeat: no-repeat;
+      margin-top: -51px;
+      z-index: -1;
+      position: relative;
+  }
   .image{
     
     .main-text{
@@ -2319,10 +2053,10 @@ span:nth-of-type(6) {
 
 .latest-news-section {
   position: relative;
-  min-height: 500px;
+  // min-height: 500px;
   > img {
     position: absolute;
-    bottom: 0;
+    bottom: -51px;
     width: 100%;
     z-index: -1;
     max-height: 500px;
@@ -2332,176 +2066,4 @@ span:nth-of-type(6) {
   }
 }
 
-#about-bassthalk{
-    padding: 36px 0;
-
-  .about-bassthalk-title{
-
-  }
-  .about-list{
-    .about-feature{
-      display: flex;
-      margin-bottom: 30px;
-      >div{
-        img{
-          width: 70px;
-          margin-left:15px;
-          margin-bottom:20px;
-        }
-        h5{
-            margin-top: 13px;
-        }
-      }
-    }
-   
-  }
-}
-
-
-.our-view-services{
-   .image{
-      position:relative;
-
-      .main-text{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-90%,-50%);
-        h5{
-          font-size: 25px;
-        }
-      }
-      >div{
-        position:absolute;
-        &:not(:first-of-type){
-          color: #585858;
-          h5{
-          font-family: 'CustomFontRegular';
-
-          }
-        }
-      }
-      .servies-one{
-        top: 3%;
-    right: 19%;
-      }
-      .servies-two{
-        top: 34%;
-    right: 4%;
-      }
-
-      .servies-three{
-            bottom: 22%;
-    right: 3%;
-      }
-
-      .servies-four{
-          bottom: 2%;
-    right: 18%;
-      }
-
-      .servies-five{
-              bottom: 2%;
-    left: 7%;
-      }
-
-       .servies-six{
-           bottom: 26%;
-    left: -4%;
-      }
-
-      .servies-seven{
-               top: 30%;
-    left: -4%;
-      }
-
-      .servies-eight{
-         top: 5%;
-    left: 4%;
-      }
-
-      .servies-nine{
-            top: -6%;
-    left: 50%;
-      }
-
-      >img{
-        width: 100%;
-      }
-      
-    }
-    ul{
-      li{
-        margin-bottom:20px;
-        h6{
-          color:#058ac6;
-               padding-top: 11px; 
-    padding-right: 12px;
-        }
-        img{
-          width:42px
-        }
-      }
-    }
-}
-
-.contact-with-bassthalk{
-  overflow: hidden;
- 
-  .contact-with-us{
-    background-image:url('../assets/home/form.png');background-size:cover;height:100%;
-    ul{
-      padding:0 22px;
-      li{
-        line-height: 2.5;
-         font-family: 'CustomFontRegular';
-         direction: ltr;
-      }
-    }
-     h5{
-        padding: 45px 0 43px !important;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    font-family: 'CustomFontRegular';
-
-  }
-  }
-  .form{
-    padding-right:50px;
-    h5{
-      font-family: 'CustomFontLight';
-    }
-    textarea{
-          box-shadow: 0px 1px 10px 1px #ddd;
-    border: none;
-    }
-  }
-
-  .social-network{
-    text-align: center;
-    color: #FFF;
-    h5{
-      padding: 0 !important;
-    }
-    ul{
-      list-style:none;
-    text-align: center;
-
-      li{
-        display:inline-block;
-        padding:0 5px;
-        i{
-          font-size:24px
-        }
-      }
-    }
-  }
-}
-
-.subjects-tags .course .status > div{
-  text-align:end !important;
-}
-.modal-body{
-  z-index: 99999;
-}
 </style>

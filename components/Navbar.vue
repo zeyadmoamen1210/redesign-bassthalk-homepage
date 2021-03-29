@@ -5,20 +5,20 @@
         <div class="row">
           <div class="col-md-2 col-xs-5">
             <div class="nav-logo">
-              <img id="logo-img" src="../assets/imgs/logo.png" alt="logo" />
+              <img style="cursor:pointer" id="logo-img" @click="$router.push('/')" src="../assets/imgs/logo.png" alt="logo" />
             </div>
           </div>
 
           <div :class="{'col-md-7': !$auth.loggedIn, 'col-md-8':$auth.loggedIn, 'col-xs-1':true}">
             <div class="navlinks">
               <ul>
-                <li>
+                <!-- <li>
                   <nuxt-link
-                    to="/"
+                    
                     :class="{ active: isRouteActive }"
                     exact-active-class="active"
                   >الرئيسية</nuxt-link>
-                </li>
+                </li> -->
 
                 <!-- <li>
                   <nuxt-link to>من نحن</nuxt-link>
@@ -28,28 +28,37 @@
                   <nuxt-link to>رؤيتنا</nuxt-link>
 
                 </li>-->
-                <li>
-                  <nuxt-link exact-active-class="active" to="/subjects">المواد الدراسية</nuxt-link>
-                </li>
 
-                <li>
-                  <nuxt-link exact-active-class="active" to="/best-students">المتفوقين</nuxt-link>
-                </li>
-
-                <li>
-                  <nuxt-link exact-active-class="active" to="/information-bank">بنك المعلومات</nuxt-link>
-                </li>
-
-                <li>
-                  <nuxt-link exact-active-class="active" to="/live-teach">كورساتي</nuxt-link>
-                </li>
                 <li>
                   <nuxt-link exact-active-class="active" to="/courses">الكورسات</nuxt-link>
                 </li>
+                
+                <li>
+                  <nuxt-link exact-active-class="active" to="/subjects">المحاضرات المجانية</nuxt-link>
+                </li>
+
+                <li>
+                  <nuxt-link exact-active-class="active" to="/best-students">المتفوقون</nuxt-link>
+                </li>
+
+                <li>
+                  <nuxt-link exact-active-class="active" to="/information-bank"> أختبر نفسك </nuxt-link>
+                </li>
+
+                <!-- <li>
+                  <nuxt-link exact-active-class="active" to="/live-teach">كورساتي</nuxt-link>
+                </li>
+                
 
                 <li>
                   <nuxt-link exact-active-class="active" to="/collections">الامتحانات</nuxt-link>
-                </li>
+                </li> -->
+
+                
+
+                <li>
+                  <nuxt-link exact-active-class="active" to="/who-we-are">تعرف علينا</nuxt-link>
+                </li> 
                 <!-- <li>
                   <nuxt-link exact-active-class="active" to="/teachers">المدرسين</nuxt-link>
                 </li> -->
