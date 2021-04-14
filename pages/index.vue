@@ -136,7 +136,7 @@
             <span></span>
             <span></span>
             <span></span>
-            <h3>دورات مميزه</h3>
+            <h3>كورسات مميزه</h3>
             <span></span>
             <span></span>
             <span></span>
