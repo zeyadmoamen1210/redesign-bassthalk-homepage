@@ -132,7 +132,7 @@
 
       <div class="container">
         <div class="popular-classes">
-          <div class="head-who">
+          <div class="head-who" style="margin-top:0;margin-bottom:15px;">
             <span></span>
             <span></span>
             <span></span>
@@ -1177,11 +1177,13 @@ span:nth-of-type(6) {
 
 .slider {
   min-height: 762px;
-  min-height: 571px;
+  min-height: 495px;
   
   background: url('../assets/home/header-bg.png');
   // background-size: cover;
-  background-size: 1253px;
+  background-size: 1269px;
+
+  
   
   // background-position: center;
   background-position: top;
@@ -1718,12 +1720,12 @@ span:nth-of-type(6) {
     width: 100% !important;
   }
   .slider {
-         background-size: 732px 629px;
+         background-size: 745px 532px;
     background-repeat: no-repeat;
     width: 100%;
     background-position: top;
     margin-top: -20px;
-    min-height: 636px;
+    min-height: 582px;
   }
 
   .home-page .our-view .desc-cont h3 {

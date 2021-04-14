@@ -357,7 +357,7 @@
       <div class="container">
         <div class="nav-small">
           <div class="logo">
-            <img src="../assets/imgs/logo.png" alt />
+            <img @click="$router.push('/')" src="../assets/imgs/logo.png" alt />
           </div>
 
           <div class="login-button-small">

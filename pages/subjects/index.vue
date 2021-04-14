@@ -58,12 +58,12 @@
       </div>-->
 
       <div v-show="tabIndex == 1" class="subjects">
-        <div class="form-title">
+        <div class="form-title" style="display:flex">
           <!-- <h4>
             <img src="../../assets/imgs/noun_classroom_-1.png" alt />
             المواد الدراسية
           </h4>-->
-          <div class="head-who">
+          <div class="head-who" style="margin: 50px 0 7px">
             <span></span>
             <span></span>
             <span></span>
@@ -72,11 +72,29 @@
             <span></span>
             <span></span>
           </div>
+
+          <div style="font-family: 'CustomFontRegular';flex:1;text-align: left;padding-top: 64px;">
+            <vs-button 
+            type="border" 
+            :class="{'activeSemester': me.semester == 'first'}"
+            style="font-family: 'CustomFontRegular'" 
+            @click="setLearningPath('first')
+            "> الترم الأول </vs-button>
+            <vs-button 
+            :class="{'activeSemester': me.semester == 'second'}"
+            type="border" 
+            style="font-family: 'CustomFontRegular'" 
+            @click="setLearningPath('second')
+            "> الترم الثاني </vs-button>
+          </div>
+
         </div>
         <Loading v-if="isLoading" />
-
-        <div class="row" v-else>
-          <div class="col-md-3" v-for="(subject, index) in subjects" :key="index">
+      
+        <div  v-else>
+          
+          <div class="row">
+            <div class="col-md-3" v-for="(subject, index) in subjects" :key="index">
               <div class="subject-cont">
                 <div class="subject-icon-img" @click="$router.push('/subjects/' + subject.id + '/units')">
                   <img :src="subject.icon" alt />
@@ -86,7 +104,9 @@
 
               </div>
 
+            </div>
           </div>
+          
         </div>
 
       
@@ -109,6 +129,10 @@ export default {
       subjects: [],
       tabIndex: 1,
       isLoading: true,
+      systems:[],
+      classes:[],
+      levels: [],
+      me:{}
     }
   },
   created() {
@@ -119,11 +143,40 @@ export default {
     } else {
       this.$router.push({ path: '/path' })
     }
+
+    this.$axios.get(`/me`).then(res => {
+      this.me = res.data
+    })
   },
   methods: {
     // setSubjects(){
     //   this.$store.commit('setSubject', this.subjects)
     // },
+    
+    setLearningPath(semester) {
+      this.$vs.loading();
+      // this.isLoading = true
+      let pathData = {
+        level: this.me.level,
+        class: this.me.class.id,
+        semester: semester,
+      }
+      this.$axios
+        .put(`students/path`, pathData)
+        .then((res) => {
+          setTimeout(async () => {
+            setTimeout(async () => {
+              await this.$auth.fetchUser();
+              location.reload();
+            })
+          })
+        })
+        .catch((err) => {
+        })
+        .finally(() => (this.isLoading = false))
+    },
+
+
     getSubjects() {
       this.$axios
         .get(`subjects`)
@@ -139,9 +192,21 @@ export default {
 </script>
 
 <style lang="scss">
+
+
 @import '../../assets/sass/subject-dynamic.scss';
 .subjects {
   margin-top: 20px !important;
+
+  .activeSemester{
+  background: #058ac6 !important;
+  color:#FFF !important;
+    &:hover{
+      background: #058ac6 !important;
+      color:#FFF !important;
+    }
+  }
+
 }
 .subjects-navbar {
   margin-top: 30px;

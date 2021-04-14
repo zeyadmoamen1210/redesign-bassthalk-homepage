@@ -194,4 +194,62 @@ export default {
   color: red;
   font-family: 'CustomFontRegular';
 }
+
+
+
+
+
+
+
+.head-who {
+    position: relative;
+    width: 224px;
+    text-align: center;
+    margin: 51px 0;
+    h3 {
+        text-align: center;
+        font-family: "CustomFontBold";
+    }
+    span {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        content: '';
+        background: #058ac6;
+        border: 1px solid #058ac6;
+        border-radius: 50%;
+        &:first-of-type {
+            width: 12px;
+            height: 12px;
+            top: 14px;
+            right: 4px;
+        }
+        &:nth-of-type(2) {
+            width: 12px;
+            height: 12px;
+            top: 14px;
+            left: 4px;
+        }
+        &:nth-of-type(3) {
+            top: 13px;
+            left: 20px;
+            height: 14px;
+            width: 15px;
+        }
+        &:nth-of-type(4) {
+            top: 10px;
+            left: 40px;
+        }
+        &:nth-of-type(5) {
+            top: 13px;
+            right: 20px;
+            height: 14px;
+            width: 15px;
+        }
+        &:nth-of-type(6) {
+            top: 10px;
+            right: 40px;
+        }
+    }
+}
 </style>

@@ -45,21 +45,21 @@
                       <div class="about-feature">
                         <div> <img src="@/assets/home/num-one.png" alt=""> </div>
                         <div>
-                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
+                          <h6 style="margin-top:10px">رؤيتنا <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h6>
                         </div>
                       </div>
 
                       <div class="about-feature">
                         <div> <img src="@/assets/home/num-two.png" alt=""> </div>
                         <div>
-                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
+                          <h6 style="margin-top:10px">"طريقة سهلة و إبداعية في شرح المواد في جميع المراحل."</h6>
                         </div>
                       </div>
 
                       <div class="about-feature">
                         <div> <img src="@/assets/home/num-three.png" alt=""> </div>
                         <div>
-                          <h5>خدمة ورؤية <h6 style="display: inline-block;color: #058ac6;">بسطتهالك</h6></h5>
+                          <h6>"منصة تعليمية للمرحلة الثانوية والإعدادية تسعى أن توفر نظام تعليمي متكامل بطريق إبداعية وجذابة"</h6>
                         </div>
                       </div>
                     </div>
@@ -93,36 +93,36 @@
                 </div>
 
                 <div class="servies-one">
-                  <h5>الخدمة</h5>
+                  <h5>من اي مكان</h5>
                 </div>
 
                 <div class="servies-two">
-                  <h5>الخدمة</h5>
+                  <h5>كورسات</h5>
                 </div>
 
                 <div class="servies-three">
-                  <h5>الخدمة</h5>
+                  <h5>محاضرات مجانية</h5>
                 </div>
 
                 <div class="servies-four">
-                  <h5>الخدمة</h5>
+                  <h5>ملخصات</h5>
                 </div>
 
 
                 <div class="servies-five">
-                  <h5>الخدمة</h5>
+                  <h5>اختيارات</h5>
                 </div>
 
                 <div class="servies-six">
-                  <h5>الخدمة</h5>
+                  <h5>دروسك في بيتك</h5>
                 </div>
 
                 <div class="servies-seven">
-                  <h5>الخدمة</h5>
+                  <h5>متابعة</h5>
                 </div>
 
                 <div class="servies-eight">
-                  <h5>الخدمة</h5>
+                  <h5>تعلم ممتع</h5>
                 </div>
 
                 <div class="servies-nine">
@@ -139,7 +139,7 @@
                 </h5>
 
                 <p style="font-family: 'CustomFontRegular';font-size: 14px;line-height: 1.7;">
-                  إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي إحصل علي 
+                  تعلم و أستمتع
                 </p>
 
                 <div>
@@ -149,7 +149,7 @@
                         <img src="@/assets/home/services-icon.png" alt="">
                       </div>
                       <div>
-                       <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                       <h6>شرح و تدريبات مجانية للمنهج كامل</h6>
                       </div>
                     </li>
 
@@ -158,7 +158,7 @@
                         <img src="@/assets/home/services-icon-2.png" alt="">
                       </div>
                       <div>
-                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                        <h6>بنك أسئلة</h6>
                       </div>
                     </li>
 
@@ -167,11 +167,11 @@
                         <img src="@/assets/home/services-icon-3.png" alt="">
                       </div>
                       <div>
-                        <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
+                        <h6>كورسات للمذاكرة و المراجعة</h6>
                       </div>
                     </li>
 
-                    <li style="display:flex">
+                    <!-- <li style="display:flex">
                       <div>
                         <img src="@/assets/home/services-icon-4.png" alt="">
                       </div>
@@ -187,7 +187,7 @@
                       <div>
                         <h6>خدمات و رؤية تطبيق بسطتهالك</h6>
                       </div>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
                 
